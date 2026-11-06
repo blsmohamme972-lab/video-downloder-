@@ -1,0 +1,115 @@
+# Study packs — drawings, questions and captions for a video
+
+The **Study player** in StreamSave plays a downloaded (or any local) video and, from a *study pack*:
+
+- draws animated arrows, circles, boxes, spotlights, labels and images on the video at the right moments;
+- shows captions;
+- **pauses after each part of the video and asks a multiple-choice question about the part just watched**, then shows whether the answer is right and why.
+
+You can also add your own notes at any moment. Notes, answers and the pack are saved per video.
+
+The app never changes the video and never runs anything from a pack: a pack is only data.
+
+## How it works with an AI and Google Drive
+
+1. Put the video, or only its audio, which is much smaller, in **Google Drive**.
+2. Ask an AI assistant that can read your Google Drive (for example Claude with the Google Drive connector) to make a study pack. Use the prompt in [Prompt for the AI](#prompt-for-the-ai) below. The assistant watches and listens to the video and writes a file named like `<video name>.study.json` back to your Drive.
+3. In StreamSave, open the video in the **Study player**:
+   - for a download, tap **Study** in the Library;
+   - for any other video, use **Study player** on the main screen.
+
+   Then tap **Study pack** and pick the `.study.json` file. The Android file picker shows Google Drive next to your phone's files.
+4. Press **Play**. The video pauses for each question.
+
+The pack stays attached to that video. Use **Study pack → Retake all questions** to answer them again.
+
+## File format (schemaVersion 2)
+
+A pack is a UTF-8 JSON file. It can also be a ZIP containing `manifest.json` plus optional `images/<name>.png`. All times are milliseconds from the start of the **exact same video**. Positions are fractions (0 to 1) of the video picture: `x` runs left to right and `y` top to bottom.
+
+```json
+{
+  "schemaVersion": 2,
+  "title": "Type A aortic dissection repair",
+  "language": "en",
+  "durationMs": 4578000,
+  "overlays": [
+    {"type": "spotlight", "startMs": 61000, "endMs": 66000, "x": 0.35, "y": 0.3, "x2": 0.65, "y2": 0.7,
+     "text": "Dissected ascending aorta"},
+    {"type": "arrow", "startMs": 70000, "endMs": 78000, "x": 0.15, "y": 0.2, "x2": 0.45, "y2": 0.48,
+     "text": "Electrocautery", "color": "#FFCE79",
+     "keyframes": [{"timeMs": 70000, "x": 0.15, "y": 0.2, "x2": 0.45, "y2": 0.48},
+                   {"timeMs": 78000, "x": 0.2, "y": 0.25, "x2": 0.5, "y2": 0.52}]},
+    {"type": "ring", "startMs": 80000, "endMs": 85000, "x": 0.6, "y": 0.55, "x2": 0.68, "y2": 0.55},
+    {"type": "label", "startMs": 90000, "endMs": 96000, "x": 0.5, "y": 0.88, "text": "Teflon felt strip"}
+  ],
+  "questions": [
+    {"id": "m01", "startMs": 0, "endMs": 60000,
+     "question": "What is the surgeon separating in the first minute?",
+     "options": ["The aorta from the pulmonary artery", "The vena cava from the atrium",
+                 "The pericardium from the sternum", "The coronary artery from the ventricle"],
+     "answer": 0,
+     "explanation": "The aorta is freed from the pulmonary artery so it can be clamped and replaced."}
+  ],
+  "captions": [
+    {"startMs": 0, "endMs": 4200, "text": "We start by freeing the ascending aorta."}
+  ]
+}
+```
+
+### Drawings (`overlays`)
+
+| type | uses | draws |
+| --- | --- | --- |
+| `arrow` | `x,y` → `x2,y2` | an arrow from the first point to the second, with optional `text` at its tail |
+| `ring` | centre `x,y`; radius = distance to `x2,y2` | a circle around a structure |
+| `box` | corners `x,y` and `x2,y2` | a rounded rectangle |
+| `spotlight` | corners `x,y` and `x2,y2` | dims everything outside an oval |
+| `label` | centre `x,y`, `text` (required) | a text bubble |
+| `note` | centre `x,y`, `text` (required) | a highlighted note bubble |
+| `image` | corners `x,y` and `x2,y2`, `asset` | a PNG from `images/` (ZIP packs only) |
+
+**Optional fields:**
+- `color`: for example `#64E8BF`.
+- `text`: up to 600 characters.
+- `id`
+- `animation`: `none`, `fade`, `pop`, `draw` (the arrow or box draws itself) or `pulse` (the shape breathes). The defaults are `draw` for arrows, `pulse` for rings, `pop` for labels and notes, and `fade` for everything else.
+- `keyframes`: up to 300 `{timeMs, x, y, x2, y2}` entries, in order and inside the drawing's time range. They move the drawing smoothly to track a structure.
+
+### Questions (`questions`)
+
+| field | meaning |
+| --- | --- |
+| `startMs`, `endMs` | the part of the video the question is about, usually one minute |
+| `askAtMs` | when to pause and ask; defaults to `endMs` |
+| `question` | up to 500 characters |
+| `options` | 2–6 answers, each up to 200 characters |
+| `answer` | **0-based** index of the correct option |
+| `explanation` | optional, up to 1000 characters |
+| `id` | optional unique id; keeps saved answers matched if the pack is replaced |
+
+A question is asked when **playback** passes `askAtMs`; jumping past it with the seek bar does not ask it. A question that has been answered is not asked again until **Retake all questions**.
+
+### Captions (`captions`)
+
+Each caption is `{startMs, endMs, text}`, with `text` up to 300 characters. Overlapping captions are shown together.
+
+### Limits
+
+- The pack can have up to 3000 drawings, 1000 questions and 20000 captions.
+- JSON packs can be up to 4 MB.
+- ZIP packs can be up to 32 MB unpacked, with 4 MB per image.
+- Version 1 annotation ZIPs from the earlier Surgical Studio still open.
+
+## Prompt for the AI
+
+> Read the video `<file name>` from my Google Drive. Watch the picture and listen to the narration from start to end. Make a StreamSave study pack (schemaVersion 2) exactly as described in STUDY_PACK.md of github.com/blsmohamme972-lab/video-downloder-, and save it to the same Drive folder as `<file name>.study.json`.
+>
+> - **Questions:** for every minute of the video (0:00–1:00, 1:00–2:00, …) write one multiple-choice question that tests what was shown or said in that minute. Use 4 options and one correct answer, set `answer` to its 0-based index, and add a short explanation.
+> - **Drawings:** add arrows, rings, spotlights or labels only where the picture clearly shows the structure or instrument. Use normalized coordinates of the actual video frame, and keyframes when it moves.
+> - **Captions:** add captions from the narration.
+> - **Accuracy:** do not invent anatomy, steps or timings. If unsure, leave the drawing out, or say so in the explanation.
+
+## Safety
+
+This is for learning. AI-generated drawings, captions and questions can be wrong; check important content with a qualified teacher. Only upload videos you are allowed to use, and remove patient-identifying information before sharing a video with any AI service.

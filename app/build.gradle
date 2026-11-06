@@ -1,0 +1,119 @@
+plugins {
+    id 'com.android.application'
+}
+
+def releaseSigningPath = project.findProperty('streamsaveSigningProperties')
+def releaseSigning = new Properties()
+def releaseStoreFile = null
+if (releaseSigningPath) {
+    def propertiesFile = file(releaseSigningPath)
+    propertiesFile.withInputStream { releaseSigning.load(it) }
+    def configuredStoreFile = new File(releaseSigning.getProperty('storeFile'))
+    releaseStoreFile = configuredStoreFile.isAbsolute() ? configuredStoreFile
+            : new File(propertiesFile.parentFile, releaseSigning.getProperty('storeFile'))
+}
+
+android {
+    namespace 'app.streamsave'
+    compileSdk 35
+    buildToolsVersion '35.0.0'
+    useLibrary 'android.test.runner', false
+    useLibrary 'android.test.base', false
+
+    defaultConfig {
+        applicationId 'app.streamsave'
+        minSdk 26
+        targetSdk 35
+        versionCode 5
+        versionName '2.0.0'
+        testInstrumentationRunner 'android.test.InstrumentationTestRunner'
+    }
+
+    signingConfigs {
+        if (releaseSigningPath) {
+            privateRelease {
+                storeFile releaseStoreFile
+                storePassword releaseSigning.getProperty('storePassword')
+                keyAlias releaseSigning.getProperty('keyAlias')
+                keyPassword releaseSigning.getProperty('keyPassword')
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            debuggable false
+            // Supply -PstreamsaveSigningProperties=/absolute/path/to/private.properties
+            // for your own signing identity. The delivered APK uses a private key
+            // stored outside this source project. Local builds default to debug signing.
+            signingConfig releaseSigningPath ? signingConfigs.privateRelease : signingConfigs.debug
+        }
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'arm64-v8a', 'x86_64'
+            universalApk false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+            // The app-owned ARM64 bundle replaces five upstream WebP libraries
+            // with ABI-compatible official Termux builds aligned for 16 KB pages.
+            pickFirsts += ['**/arm64-v8a/libffmpeg.zip.so']
+        }
+        resources {
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/INDEX.LIST']
+        }
+    }
+
+    lint {
+        abortOnError true
+        checkReleaseBuilds true
+    }
+}
+
+dependencies {
+    implementation 'io.github.junkfood02.youtubedl-android:library:0.18.1'
+    implementation 'io.github.junkfood02.youtubedl-android:ffmpeg:0.18.1'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20240303'
+}
+
+// Generated engine inputs are intentionally excluded from Git. A missing app
+// override must never silently package the older dependency-provided yt-dlp.
+def enginePins = new groovy.json.JsonSlurper().parse(rootProject.file('tools/engine_payloads.json'))
+def verifyBundledEngines = tasks.register('verifyBundledEngines') {
+    group = 'verification'
+    description = 'Verify the exact reviewed yt-dlp and repaired ARM64 native bundle.'
+    doLast {
+        [enginePins.yt_dlp, enginePins.ffmpeg_overlay].each { pin ->
+            def payload = rootProject.file(pin.destination)
+            if (!payload.isFile() || payload.length() != pin.bytes) {
+                throw new GradleException("Missing or incorrect engine payload ${pin.destination}. Run: python3 tools/prepare_engine.py")
+            }
+            def digest = java.security.MessageDigest.getInstance('SHA-256')
+            payload.withInputStream { input ->
+                byte[] buffer = new byte[1024 * 1024]
+                int count
+                while ((count = input.read(buffer)) != -1) digest.update(buffer, 0, count)
+            }
+            def actual = digest.digest().collect { String.format('%02x', it & 0xff) }.join()
+            if (actual != pin.sha256) {
+                throw new GradleException("Engine checksum mismatch: ${pin.destination}. Run: python3 tools/prepare_engine.py")
+            }
+        }
+    }
+}
+tasks.named('preBuild').configure { dependsOn verifyBundledEngines }

@@ -1,0 +1,73 @@
+name: Android build and checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3
+        with:
+          packages: platform-tools
+
+      - name: Install pinned Android platform and tools
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+
+      - name: Prepare checksum-pinned engine payloads
+        run: python3 tools/prepare_engine.py
+
+      - name: Check release rules (package, version, signing, updater safeguards)
+        run: python3 tools/check_release_rules.py
+
+      - name: Run downloader integrity checks
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+
+      - name: Build and check both variants
+        run: bash ./gradlew --no-daemon --max-workers=2 clean assembleDebug assembleRelease testDebugUnitTest lintDebug lintRelease
+
+      - name: Verify packaged APK payloads and ABI bytecode
+        run: python3 tools/verify_apks.py
+
+      - name: Publish test-signed APKs and verification reports
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: StreamSave-test-signed-APKs-${{ github.run_number }}
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            app/build/outputs/apk/debug/*.apk
+            app/build/outputs/apk/release/*.apk
+            app/build/reports/apk-verification.json
+            app/build/reports/lint-results-*.html
+            app/build/reports/tests/testDebugUnitTest/
+
+      - name: Explain signing scope
+        run: |
+          echo 'These CI APKs use a temporary test/debug signing identity.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'They cannot update the privately signed APK already installed on a phone.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'The private production signing key is neither stored nor used by this workflow.' >> "$GITHUB_STEP_SUMMARY"

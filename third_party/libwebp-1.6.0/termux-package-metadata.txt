@@ -1,0 +1,16 @@
+Package: libwebp
+Installed-Size: 1252
+Maintainer: @termux
+Architecture: aarch64
+Version: 1.6.0.0.0.1+really1.6.0
+Replaces: libwebp-dev
+Depends: giflib, libjpeg-turbo, libpng, libtiff, zlib
+Breaks: libwebp-dev
+Filename: pool/main/libw/libwebp/libwebp_1.6.0.0.0.1+really1.6.0_aarch64.deb
+Size: 329548
+MD5sum: a8b58ba4030379939f003b5382db67c0
+SHA1: d9aaa98765734a2b7b889b217771125a03a19ad5
+SHA256: 8ba7fcfadd1a9957a7632c6407d6ef3e41d34dbd96a41769b245592ed4559045
+SHA512: 205054a10286fd4e65e903e65ce98496fe804b12be7ce077491f28f127cfb35b13e8adca794521deb0a4e9b079e3936a8537c66505a6c3dbdf852d9b29828257
+Description: Library to encode and decode images in WebP format
+Homepage: https://github.com/webmproject/libwebp

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- The upstream AAR reads its R.raw.ytdlp; this same-name application
+         resource deliberately overrides the AAR's older embedded executable. -->
+    <issue id="UnusedResources">
+        <ignore path="src/main/res/raw/ytdlp" />
+    </issue>
+</lint>

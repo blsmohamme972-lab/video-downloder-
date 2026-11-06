@@ -1,0 +1,183 @@
+{
+  "purpose": "Replace only five ARM64 WebP libraries with 16 KB aligned ABI-compatible official builds.",
+  "review_date": "2026-11-06",
+  "original": {
+    "maven_coordinate": "io.github.junkfood02.youtubedl-android:ffmpeg:0.18.1",
+    "source": "https://github.com/yausername/youtubedl-android/tree/0.18.1",
+    "aar_member": "jni/arm64-v8a/libffmpeg.zip.so",
+    "bundle_sha256": "4664a895283f9f31786be39b0c484c1f96631f02c7c7f9c70a4a4a2da324a092"
+  },
+  "replacement": {
+    "package": "libwebp",
+    "version": "1.6.0.0.0.1+really1.6.0",
+    "architecture": "aarch64",
+    "url": "https://packages.termux.dev/apt/termux-main/pool/main/libw/libwebp/libwebp_1.6.0.0.0.1%2Breally1.6.0_aarch64.deb",
+    "sha256": "8ba7fcfadd1a9957a7632c6407d6ef3e41d34dbd96a41769b245592ed4559045",
+    "checksum_source": "https://packages.termux.dev/apt/termux-main/dists/stable/main/binary-aarch64/Packages.gz",
+    "upstream_source": "https://github.com/webmproject/libwebp/tree/v1.6.0",
+    "upstream_source_archive": "https://github.com/webmproject/libwebp/archive/refs/tags/v1.6.0.tar.gz",
+    "upstream_source_sha256": "93a852c2b3efafee3723efd4636de855b46f9fe1efddd607e1f42f60fc8f2136",
+    "termux_recipe": "https://github.com/termux/termux-packages/blob/658851ae0611cf6fbc296f57bbdc71c63ef11a1b/packages/libwebp/build.sh",
+    "android_api": 24,
+    "ndk_note": "r30",
+    "license": "BSD-3-Clause"
+  },
+  "result": {
+    "path": "app/src/main/jniLibs/arm64-v8a/libffmpeg.zip.so",
+    "sha256": "f9c49c3ec35cecea68f49db2d334c47ec17851a65d509e1a635e3d4231298578",
+    "bytes": 35626205,
+    "replaced_members": 5,
+    "unchanged_members": 179,
+    "unchanged_compressed_records_preserved": true,
+    "all_zip_crc_checks_passed": true
+  },
+  "libraries": [
+    {
+      "name": "libsharpyuv.so",
+      "sha256": "c31e871967115c7cd7ea4933c92c546d2fe8bc4a600871b965fb35574a19ced9",
+      "old_soname": [
+        "libsharpyuv.so"
+      ],
+      "new_soname": [
+        "libsharpyuv.so"
+      ],
+      "old_needed": [
+        "libm.so",
+        "libc.so"
+      ],
+      "new_needed": [
+        "libm.so",
+        "libc.so"
+      ],
+      "new_dependencies": [],
+      "removed_exports": [],
+      "new_undefined_symbols": [],
+      "new_min_load_alignment": 16384,
+      "load_congruence_16kb": true,
+      "old_symbol_versions": [
+        "LIBC"
+      ],
+      "new_symbol_versions": [
+        "LIBC"
+      ]
+    },
+    {
+      "name": "libwebp.so",
+      "sha256": "631ec2d7cc1a10b7092c1133edd3e3d825edabb8bfd9bdfe8fbaa38607737781",
+      "old_soname": [
+        "libwebp.so"
+      ],
+      "new_soname": [
+        "libwebp.so"
+      ],
+      "old_needed": [
+        "libsharpyuv.so",
+        "libm.so",
+        "libc.so"
+      ],
+      "new_needed": [
+        "libsharpyuv.so",
+        "libm.so",
+        "libc.so"
+      ],
+      "new_dependencies": [],
+      "removed_exports": [],
+      "new_undefined_symbols": [],
+      "new_min_load_alignment": 16384,
+      "load_congruence_16kb": true,
+      "old_symbol_versions": [
+        "LIBC"
+      ],
+      "new_symbol_versions": [
+        "LIBC"
+      ]
+    },
+    {
+      "name": "libwebpdecoder.so",
+      "sha256": "d0c6fb4024de7afc13b5d0920b125fde6f13c52dfccea847c66752f38950fef7",
+      "old_soname": [
+        "libwebpdecoder.so"
+      ],
+      "new_soname": [
+        "libwebpdecoder.so"
+      ],
+      "old_needed": [
+        "libc.so"
+      ],
+      "new_needed": [
+        "libc.so"
+      ],
+      "new_dependencies": [],
+      "removed_exports": [],
+      "new_undefined_symbols": [],
+      "new_min_load_alignment": 16384,
+      "load_congruence_16kb": true,
+      "old_symbol_versions": [
+        "LIBC"
+      ],
+      "new_symbol_versions": [
+        "LIBC"
+      ]
+    },
+    {
+      "name": "libwebpdemux.so",
+      "sha256": "ff7995219068660d194e0083c4d4cc76665a646d58f7eb8d15b15d5a3fb288b9",
+      "old_soname": [
+        "libwebpdemux.so"
+      ],
+      "new_soname": [
+        "libwebpdemux.so"
+      ],
+      "old_needed": [
+        "libwebp.so",
+        "libc.so"
+      ],
+      "new_needed": [
+        "libwebp.so",
+        "libc.so"
+      ],
+      "new_dependencies": [],
+      "removed_exports": [],
+      "new_undefined_symbols": [],
+      "new_min_load_alignment": 16384,
+      "load_congruence_16kb": true,
+      "old_symbol_versions": [
+        "LIBC"
+      ],
+      "new_symbol_versions": [
+        "LIBC"
+      ]
+    },
+    {
+      "name": "libwebpmux.so",
+      "sha256": "9401964e6dc15c10d5954c700f2c8c651b2a964177af73d2ef1e746d046ded04",
+      "old_soname": [
+        "libwebpmux.so"
+      ],
+      "new_soname": [
+        "libwebpmux.so"
+      ],
+      "old_needed": [
+        "libwebp.so",
+        "libc.so"
+      ],
+      "new_needed": [
+        "libwebp.so",
+        "libc.so"
+      ],
+      "new_dependencies": [],
+      "removed_exports": [],
+      "new_undefined_symbols": [],
+      "new_min_load_alignment": 16384,
+      "load_congruence_16kb": true,
+      "old_symbol_versions": [
+        "LIBC"
+      ],
+      "new_symbol_versions": [
+        "LIBC"
+      ]
+    }
+  ],
+  "reproduce": "python tools/patch_webp_bundle.py --original-zip ORIGINAL_ARM64_LIBFFMPEG_ZIP_SO --output app/src/main/jniLibs/arm64-v8a/libffmpeg.zip.so",
+  "scope": "Static ABI and alignment checks; packaged x86_64 native runtime is tested separately. This is not a claim of a complete 16 KB ARM64 device test."
+}

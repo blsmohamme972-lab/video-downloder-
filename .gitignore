@@ -1,0 +1,16 @@
+.gradle/
+local.properties
+**/build/
+*.jks
+*.keystore
+*signing*.properties
+.idea/
+.engine-cache/
+**/__pycache__/
+*.py[cod]
+*.apk
+*.aab
+*.p12
+*signing*.zip
+app/src/main/res/raw/ytdlp
+app/src/main/jniLibs/arm64-v8a/libffmpeg.zip.so
