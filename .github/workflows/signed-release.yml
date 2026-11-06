@@ -1,20 +1,59 @@
 name: Publish production-signed StreamSave APK update
 
 on:
+  # Publishes by itself whenever main carries a version that has no release yet,
+  # so whoever merges a version bump (a person or any AI assistant) ships it.
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       version_tag:
-        description: 'Release tag matching the Gradle version, e.g. v2.0.0'
-        required: true
-        default: 'v2.0.0'
+        description: 'Optional. Leave empty to release the version in app/build.gradle'
+        required: false
+        default: ''
 
 permissions:
   contents: write
 
+concurrency:
+  group: signed-release
+  cancel-in-progress: false
+
 jobs:
-  signed-release:
-    # Only the main branch can produce releases for the in-app updater.
+  decide:
     if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      release: ${{ steps.version.outputs.release }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Is this version already released?
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED: ${{ inputs.version_tag }}
+        run: |
+          VERSION="$(sed -n "s/.*versionName '\([^']*\)'.*/\1/p" app/build.gradle | head -1)"
+          TAG="v$VERSION"
+          if [ -n "$REQUESTED" ] && [ "$REQUESTED" != "$TAG" ]; then
+            echo "Requested $REQUESTED but app/build.gradle declares $TAG"; exit 1
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "release=false" >> "$GITHUB_OUTPUT"
+            echo "$TAG is already published; nothing to release. Raise versionCode and versionName to ship an update." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "release=true" >> "$GITHUB_OUTPUT"
+            echo "Publishing $TAG." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  signed-release:
+    needs: decide
+    # Only the main branch can produce releases for the in-app updater.
+    if: github.ref == 'refs/heads/main' && needs.decide.outputs.release == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     env:
@@ -28,7 +67,7 @@ jobs:
 
       - name: Validate release version
         env:
-          TAG: ${{ inputs.version_tag }}
+          TAG: ${{ needs.decide.outputs.tag }}
           GH_TOKEN: ${{ github.token }}
         run: |
           case "$TAG" in
@@ -128,7 +167,7 @@ jobs:
       - name: Publish GitHub Release for one-tap in-app update
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ inputs.version_tag }}
+          TAG: ${{ needs.decide.outputs.tag }}
         run: |
           VERSION="${TAG#v}"
           APK="app/build/outputs/apk/release/app-arm64-v8a-release.apk"

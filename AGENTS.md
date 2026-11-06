@@ -22,10 +22,11 @@ If any of these differ, the update is refused. Nothing in the app can work aroun
    - `versionName`: a higher `MAJOR.MINOR.PATCH`.
 
    `tools/verify_apks.py` reads them from Gradle; do not hard-code versions elsewhere.
-3. **Ship updates only through the release workflow.**
-   - Merge to `main`, wait for "Android build and checks" to pass, then run **Publish production-signed StreamSave APK update** (`.github/workflows/signed-release.yml`) from `main` with the tag `v<versionName>`.
-   - The in-app updater installs only those GitHub Releases.
-   - Do not hand the owner CI artifacts or sandbox-built APKs as "the update". If you share one for testing, say plainly that installing it requires uninstalling StreamSave and loses the Library.
+3. **Ship updates only through the release workflow. It runs by itself.**
+   - Bump both versions, get "Android build and checks" green on your branch or pull request, then merge to `main`.
+   - **Publish production-signed StreamSave APK update** (`.github/workflows/signed-release.yml`) runs on every push to `main`. It publishes `v<versionName>` when that version has no release yet, and does nothing otherwise. Nobody needs to start it, add secrets, or pass a tag.
+   - The owner then taps **Update StreamSave app** in the app. Android always shows its own install confirmation; that one tap cannot be removed for apps installed outside Google Play.
+   - The in-app updater installs only those GitHub Releases. Do not hand the owner CI artifacts or sandbox-built APKs as "the update". If you share one for testing, say plainly that installing it requires uninstalling StreamSave and loses the Library.
 4. **Never create, replace, rotate or commit signing keys.**
    - The release keystore exists only in the repository secret `STREAMSAVE_SIGNING` (one value holding the keystore, alias and passwords; `tools/restore_signing.py` reads it) and in the owner's private backup in Google Drive. The four older secrets `STREAMSAVE_KEYSTORE_BASE64`, `STREAMSAVE_KEYSTORE_PASSWORD`, `STREAMSAVE_KEY_ALIAS`, `STREAMSAVE_KEY_PASSWORD` are still accepted.
    - If the secrets are missing or the release workflow reports a different key, stop and tell the owner. A new key forces every installed copy to be uninstalled once.

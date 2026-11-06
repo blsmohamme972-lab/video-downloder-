@@ -8,6 +8,7 @@
   - multiple-choice questions, each tied to a part of the video (normally one minute). Playback pauses when it passes that part, then shows right/wrong with an explanation, **Continue**, or **Watch this part again**. Seeking past a question does not trigger it. Answers and the score are saved; **Retake all questions** resets them.
 - Your own notes: **Add note** at any moment, and the note appears on the video at that time; **Notes** lists them to jump to or delete. Notes survive replacing or removing a pack.
 - The player remembers where you stopped, can be opened by sharing a video to StreamSave, and gives the video the whole screen in landscape.
+- Releases publish themselves: merging a version bump to `main` builds, signs and publishes the update, which the app then offers under **Update StreamSave app**. Nobody has to start a workflow or add secrets again.
 - **Study library:** an AI assistant that reads the video from Google Drive publishes its pack to `study-packs/` in this repository. The player downloads the matching pack by itself (by YouTube id or file name) when the video opens, or with **Update pack**, so no files are ever handled by the user. Newer pack versions replace older ones, saved answers are kept, and CI rejects any invalid published pack. [STUDY_PACK.md](STUDY_PACK.md) has the format and the prompt.
 
 ## 1.2.1
