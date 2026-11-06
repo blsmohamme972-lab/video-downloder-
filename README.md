@@ -55,6 +55,8 @@ This is separate from **Update download engine**, which refreshes yt-dlp and doe
 
 The in-app updater intentionally **does not** install GitHub Actions test-signed artifacts. To publish an actual update, maintainers must merge the code to main, configure repository Actions secrets `STREAMSAVE_KEYSTORE_BASE64`, `STREAMSAVE_KEYSTORE_PASSWORD`, `STREAMSAVE_KEY_ALIAS`, and `STREAMSAVE_KEY_PASSWORD` using the **same original private signing identity** as the APK already installed, then run **Publish production-signed StreamSave APK update** from the Actions tab with a matching tag such as `v1.2.0`. This generates the official ARM64 APK as a GitHub Release asset. Never commit a private keystore, key passwords, or a signing backup to the repository. If there is no published compatible release, the updater explains that no update is available.
 
+**Test builds cannot update.** Every GitHub Actions run signs its test APKs with a new throwaway key, so a copy installed from a CI artifact can never be replaced in place. Uninstall it once, install the first release APK from the repository's **Releases** page, and use **Update StreamSave app** from then on. The release workflow refuses to publish when the version is not newer than the latest release or when the signing key differs from it. Rules for AI assistants that change this project are in [AGENTS.md](AGENTS.md).
+
 ## Build the project
 
 Open this directory in Android Studio, or use a JDK 17 command line with Android SDK Platform 35 and Build Tools 35.0.0 installed. The Gradle wrapper is included.

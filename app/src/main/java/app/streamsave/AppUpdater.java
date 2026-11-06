@@ -307,8 +307,11 @@ final class AppUpdater {
                 ? update.signingInfo.getApkContentsSigners() : update.signatures;
         if (existing == null || incoming == null || existing.length == 0
                 || !Arrays.equals(existing, incoming)) {
-            throw new IOException("Update signing key differs from the installed app. "
-                    + "A release signed with the original key is required; do not uninstall.");
+            throw new IOException("This update is signed with a different key than the installed StreamSave, "
+                    + "so Android cannot replace it. Copies installed from GitHub Actions test builds "
+                    + "use a one-time key and can never update in place: uninstall StreamSave once and "
+                    + "install the APK from the repository's GitHub Releases page. Later updates will then "
+                    + "work from this menu.");
         }
     }
 

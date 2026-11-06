@@ -1,6 +1,17 @@
 # Changelog
 
-## Unreleased
+## 1.2.1
+
+- The first version intended for a production-signed GitHub Release. Installed copies that came from GitHub Actions test builds use a one-time key: uninstall once and install this release from GitHub Releases; later updates then work from **Update StreamSave app**.
+- The updater's wrong-key message now explains that test builds cannot be updated in place, instead of telling users not to uninstall.
+- The release workflow now refuses to publish when the tag or `versionCode` is not newer than the latest release, when the tag already exists, or when the APK is signed with a different key than the latest release. It also runs the downloader integrity tests and prints the signing certificate fingerprint.
+- Added `tools/check_release_rules.py` (run in both workflows): the package name stays `app.streamsave`, versions are well-formed, no signing material is committed, and the updater's package/version/signer/HTTPS/host checks stay in place.
+- Added `AGENTS.md` (and `CLAUDE.md`) with release and compatibility rules for AI assistants that change this project.
+
+## 1.2.0
+
+- Surgical Studio: play a local or downloaded video with timestamp-synchronized overlays from an AI-generated annotation ZIP. See `SURGICAL_STUDIO.md`.
+- **Update StreamSave app** in Settings downloads the latest production-signed GitHub Release, verifies package, version and signing key, and opens Android's installer.
 
 - Raised the connection limit for direct YouTube streams from 8 to 16. YouTube can limit each connection far below the home line's speed; more connections use more of the line. If the server answers 429 or 503, the limit is halved (minimum 4) and raised again by one connection every 10 seconds after 30 seconds without a refusal.
 - Kept every connection busy when one range is slow or retrying. New ranges previously started only after the oldest unfinished range was saved, so the other connections waited idle. Up to 32 ranges (256 MiB of temporary space) are now requested ahead; the `.part` file is still appended in order, so resume behaviour is unchanged.

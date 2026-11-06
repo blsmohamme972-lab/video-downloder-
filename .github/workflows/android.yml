@@ -41,6 +41,9 @@ jobs:
       - name: Prepare checksum-pinned engine payloads
         run: python3 tools/prepare_engine.py
 
+      - name: Check release rules (package, version, signing, updater safeguards)
+        run: python3 tools/check_release_rules.py
+
       - name: Run downloader integrity checks
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
 
