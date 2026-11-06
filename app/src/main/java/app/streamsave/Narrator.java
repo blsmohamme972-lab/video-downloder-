@@ -43,6 +43,13 @@ final class Narrator {
             "sv", "tr", "uk", "vi");
     private static final long CACHE_LIMIT_BYTES = 400L * 1024 * 1024;
 
+    /** Steps and result of the voice test in Voice-over settings (called on the main thread). */
+    interface TestListener {
+        void step(String line);
+        /** {@code wav} is the spoken test sentence, or null with {@code error} set. */
+        void done(File wav, String error);
+    }
+
     interface Listener {
         /** A line is ready to play, or preparation progressed. */
         void onPrepared();
@@ -78,6 +85,7 @@ final class Narrator {
     private volatile StudyPack.Narration working;
     private volatile long lastLineMillis, workingSince;
     private volatile String failure = "";
+    private int failuresInARow; // worker thread only
 
     /** @param folder where finished lines are kept (created when needed) */
     Narrator(VoiceModel model, File folder, Listener listener) {
@@ -204,6 +212,7 @@ final class Narrator {
     private void work(int run) {
         // Settings or the pack may have changed: re-check which lines already have audio.
         NarrationPlan current = plan;
+        failuresInARow = 0;
         ready.clear();
         if (current != null) {
             for (StudyPack.Narration line : current.lines()) ready.put(line, fileFor(line).isFile());
@@ -245,22 +254,103 @@ final class Narrator {
                 writeWav(fileFor(next), wav, engine.sampleRate);
                 ready.put(next, true);
                 failure = "";
+                failuresInARow = 0;
                 if (urgent == next) urgent = null;
                 trimCache();
                 main.post(listener::onPrepared);
             } catch (Throwable error) {
                 synchronized (failed) { failed.add(key); }
                 if (urgent == next) urgent = null;
-                if (error instanceof OutOfMemoryError || engine == null) {
-                    closeEngine();
-                    String message = "The phone could not start the voice model ("
-                            + (error.getMessage() == null ? error.getClass().getSimpleName() : error.getMessage()) + ").";
+                failuresInARow++;
+                // Never fail silently: a broken class or library (an Error), an engine that cannot
+                // start, or three failed lines in a row stop the voice-over with the reason shown.
+                if (error instanceof Error || engine == null || failuresInARow >= 3) {
+                    String message = (engine == null ? "The phone could not start the voice model. "
+                            : "The voice could not be created. ") + describe(error);
+                    if (error instanceof OutOfMemoryError || engine == null) closeEngine();
                     failure = message;
                     main.post(() -> listener.onFailed(message));
                     return;
                 }
+                main.post(listener::onPrepared);
             }
         }
+    }
+
+    /**
+     * Speaks one test sentence with the current settings on the voice-over's own engine (so the
+     * model is never loaded twice) and reports each step with its time, or the full error.
+     */
+    void test(String text, TestListener test) {
+        if (closed) return;
+        final boolean wasPaused = paused;
+        paused = true;                  // free the engine: the line in progress stops
+        generation.incrementAndGet();
+        worker.execute(() -> {
+            try {
+                if (!model.installed()) {
+                    main.post(() -> test.done(null, "The voice is not downloaded yet."));
+                    return;
+                }
+                long start = android.os.SystemClock.elapsedRealtime();
+                if (engine == null) {
+                    main.post(() -> test.step("Loading the voice model into memory…"));
+                    int threads = Math.max(1, Math.min(4, Runtime.getRuntime().availableProcessors() - 1));
+                    engine = new SupertonicEngine(model.onnxDir(), threads);
+                    String loaded = String.format(Locale.US, "Voice model loaded in %.1f s (%d threads)",
+                            (android.os.SystemClock.elapsedRealtime() - start) / 1000.0, threads);
+                    main.post(() -> test.step(loaded));
+                } else {
+                    main.post(() -> test.step("Voice model already loaded"));
+                }
+                String settings = voice + ", " + steps + " steps, " + String.format(Locale.US, "%.2f×", speed);
+                main.post(() -> test.step("Creating the test sentence (" + settings + ")…"));
+                long began = android.os.SystemClock.elapsedRealtime();
+                Random random = new Random();
+                float[] wav = engine.synthesize(text, SupertonicEngine.loadVoice(model.voiceFile(voice)), "en", steps,
+                        speed, () -> (float) random.nextGaussian(), () -> closed);
+                if (wav == null) return;
+                double audio = wav.length / (double) engine.sampleRate;
+                double took = Math.max(0.001, (android.os.SystemClock.elapsedRealtime() - began) / 1000.0);
+                File out = new File(cache, "voice-test.wav");
+                writeWav(out, wav, engine.sampleRate);
+                String made = String.format(Locale.US, "Speech created: %.1f s of audio in %.1f s (%.1f× real time)",
+                        audio, took, audio / took);
+                main.post(() -> {
+                    test.step(made);
+                    test.done(out, null);
+                });
+            } catch (Throwable error) {
+                if (error instanceof OutOfMemoryError) closeEngine();
+                String report = describe(error) + "\n" + stack(error);
+                main.post(() -> test.done(null, report));
+            } finally {
+                paused = wasPaused;
+                if (!wasPaused) restart();
+            }
+        });
+    }
+
+    /** "ExceptionInInitializerError ← IllegalArgumentException: Unsupported flags: 256". */
+    static String describe(Throwable error) {
+        StringBuilder text = new StringBuilder(error.getClass().getSimpleName());
+        Throwable root = error;
+        while (root.getCause() != null && root.getCause() != root) {
+            root = root.getCause();
+            text.append(" ← ").append(root.getClass().getSimpleName());
+        }
+        String message = root.getMessage() != null ? root.getMessage() : error.getMessage();
+        if (message != null) text.append(": ").append(message);
+        return text.toString();
+    }
+
+    private static String stack(Throwable error) {
+        Throwable root = error;
+        while (root.getCause() != null && root.getCause() != root) root = root.getCause();
+        StringBuilder text = new StringBuilder();
+        StackTraceElement[] frames = root.getStackTrace();
+        for (int i = 0; i < Math.min(6, frames.length); i++) text.append("  at ").append(frames[i]).append('\n');
+        return text.toString();
     }
 
     private StudyPack.Narration pickNext() {

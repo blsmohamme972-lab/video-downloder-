@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.4
+
+- **Fixed: the voice-over never created any line on phones** ("0/192 ready" forever, with no error).
+  - The text preparation used a Java regex option, Unicode character classes, that Android rejects. Every line therefore failed before any speech was made.
+  - Unit tests run on a computer, where that option works, so they passed.
+  - The text preparation now spells out exactly the whitespace Supertone's SDK uses. All 192 lines of the aortic dissection voice-over prepare identically to the official SDK. The audio is sample-for-sample identical to the SDK's when using Android's JSON parser.
+  - A new test fails if any code uses regex options that Android rejects.
+- **No more silent failures.** If the voice cannot be created (a broken library, an engine that cannot start, or three failed lines in a row), the voice-over stops and shows the exact error, with **Retry**.
+- **More → Voice-over settings → Test the voice.** It speaks one sentence with your settings and shows each step and its time (loading the model, creating speech, speed compared with real time), or the full error to send as a screenshot.
+- The text preparation now also matches the SDK for non-breaking and other Unicode spaces (new recorded SDK test cases).
+
 ## 2.1.3
 
 - **Voice-over panel in the Study player** (under the seek bar). It always says what the voice-over is doing:

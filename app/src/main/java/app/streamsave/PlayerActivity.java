@@ -999,7 +999,7 @@ public final class PlayerActivity extends Activity {
                 button = "Resume";
                 action = () -> narrator.setPaused(false);
             } else if (narrator.starting()) {
-                text = "Starting the voice engine… (a few seconds)";
+                text = "Starting the voice engine… (loading 383 MB; up to a minute the first time)";
                 spinning = true;
                 button = "Stop";
                 action = this::pauseVoicePreparation;
@@ -1227,6 +1227,7 @@ public final class PlayerActivity extends Activity {
         long mb = VoiceModel.totalBytes() / (1024 * 1024);
         boolean installed = voiceModel.installed();
         String[] items = {
+                "Test the voice (speaks one sentence and shows each step)",
                 "Voice: " + voice,
                 "Quality: " + steps + " steps",
                 String.format(Locale.US, "Speed: %.2f×", speed),
@@ -1237,11 +1238,12 @@ public final class PlayerActivity extends Activity {
                         : "Download the voice model (" + mb + " MB)",
                 "Voice model license (Supertone, OpenRAIL-M)"};
         new AlertDialog.Builder(this).setTitle("Voice-over").setItems(items, (dialog, which) -> {
-            if (which == 0) chooseVoice(voice);
-            else if (which == 1) chooseSteps(steps);
-            else if (which == 2) chooseSpeed(speed);
-            else if (which == 3) chooseVideoSound();
-            else if (which == 4) {
+            if (which == 0) testVoice();
+            else if (which == 1) chooseVoice(voice);
+            else if (which == 2) chooseSteps(steps);
+            else if (which == 3) chooseSpeed(speed);
+            else if (which == 4) chooseVideoSound();
+            else if (which == 5) {
                 if (installed) confirmRemoveVoice();
                 else if (VoiceDownloadService.running()) VoiceDownloadService.stop();
                 else downloadVoice();
@@ -1284,6 +1286,66 @@ public final class PlayerActivity extends Activity {
             dialog.dismiss();
             applyVoiceSettings();
         }).show();
+    }
+
+    /** Speaks one sentence with the current settings and shows every step, its time, or the full error. */
+    private void testVoice() {
+        if (!voiceModel.installed()) {
+            message("Voice test", VoiceDownloadService.running()
+                    ? "The voice is still downloading (" + VoiceDownloadService.percent() + "%). Try again when it is done."
+                    : "Download the voice first: Voice-over settings → Download the voice model.");
+            return;
+        }
+        stopVoice();
+        if (video.isPlaying()) {
+            video.pause();
+            renderPlay();
+        }
+        StringBuilder log = new StringBuilder();
+        AlertDialog dialog = new AlertDialog.Builder(this).setTitle("Voice test")
+                .setMessage("Starting…").setPositiveButton("Close", null).show();
+        narrator.test("This is the StreamSave voice-over test.", new Narrator.TestListener() {
+            @Override public void step(String line) {
+                log.append("• ").append(line).append('\n');
+                if (dialog.isShowing()) dialog.setMessage(log.toString());
+            }
+
+            @Override public void done(File wav, String error) {
+                if (isDestroyed()) return;
+                if (error != null) {
+                    log.append("\nFAILED — please send a screenshot of this:\n").append(error);
+                    if (dialog.isShowing()) dialog.setMessage(log.toString());
+                    else message("Voice test failed", log.toString());
+                    return;
+                }
+                log.append("• Playing it now. If you hear it, the voice works.");
+                if (dialog.isShowing()) dialog.setMessage(log.toString());
+                playTestClip(wav);
+            }
+        });
+    }
+
+    private MediaPlayer testPlayer;
+
+    private void playTestClip(File wav) {
+        releaseTestPlayer();
+        try {
+            MediaPlayer player = new MediaPlayer();
+            player.setDataSource(wav.getPath());
+            player.setOnCompletionListener(mp -> releaseTestPlayer());
+            player.prepare();
+            player.start();
+            testPlayer = player;
+        } catch (IOException | RuntimeException error) {
+            releaseTestPlayer();
+            message("Voice test", "The sentence was created but could not be played: " + Narrator.describe(error));
+        }
+    }
+
+    private void releaseTestPlayer() {
+        if (testPlayer == null) return;
+        try { testPlayer.release(); } catch (RuntimeException ignored) { }
+        testPlayer = null;
     }
 
     private static String soundLabel(float level) {
@@ -1577,6 +1639,7 @@ public final class PlayerActivity extends Activity {
 
     @Override protected void onDestroy() {
         VoiceDownloadService.unlisten(voiceDownloadChanged); // the download itself keeps going
+        releaseTestPlayer();
         handler.removeCallbacksAndMessages(null);
         stopVoice();
         if (video != null) video.stopPlayback();

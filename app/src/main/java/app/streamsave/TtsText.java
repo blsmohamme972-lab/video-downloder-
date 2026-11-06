@@ -17,7 +17,14 @@ import java.util.regex.Pattern;
  */
 final class TtsText {
     static final int MAX_CHUNK_LENGTH = 300;
-    private static final int UNICODE_FLAGS = Pattern.UNICODE_CHARACTER_CLASS;
+    /**
+     * Exactly the characters Python's {@code \s} and {@code str.strip()} treat as whitespace
+     * (str.isspace()), which the SDK relies on. Written out because Android rejects Java's
+     * Unicode-character-class Pattern flag ("Unsupported flags: 256"; see AndroidCompatibilityTest),
+     * and Java's own \s and String.strip() differ from Python's (non-breaking spaces, U+001C–U+001F).
+     */
+    static final String WS = "[\\t\\n\\x0B\\f\\r\\x1C-\\x20\\x85\\xA0\\u1680\\u2000-\\u200A\\u2028\\u2029"
+            + "\\u202F\\u205F\\u3000]";
 
     private static final Pattern EMOJI = Pattern.compile("[\\x{1F600}-\\x{1F64F}\\x{1F300}-\\x{1F5FF}"
             + "\\x{1F680}-\\x{1F6FF}\\x{1F700}-\\x{1F77F}\\x{1F780}-\\x{1F7FF}\\x{1F800}-\\x{1F8FF}"
@@ -50,17 +57,31 @@ final class TtsText {
     private static final String[][] PUNCTUATION_SPACING = {
             {" ,", ","}, {" .", "."}, {" !", "!"}, {" ?", "?"}, {" ;", ";"}, {" :", ":"}, {" '", "'"}};
     private static final Pattern DUPLICATE_QUOTES = Pattern.compile("([\"'`])\\1+");
-    private static final Pattern WHITESPACE = Pattern.compile("\\s+", UNICODE_FLAGS);
+    private static final Pattern WHITESPACE = Pattern.compile(WS + "+");
     private static final Pattern ENDING = Pattern.compile(
             "[.!?;:,'\"')\\]}…。」』】〉》›»]$");
-    private static final Pattern PARAGRAPHS = Pattern.compile("\\n\\s*\\n+", UNICODE_FLAGS);
+    private static final Pattern PARAGRAPHS = Pattern.compile("\\n" + WS + "*\\n+");
     private static final Pattern SENTENCES = Pattern.compile(
             "(?<!Mr\\.)(?<!Mrs\\.)(?<!Ms\\.)(?<!Dr\\.)(?<!Prof\\.)(?<!Sr\\.)(?<!Jr\\.)(?<!Ph\\.D\\.)"
                     + "(?<!etc\\.)(?<!e\\.g\\.)(?<!i\\.e\\.)(?<!vs\\.)(?<!Inc\\.)(?<!Ltd\\.)(?<!Co\\.)"
-                    + "(?<!Corp\\.)(?<!St\\.)(?<!Ave\\.)(?<!Blvd\\.)(?<!\\b[A-Z]\\.)(?<=[.!?])\\s+",
-            UNICODE_FLAGS);
+                    + "(?<!Corp\\.)(?<!St\\.)(?<!Ave\\.)(?<!Blvd\\.)(?<!\\b[A-Z]\\.)(?<=[.!?])" + WS + "+");
 
     private TtsText() { }
+
+    /** Python's str.isspace() for one character (all such characters are in the BMP). */
+    static boolean isSpace(char c) {
+        return (c >= 0x09 && c <= 0x0D) || (c >= 0x1C && c <= 0x20) || c == 0x85 || c == 0xA0 || c == 0x1680
+                || (c >= 0x2000 && c <= 0x200A) || c == 0x2028 || c == 0x2029 || c == 0x202F || c == 0x205F
+                || c == 0x3000;
+    }
+
+    /** Python's str.strip() with no arguments. */
+    static String strip(String text) {
+        int start = 0, end = text.length();
+        while (start < end && isSpace(text.charAt(start))) start++;
+        while (end > start && isSpace(text.charAt(end - 1))) end--;
+        return text.substring(start, end);
+    }
 
     /** Normalizes text and wraps it in language tokens, e.g. "<en>Hello.</en>". */
     static String preprocess(String text, String lang) {
@@ -71,7 +92,7 @@ final class TtsText {
         for (String[] expansion : EXPANSIONS) value = value.replace(expansion[0], expansion[1]);
         for (String[] spacing : PUNCTUATION_SPACING) value = value.replace(spacing[0], spacing[1]);
         value = DUPLICATE_QUOTES.matcher(value).replaceAll("$1");
-        value = WHITESPACE.matcher(value).replaceAll(" ").strip();
+        value = strip(WHITESPACE.matcher(value).replaceAll(" "));
         if (!ENDING.matcher(value).find()) value = value + ".";
         return lang == null ? value : "<" + lang + ">" + value + "</" + lang + ">";
     }
@@ -79,22 +100,22 @@ final class TtsText {
     /** Splits text into paragraphs, then sentences, joined into chunks of at most maxLength characters. */
     static List<String> chunk(String text, int maxLength) {
         List<String> chunks = new ArrayList<>();
-        for (String paragraph : PARAGRAPHS.split(text.strip())) {
-            paragraph = paragraph.strip();
+        for (String paragraph : PARAGRAPHS.split(strip(text))) {
+            paragraph = strip(paragraph);
             if (paragraph.isEmpty()) continue;
             StringBuilder current = new StringBuilder();
             for (String sentence : SENTENCES.split(paragraph, -1)) {
-                String piece = sentence.strip();
+                String piece = strip(sentence);
                 if (piece.isEmpty()) continue;
                 if (current.length() + piece.length() + 1 <= maxLength) {
                     if (current.length() > 0) current.append(' ');
                     current.append(piece);
                 } else {
-                    if (current.length() > 0) chunks.add(current.toString().strip());
+                    if (current.length() > 0) chunks.add(strip(current.toString()));
                     current = new StringBuilder(piece);
                 }
             }
-            if (current.length() > 0 && !current.toString().strip().isEmpty()) chunks.add(current.toString().strip());
+            if (current.length() > 0 && !strip(current.toString()).isEmpty()) chunks.add(strip(current.toString()));
         }
         return chunks;
     }
