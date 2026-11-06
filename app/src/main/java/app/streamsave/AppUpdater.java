@@ -20,7 +20,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -30,6 +29,7 @@ import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -93,7 +93,7 @@ final class AppUpdater {
                 if (!checksum.isEmpty() && !DIGEST.matcher(checksum).matches())
                     throw new IOException("The release has an unsupported APK checksum.");
                 progress(callback, "Downloading StreamSave " + tag + "…");
-                File candidate = download(context, url, checksum, callback);
+                File candidate = download(context, url, checksum, asset.optLong("size", -1), callback);
                 verifyPackage(context, installed, candidate);
                 File staged = AppUpdateProvider.stagedApk(context);
                 if (staged.exists() && !staged.delete()) {
@@ -187,8 +187,8 @@ final class AppUpdater {
         return null;
     }
 
-    private static File download(Context context, String source, String checksum, Callback callback)
-            throws Exception {
+    private static File download(Context context, String source, String checksum, long publishedSize,
+                                 Callback callback) throws Exception {
         File dir = AppUpdateProvider.stagedApk(context).getParentFile();
         if (!dir.isDirectory() && !dir.mkdirs()) throw new IOException("Cannot create update cache.");
         File candidate = new File(dir, "update-candidate.apk");
@@ -196,42 +196,42 @@ final class AppUpdater {
             throw new IOException("Cannot remove unfinished update.");
         if (dir.getUsableSpace() < 150L * 1024 * 1024)
             throw new IOException("Not enough free space to download the update.");
+        // Follow GitHub's redirect (hosts checked on every hop), then fetch the
+        // final file in parallel ranges: one connection is often far slower.
+        URL file;
+        long expectedSize;
         HttpURLConnection connection = open(new URL(source), "application/octet-stream");
         try {
-            long expectedSize = connection.getContentLengthLong();
-            if (expectedSize > MAX_APK_BYTES)
-                throw new IOException("Update APK exceeds the allowed size.");
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            long received = 0;
-            long reported = -1;
-            try (InputStream in = connection.getInputStream();
-                 FileOutputStream out = new FileOutputStream(candidate)) {
-                byte[] buffer = new byte[64 * 1024];
-                int n;
-                while ((n = in.read(buffer)) != -1) {
-                    received += n;
-                    if (received > MAX_APK_BYTES)
-                        throw new IOException("Update APK exceeds the allowed size.");
-                    out.write(buffer, 0, n);
-                    digest.update(buffer, 0, n);
-                    long bucket = received / (2 * 1024 * 1024);
-                    if (bucket != reported) {
-                        reported = bucket;
-                        final long bytes = received;
-                        progress(callback, expectedSize > 0
-                                ? String.format(Locale.US, "Downloading update… %d%%",
-                                    (int)(bytes * 100 / expectedSize))
-                                : String.format(Locale.US, "Downloading update… %d MiB",
-                                    bytes / (1024 * 1024)));
-                    }
+            file = connection.getURL();
+            expectedSize = connection.getContentLengthLong();
+        } finally {
+            connection.disconnect();
+        }
+        if (expectedSize <= 0) expectedSize = publishedSize;
+        if (expectedSize > MAX_APK_BYTES)
+            throw new IOException("Update APK exceeds the allowed size.");
+        if (expectedSize < 1024) throw new IOException("The update size is unknown. Please try again.");
+        final long total = expectedSize;
+        try {
+            AtomicLong reported = new AtomicLong(-1);
+            ParallelDownload.fetch(file, total, candidate, ParallelDownload::allowedUpdateHost, bytes -> {
+                long bucket = bytes / (2 * 1024 * 1024);
+                long previous = reported.get();
+                if (bucket > previous && reported.compareAndSet(previous, bucket)) {
+                    progress(callback, String.format(Locale.US, "Downloading update… %d%%",
+                            (int) (Math.max(0, bytes) * 100 / total)));
                 }
-                out.getFD().sync();
-            }
-            if (received < 1024 || expectedSize >= 0 && received != expectedSize)
-                throw new IOException("The APK download was incomplete.");
+            });
+            if (candidate.length() != total) throw new IOException("The APK download was incomplete.");
             if (!checksum.isEmpty()) {
                 Matcher match = DIGEST.matcher(checksum);
                 if (!match.matches()) throw new IOException("Invalid SHA-256 digest.");
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                try (InputStream in = new java.io.FileInputStream(candidate)) {
+                    byte[] buffer = new byte[64 * 1024];
+                    int n;
+                    while ((n = in.read(buffer)) != -1) digest.update(buffer, 0, n);
+                }
                 StringBuilder hex = new StringBuilder();
                 for (byte value : digest.digest()) hex.append(String.format(Locale.US, "%02x", value & 0xff));
                 if (!hex.toString().equalsIgnoreCase(match.group(1)))
@@ -241,8 +241,6 @@ final class AppUpdater {
         } catch (Exception ex) {
             candidate.delete();
             throw ex;
-        } finally {
-            connection.disconnect();
         }
     }
 

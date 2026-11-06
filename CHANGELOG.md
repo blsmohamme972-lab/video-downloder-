@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.2
+
+- **Faster app updates:** Update StreamSave app downloads the APK over six parallel range requests (like the video engine) instead of one connection, which is often much slower to GitHub's servers. Every request is still HTTPS to GitHub only, each part is checked, and the whole file must match GitHub's SHA-256 before Android is asked to install it. Servers that ignore ranges fall back to one request.
+- The speed-up applies to updates downloaded by 2.0.2 and later; this update itself still arrives through the previous downloader.
+
 ## 2.0.1
 
 - About StreamSave now describes the Study player and the study library.
