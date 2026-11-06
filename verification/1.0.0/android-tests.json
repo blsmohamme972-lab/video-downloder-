@@ -1,0 +1,70 @@
+{
+  "platform": "Android 15 (API 35), x86_64 emulator, 4 KB pages",
+  "unique_tests": 15,
+  "passed": 15,
+  "failed": 0,
+  "final_regression_run": "10 passed: native runtime, 8 state tests, quality reveal regression",
+  "other_ui_cases": "5 unchanged UI cases passed in the preceding device run",
+  "tests": [
+    {
+      "name": "app.streamsave.DownloadStateTest.testCorruptHistoryIsPreservedWithoutRemovingMedia",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.DownloadStateTest.testFilenameCannotEscapeOutputFolderAndPreservesUnicode",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.DownloadStateTest.testFinalizationCannotBeRemovedOrOverwrittenByStaleStopAction",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.DownloadStateTest.testFriendlyErrorExplainsActionWithoutNativeTraceback",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.DownloadStateTest.testPauseCannotBeOverwrittenByLateProgressOrQueueClaim",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.DownloadStateTest.testPauseSurvivesStoreRecreationWithExactFormat",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.DownloadStateTest.testQueueRunsOldestAndSkipsPaused",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.DownloadStateTest.testReturnedJobsCannotMutatePersistedState",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.EngineRuntimeTest.testBundledEngineAndJavaScriptRuntimeStart",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.UiSmokeTest.testCleanStartupAndBlankInput",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.UiSmokeTest.testInvalidLinksShowLocalValidation",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.UiSmokeTest.testNotificationIntentOpensLibraryAndKeepsDraft",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.UiSmokeTest.testQualityRowsUseSourceModelAndKeepSelection",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.UiSmokeTest.testRecreationRetainsInputAndSelectedTab",
+      "result": "passed"
+    },
+    {
+      "name": "app.streamsave.UiSmokeTest.testShareIntentPopulatesInputWithoutNetworkLookup",
+      "result": "passed"
+    }
+  ]
+}

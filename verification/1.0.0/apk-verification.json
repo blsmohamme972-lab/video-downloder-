@@ -1,0 +1,29 @@
+{
+  "apk": "/workspace/scratch/a8644d5f6bf0/deliverables/StreamSave-1.0.0-arm64.apk",
+  "size_bytes": 56027703,
+  "apk_sha256": "ebc12de6ba3899251e97c6d1884bca54b873d71785d2d227ad66eb8cbf7e9334",
+  "signer_certificate_sha256": "2fea903c5f282f63bb6562c27de65a09579305f4325d370227eca600fed48f3d",
+  "package": "app.streamsave",
+  "version": "1.0.0",
+  "min_sdk": 26,
+  "target_sdk": 35,
+  "abis": [
+    "arm64-v8a"
+  ],
+  "debuggable": false,
+  "extract_native_libs": true,
+  "yt_dlp_version": "2026.10.26",
+  "yt_dlp_resource_path": "res/Nc",
+  "yt_dlp_embedded_sha256": "e51e69e89489f199530f13d32a4342da3ddb2cf34842f364603a066db05afbf3",
+  "signature_verified": true,
+  "zip_alignment_verified": true,
+  "ffmpeg_overlay_sha256": "f9c49c3ec35cecea68f49db2d334c47ec17851a65d509e1a635e3d4231298578",
+  "arm64_elf_files_checked": 254,
+  "all_arm64_native_load_segments_16kb_aligned": true,
+  "release_dex_sha256": {
+    "classes.dex": "a50be16765c5573669265b46b7df51ba6c9547a912c8c6f361990053841fad09"
+  },
+  "both_release_abis_contain_identical_current_dex": true,
+  "quality_layout_fix_present": true,
+  "transfer_serialization_present": true
+}

@@ -1,0 +1,49 @@
+{
+  "engine": "2026.10.26",
+  "app_version": "1.1.0",
+  "host_suite": {
+    "command": "python -B -m unittest discover -s tests -p test_*.py -v",
+    "tests_passed": 11,
+    "seconds": 23.215
+  },
+  "controlled_benchmark": {
+    "generated_bytes": 67109235,
+    "per_connection_limit_bytes_per_second": 5242880,
+    "stock_seconds": 12.871,
+    "parallel_seconds": 1.689,
+    "ratio": 7.62,
+    "stock_peak_requests": 1,
+    "parallel_peak_requests": 8,
+    "max_parallel_request_bytes": 8388608,
+    "source_and_final_sha256": "3abe07dc902e4e34caddd849e44c6d72828f2820d09ba5dd6faefbdb2d6a6f5e",
+    "scope": "Local generated-byte fixture; not a YouTube or ISP speed measurement"
+  },
+  "resume": {
+    "legacy_prefix_bytes": 1047552,
+    "exact_offset_requested": true,
+    "final_sha256_matches": true,
+    "cancellation_during_commit_prefix_preserved": true
+  },
+  "regressions": [
+    "manifest downloader remains unchanged",
+    "fresh ignored-Range native fallback verified",
+    "existing prefix not discarded when server ignores Range",
+    "malformed Content-Range or total rejected without append",
+    "changed source overlap rejected without append",
+    "truncated response retries do not duplicate source bytes",
+    "short200 error body rejected with and without Content-Length",
+    "unknown-size direct formats retain native resume",
+    "supervised launcher imports actual bundled engine",
+    "supervisor cancellation reaps child and grandchild",
+    "cancellation during short-write append preserves a valid contiguous prefix"
+  ],
+  "live_smoke": {
+    "sample": "YE7VzlLtp-4",
+    "metadata_success": true,
+    "exact_selected_video": "399-sr",
+    "direct_range_result": "HTTP416",
+    "follow_up_comparison": "YouTube sign-in/bot verification blocked extraction; stopped probing",
+    "conclusion": "Live YouTube transfer acceleration was not validated in this shared environment"
+  },
+  "runner_sha256": "ff43dd8f39d4a16af16765a60f5df4d82d74817528a4c9ee1c5a2d9594a07a6c"
+}

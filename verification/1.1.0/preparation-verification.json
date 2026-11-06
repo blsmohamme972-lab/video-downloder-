@@ -1,0 +1,11 @@
+{
+  "bootstrap_reproduced_identical_payloads": {
+    "verified": true,
+    "yt_dlp_version": "2026.10.26",
+    "yt_dlp_sha256": "e51e69e89489f199530f13d32a4342da3ddb2cf34842f364603a066db05afbf3",
+    "ffmpeg_overlay_sha256": "f9c49c3ec35cecea68f49db2d334c47ec17851a65d509e1a635e3d4231298578"
+  },
+  "bootstrap_rejects_missing_inputs": "Engine preparation failed: Checksum or size mismatch: /workspace/scratch/a8644d5f6bf0/toolchain/qa-v1.1/missing-payload-check/app/src/main/res/raw/ytdlp",
+  "gradle_payload_gate_passed": true,
+  "initial_compile_unit_lint_passed": true
+}

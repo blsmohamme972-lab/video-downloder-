@@ -1,0 +1,15 @@
+{
+  "passed": 6,
+  "failed": 0,
+  "suite": "app.streamsave.EngineTest",
+  "tests": [
+    "rejectsLiveAndUnusableMetadata",
+    "fallsBackToPlayableExactIdsWhenSelectedFormatIsInvalid",
+    "acceptsWatchShortsMusicAndShareText",
+    "usesExactIdsAndFiltersImagesDrmAndMissingStreams",
+    "acceptsManifestAndLabelsPortraitResolution",
+    "rejectsLookalikeHostsCredentialsAndSchemes"
+  ],
+  "lint_debug_issues": 0,
+  "lint_release_issues": 0
+}

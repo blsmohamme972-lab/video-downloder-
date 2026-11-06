@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "yt_dlp": {
+    "version": "2026.10.26",
+    "url": "https://github.com/yt-dlp/yt-dlp/releases/download/2026.10.26/yt-dlp",
+    "sha256": "e51e69e89489f199530f13d32a4342da3ddb2cf34842f364603a066db05afbf3",
+    "bytes": 3073072,
+    "destination": "app/src/main/res/raw/ytdlp"
+  },
+  "ffmpeg_aar": {
+    "version": "0.18.1",
+    "url": "https://repo.maven.apache.org/maven2/io/github/junkfood02/youtubedl-android/ffmpeg/0.18.1/ffmpeg-0.18.1.aar",
+    "sha256": "0a87ffa6cf912b0fe76c1a99b9107f543ee2f247935fae2c71f0822eb7bc5f49",
+    "bytes": 139371444,
+    "member": "jni/arm64-v8a/libffmpeg.zip.so"
+  },
+  "termux_webp": {
+    "version": "1.6.0.0.0.1+really1.6.0",
+    "url": "https://packages.termux.dev/apt/termux-main/pool/main/libw/libwebp/libwebp_1.6.0.0.0.1%2Breally1.6.0_aarch64.deb",
+    "sha256": "8ba7fcfadd1a9957a7632c6407d6ef3e41d34dbd96a41769b245592ed4559045",
+    "bytes": 329548
+  },
+  "ffmpeg_overlay": {
+    "sha256": "f9c49c3ec35cecea68f49db2d334c47ec17851a65d509e1a635e3d4231298578",
+    "bytes": 35626205,
+    "destination": "app/src/main/jniLibs/arm64-v8a/libffmpeg.zip.so"
+  }
+}

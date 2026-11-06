@@ -1,0 +1,16 @@
+{
+  "engine": "2026.10.26",
+  "partial_bytes_before_resume": 1047552,
+  "range_request_offsets": [
+    0,
+    0,
+    0,
+    1047552
+  ],
+  "resume_used_saved_offset": true,
+  "exit_code": 0,
+  "final_bytes": 16777216,
+  "expected_bytes": 16777216,
+  "sha256_matches": true,
+  "after_move_checkpoint_exists": true
+}

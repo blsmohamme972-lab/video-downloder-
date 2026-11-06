@@ -1,0 +1,32 @@
+{
+  "platform": "Android 15 / API 35, x86_64, 4 KB pages",
+  "target": "Exact privately signed nondebuggable 1.1.0 release",
+  "test_apk": "Instrumentation only was re-signed to match the release certificate",
+  "verification_runs": [
+    "release-instrumentation-final.log",
+    "release-ui-final.log"
+  ],
+  "passed": 19,
+  "failed": 0,
+  "tests": [
+    "app.streamsave.DownloadStateTest.testCorruptHistoryIsPreservedWithoutRemovingMedia",
+    "app.streamsave.DownloadStateTest.testFilenameCannotEscapeOutputFolderAndPreservesUnicode",
+    "app.streamsave.DownloadStateTest.testFinalizationCannotBeRemovedOrOverwrittenByStaleStopAction",
+    "app.streamsave.DownloadStateTest.testFriendlyErrorExplainsActionWithoutNativeTraceback",
+    "app.streamsave.DownloadStateTest.testPauseCannotBeOverwrittenByLateProgressOrQueueClaim",
+    "app.streamsave.DownloadStateTest.testPauseSurvivesStoreRecreationWithExactFormat",
+    "app.streamsave.DownloadStateTest.testQueueRunsOldestAndSkipsPaused",
+    "app.streamsave.DownloadStateTest.testReturnedJobsCannotMutatePersistedState",
+    "app.streamsave.EngineRuntimeTest.testBundledEngineAndJavaScriptRuntimeStart",
+    "app.streamsave.EngineRuntimeTest.testNativeParallelHttpResumesLegacyPrefixAndMatchesHash",
+    "app.streamsave.EngineRuntimeTest.testSupervisorStopsDescendantsBeforeReturning",
+    "app.streamsave.EngineRuntimeTest.testUnexpectedSupervisorExitStopsRemainingDescendants",
+    "app.streamsave.EngineRuntimeTest.testWatchdogStopsStalledSupervisorAndDescendants",
+    "app.streamsave.UiSmokeTest.testCleanStartupAndBlankInput",
+    "app.streamsave.UiSmokeTest.testInvalidLinksShowLocalValidation",
+    "app.streamsave.UiSmokeTest.testNotificationIntentOpensLibraryAndKeepsDraft",
+    "app.streamsave.UiSmokeTest.testQualityRowsUseSourceModelAndKeepSelection",
+    "app.streamsave.UiSmokeTest.testRecreationRetainsInputAndSelectedTab",
+    "app.streamsave.UiSmokeTest.testShareIntentPopulatesInputWithoutNetworkLookup"
+  ]
+}
