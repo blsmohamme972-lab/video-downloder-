@@ -26,9 +26,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Turns a study pack's voice-over lines into speech on the phone with the
  * Supertonic voice model, in the background and in the order they are needed
- * (the lines just ahead of playback first). Each line is cached as a 16-bit
- * WAV keyed by its text and voice settings, so settings changes regenerate
- * only what changed and replays cost nothing.
+ * (the lines just ahead of playback first). Each line is saved as a 16-bit
+ * WAV keyed by its text and voice settings, in the app's own storage (Android
+ * does not clear it), so settings changes regenerate only what changed and
+ * reopening a video costs nothing.
+ *
+ * The Study player shows what it is doing (starting, which line, how long a
+ * line takes) and can pause or resume it.
  */
 final class Narrator {
     static final String DEFAULT_VOICE = "F1";
@@ -70,12 +74,56 @@ final class Narrator {
     private volatile float speed = DEFAULT_SPEED;
     private volatile long position;
     private volatile StudyPack.Narration urgent;
-    private volatile boolean closed;
+    private volatile boolean closed, paused, starting;
+    private volatile StudyPack.Narration working;
+    private volatile long lastLineMillis, workingSince;
+    private volatile String failure = "";
 
-    Narrator(VoiceModel model, File cacheDir, Listener listener) {
+    /** @param folder where finished lines are kept (created when needed) */
+    Narrator(VoiceModel model, File folder, Listener listener) {
         this.model = model;
-        this.cache = new File(cacheDir, "narration");
+        this.cache = folder;
         this.listener = listener;
+    }
+
+    /** Stops preparing new lines (the current one is abandoned) until resumed; finished lines stay. */
+    void setPaused(boolean pause) {
+        paused = pause;
+        if (pause) generation.incrementAndGet();
+        else restart();
+    }
+
+    boolean paused() { return paused; }
+
+    /** True while the voice model is being loaded into memory (a few seconds, once per video). */
+    boolean starting() { return starting; }
+
+    /** 1-based number of the line being created now, or 0. */
+    int workingNumber() {
+        StudyPack.Narration line = working;
+        NarrationPlan current = plan;
+        if (line == null || current == null) return 0;
+        int index = current.lines().indexOf(line);
+        return index < 0 ? 0 : index + 1;
+    }
+
+    /** How long the line being created has taken so far, in milliseconds (0 when idle). */
+    long workingMillis() {
+        return working == null ? 0 : android.os.SystemClock.elapsedRealtime() - workingSince;
+    }
+
+    /** How long the last finished line took to create, in milliseconds (0 before the first). */
+    long lastLineMillis() { return lastLineMillis; }
+
+    /** Why the voice-over stopped, or "" while it works. */
+    String failure() { return failure; }
+
+    /** Tries again after a failure: lines that failed are attempted once more. */
+    void retry() {
+        failure = "";
+        synchronized (failed) { failed.clear(); }
+        paused = false;
+        restart();
     }
 
     boolean available() { return model.installed(); }
@@ -161,7 +209,7 @@ final class Narrator {
             for (StudyPack.Narration line : current.lines()) ready.put(line, fileFor(line).isFile());
             main.post(listener::onPrepared);
         }
-        while (!closed && run == generation.get()) {
+        while (!closed && !paused && run == generation.get()) {
             StudyPack.Narration next = pickNext();
             if (next == null) return;
             String key = keyFor(next);
@@ -169,17 +217,34 @@ final class Narrator {
                 if (engine == null) {
                     if (!model.installed()) return;
                     int threads = Math.max(1, Math.min(4, Runtime.getRuntime().availableProcessors() - 1));
-                    engine = new SupertonicEngine(model.onnxDir(), threads);
+                    starting = true;
+                    main.post(listener::onPrepared);
+                    try {
+                        engine = new SupertonicEngine(model.onnxDir(), threads);
+                    } finally {
+                        starting = false;
+                    }
                 }
                 String lineVoice = next.voice.isEmpty() ? voice : next.voice;
                 float lineSpeed = next.speed > 0 ? next.speed : speed;
                 SupertonicEngine.Voice style = SupertonicEngine.loadVoice(model.voiceFile(lineVoice));
                 Random random = new Random();
-                float[] wav = engine.synthesize(next.text, style, lang, steps, lineSpeed,
-                        () -> (float) random.nextGaussian(), () -> closed || run != generation.get());
+                long began = android.os.SystemClock.elapsedRealtime();
+                workingSince = began;
+                working = next;
+                main.post(listener::onPrepared);
+                float[] wav;
+                try {
+                    wav = engine.synthesize(next.text, style, lang, steps, lineSpeed,
+                            () -> (float) random.nextGaussian(), () -> closed || paused || run != generation.get());
+                } finally {
+                    working = null;
+                }
                 if (wav == null) return; // cancelled; a newer run continues
+                lastLineMillis = android.os.SystemClock.elapsedRealtime() - began;
                 writeWav(fileFor(next), wav, engine.sampleRate);
                 ready.put(next, true);
+                failure = "";
                 if (urgent == next) urgent = null;
                 trimCache();
                 main.post(listener::onPrepared);
@@ -190,6 +255,7 @@ final class Narrator {
                     closeEngine();
                     String message = "The phone could not start the voice model ("
                             + (error.getMessage() == null ? error.getClass().getSimpleName() : error.getMessage()) + ").";
+                    failure = message;
                     main.post(() -> listener.onFailed(message));
                     return;
                 }

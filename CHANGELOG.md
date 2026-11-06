@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.1.3
+
+- **Voice-over panel in the Study player** (under the seek bar). It always says what the voice-over is doing:
+  - no study pack, or a pack without a voice-over;
+  - downloading the voice, with its percentage;
+  - starting the voice engine;
+  - "Creating voice line 5 of 192 · 7 s", with how long the last line took and how far the voice is ready;
+  - paused, stopped by an error, or ready for the whole video.
+
+  A progress bar shows how many lines are ready. **Stop** pauses creating lines (lines already made still play, and the video never waits for a stopped line). **Resume** continues and **Retry** tries again after an error.
+- **Created voice lines are saved permanently** in StreamSave's own storage (Android no longer clears them as cache), so a video's voice-over is made once. Lines from 2.1.0–2.1.2 are moved there.
+
 ## 2.1.2
 
 - **Study videos stay in the Library.** Videos opened in the Study player from Google Drive, Files or elsewhere are listed under **Library → Study videos**, newest first, with **Study** (reopens it with its pack, notes and answers) and **Remove** (only takes it off the list). Before, the Library only listed StreamSave's own downloads, so these videos seemed to disappear.

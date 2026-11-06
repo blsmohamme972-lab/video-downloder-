@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -70,6 +71,10 @@ public final class PlayerActivity extends Activity {
     private VideoView video;
     private OverlayView overlay;
     private TextView caption, noteBubble, title, status, clock, score, emptyHint, voiceLine;
+    private LinearLayout voicePanel;
+    private ProgressBar voiceProgress;
+    private Button voiceButton;
+    private Runnable voiceAction;
     private SeekBar seek;
     private Button play, notesButton, drawingsToggle, questionsToggle, captionsToggle, voiceToggle;
     private LinearLayout extras;
@@ -121,9 +126,11 @@ public final class PlayerActivity extends Activity {
         voiceModel = new VoiceModel(new File(getFilesDir(), "voice"));
         voiceDownloading = VoiceDownloadService.running();
         VoiceDownloadService.listen(voiceDownloadChanged);
-        narrator = new Narrator(voiceModel, getCacheDir(), new Narrator.Listener() {
+        narrator = new Narrator(voiceModel, voiceOverFolder(), new Narrator.Listener() {
             @Override public void onPrepared() {
-                if (!isDestroyed()) renderStatus();
+                if (isDestroyed()) return;
+                renderStatus();
+                voiceBarAt = 0; // show the change on the next tick
             }
 
             @Override public void onFailed(String problem) {
@@ -236,9 +243,39 @@ public final class PlayerActivity extends Activity {
         score = Ui.chip(this, "No questions yet", Ui.MINT, Ui.MINT_DARK);
         timeRow.addView(score);
         panel.addView(timeRow, Ui.matchWrap());
-        voiceLine = Ui.text(this, "", 11.5f, Ui.AMBER, false);
-        voiceLine.setVisibility(View.GONE);
-        panel.addView(voiceLine, Ui.matchWrap());
+        // Voice-over panel: what the voice is doing right now, how far it is, and Stop / Resume.
+        voicePanel = Ui.horizontal(this);
+        voicePanel.setGravity(Gravity.CENTER_VERTICAL);
+        voicePanel.setPadding(dp(12), dp(8), dp(8), dp(8));
+        voicePanel.setBackground(Ui.shape(this, Ui.SURFACE_HIGH, 12, Ui.BORDER));
+        LinearLayout voiceTexts = Ui.vertical(this);
+        voiceLine = Ui.text(this, "", 12f, Ui.AMBER, false);
+        voiceTexts.addView(voiceLine, Ui.matchWrap());
+        voiceProgress = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+        voiceProgress.setMax(1000);
+        voiceProgress.setProgressTintList(android.content.res.ColorStateList.valueOf(Ui.AMBER));
+        voiceProgress.setIndeterminateTintList(android.content.res.ColorStateList.valueOf(Ui.AMBER));
+        voiceProgress.setProgressBackgroundTintList(android.content.res.ColorStateList.valueOf(Ui.BORDER));
+        LinearLayout.LayoutParams progressParams = new LinearLayout.LayoutParams(-1, dp(6));
+        progressParams.topMargin = dp(6);
+        voiceTexts.addView(voiceProgress, progressParams);
+        voicePanel.addView(voiceTexts, new LinearLayout.LayoutParams(0, -2, 1));
+        voiceButton = Ui.button(this, "Stop", false);
+        voiceButton.setTextSize(13f);
+        voiceButton.setMinimumHeight(dp(36));
+        voiceButton.setPadding(dp(14), dp(6), dp(14), dp(6));
+        voiceButton.setOnClickListener(v -> {
+            Runnable action = voiceAction;
+            if (action != null) action.run();
+            voiceBarAt = 0;
+        });
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(-2, -2);
+        buttonParams.setMarginStart(dp(10));
+        voicePanel.addView(voiceButton, buttonParams);
+        voicePanel.setVisibility(View.GONE);
+        LinearLayout.LayoutParams voiceParams = Ui.matchWrap();
+        voiceParams.topMargin = dp(8);
+        panel.addView(voicePanel, voiceParams);
         panel.addView(Ui.spacer(this, 10));
 
         LinearLayout controls = Ui.horizontal(this);
@@ -906,24 +943,112 @@ public final class PlayerActivity extends Activity {
         renderStatus();
     }
 
-    /** The amber part of the seek bar and the line under it: how far the voice-over is ready. */
+    /** The amber part of the seek bar and the voice-over panel under it. */
     private void renderVoiceBar(long position, int duration) {
         long now = SystemClock.elapsedRealtime();
         if (now - voiceBarAt < 400) return;
         voiceBarAt = now;
-        boolean show = narrationPlan != null && voiceOn && voiceModel.installed();
-        if (!show) {
-            seek.setSecondaryProgress(0);
-            voiceLine.setVisibility(View.GONE);
+        boolean preparing = narrationPlan != null && voiceOn && voiceModel.installed();
+        seek.setSecondaryProgress(preparing ? (int) Math.min(duration, narrator.readyUntil(position, duration)) : 0);
+        renderVoicePanel(position, duration);
+    }
+
+    /**
+     * Always says what the voice-over is doing: no pack, downloading the voice, starting the engine,
+     * which line is being created and for how long, paused, failed, or ready. Stop / Resume / Retry
+     * act on exactly that.
+     */
+    private void renderVoicePanel(long position, int duration) {
+        if (!voiceOn || videoUri == null) {
+            voicePanel.setVisibility(View.GONE);
             return;
         }
-        long until = narrator.readyUntil(position, duration);
-        seek.setSecondaryProgress((int) Math.min(duration, until));
-        int ready = narrator.readyCount(), total = narrator.total();
-        voiceLine.setText(ready >= total
-                ? "Voice-over ready for the whole video"
-                : "Voice-over ready to " + time(until) + " · preparing " + ready + "/" + total + " lines");
-        voiceLine.setVisibility(View.VISIBLE);
+        String text;
+        int progress = -1; // -1: no bar
+        boolean spinning = false;
+        String button = null;
+        Runnable action = null;
+        if (VoiceDownloadService.running()) {
+            text = "Downloading the voice (once, " + VoiceModel.totalBytes() / (1024 * 1024) + " MB): "
+                    + VoiceDownloadService.percent() + "%";
+            progress = VoiceDownloadService.percent() * 10;
+            button = "Stop";
+            action = VoiceDownloadService::stop;
+        } else if (pack == null) {
+            text = "Voice-over: this video has no study pack yet. Tap Update pack to choose one.";
+        } else if (narrationPlan == null) {
+            text = "This video's study pack has no voice-over.";
+        } else if (!voiceModel.installed()) {
+            boolean partly = voiceModel.unfinished();
+            text = partly ? "Voice download stopped before the end. It continues where it stopped."
+                    : "The voice-over needs the voice, downloaded once (" + VoiceModel.totalBytes() / (1024 * 1024) + " MB).";
+            button = partly ? "Continue" : "Download";
+            action = partly ? this::downloadVoice : this::offerVoiceDownload;
+        } else {
+            int ready = narrator.readyCount(), total = narrator.total();
+            progress = total == 0 ? 0 : (int) (ready * 1000L / total);
+            String readyTo = ready >= total ? "" : " · ready to " + time(narrator.readyUntil(position, duration));
+            if (!narrator.failure().isEmpty()) {
+                text = "Voice-over stopped: " + narrator.failure();
+                button = "Retry";
+                action = narrator::retry;
+            } else if (ready >= total) {
+                text = "Voice-over ready for the whole video: " + total + " lines, saved on this phone.";
+            } else if (narrator.paused()) {
+                text = "Voice-over paused · " + ready + " of " + total + " lines ready" + readyTo;
+                button = "Resume";
+                action = () -> narrator.setPaused(false);
+            } else if (narrator.starting()) {
+                text = "Starting the voice engine… (a few seconds)";
+                spinning = true;
+                button = "Stop";
+                action = this::pauseVoicePreparation;
+            } else {
+                int number = narrator.workingNumber();
+                long each = narrator.lastLineMillis();
+                text = (number > 0
+                        ? "Creating voice line " + number + " of " + total + " · " + narrator.workingMillis() / 1000 + " s"
+                        : "Preparing the voice-over")
+                        + (each > 0 ? String.format(Locale.US, " (last took %.0f s)", each / 1000.0) : "")
+                        + " · " + ready + " ready" + readyTo;
+                button = "Stop";
+                action = this::pauseVoicePreparation;
+            }
+        }
+        voiceLine.setText(text);
+        if (progress < 0 && !spinning) {
+            voiceProgress.setVisibility(View.GONE);
+        } else {
+            voiceProgress.setVisibility(View.VISIBLE);
+            if (voiceProgress.isIndeterminate() != spinning) voiceProgress.setIndeterminate(spinning);
+            if (!spinning) voiceProgress.setProgress(progress);
+        }
+        voiceAction = action;
+        if (button == null) {
+            voiceButton.setVisibility(View.GONE);
+        } else {
+            voiceButton.setText(button);
+            voiceButton.setVisibility(View.VISIBLE);
+        }
+        voicePanel.setVisibility(View.VISIBLE);
+    }
+
+    /** Stops creating voice lines (finished ones keep playing) and lets a waiting video continue. */
+    private void pauseVoicePreparation() {
+        narrator.setPaused(true);
+        stopWaitingForVoice();
+        Toast.makeText(this, "Voice-over preparation stopped. Lines already made still play; tap Resume to continue.",
+                Toast.LENGTH_LONG).show();
+    }
+
+    /** Finished voice lines live in app storage, which Android never clears (older versions used the cache). */
+    private File voiceOverFolder() {
+        File folder = new File(getFilesDir(), "voice-over");
+        File old = new File(getCacheDir(), "narration");
+        if (!folder.exists() && old.isDirectory() && !old.renameTo(folder)) {
+            App.deleteTree(old); // could not move it: free the space, the lines are created again
+        }
+        return folder;
     }
 
     private String voiceStatus() {
@@ -942,6 +1067,8 @@ public final class PlayerActivity extends Activity {
             playVoice(line, clip);
             return;
         }
+        // Preparation was stopped or failed: never hold the video for a line that will not come.
+        if (narrator.paused() || !narrator.failure().isEmpty()) return;
         releaseVoicePlayer();
         speaking = null;
         duck(false);
