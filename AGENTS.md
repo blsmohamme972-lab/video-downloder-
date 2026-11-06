@@ -27,7 +27,7 @@ If any of these differ, the update is refused. Nothing in the app can work aroun
    - The in-app updater installs only those GitHub Releases.
    - Do not hand the owner CI artifacts or sandbox-built APKs as "the update". If you share one for testing, say plainly that installing it requires uninstalling StreamSave and loses the Library.
 4. **Never create, replace, rotate or commit signing keys.**
-   - The release keystore exists only in the repository secrets `STREAMSAVE_KEYSTORE_BASE64`, `STREAMSAVE_KEYSTORE_PASSWORD`, `STREAMSAVE_KEY_ALIAS`, `STREAMSAVE_KEY_PASSWORD` and in the owner's private backup.
+   - The release keystore exists only in the repository secret `STREAMSAVE_SIGNING` (one value holding the keystore, alias and passwords; `tools/restore_signing.py` reads it) and in the owner's private backup in Google Drive. The four older secrets `STREAMSAVE_KEYSTORE_BASE64`, `STREAMSAVE_KEYSTORE_PASSWORD`, `STREAMSAVE_KEY_ALIAS`, `STREAMSAVE_KEY_PASSWORD` are still accepted.
    - If the secrets are missing or the release workflow reports a different key, stop and tell the owner. A new key forces every installed copy to be uninstalled once.
    - Never commit `*.jks`, `*.keystore`, `*.p12`, passwords, or signing property files.
 5. **Do not weaken `AppUpdater.java`.** It must keep checking:
@@ -61,7 +61,7 @@ CI runs all of these on pull requests and on `main`. Do not merge or publish a r
 
 ## One-time setup the owner must do
 
-The release workflow needs the four signing secrets above (repository **Settings → Secrets and variables → Actions**).
+The release workflow needs the signing secret `STREAMSAVE_SIGNING` (repository **Settings → Secrets and variables → Actions**). Its value is in the owner's Google Drive backup.
 
 - Use the keystore that signed the APK currently installed, if the owner still has it.
 - If the installed copy came from a CI artifact, its key is gone. The owner must uninstall once and install the first release APK from **GitHub Releases**; later updates then work in the app.

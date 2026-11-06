@@ -85,29 +85,24 @@ jobs:
 
       - name: Restore private production signing key from repository secrets
         env:
+          # One secret (preferred) or the four separate ones; see AGENTS.md.
+          SIGNING_BUNDLE: ${{ secrets.STREAMSAVE_SIGNING }}
           KEYSTORE_BASE64: ${{ secrets.STREAMSAVE_KEYSTORE_BASE64 }}
           KEYSTORE_PASSWORD: ${{ secrets.STREAMSAVE_KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.STREAMSAVE_KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.STREAMSAVE_KEY_PASSWORD }}
         run: |
-          test -n "$KEYSTORE_BASE64" && test -n "$KEYSTORE_PASSWORD"
-          test -n "$KEY_ALIAS" && test -n "$KEY_PASSWORD" || {
-            echo "Production signing secrets are not configured."; exit 1;
-          }
-          printf '%s' "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/streamsave-release.jks"
-          chmod 600 "$RUNNER_TEMP/streamsave-release.jks"
-          {
-            printf 'storeFile=%s\n' "$RUNNER_TEMP/streamsave-release.jks"
-            printf 'storePassword=%s\n' "$KEYSTORE_PASSWORD"
-            printf 'keyAlias=%s\n' "$KEY_ALIAS"
-            printf 'keyPassword=%s\n' "$KEY_PASSWORD"
-          } > "$RUNNER_TEMP/streamsave-signing.properties"
-          chmod 600 "$RUNNER_TEMP/streamsave-signing.properties"
+          # Not captured: the script's ::add-mask:: lines must reach the log
+          # runner, and its exit status must fail this step.
+          python3 tools/restore_signing.py "$RUNNER_TEMP/signing"
+          echo "SIGNING_PROPERTIES=$RUNNER_TEMP/signing/streamsave-signing.properties" >> "$GITHUB_ENV"
 
       - name: Build the signed ARM64 release
         run: |
+          # Without this file Gradle would fall back to a throwaway debug key.
+          test -s "$SIGNING_PROPERTIES" || { echo "Signing properties are missing"; exit 1; }
           bash ./gradlew --no-daemon --max-workers=2 clean assembleRelease testDebugUnitTest lintRelease \
-            -PstreamsaveSigningProperties="$RUNNER_TEMP/streamsave-signing.properties"
+            -PstreamsaveSigningProperties="$SIGNING_PROPERTIES"
 
       - name: Require the same signing key as the latest release
         env:

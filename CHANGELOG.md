@@ -7,6 +7,7 @@
 - The release workflow now refuses to publish when the tag or `versionCode` is not newer than the latest release, when the tag already exists, or when the APK is signed with a different key than the latest release. It also runs the downloader integrity tests and prints the signing certificate fingerprint.
 - Added `tools/check_release_rules.py` (run in both workflows): the package name stays `app.streamsave`, versions are well-formed, no signing material is committed, and the updater's package/version/signer/HTTPS/host checks stay in place.
 - Added `AGENTS.md` (and `CLAUDE.md`) with release and compatibility rules for AI assistants that change this project.
+- The release workflow accepts one signing secret, `STREAMSAVE_SIGNING`, instead of four, and stops before building if the key cannot be restored (it can no longer fall back to a throwaway debug key).
 
 ## 1.2.0
 
