@@ -24,6 +24,12 @@ from collections import deque
 
 PIECE_SIZE = 8 * 1024 * 1024
 CONNECTIONS = 8
+# Pieces requested ahead of the oldest uncommitted piece. Only CONNECTIONS
+# requests are ever open; the rest wait in the pool queue. When one range is
+# slow or retrying, the other connections keep downloading later pieces
+# instead of idling until the slow piece is appended. Bounds temporary
+# storage to LOOKAHEAD * PIECE_SIZE (192 MiB).
+LOOKAHEAD = 3 * CONNECTIONS
 BUFFER_SIZE = 64 * 1024
 CONTENT_RANGE = re.compile(r"bytes (\d+)-(\d+)/(\d+)\Z", re.IGNORECASE)
 
@@ -161,6 +167,10 @@ def install_parallel_http():
             path = os.path.join(pieces, f'{first}-{last}')
 
             def attempt():
+                if stop.is_set():
+                    # A queued look-ahead piece must not open a request after
+                    # pause, removal or an error elsewhere in the transfer.
+                    raise InterruptedError('Transfer stopped')
                 with contextlib.closing(open_range(first, last)) as response:
                     with open(path, 'wb') as output:
                         read_exact(response, last - first + 1, output, first)
@@ -230,7 +240,7 @@ def install_parallel_http():
                 next_offset = last + 1
                 pending.append((first, last, pool.submit(fetch, first, last)))
 
-            for _ in range(CONNECTIONS):
+            for _ in range(LOOKAHEAD):
                 schedule()
             with open(tmp, 'ab', buffering=0) as destination:
                 while pending:

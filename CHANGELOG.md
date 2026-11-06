@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Kept all eight connections busy when one range is slow or retrying. New ranges previously started only after the oldest unfinished range was saved, so the other connections waited idle. Up to 24 ranges (192 MiB of temporary space) are now requested ahead; at most eight requests are open at once, and the `.part` file is still appended in order, so resume behaviour is unchanged.
+- In an offline benchmark where every range had a different speed, the same 128 MiB file finished 1.3–1.55× faster than with 1.1.0, with identical output hashes. Real gains depend on how uneven YouTube's per-connection speeds are; if the phone already downloads at the full internet speed, no scheduling change can make it faster.
+
 ## 1.1.0
 
 - Added up to eight parallel, bounded HTTP requests for eligible direct YouTube streams while preserving the exact selected formats.

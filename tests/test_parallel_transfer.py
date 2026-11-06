@@ -42,10 +42,15 @@ adapter.install_parallel_http()
 
 
 class Fixture:
-    def __init__(self, data, mode='normal', bytes_per_second=0):
+    def __init__(self, data, mode='normal', bytes_per_second=0, slow_offset=None, slow_bytes_per_second=0):
         self.data = data
         self.mode = mode
         self.bytes_per_second = bytes_per_second
+        # One media range (not the 1-byte probe) can be served slowly to model
+        # a congested or retrying connection.
+        self.slow_offset = slow_offset
+        self.slow_bytes_per_second = slow_bytes_per_second
+        self.requests_when_slow_done = None
         self.requests = []
         self.active = 0
         self.peak = 0
@@ -101,14 +106,21 @@ class Fixture:
                     self.send_header('Content-Type', 'application/octet-stream')
                     self.end_headers()
                     send_last = first + (last - first) // 2 if truncate else last
+                    slow = first == fixture.slow_offset and last - first + 1 > 65536
+                    rate = fixture.slow_bytes_per_second if slow else fixture.bytes_per_second
                     start = time.monotonic()
                     sent = 0
                     for offset in range(first, send_last + 1, 64 * 1024):
                         block = fixture.data[offset:min(send_last + 1, offset + 64 * 1024)]
-                        if fixture.bytes_per_second:
-                            delay = (sent + len(block)) / fixture.bytes_per_second - (time.monotonic() - start)
+                        if rate:
+                            delay = (sent + len(block)) / rate - (time.monotonic() - start)
                             if delay > 0:
                                 time.sleep(delay)
+                        if slow and offset + len(block) >= send_last + 1:
+                            # Recorded before the final bytes leave, so the
+                            # client cannot yet have appended this piece.
+                            with fixture.lock:
+                                fixture.requests_when_slow_done = len(fixture.requests)
                         if offset + len(block) >= send_last + 1 and counted:
                             # A completed response is no longer an in-flight
                             # body, even while its handler finishes cleanup.
@@ -316,6 +328,28 @@ class ParallelTransferTest(unittest.TestCase):
         self.assertEqual(fixture.data[:len(prefix)], prefix)
         transfer(fixture.url, len(fixture.data), self.destination)
         self.assert_complete(fixture)
+
+    def test_slow_range_does_not_idle_other_connections(self):
+        # Small pieces give many ranges; the first media range is 16x slower
+        # than the others. Before look-ahead, no new range started until that
+        # piece was appended, so the other seven connections sat idle.
+        piece = 1024 * 1024
+        rate = 4 * 1024 * 1024
+        fixture = self.fixture(size=len(self.data), bytes_per_second=rate,
+                               slow_offset=0, slow_bytes_per_second=rate // 16)
+        original_piece = adapter.PIECE_SIZE
+        adapter.PIECE_SIZE = piece
+        try:
+            transfer(fixture.url, len(fixture.data), self.destination)
+        finally:
+            adapter.PIECE_SIZE = original_piece
+        self.assert_complete(fixture)
+        self.assertIsNotNone(fixture.requests_when_slow_done)
+        # One probe plus the whole look-ahead window started while the slow
+        # range was still in flight. The old schedule allowed only 1 + 8.
+        self.assertEqual(fixture.requests_when_slow_done, 1 + adapter.LOOKAHEAD)
+        self.assertLessEqual(fixture.peak, adapter.CONNECTIONS)
+        self.assertTrue(all(last - first + 1 <= piece for first, last, _ in fixture.requests))
 
     def test_controlled_per_connection_benchmark_and_hashes(self):
         rate = 5 * 1024 * 1024
