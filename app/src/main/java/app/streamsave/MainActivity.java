@@ -1209,6 +1209,7 @@ public final class MainActivity extends Activity {
                     study.putExtra(PlayerActivity.EXTRA_URI, current.contentUri);
                     study.putExtra(PlayerActivity.EXTRA_KEY, "job:" + current.id);
                     study.putExtra(PlayerActivity.EXTRA_TITLE, current.title);
+                    study.putExtra(PlayerActivity.EXTRA_YOUTUBE, current.url);
                     startActivity(study);
                 });
                 addAction("Share", "share", false, () -> app.share(MainActivity.this, current.id));

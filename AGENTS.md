@@ -48,6 +48,13 @@ If any of these differ, the update is refused. Nothing in the app can work aroun
    Change it only with tests in `tests/test_parallel_transfer.py`.
 8. **Keep study packs readable.** `StudyPack` must keep reading every pack it read before (schema versions 1 and 2). Add new pack fields as optional, and update `STUDY_PACK.md` and `StudyTest` with any change. Never execute anything from a pack.
 9. **Record user-visible changes** in `CHANGELOG.md` under the new version.
+10. **Publishing study packs needs no app release.** When the owner sends a Google Drive video link:
+    - watch and listen to the video;
+    - write the pack;
+    - add it to `study-packs/` and `study-packs/index.json` exactly as [STUDY_PACK.md](STUDY_PACK.md#publishing-a-pack-for-ai-assistants) describes, raising `version` when you change a pack;
+    - run the unit tests, then push to `main`.
+
+    The app downloads it by itself. The owner should never have to handle a pack file.
 
 ## Checks before pushing
 

@@ -10,18 +10,22 @@ You can also add your own notes at any moment. Notes, answers and the pack are s
 
 The app never changes the video and never runs anything from a pack: a pack is only data.
 
-## How it works with an AI and Google Drive
+## How it works: send a Drive link, then press Update
 
-1. Put the video, or only its audio, which is much smaller, in **Google Drive**.
-2. Ask an AI assistant that can read your Google Drive (for example Claude with the Google Drive connector) to make a study pack. Use the prompt in [Prompt for the AI](#prompt-for-the-ai) below. The assistant watches and listens to the video and writes a file named like `<video name>.study.json` back to your Drive.
+1. Put the video in **Google Drive** and send its link to your AI assistant, for example Claude in this repository's session.
+2. The assistant watches and listens to the video and publishes a study pack to this repository's [`study-packs/`](study-packs) folder (see [Publishing a pack](#publishing-a-pack-for-ai-assistants)).
 3. In StreamSave, open the video in the **Study player**:
    - for a download, tap **Study** in the Library;
-   - for any other video, use **Study player** on the main screen.
+   - for a video from Drive or elsewhere, use **Study player** on the main screen, or share the video to StreamSave.
 
-   Then tap **Study pack** and pick the `.study.json` file. The Android file picker shows Google Drive next to your phone's files.
+   The player finds the video's pack in the study library by itself. If it was published moments ago, tap **Update pack**. You never download or pick a file.
 4. Press **Play**. The video pauses for each question.
 
-The pack stays attached to that video. Use **Study pack → Retake all questions** to answer them again.
+New versions of a pack install themselves the next time the video is opened, and saved answers are kept. **More → Retake all questions** resets them.
+
+Packs are matched to the video by its YouTube id (downloads) or by its file name (other videos). If no pack matches, **Update pack** lists all published packs so you can choose one with one tap. **More → Add a study pack file…** still accepts a pack file for offline use.
+
+Packs in the study library are public, like the rest of this repository: publish packs only for videos you may share, and never include patient-identifying details.
 
 ## File format (schemaVersion 2)
 
@@ -100,6 +104,27 @@ Each caption is `{startMs, endMs, text}`, with `text` up to 300 characters. Over
 - JSON packs can be up to 4 MB.
 - ZIP packs can be up to 32 MB unpacked, with 4 MB per image.
 - Version 1 annotation ZIPs from the earlier Surgical Studio still open.
+
+## Publishing a pack (for AI assistants)
+
+1. Make the pack as described below, using the prompt in [Prompt for the AI](#prompt-for-the-ai).
+2. Save it as `study-packs/<id>.json`, where `<id>` uses lowercase letters, digits and dashes, for example `aortic-dissection-repair`.
+3. Add or update its entry in `study-packs/index.json`:
+
+```json
+{"schemaVersion": 1, "packs": [
+  {"id": "aortic-dissection-repair", "title": "Type A aortic dissection repair",
+   "youtubeId": "Ft2bn8LcDDY",
+   "fileNames": ["Tip 1 Aort Diseksiyonu – Acil Kalp Ameliyatı.mp4"],
+   "version": 1}
+]}
+```
+
+   - `youtubeId`: set it when the video is on YouTube.
+   - `fileNames`: the video's file name(s), for example the Google Drive name. Case, accents and the extension are ignored.
+   - `version`: raise it every time the pack changes, so phones replace their copy. Keep question `id`s stable so saved answers stay matched.
+4. Run `./gradlew testDebugUnitTest`. `StudyLibraryTest` opens every listed pack with the app's own parser and fails on any problem.
+5. Push to `main`. Phones pick it up automatically; no app release is needed.
 
 ## Prompt for the AI
 

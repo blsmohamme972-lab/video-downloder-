@@ -46,6 +46,8 @@ public final class PlayerActivity extends Activity {
     static final String EXTRA_URI = "video_uri";
     static final String EXTRA_KEY = "video_key";
     static final String EXTRA_TITLE = "title";
+    static final String EXTRA_YOUTUBE = "youtube_url";
+    private static final int MAX_INDEX_BYTES = 1024 * 1024;
     private static final int PICK_VIDEO = 301;
     private static final int PICK_PACK = 302;
     private static final int MAX_PACK_BYTES = 40 * 1024 * 1024;
@@ -67,6 +69,8 @@ public final class PlayerActivity extends Activity {
 
     private Uri videoUri;
     private String key;
+    private String youtubeId = "";
+    private String videoName = "";
     private StudyPack pack;
     private QuizPlan plan;
     private List<StudyStore.Note> notes = new ArrayList<>();
@@ -97,6 +101,7 @@ public final class PlayerActivity extends Activity {
         String uri = getIntent().getStringExtra(EXTRA_URI);
         if (uri != null && !uri.isEmpty()) {
             String key = getIntent().getStringExtra(EXTRA_KEY);
+            youtubeId = StudyLibrary.youtubeId(getIntent().getStringExtra(EXTRA_YOUTUBE));
             open(Uri.parse(uri), key == null || key.isEmpty() ? uri : key, getIntent().getStringExtra(EXTRA_TITLE));
         } else if (Intent.ACTION_SEND.equals(getIntent().getAction())) {
             Uri shared = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
@@ -203,9 +208,12 @@ public final class PlayerActivity extends Activity {
         extras = Ui.vertical(this);
         extras.addView(Ui.spacer(this, 10));
         LinearLayout actions = Ui.horizontal(this);
-        Button packButton = Ui.button(this, "Study pack", false);
-        Ui.buttonIcon(packButton, "folder", Ui.TEXT);
-        packButton.setOnClickListener(v -> packMenu());
+        Button packButton = Ui.button(this, "Update pack", true);
+        Ui.buttonIcon(packButton, "refresh", Ui.INK);
+        packButton.setContentDescription("Update this video's study pack from the study library");
+        packButton.setOnClickListener(v -> {
+            if (videoUri == null) pickVideo(); else checkLibrary(true);
+        });
         actions.addView(packButton, new LinearLayout.LayoutParams(0, dp(48), 1));
         Button addNote = Ui.button(this, "Add note", false);
         Ui.buttonIcon(addNote, "plus", Ui.TEXT);
@@ -237,9 +245,17 @@ public final class PlayerActivity extends Activity {
         toggles.addView(captionsToggle, cParams);
         extras.addView(toggles, Ui.matchWrap());
         extras.addView(Ui.spacer(this, 10));
+        LinearLayout lower = Ui.horizontal(this);
         Button other = Ui.button(this, "Open another video", false);
         other.setOnClickListener(v -> pickVideo());
-        extras.addView(other, Ui.matchWrap());
+        lower.addView(other, new LinearLayout.LayoutParams(0, dp(48), 1.6f));
+        Button more = Ui.button(this, "More", false);
+        Ui.buttonIcon(more, "more", Ui.TEXT);
+        more.setOnClickListener(v -> packMenu());
+        LinearLayout.LayoutParams moreParams = new LinearLayout.LayoutParams(0, dp(48), 1);
+        moreParams.setMarginStart(dp(8));
+        lower.addView(more, moreParams);
+        extras.addView(lower, Ui.matchWrap());
         TextView notice = Ui.text(this, "For learning only. AI-made drawings and questions can be wrong; "
                 + "check important points with a qualified teacher.", 11, Ui.QUIET, false);
         LinearLayout.LayoutParams noticeParams = Ui.matchWrap();
@@ -315,7 +331,8 @@ public final class PlayerActivity extends Activity {
         overlay.setPack(null);
         hideQuiz();
         emptyHint.setVisibility(View.GONE);
-        title.setText(name != null && !name.isEmpty() ? name : displayName(uri));
+        videoName = name != null && !name.isEmpty() ? name : displayName(uri);
+        title.setText(videoName);
         status.setText("Loading video…");
         video.setOnPreparedListener(player -> {
             prepared = true;
@@ -444,6 +461,7 @@ public final class PlayerActivity extends Activity {
                 notes = new ArrayList<>(resultNotes);
                 applyPack(result, resultAnswers);
                 if (failure != null) message("Study data", failure);
+                checkLibrary(false); // picks up a newly published pack without any tap
             });
         });
     }
@@ -460,7 +478,7 @@ public final class PlayerActivity extends Activity {
         notesButton.setText(notes.isEmpty() ? "Notes" : "Notes (" + notes.size() + ")");
         if (videoUri == null) return;
         if (pack == null) {
-            status.setText("No study pack yet. Tap Study pack to add the AI's drawings and questions from Google Drive or your files.");
+            status.setText("No study pack yet. Send this video's Google Drive link to your AI assistant, then tap Update pack.");
         } else {
             status.setText(pack.title + " · " + pack.overlays.size() + " drawings · "
                     + pack.questions.size() + " questions" + (pack.captions.isEmpty() ? "" : " · captions"));
@@ -474,16 +492,160 @@ public final class PlayerActivity extends Activity {
 
     private void packMenu() {
         if (videoUri == null) { pickVideo(); return; }
-        if (pack == null) { pickPack(); return; }
-        String[] items = {"Replace study pack…", "Retake all questions", "Remove study pack", "About this pack"};
+        if (pack == null) {
+            String[] items = {"Choose from the study library", "Add a study pack file…"};
+            new AlertDialog.Builder(this).setTitle("Study pack").setItems(items, (dialog, which) -> {
+                if (which == 0) chooseFromLibrary();
+                else pickPack();
+            }).show();
+            return;
+        }
+        String[] items = {"Choose a different pack from the library", "Add a study pack file…",
+                "Retake all questions", "Remove study pack", "About this pack"};
         new AlertDialog.Builder(this).setTitle("Study pack").setItems(items, (dialog, which) -> {
-            if (which == 0) pickPack();
-            else if (which == 1) retakeQuiz();
-            else if (which == 2) confirmRemovePack();
+            if (which == 0) chooseFromLibrary();
+            else if (which == 1) pickPack();
+            else if (which == 2) retakeQuiz();
+            else if (which == 3) confirmRemovePack();
             else message(pack.title, pack.overlays.size() + " drawings\n" + pack.questions.size()
                     + " questions\n" + pack.captions.size() + " captions"
                     + (pack.language.isEmpty() ? "" : "\nLanguage: " + pack.language));
         }).show();
+    }
+
+    // ---------- study library (packs published online; no files for the user) ----------
+
+    /** Finds this video's pack in the study library and installs it when it is new or newer. */
+    private void checkLibrary(boolean manual) {
+        if (videoUri == null || key == null) return;
+        final String target = key;
+        final String youtube = youtubeId;
+        final String name = videoName;
+        final String installed = prefs.getString("lib:" + target, "");
+        final boolean hasPack = pack != null;
+        // A pack the user added from a file, or removed on purpose, is only replaced on request.
+        if (!manual && (installed.equals("file") || installed.equals("removed"))) return;
+        if (manual) status.setText("Checking the study library…");
+        io.execute(() -> {
+            StudyLibrary library;
+            try {
+                library = StudyLibrary.parse(new String(fetch(StudyLibrary.BASE_URL + StudyLibrary.INDEX
+                        + "?t=" + System.currentTimeMillis() / 60000, MAX_INDEX_BYTES), java.nio.charset.StandardCharsets.UTF_8));
+            } catch (IOException error) {
+                if (manual) handler.post(() -> {
+                    renderStatus();
+                    message("Study library", "Could not reach the study library. Check the internet connection and try again.\n\n"
+                            + error.getMessage());
+                });
+                return;
+            }
+            StudyLibrary.Entry entry = library.match(youtube, name);
+            if (entry == null && installed.contains("@")) entry = library.byId(installed.substring(0, installed.indexOf('@')));
+            if (entry == null) {
+                if (manual) handler.post(() -> {
+                    renderStatus();
+                    if (library.entries.isEmpty()) {
+                        message("Study library", "No study packs have been published yet. Send this video's "
+                                + "Google Drive link to your AI assistant and ask for a study pack, then tap Update pack.");
+                    } else {
+                        offerLibrary(library, "No pack is linked to this video yet. Choose its pack:");
+                    }
+                });
+                return;
+            }
+            if (entry.stamp().equals(installed) && hasPack) {
+                if (manual) handler.post(() -> {
+                    renderStatus();
+                    Toast.makeText(this, "This study pack is up to date.", Toast.LENGTH_SHORT).show();
+                });
+                return;
+            }
+            installFromLibrary(entry, target, manual);
+        });
+    }
+
+    private void chooseFromLibrary() {
+        final String target = key;
+        status.setText("Opening the study library…");
+        io.execute(() -> {
+            try {
+                StudyLibrary library = StudyLibrary.parse(new String(fetch(StudyLibrary.BASE_URL + StudyLibrary.INDEX
+                        + "?t=" + System.currentTimeMillis() / 60000, MAX_INDEX_BYTES), java.nio.charset.StandardCharsets.UTF_8));
+                handler.post(() -> {
+                    if (!target.equals(key)) return;
+                    renderStatus();
+                    if (library.entries.isEmpty()) message("Study library", "No study packs have been published yet.");
+                    else offerLibrary(library, "Choose the pack for this video:");
+                });
+            } catch (IOException error) {
+                handler.post(() -> {
+                    renderStatus();
+                    message("Study library", "Could not reach the study library.\n\n" + error.getMessage());
+                });
+            }
+        });
+    }
+
+    private void offerLibrary(StudyLibrary library, String heading) {
+        String[] titles = new String[library.entries.size()];
+        for (int i = 0; i < titles.length; i++) titles[i] = library.entries.get(i).title;
+        final String target = key;
+        new AlertDialog.Builder(this).setTitle(heading).setItems(titles, (dialog, which) ->
+                io.execute(() -> installFromLibrary(library.entries.get(which), target, true))).show();
+    }
+
+    /** Runs on the io thread. Keeps quiz answers: question ids stay stable across pack versions. */
+    private void installFromLibrary(StudyLibrary.Entry entry, String target, boolean manual) {
+        try {
+            byte[] raw = fetch(entry.url() + "?v=" + entry.version, MAX_PACK_BYTES);
+            StudyPack loaded = StudyPack.read(raw); // validate before replacing anything
+            store.savePack(target, raw);
+            Map<String, Integer> answers = store.answers(target);
+            prefs.edit().putString("lib:" + target, entry.stamp()).apply();
+            handler.post(() -> {
+                if (isFinishing() || !target.equals(key)) return;
+                applyPack(loaded, answers);
+                Toast.makeText(this, "Study pack ready: " + loaded.questions.size() + " questions, "
+                        + loaded.overlays.size() + " drawings.", Toast.LENGTH_LONG).show();
+            });
+        } catch (IOException error) {
+            if (manual) handler.post(() -> {
+                renderStatus();
+                message("Study pack not updated", error.getMessage());
+            });
+        }
+    }
+
+    /** HTTPS download from the study library only, with a size limit. */
+    private static byte[] fetch(String address, int maxBytes) throws IOException {
+        java.net.URL url = new java.net.URL(address);
+        if (!"https".equals(url.getProtocol()) || !"raw.githubusercontent.com".equals(url.getHost())) {
+            throw new IOException("Study packs are only downloaded from the StreamSave study library.");
+        }
+        java.net.HttpURLConnection connection = (java.net.HttpURLConnection) url.openConnection();
+        connection.setInstanceFollowRedirects(false);
+        connection.setConnectTimeout(15000);
+        connection.setReadTimeout(30000);
+        connection.setRequestProperty("User-Agent", "StreamSave-StudyPlayer");
+        try {
+            int status = connection.getResponseCode();
+            if (status == 404) throw new IOException("The study library has no file at " + url.getPath() + ".");
+            if (status != 200) throw new IOException("The study library answered HTTP " + status + ".");
+            long declared = connection.getContentLengthLong();
+            if (declared > maxBytes) throw new IOException("The study pack is too large.");
+            try (InputStream input = connection.getInputStream()) {
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                byte[] buffer = new byte[64 * 1024];
+                int n;
+                while ((n = input.read(buffer)) != -1) {
+                    if (out.size() + n > maxBytes) throw new IOException("The study pack is too large.");
+                    out.write(buffer, 0, n);
+                }
+                return out.toByteArray();
+            }
+        } finally {
+            connection.disconnect();
+        }
     }
 
     private void pickPack() {
@@ -516,6 +678,7 @@ public final class PlayerActivity extends Activity {
                 loaded = StudyPack.read(raw); // validate before replacing anything
                 store.savePack(target, raw);
                 store.saveAnswers(target, Collections.emptyMap());
+                prefs.edit().putString("lib:" + target, "file").apply();
                 answers = Collections.emptyMap();
             } catch (IOException | SecurityException failure) {
                 error = failure.getMessage() == null ? "The study pack could not be read." : failure.getMessage();
@@ -552,6 +715,7 @@ public final class PlayerActivity extends Activity {
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Remove", (d, w) -> {
                     final String target = key;
+                    prefs.edit().putString("lib:" + target, "removed").apply();
                     io.execute(() -> {
                         try { store.deletePack(target); } catch (IOException ignored) { }
                         handler.post(() -> { if (target.equals(key)) applyPack(null, null); });
