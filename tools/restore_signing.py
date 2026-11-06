@@ -15,6 +15,7 @@ import base64
 import binascii
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -31,6 +32,41 @@ def decode(value, what):
         fail(f"{what} is not valid base64. Copy the whole value again, with nothing added or missing.")
 
 
+BUNDLE_KEYS = {"keystore", "alias", "storePassword", "keyPassword"}
+BASE64_RUN = re.compile(r"[A-Za-z0-9+/]{64,}=*")
+
+
+def bundle_candidates(raw):
+    # The value may arrive with extra text around it (for example the whole
+    # backup file pasted from a phone) or with line breaks inside it.
+    compact = "".join(raw.split())
+    yield compact
+    runs = BASE64_RUN.findall(raw) + BASE64_RUN.findall(compact)
+    for run in sorted(set(runs), key=len, reverse=True):
+        core = run.rstrip("=")
+        yield core + "=" * (-len(core) % 4)
+
+
+def find_bundle(raw):
+    for candidate in bundle_candidates(raw):
+        try:
+            data = json.loads(base64.b64decode(candidate, validate=True))
+        except (binascii.Error, ValueError):
+            continue
+        if isinstance(data, dict) and BUNDLE_KEYS <= data.keys():
+            return data
+    return None
+
+
+def describe(raw):
+    """Safe hints about a bad paste: lengths only, never content."""
+    compact = "".join(raw.split())
+    longest = max((len(run) for run in BASE64_RUN.findall(compact)), default=0)
+    return (f"Received {len(compact)} characters (ignoring spaces and line breaks); the longest "
+            f"key-like part is {longest} characters. A complete StreamSave value is several "
+            f"thousand characters with no spaces, so the copy was probably cut off.")
+
+
 def escape(value):
     # java.util.Properties: escape the characters that change parsing.
     out = value.replace("\\", "\\\\")
@@ -44,11 +80,13 @@ def main():
         fail("Usage: restore_signing.py OUTPUT_DIR")
     bundle = os.environ.get("SIGNING_BUNDLE", "").strip()
     if bundle:
+        data = find_bundle(bundle)
+        if data is None:
+            fail("STREAMSAVE_SIGNING does not contain a complete StreamSave signing value. " + describe(bundle))
         try:
-            data = json.loads(decode(bundle, "STREAMSAVE_SIGNING"))
             keystore = decode(data["keystore"], "The keystore inside STREAMSAVE_SIGNING")
             alias, store_password, key_password = data["alias"], data["storePassword"], data["keyPassword"]
-        except (ValueError, KeyError, TypeError):
+        except (KeyError, TypeError):
             fail("STREAMSAVE_SIGNING is incomplete. Paste the full value from the StreamSave signing file.")
     else:
         names = ("KEYSTORE_BASE64", "KEYSTORE_PASSWORD", "KEY_ALIAS", "KEY_PASSWORD")
