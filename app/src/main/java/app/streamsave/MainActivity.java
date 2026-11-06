@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.net.Uri;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
@@ -188,6 +189,11 @@ public final class MainActivity extends Activity {
         LinearLayout.LayoutParams tabParams = Ui.matchWrap();
         tabParams.setMargins(dp(22), 0, dp(22), dp(6));
         root.addView(tabs, tabParams);
+        Button studio = Ui.button(this, "Surgical Studio  •  Open video + AI ZIP", false);
+        studio.setOnClickListener(view -> startActivity(new Intent(this, StudyActivity.class)));
+        LinearLayout.LayoutParams studioParams = Ui.matchWrap();
+        studioParams.setMargins(dp(22), dp(3), dp(22), dp(8));
+        root.addView(studio, studioParams);
 
         FrameLayout pages = new FrameLayout(this);
         root.addView(pages, new LinearLayout.LayoutParams(-1, 0, 1));
@@ -1147,6 +1153,11 @@ public final class MainActivity extends Activity {
             State state = job.state;
             if (state == State.COMPLETED) {
                 addAction("Open", "play", true, () -> app.open(MainActivity.this, current.id));
+                if (!current.audioOnly) addAction("Study", "play", false, () -> {
+                    Intent study = new Intent(MainActivity.this, StudyActivity.class);
+                    study.putExtra("video_uri", current.contentUri);
+                    startActivity(study);
+                });
                 addAction("Share", "share", false, () -> app.share(MainActivity.this, current.id));
             } else if (state == State.DOWNLOADING || state == State.QUEUED) {
                 addAction("Pause", "pause", false, () -> app.pause(current.id));
