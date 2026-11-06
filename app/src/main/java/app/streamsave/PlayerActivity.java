@@ -65,7 +65,7 @@ public final class PlayerActivity extends Activity {
     private FrameLayout stage;
     private VideoView video;
     private OverlayView overlay;
-    private TextView caption, noteBubble, title, status, clock, score, emptyHint;
+    private TextView caption, noteBubble, title, status, clock, score, emptyHint, voiceLine;
     private SeekBar seek;
     private Button play, notesButton, drawingsToggle, questionsToggle, captionsToggle, voiceToggle;
     private LinearLayout extras;
@@ -90,6 +90,7 @@ public final class PlayerActivity extends Activity {
     private StudyPack.Narration speaking, waitingFor;
     private long speakingWindowEnd = Long.MAX_VALUE;
     private long waitingSince;
+    private long voiceBarAt;
     private boolean pausedForVoice, voicePromptShown, voiceDownloading;
     private long lastPosition;
     private long lastSaved;
@@ -198,6 +199,11 @@ public final class PlayerActivity extends Activity {
 
         seek = new SeekBar(this);
         seek.setMax(1);
+        seek.setProgressTintList(android.content.res.ColorStateList.valueOf(Ui.MINT));
+        seek.setThumbTintList(android.content.res.ColorStateList.valueOf(Ui.MINT));
+        // The lighter amber part shows how far the voice-over is already prepared.
+        seek.setSecondaryProgressTintList(android.content.res.ColorStateList.valueOf(0xB3FFCE79));
+        seek.setProgressBackgroundTintList(android.content.res.ColorStateList.valueOf(Ui.BORDER));
         seek.setContentDescription("Video position");
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override public void onStartTrackingTouch(SeekBar bar) { dragging = true; }
@@ -216,6 +222,9 @@ public final class PlayerActivity extends Activity {
         score = Ui.chip(this, "No questions yet", Ui.MINT, Ui.MINT_DARK);
         timeRow.addView(score);
         panel.addView(timeRow, Ui.matchWrap());
+        voiceLine = Ui.text(this, "", 11.5f, Ui.AMBER, false);
+        voiceLine.setVisibility(View.GONE);
+        panel.addView(voiceLine, Ui.matchWrap());
         panel.addView(Ui.spacer(this, 10));
 
         LinearLayout controls = Ui.horizontal(this);
@@ -472,6 +481,7 @@ public final class PlayerActivity extends Activity {
             StudyPack.Question due = plan.due(lastPosition, position);
             if (due != null) showQuestion(due);
         }
+        renderVoiceBar(position, duration);
         if (narrationPlan != null && voiceOn && !quizShowing) {
             narrator.setPosition(position);
             if (video.isPlaying()) {
@@ -822,6 +832,26 @@ public final class PlayerActivity extends Activity {
             offerVoiceDownload();
         }
         renderStatus();
+    }
+
+    /** The amber part of the seek bar and the line under it: how far the voice-over is ready. */
+    private void renderVoiceBar(long position, int duration) {
+        long now = SystemClock.elapsedRealtime();
+        if (now - voiceBarAt < 400) return;
+        voiceBarAt = now;
+        boolean show = narrationPlan != null && voiceOn && voiceModel.installed();
+        if (!show) {
+            seek.setSecondaryProgress(0);
+            voiceLine.setVisibility(View.GONE);
+            return;
+        }
+        long until = narrator.readyUntil(position, duration);
+        seek.setSecondaryProgress((int) Math.min(duration, until));
+        int ready = narrator.readyCount(), total = narrator.total();
+        voiceLine.setText(ready >= total
+                ? "Voice-over ready for the whole video"
+                : "Voice-over ready to " + time(until) + " · preparing " + ready + "/" + total + " lines");
+        voiceLine.setVisibility(View.VISIBLE);
     }
 
     private String voiceStatus() {

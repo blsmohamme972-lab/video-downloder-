@@ -61,4 +61,16 @@ public final class NarrationTest {
         assertEquals("b", plan.preparationOrder(19000).get(0).id);         // upcoming first
         assertEquals("a", plan.preparationOrder(19000).get(2).id);         // earlier ones last
     }
+
+    @Test public void readyBarStopsAtTheFirstUnpreparedLineAhead() throws IOException {
+        NarrationPlan plan = new NarrationPlan(pack(PACK).narration);
+        java.util.Set<String> ready = new java.util.HashSet<>(java.util.Arrays.asList("a", "b"));
+        assertEquals(30000, plan.readyUntil(0, 60000, line -> ready.contains(line.id)));  // c not ready
+        ready.remove("b");
+        assertEquals(20000, plan.readyUntil(0, 60000, line -> ready.contains(line.id)));
+        assertEquals(25000, plan.readyUntil(25000, 60000, line -> ready.contains(line.id))); // b is speaking now
+        assertEquals(5000, plan.readyUntil(0, 60000, line -> false));   // nothing needed before the first line
+        assertEquals(60000, plan.readyUntil(0, 60000, line -> true));   // all ready: the whole video
+        assertEquals(60000, plan.readyUntil(31000, 60000, line -> !line.id.equals("a"))); // a is behind
+    }
 }

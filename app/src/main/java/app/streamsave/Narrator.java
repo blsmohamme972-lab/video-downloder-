@@ -14,10 +14,12 @@ import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -55,6 +57,8 @@ final class Narrator {
     });
     private final AtomicInteger generation = new AtomicInteger();
     private final Set<String> failed = new HashSet<>();
+    /** Which lines of the current plan have audio for the current settings (kept fresh by the worker). */
+    private final Map<StudyPack.Narration, Boolean> ready = new ConcurrentHashMap<>();
     private final VoiceModel model;
     private final File cache;
     private final Listener listener;
@@ -101,16 +105,27 @@ final class Narrator {
 
     /** The finished audio for a line, or null while it is still being prepared. */
     File clip(StudyPack.Narration line) {
+        if (!Boolean.TRUE.equals(ready.get(line))) return null;
         File file = fileFor(line);
-        return file.isFile() ? file : null;
+        if (file.isFile()) return file;
+        ready.put(line, false); // the cache was cleared by Android
+        restart();
+        return null;
     }
 
     int readyCount() {
         NarrationPlan current = plan;
         if (current == null) return 0;
-        int ready = 0;
-        for (StudyPack.Narration line : current.lines()) if (fileFor(line).isFile()) ready++;
-        return ready;
+        int count = 0;
+        for (StudyPack.Narration line : current.lines()) if (Boolean.TRUE.equals(ready.get(line))) count++;
+        return count;
+    }
+
+    /** Video time up to which the voice-over is ready, from positionMs on (see NarrationPlan.readyUntil). */
+    long readyUntil(long positionMs, long videoEndMs) {
+        NarrationPlan current = plan;
+        if (current == null) return 0;
+        return current.readyUntil(positionMs, videoEndMs, line -> Boolean.TRUE.equals(ready.get(line)));
     }
 
     int total() {
@@ -139,6 +154,13 @@ final class Narrator {
     }
 
     private void work(int run) {
+        // Settings or the pack may have changed: re-check which lines already have audio.
+        NarrationPlan current = plan;
+        ready.clear();
+        if (current != null) {
+            for (StudyPack.Narration line : current.lines()) ready.put(line, fileFor(line).isFile());
+            main.post(listener::onPrepared);
+        }
         while (!closed && run == generation.get()) {
             StudyPack.Narration next = pickNext();
             if (next == null) return;
@@ -157,6 +179,7 @@ final class Narrator {
                         () -> (float) random.nextGaussian(), () -> closed || run != generation.get());
                 if (wav == null) return; // cancelled; a newer run continues
                 writeWav(fileFor(next), wav, engine.sampleRate);
+                ready.put(next, true);
                 if (urgent == next) urgent = null;
                 trimCache();
                 main.post(listener::onPrepared);
@@ -178,9 +201,9 @@ final class Narrator {
         NarrationPlan current = plan;
         if (current == null) return null;
         StudyPack.Narration first = urgent;
-        if (first != null && !fileFor(first).isFile() && !hasFailed(first)) return first;
+        if (first != null && !Boolean.TRUE.equals(ready.get(first)) && !hasFailed(first)) return first;
         for (StudyPack.Narration line : current.preparationOrder(position)) {
-            if (!fileFor(line).isFile() && !hasFailed(line)) return line;
+            if (!Boolean.TRUE.equals(ready.get(line)) && !hasFailed(line)) return line;
         }
         return null;
     }

@@ -72,7 +72,8 @@ public final class StudyLibraryTest {
             assertTrue(entry.id + ": missing " + entry.file, file.isFile());
             try {
                 StudyPack pack = StudyPack.read(Files.readAllBytes(file.toPath()));
-                assertFalse(entry.id + " has no content", pack.overlays.isEmpty() && pack.questions.isEmpty());
+                assertFalse(entry.id + " has no content", pack.overlays.isEmpty() && pack.questions.isEmpty()
+                        && pack.captions.isEmpty() && pack.narration.isEmpty());
             } catch (IOException invalid) {
                 fail(entry.file + " is not a valid study pack: " + invalid.getMessage());
             }

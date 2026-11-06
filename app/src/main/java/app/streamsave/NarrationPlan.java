@@ -3,6 +3,7 @@ package app.streamsave;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * When to speak each voice-over line and how long the video may run while it
@@ -36,6 +37,20 @@ final class NarrationPlan {
         if (line.endMs > 0) return line.endMs;
         int index = lines.indexOf(line);
         return index >= 0 && index + 1 < lines.size() ? lines.get(index + 1).startMs : Long.MAX_VALUE;
+    }
+
+    /**
+     * How far ahead of positionMs the voice-over is ready without a gap: the
+     * start of the first unprepared line still to come, or the video's end
+     * when every remaining line is ready. Drives the "voice ready" bar.
+     */
+    long readyUntil(long positionMs, long videoEndMs, Predicate<StudyPack.Narration> ready) {
+        for (StudyPack.Narration line : lines) {
+            long end = Math.min(windowEnd(line), videoEndMs);
+            if (end <= positionMs) continue; // already behind the viewer
+            if (!ready.test(line)) return Math.max(positionMs, Math.min(line.startMs, videoEndMs));
+        }
+        return videoEndMs;
     }
 
     /** Lines to prepare first: the ones about to be spoken, then the rest in order. */

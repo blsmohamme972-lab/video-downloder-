@@ -5,6 +5,7 @@
 - **On-device voice-over.** A study pack can include voice-over lines (`narration`). The Study player speaks each line at its time with Supertone's Supertonic 3 voice, created on the phone with no internet after a one-time 383 MB voice download. That download comes directly from Supertone, at a pinned revision checked by SHA-256.
   - While a line is spoken, the video's own sound is lowered. If a line runs past its slot, the video waits for it. Seeking, a question or pausing stops the voice.
   - Lines are prepared in the background, the upcoming ones first, and cached.
+- **Voice-over is prepared in the background while the video plays**, the upcoming lines first. An amber band on the seek bar and the line under it show how far ahead the voice is ready.
 - New **Voice** toggle next to Drawings, Questions and Captions, and **More → Voice-over settings**:
   - voice F1–F5 or M1–M5;
   - quality 5, 8 or 12 steps;
