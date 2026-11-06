@@ -30,16 +30,18 @@ final class StudyOverlay extends View {
         bitmaps.clear();
         study = next;
         if (next != null) {
+            int decoded = 0;
             for (Map.Entry<String, byte[]> entry : next.images.entrySet()) {
+                if (decoded >= 8) break;
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inJustDecodeBounds = true;
                 BitmapFactory.decodeByteArray(entry.getValue(), 0, entry.getValue().length, options);
-                if (options.outWidth <= 0 || options.outHeight <= 0 || options.outWidth > 2048
-                        || options.outHeight > 2048) continue;
+                if (options.outWidth <= 0 || options.outHeight <= 0 || options.outWidth > 1024
+                        || options.outHeight > 1024) continue;
                 options.inJustDecodeBounds = false;
                 options.inPreferredConfig = Bitmap.Config.ARGB_8888;
                 Bitmap bmp = BitmapFactory.decodeByteArray(entry.getValue(), 0, entry.getValue().length, options);
-                if (bmp != null) bitmaps.put(entry.getKey(), bmp);
+                if (bmp != null) { bitmaps.put(entry.getKey(), bmp); decoded++; }
             }
         }
         invalidate();
