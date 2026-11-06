@@ -21,6 +21,7 @@ import threading
 import time
 import types
 import unittest
+from unittest import mock
 from collections import Counter
 
 sys.dont_write_bytecode = True
@@ -377,17 +378,47 @@ class ParallelTransferTest(unittest.TestCase):
 
     def test_server_refusals_reduce_connections(self):
         # The server accepts only five bodies at once and answers 429 to the
-        # rest. The transfer must halve its connections and still finish.
+        # rest. The transfer must retry, back off and still finish intact.
+        # (Exact back-off timing is covered by the clock-driven test below.)
         fixture = self.fixture(size=len(self.data), bytes_per_second=8 * 1024 * 1024, max_active=5)
-        progress = []
-        transfer(fixture.url, len(fixture.data), self.destination, progress=progress, retries=5)
+        transfer(fixture.url, len(fixture.data), self.destination, retries=5)
         self.assert_complete(fixture)
         self.assertGreater(fixture.refused, 0)
         self.assertLessEqual(fixture.peak, 5)
-        counts = [s['streamsave_connections'] for s in progress if 'streamsave_connections' in s]
-        self.assertTrue(counts)
-        # After backing off, no more than the minimum limit stays open.
-        self.assertLessEqual(max(counts[len(counts) // 2:]), adapter.MIN_CONNECTIONS)
+
+    def test_connection_limit_backs_off_and_recovers_on_schedule(self):
+        clock = [1000.0]
+        with mock.patch.object(adapter.time, 'monotonic', lambda: clock[0]):
+            limit = adapter.ConnectionLimit(16, 4)
+            limit.back_off()
+            self.assertEqual(8, limit.limit)
+            limit.back_off()  # Refusals arriving together count once.
+            self.assertEqual(8, limit.limit)
+            clock[0] += 2.0
+            limit.back_off()
+            self.assertEqual(4, limit.limit)
+            clock[0] += 2.0
+            limit.back_off()
+            self.assertEqual(4, limit.limit)  # Never below the minimum.
+            clock[0] += 29.0
+            limit.recover()
+            self.assertEqual(4, limit.limit)  # Not before 30 s without refusals.
+            clock[0] += 1.0
+            limit.recover()
+            self.assertEqual(5, limit.limit)
+            limit.recover()
+            self.assertEqual(5, limit.limit)  # At most one step per 10 s.
+            clock[0] += 10.0
+            limit.recover()
+            self.assertEqual(6, limit.limit)
+        stop = threading.Event()
+        for _ in range(limit.limit):
+            limit.acquire(stop)
+        stop.set()
+        with self.assertRaises(InterruptedError):
+            limit.acquire(stop)  # Full: waits, and gives up once stopped.
+        limit.release()
+        self.assertEqual(limit.limit - 1, limit.active)
 
     def test_progress_line_shows_open_connections(self):
         info = {'id': 'offline-fixture', 'extractor_key': 'Youtube', 'url': 'http://127.0.0.1/x',
