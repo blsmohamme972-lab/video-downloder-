@@ -19,6 +19,7 @@ import sys
 import tempfile
 import threading
 import time
+import types
 import unittest
 from collections import Counter
 
@@ -42,8 +43,12 @@ adapter.install_parallel_http()
 
 
 class Fixture:
-    def __init__(self, data, mode='normal', bytes_per_second=0, slow_offset=None, slow_bytes_per_second=0):
+    def __init__(self, data, mode='normal', bytes_per_second=0, slow_offset=None, slow_bytes_per_second=0,
+                 max_active=None):
         self.data = data
+        # Refuse media ranges with 429 while this many bodies are in flight.
+        self.max_active = max_active
+        self.refused = 0
         self.mode = mode
         self.bytes_per_second = bytes_per_second
         # One media range (not the 1-byte probe) can be served slowly to model
@@ -84,6 +89,11 @@ class Fixture:
                 with fixture.lock:
                     fixture.requests.append((first, last, header))
                     counted = last - first + 1 > 65536
+                    refused = (counted and fixture.max_active is not None
+                               and fixture.active >= fixture.max_active)
+                    if refused:
+                        fixture.refused += 1
+                        counted = False
                     if counted:
                         fixture.active += 1
                         fixture.peak = max(fixture.peak, fixture.active)
@@ -91,6 +101,9 @@ class Fixture:
                                 and not fixture.truncated)
                     if truncate:
                         fixture.truncated = True
+                if refused:
+                    self.send_error(429)
+                    return
                 try:
                     self.send_response(status)
                     if status == 206:
@@ -151,10 +164,10 @@ class Fixture:
         self.thread.join()
 
 
-def transfer(url, length, destination, *, stock=False, progress=None):
+def transfer(url, length, destination, *, stock=False, progress=None, retries=1):
     options = {
         'quiet': True, 'noprogress': True, 'continuedl': True,
-        'retries': 1, 'socket_timeout': 3, 'http_chunk_size': 10 * 1024 * 1024,
+        'retries': retries, 'socket_timeout': 3, 'http_chunk_size': 10 * 1024 * 1024,
         'buffersize': 64 * 1024, 'overwrites': False,
     }
     info = {
@@ -165,7 +178,7 @@ def transfer(url, length, destination, *, stock=False, progress=None):
     with YoutubeDL(options) as ydl:
         cls = HttpFD if stock else get_suitable_downloader(info, options)
         downloader = cls(ydl, options)
-        if progress:
+        if progress is not None:
             downloader.add_progress_hook(lambda s: progress.append(dict(s)))
         return downloader.download(str(destination), info)
 
@@ -351,6 +364,50 @@ class ParallelTransferTest(unittest.TestCase):
         self.assertLessEqual(fixture.peak, adapter.CONNECTIONS)
         self.assertTrue(all(last - first + 1 <= piece for first, last, _ in fixture.requests))
 
+    def test_final_ranges_are_spread_across_connections(self):
+        fixture = self.fixture(size=len(self.data))
+        transfer(fixture.url, len(fixture.data), self.destination)
+        self.assert_complete(fixture)
+        sizes = [last - first + 1 for first, last, _ in sorted(fixture.requests) if last - first + 1 > 1]
+        # Every range but the very last is between the minimum and maximum
+        # piece size, and ranges shrink toward the end of the stream.
+        self.assertTrue(all(adapter.MIN_PIECE_SIZE <= size <= adapter.PIECE_SIZE for size in sizes[:-1]))
+        self.assertGreater(sizes[0], sizes[-2])
+        self.assertGreaterEqual(len(sizes), adapter.CONNECTIONS)
+
+    def test_server_refusals_reduce_connections(self):
+        # The server accepts only five bodies at once and answers 429 to the
+        # rest. The transfer must halve its connections and still finish.
+        fixture = self.fixture(size=len(self.data), bytes_per_second=8 * 1024 * 1024, max_active=5)
+        progress = []
+        transfer(fixture.url, len(fixture.data), self.destination, progress=progress, retries=5)
+        self.assert_complete(fixture)
+        self.assertGreater(fixture.refused, 0)
+        self.assertLessEqual(fixture.peak, 5)
+        counts = [s['streamsave_connections'] for s in progress if 'streamsave_connections' in s]
+        self.assertTrue(counts)
+        # After backing off, no more than the minimum limit stays open.
+        self.assertLessEqual(max(counts[len(counts) // 2:]), adapter.MIN_CONNECTIONS)
+
+    def test_progress_line_shows_open_connections(self):
+        info = {'id': 'offline-fixture', 'extractor_key': 'Youtube', 'url': 'http://127.0.0.1/x',
+                'filesize': 10, 'ext': 'mp4', 'protocol': 'https'}
+        lines = []
+        with YoutubeDL({'quiet': True}) as ydl:
+            downloader = get_suitable_downloader(info, {})(ydl, {})
+            downloader._multiline = types.SimpleNamespace(
+                print_at_line=lambda text, _: lines.append(text), stream=None, allow_colors=False)
+            downloader.to_console_title = lambda *args, **kwargs: None
+            status = {'status': 'downloading', 'downloaded_bytes': 5, 'total_bytes': 10,
+                      'speed': 1024 * 1024, 'eta': 5, 'info_dict': info}
+            downloader.report_progress(dict(status, streamsave_connections=12))
+            downloader._streamsave_single = True
+            downloader.report_progress(dict(status))
+        self.assertTrue(lines[0].endswith('ETA 00:05 (12 connections)'), lines[0])
+        self.assertTrue(lines[1].endswith('ETA 00:05 (1 connection)'), lines[1])
+        # The app reads the percentage from this same line.
+        self.assertRegex(lines[0], r'\[download]\s+50\.0%')
+
     def test_controlled_per_connection_benchmark_and_hashes(self):
         rate = 5 * 1024 * 1024
         stock = self.fixture(size=len(self.data), bytes_per_second=rate)
@@ -374,7 +431,7 @@ class ParallelTransferTest(unittest.TestCase):
         }
         print('\nCONTROLLED_BENCHMARK ' + json.dumps(summary, sort_keys=True), flush=True)
         self.assertGreaterEqual(parallel.peak, 4)
-        self.assertLessEqual(parallel.peak, 8)
+        self.assertLessEqual(parallel.peak, adapter.CONNECTIONS)
         # Timing is reported, not asserted: heavily shared CI runners vary.
 
 

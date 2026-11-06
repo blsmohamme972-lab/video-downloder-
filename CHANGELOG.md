@@ -2,8 +2,12 @@
 
 ## Unreleased
 
-- Kept all eight connections busy when one range is slow or retrying. New ranges previously started only after the oldest unfinished range was saved, so the other connections waited idle. Up to 24 ranges (192 MiB of temporary space) are now requested ahead; at most eight requests are open at once, and the `.part` file is still appended in order, so resume behaviour is unchanged.
-- In an offline benchmark where every range had a different speed, the same 128 MiB file finished 1.3–1.55× faster than with 1.1.0, with identical output hashes. Real gains depend on how uneven YouTube's per-connection speeds are; if the phone already downloads at the full internet speed, no scheduling change can make it faster.
+- Raised the connection limit for direct YouTube streams from 8 to 16. YouTube can limit each connection far below the home line's speed; more connections use more of the line. If the server answers 429 or 503, the limit is halved (minimum 4) and raised again by one connection every 10 seconds after 30 seconds without a refusal.
+- Kept every connection busy when one range is slow or retrying. New ranges previously started only after the oldest unfinished range was saved, so the other connections waited idle. Up to 32 ranges (256 MiB of temporary space) are now requested ahead; the `.part` file is still appended in order, so resume behaviour is unchanged.
+- Spread the end of each stream across all connections: the final ranges shrink (down to 1 MiB) instead of leaving the last few pieces to a few connections.
+- The progress line now ends with the number of open connections, for example `(12 connections)`, or `(1 connection)` when a stream uses the standard downloader.
+- Measured offline with generated data (not on YouTube or a phone): with each connection limited to 5 MiB/s, a 64 MiB file finished 12× faster than one connection (1.1.0: 7.5×). In a model of a 36 Mbit/s line where each connection averages about 245 KiB/s with uneven speeds, 1.1.0 reached 1.05–1.23 MiB/s and this version 2.6–3.1 MiB/s, with identical output hashes. Real results depend on YouTube and the line; no change can exceed the line's own speed.
+- Fixed the test helper so progress hooks are attached even when the result list starts empty; the truncated-range progress check now runs.
 
 ## 1.1.0
 

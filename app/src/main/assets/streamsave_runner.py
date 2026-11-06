@@ -23,13 +23,20 @@ from collections import deque
 
 
 PIECE_SIZE = 8 * 1024 * 1024
-CONNECTIONS = 8
-# Pieces requested ahead of the oldest uncommitted piece. Only CONNECTIONS
-# requests are ever open; the rest wait in the pool queue. When one range is
-# slow or retrying, the other connections keep downloading later pieces
-# instead of idling until the slow piece is appended. Bounds temporary
-# storage to LOOKAHEAD * PIECE_SIZE (192 MiB).
-LOOKAHEAD = 3 * CONNECTIONS
+# Near the end of a stream, pieces shrink (down to this size) so the last
+# bytes are spread over every connection instead of a few.
+MIN_PIECE_SIZE = 1024 * 1024
+# YouTube can cap each connection well below the home line's speed, so more
+# connections fill more of the line. The limit starts at CONNECTIONS and is
+# halved (not below MIN_CONNECTIONS) when the server answers 429/503.
+CONNECTIONS = 16
+MIN_CONNECTIONS = 4
+# Pieces requested ahead of the oldest uncommitted piece. Only the current
+# connection limit of requests is ever open; the rest wait in the pool queue.
+# When one range is slow or retrying, the other connections keep downloading
+# later pieces instead of idling until the slow piece is appended. Bounds
+# temporary storage to LOOKAHEAD * PIECE_SIZE (256 MiB).
+LOOKAHEAD = 2 * CONNECTIONS
 BUFFER_SIZE = 64 * 1024
 CONTENT_RANGE = re.compile(r"bytes (\d+)-(\d+)/(\d+)\Z", re.IGNORECASE)
 
@@ -40,6 +47,50 @@ class RangeResponseError(Exception):
 
 class RangeUnsupported(RangeResponseError):
     pass
+
+
+class ConnectionLimit:
+    """Caps open range requests and backs off when the server is overloaded."""
+
+    def __init__(self, maximum, minimum):
+        self.maximum = maximum
+        self.minimum = min(minimum, maximum)
+        self.limit = maximum
+        self.active = 0
+        self.reduced_at = float('-inf')
+        self.raised_at = time.monotonic()
+        self.condition = threading.Condition()
+
+    def acquire(self, stop):
+        with self.condition:
+            while self.active >= self.limit:
+                if stop.is_set():
+                    raise InterruptedError('Transfer stopped')
+                self.condition.wait(0.25)
+            self.active += 1
+
+    def release(self):
+        with self.condition:
+            self.active -= 1
+            self.condition.notify_all()
+
+    def back_off(self):
+        with self.condition:
+            now = time.monotonic()
+            # Refusals that arrive together describe one overload: halve once.
+            if now - self.reduced_at >= 2.0:
+                self.limit = max(self.minimum, self.limit // 2)
+                self.reduced_at = now
+
+    def recover(self):
+        with self.condition:
+            now = time.monotonic()
+            # After 30 s without a refusal, add one connection every 10 s.
+            if (self.limit < self.maximum and now - self.reduced_at >= 30.0
+                    and now - self.raised_at >= 10.0):
+                self.limit += 1
+                self.raised_at = now
+                self.condition.notify_all()
 
 
 def install_parallel_http():
@@ -66,6 +117,7 @@ def install_parallel_http():
             and not self.params.get('test') and not self.params.get('nopart')
         )
         if not eligible:
+            self._streamsave_single = True
             return original_download(self, filename, info)
 
         tmp = self.temp_name(filename)
@@ -86,6 +138,7 @@ def install_parallel_http():
         samples = deque([(start_time, resume)])
         last_report = [0.0]
         pieces = tmp + '.streamsave-pieces'
+        limit = ConnectionLimit(CONNECTIONS, MIN_CONNECTIONS)
 
         def open_range(first, last):
             request_headers = HTTPHeaderDict(headers)
@@ -144,6 +197,9 @@ def install_parallel_http():
                 except (HTTPError, TransportError) as error:
                     if isinstance(error, HTTPError) and error.status not in (408, 429, 500, 502, 503, 504):
                         raise
+                    if isinstance(error, HTTPError) and error.status in (429, 503):
+                        # Too many requests: fewer connections, then retry.
+                        limit.back_off()
                     if attempt == retries or stop.is_set():
                         raise
                     if stop.wait(min(2 ** attempt, 8)):
@@ -171,15 +227,21 @@ def install_parallel_http():
                     # A queued look-ahead piece must not open a request after
                     # pause, removal or an error elsewhere in the transfer.
                     raise InterruptedError('Transfer stopped')
-                with contextlib.closing(open_range(first, last)) as response:
-                    with open(path, 'wb') as output:
-                        read_exact(response, last - first + 1, output, first)
-                        output.flush()
+                limit.acquire(stop)
+                try:
+                    with contextlib.closing(open_range(first, last)) as response:
+                        with open(path, 'wb') as output:
+                            read_exact(response, last - first + 1, output, first)
+                            output.flush()
+                finally:
+                    limit.release()
                 if os.path.getsize(path) != last - first + 1:
                     raise RangeResponseError('A temporary range has the wrong length.')
                 return path
 
-            return retry_request(attempt)
+            result = retry_request(attempt)
+            limit.recover()
+            return result
 
         def report(force=False):
             now = time.monotonic()
@@ -197,6 +259,7 @@ def install_parallel_http():
                 'status': 'downloading', 'downloaded_bytes': done, 'total_bytes': size,
                 'tmpfilename': tmp, 'filename': filename, 'speed': speed, 'eta': eta,
                 'elapsed': now - start_time, 'ctx_id': info.get('ctx_id'),
+                'streamsave_connections': limit.active,
             }, info)
             last_report[0] = now
 
@@ -208,6 +271,7 @@ def install_parallel_http():
                 if resume:
                     raise DownloadError('This server cannot resume the saved byte range. The existing partial download was kept.')
                 self.to_screen('[streamsave] Range requests unavailable; using the standard transfer.')
+                self._streamsave_single = True
                 result = original_download(self, filename, info)
                 if result and (not os.path.isfile(filename) or os.path.getsize(filename) != size):
                     # A server can return a short error page with status200 and
@@ -226,7 +290,8 @@ def install_parallel_http():
             self.report_destination(filename)
             if resume:
                 self.report_resuming_byte(resume)
-            self.to_screen(f'[streamsave] Parallel transfer: up to {CONNECTIONS} connections, 8 MiB ranges.')
+            self.to_screen(f'[streamsave] Parallel transfer: up to {CONNECTIONS} connections, '
+                           f'{PIECE_SIZE // (1024 * 1024)} MiB ranges.')
             pool = concurrent.futures.ThreadPoolExecutor(max_workers=CONNECTIONS)
             pending = deque()
             next_offset = resume
@@ -236,7 +301,11 @@ def install_parallel_http():
                 if next_offset >= size:
                     return
                 first = next_offset
-                last = min(size - 1, first + PIECE_SIZE - 1)
+                # Near the end, split what is left across the connections so
+                # the final pieces do not run on only a few of them.
+                spread = -(-(size - first) // max(1, limit.limit))
+                piece = min(PIECE_SIZE, max(MIN_PIECE_SIZE, spread))
+                last = min(size - 1, first + piece - 1)
                 next_offset = last + 1
                 pending.append((first, last, pool.submit(fetch, first, last)))
 
@@ -301,6 +370,16 @@ def install_parallel_http():
 
     class StreamSaveHttpFD(HttpFD):
         real_download = parallel_download
+        _streamsave_single = False
+
+        def _report_progress_status(self, s, default_template):
+            # Show how many connections are open next to the speed, so the
+            # app can tell an accelerated transfer from a standard one.
+            if s.get('status') == 'downloading':
+                count = 1 if self._streamsave_single else s.get('streamsave_connections')
+                if count is not None:
+                    default_template += f' ({count} connection{"" if count == 1 else "s"})'
+            return super()._report_progress_status(s, default_template)
 
     # FragmentFD imports/instantiates its own HttpQuietDownloader subclass.
     # Keeping HttpFD itself untouched prevents nested 8 x 8 worker pools.
