@@ -82,6 +82,7 @@ public final class MainActivity extends Activity {
     private JobList homeJobs;
     private JobList libraryJobs;
     private int tab;
+    private boolean installUpdateAfterPermission;
     private boolean internalTextChange;
     private long lastEnqueueTime;
     private String lastEnqueueKey = "";
@@ -751,19 +752,69 @@ public final class MainActivity extends Activity {
 
     private void showSettings(View anchor) {
         PopupMenu menu = new PopupMenu(this, anchor);
-        menu.getMenu().add(0, 1, 0, session.updating ? "Updating download engine…" : "Update download engine")
+        menu.getMenu().add(0, 5, 0, "Update StreamSave app");
+        menu.getMenu().add(0, 1, 1, session.updating ? "Updating download engine…" : "Update download engine")
                 .setEnabled(!session.updating && !app.initializing);
         if (!app.ready && !app.initializing) menu.getMenu().add(0, 2, 1, "Retry engine setup");
         menu.getMenu().add(0, 3, 2, "How downloads work");
         menu.getMenu().add(0, 4, 3, "About StreamSave");
         menu.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == 1) updateEngine();
+            if (item.getItemId() == 5) updateStreamSaveApp();
+            else if (item.getItemId() == 1) updateEngine();
             else if (item.getItemId() == 2) { app.initEngine(); renderAppState(); }
             else if (item.getItemId() == 3) showDownloadHelp();
             else if (item.getItemId() == 4) showAbout();
             return true;
         });
         menu.show();
+    }
+
+
+    private void updateStreamSaveApp() {
+        final AlertDialog progress = new AlertDialog.Builder(this)
+                .setTitle("StreamSave app update")
+                .setMessage("Checking the latest signed version…")
+                .setNegativeButton("Close", null)
+                .create();
+        styleAndShow(progress);
+        AppUpdater.checkAndDownload(this, new AppUpdater.Callback() {
+            @Override public void progress(String message) {
+                if (!isFinishing() && !isDestroyed() && progress.isShowing()) progress.setMessage(message);
+            }
+
+            @Override public void upToDate(String message) {
+                if (!isFinishing() && !isDestroyed()) {
+                    if (progress.isShowing()) progress.setMessage(message);
+                    else showMessage("StreamSave app update", message);
+                }
+            }
+
+            @Override public void ready(String message) {
+                if (isFinishing() || isDestroyed()) return;
+                progress.dismiss();
+                // After the first permission grant Android returns to StreamSave.
+                // Then open the system installer without making the user download again.
+                installUpdateAfterPermission = Build.VERSION.SDK_INT >= 26
+                        && !getPackageManager().canRequestPackageInstalls();
+                AppUpdater.install(MainActivity.this);
+            }
+
+            @Override public void failed(String message) {
+                if (!isFinishing() && !isDestroyed()) {
+                    if (progress.isShowing()) progress.setMessage(message);
+                    else showMessage("StreamSave app update", message);
+                }
+            }
+        });
+    }
+
+    @Override protected void onResume() {
+        super.onResume();
+        if (installUpdateAfterPermission && (Build.VERSION.SDK_INT < 26
+                || getPackageManager().canRequestPackageInstalls())) {
+            installUpdateAfterPermission = false;
+            AppUpdater.install(this);
+        }
     }
 
     private void updateEngine() {
