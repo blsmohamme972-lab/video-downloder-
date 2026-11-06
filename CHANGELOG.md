@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.1
+
+- About StreamSave now describes the Study player and the study library.
+- First update delivered by the automatic release: merging this version bump published it, and installed 2.0.0 copies update with Update StreamSave app.
+
 ## 2.0.0
 
 - New **Study player** replaces Surgical Studio. It plays a download or any local or Google Drive video and reads a *study pack* (JSON or ZIP, schema version 2; version 1 ZIPs still open):
