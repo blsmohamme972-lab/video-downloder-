@@ -36,6 +36,7 @@ final class StudyPack {
     private static final int MAX_OVERLAYS = 3000;
     private static final int MAX_QUESTIONS = 1000;
     private static final int MAX_CAPTIONS = 20000;
+    private static final int MAX_NARRATION = 3000;
     private static final String IMAGE_NAME = "images/[a-zA-Z0-9_-]{1,64}\\.png";
 
     final String title;
@@ -44,16 +45,20 @@ final class StudyPack {
     final List<Overlay> overlays;
     final List<Question> questions;
     final List<Caption> captions;
+    /** Spoken commentary, synthesized on the phone (optional; schema 2). */
+    final List<Narration> narration;
     final Map<String, byte[]> images;
 
     private StudyPack(String title, String language, long durationMs, List<Overlay> overlays,
-                      List<Question> questions, List<Caption> captions, Map<String, byte[]> images) {
+                      List<Question> questions, List<Caption> captions, List<Narration> narration,
+                      Map<String, byte[]> images) {
         this.title = title;
         this.language = language;
         this.durationMs = durationMs;
         this.overlays = Collections.unmodifiableList(overlays);
         this.questions = Collections.unmodifiableList(questions);
         this.captions = Collections.unmodifiableList(captions);
+        this.narration = Collections.unmodifiableList(narration);
         this.images = Collections.unmodifiableMap(images);
     }
 
@@ -159,10 +164,23 @@ final class StudyPack {
             }
             captions.sort((a, b) -> Long.compare(a.startMs, b.startMs));
 
-            if (overlays.isEmpty() && questions.isEmpty() && captions.isEmpty()) {
-                throw new IOException("The study pack has no drawings, questions or captions.");
+            List<Narration> narration = new ArrayList<>();
+            JSONArray spokenOver = root.optJSONArray("narration");
+            if (spokenOver != null) {
+                if (spokenOver.length() > MAX_NARRATION) throw new IOException("The study pack has too many voice-over lines.");
+                Set<String> ids = new HashSet<>();
+                for (int i = 0; i < spokenOver.length(); i++) {
+                    Narration line = Narration.parse(spokenOver.getJSONObject(i), i);
+                    if (!ids.add(line.id)) throw new JSONException("Voice-over id " + line.id + " is used twice");
+                    narration.add(line);
+                }
             }
-            return new StudyPack(title, language, duration, overlays, questions, captions, images);
+            narration.sort((a, b) -> Long.compare(a.startMs, b.startMs));
+
+            if (overlays.isEmpty() && questions.isEmpty() && captions.isEmpty() && narration.isEmpty()) {
+                throw new IOException("The study pack has no drawings, questions, captions or voice-over.");
+            }
+            return new StudyPack(title, language, duration, overlays, questions, captions, narration, images);
         } catch (JSONException error) {
             throw new IOException("This file is not a valid study pack: " + error.getMessage(), error);
         }
@@ -356,6 +374,40 @@ final class StudyPack {
             String explanation = text(json, "explanation", 1000, false, what);
             String id = limit(json.optString("id", "q" + (index + 1)), 64);
             return new Question(id, question, options, answer, explanation, start, end, askAt);
+        }
+    }
+
+    /**
+     * One voice-over line, spoken from startMs. The video keeps playing while it
+     * speaks; if the line is still speaking at endMs (or at the next line's start)
+     * the video waits for it. voice and speed override the player's settings.
+     */
+    static final class Narration {
+        final String id, text, voice;
+        final long startMs, endMs;
+        final float speed;
+
+        private Narration(String id, String text, long startMs, long endMs, String voice, float speed) {
+            this.id = id; this.text = text; this.startMs = startMs; this.endMs = endMs;
+            this.voice = voice; this.speed = speed;
+        }
+
+        static Narration parse(JSONObject json, int index) throws JSONException {
+            String what = "Voice-over line " + (index + 1);
+            long start = time(json, "startMs");
+            long end = json.has("endMs") ? time(json, "endMs") : -1;
+            if (end != -1 && end <= start) throw new JSONException(what + " ends before it starts");
+            String text = text(json, "text", 2000, true, what);
+            String voice = json.optString("voice", "").trim().toUpperCase(Locale.ROOT);
+            if (!voice.isEmpty() && !voice.matches("[FM][1-5]")) throw new JSONException(what + " voice must be F1-F5 or M1-M5");
+            float speed = 0f;
+            if (json.has("speed")) {
+                double value = json.getDouble("speed");
+                if (!(value >= 0.7 && value <= 2.0)) throw new JSONException(what + " speed must be 0.7 to 2.0");
+                speed = (float) value;
+            }
+            String id = limit(json.optString("id", "v" + (index + 1)), 64);
+            return new Narration(id, text, start, end, voice, speed);
         }
     }
 

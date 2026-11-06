@@ -98,6 +98,35 @@ A question is asked when **playback** passes `askAtMs`; jumping past it with the
 
 Each caption is `{startMs, endMs, text}`, with `text` up to 300 characters. Overlapping captions are shown together.
 
+### Voice-over (`narration`)
+
+Spoken commentary that the phone creates with Supertone's Supertonic 3 voice. The first time a pack with narration is opened, the app downloads the voice model once (383 MB) from Supertone. It works offline after that.
+
+```json
+"narration": [
+  {"id": "n01", "startMs": 61000, "text": "Here the surgeon frees the ascending aorta from the pulmonary artery."},
+  {"id": "n02", "startMs": 75000, "endMs": 84000, "text": "Notice the electrocautery at the tip of the forceps.", "voice": "M1", "speed": 1.2}
+]
+```
+
+| field | meaning |
+| --- | --- |
+| `startMs` | when the line starts |
+| `text` | what is said, up to 2000 characters, in the pack's `language` (English: `"language": "en"`) |
+| `endMs` | optional: the time by which the line should be finished. If the line is still speaking then, the video waits for it. Without `endMs`, the next line's start is used. |
+| `voice` | optional: `F1`–`F5` or `M1`–`M5`, overriding the user's setting (default `F1`) |
+| `speed` | optional: `0.7`–`2.0`, overriding the user's setting (default `1.30`) |
+| `id` | optional, unique |
+
+**Playback rules:**
+- Lines start only when playback passes `startMs`, like questions.
+- While a line is spoken, the video's sound is lowered.
+- A seek, a question or pausing stops the line.
+
+**Writing good lines:**
+- Write the text as it should be heard. Spell out numbers and abbreviations where reading matters, for example "4-0 Prolene".
+- Keep each line within the time its part of the video lasts. At 1.30× speed, about 3 words per second fit.
+
 ### Limits
 
 - The pack can have up to 3000 drawings, 1000 questions and 20000 captions.
@@ -123,7 +152,7 @@ Each caption is `{startMs, endMs, text}`, with `text` up to 300 characters. Over
    - `youtubeId`: set it when the video is on YouTube.
    - `fileNames`: the video's file name(s), for example the Google Drive name. Case, accents and the extension are ignored.
    - `version`: raise it every time the pack changes, so phones replace their copy. Keep question `id`s stable so saved answers stay matched.
-4. Run `./gradlew testDebugUnitTest`. `StudyLibraryTest` opens every listed pack with the app's own parser and fails on any problem.
+4. For `narration`, use only characters the voice supports. `TtsText.unsupported(...)` lists any it cannot say; plain English text with ordinary punctuation is fine. Then run `./gradlew testDebugUnitTest`. `StudyLibraryTest` opens every listed pack with the app's own parser and fails on any problem.
 5. Push to `main`. Phones pick it up automatically; no app release is needed.
 
 ## Prompt for the AI
@@ -133,6 +162,7 @@ Each caption is `{startMs, endMs, text}`, with `text` up to 300 characters. Over
 > - **Questions:** for every minute of the video (0:00–1:00, 1:00–2:00, …) write one multiple-choice question that tests what was shown or said in that minute. Use 4 options and one correct answer, set `answer` to its 0-based index, and add a short explanation.
 > - **Drawings:** add arrows, rings, spotlights or labels only where the picture clearly shows the structure or instrument. Use normalized coordinates of the actual video frame, and keyframes when it moves.
 > - **Captions:** add captions from the narration.
+> - **Voice-over:** add `narration` lines in clear English that explain what is happening, timed to the moments they describe, short enough to fit before the next line.
 > - **Accuracy:** do not invent anatomy, steps or timings. If unsure, leave the drawing out, or say so in the explanation.
 
 ## Safety

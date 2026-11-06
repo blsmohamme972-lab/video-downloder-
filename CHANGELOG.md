@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.1.0
+
+- **On-device voice-over.** A study pack can include voice-over lines (`narration`). The Study player speaks each line at its time with Supertone's Supertonic 3 voice, created on the phone with no internet after a one-time 383 MB voice download. That download comes directly from Supertone, at a pinned revision checked by SHA-256.
+  - While a line is spoken, the video's own sound is lowered. If a line runs past its slot, the video waits for it. Seeking, a question or pausing stops the voice.
+  - Lines are prepared in the background, the upcoming ones first, and cached.
+- New **Voice** toggle next to Drawings, Questions and Captions, and **More → Voice-over settings**:
+  - voice F1–F5 or M1–M5;
+  - quality 5, 8 or 12 steps;
+  - speed;
+  - download or remove the voice model.
+
+  Defaults: **F1, English, 12 steps, 1.30×**.
+- The Java pipeline follows Supertone's official SDK exactly. Locally, with the same random noise, its audio was identical to the Python SDK's (difference 0.0).
+- The APK is about 13 MB larger because of ONNX Runtime; the voice model itself is never part of an update.
+
 ## 2.0.2
 
 - **Faster app updates:** Update StreamSave app downloads the APK over six parallel range requests (like the video engine) instead of one connection, which is often much slower to GitHub's servers. Every request is still HTTPS to GitHub only, each part is checked, and the whole file must match GitHub's SHA-256 before Android is asked to install it. Servers that ignore ranges fall back to one request.

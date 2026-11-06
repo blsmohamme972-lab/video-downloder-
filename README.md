@@ -45,6 +45,8 @@ The displayed progress is for the current stream; a high-quality video can downl
 
 Tap **Study** on a completed download, or **Study player** on the main screen for any video on the phone or in Google Drive. Add the video's *study pack* (a JSON file made by an AI that watched and listened to the video) with **Study pack**. While the video plays, the app draws animated arrows, circles, spotlights and labels in sync, shows captions, and **pauses after each part to ask a multiple-choice question about what was just shown**. Pause anywhere and tap **Add note** to keep your own timestamped notes. Packs, answers and notes are saved per video. See [STUDY_PACK.md](STUDY_PACK.md) for the format and the exact prompt to give an AI that reads the video from Google Drive.
 
+**Voice-over:** a pack can also carry spoken commentary. The phone creates it with Supertone's Supertonic 3 voice after a one-time 383 MB voice download, and it works offline afterwards. Choose the voice, quality and speed under **More → Voice-over settings**; the defaults are F1, 12 steps and 1.30×.
+
 ## Update StreamSave from inside the app
 
 From StreamSave **1.2.0 onward**, open the gear icon and tap **Update StreamSave app**. The app checks the repository's latest stable GitHub Release, automatically downloads the suitable production APK, checks its version and package identity, verifies that its signing certificate matches the installed app, and opens Android's system installation confirmation. Android may request a one-time **Install unknown apps** permission. Updates never require uninstalling StreamSave when signed with the original key; downloading data and saved files are preserved by the Android package manager.

@@ -1,0 +1,141 @@
+[
+ {
+  "text": "In this part of the operation, the surgeon frees the ascending aorta.",
+  "preprocessed": "<en>In this part of the operation, the surgeon frees the ascending aorta.</en>",
+  "chunks300": [
+   "In this part of the operation, the surgeon frees the ascending aorta."
+  ],
+  "chunks60": [
+   "In this part of the operation, the surgeon frees the ascending aorta."
+  ]
+ },
+ {
+  "text": "Notice the electrocautery   at the tip of the forceps",
+  "preprocessed": "<en>Notice the electrocautery at the tip of the forceps.</en>",
+  "chunks300": [
+   "Notice the electrocautery   at the tip of the forceps"
+  ],
+  "chunks60": [
+   "Notice the electrocautery   at the tip of the forceps"
+  ]
+ },
+ {
+  "text": "Dr. Smith uses a 4–0 Prolene suture — see “Figure 2” [left] / right.",
+  "preprocessed": "<en>Dr. Smith uses a 4-0 Prolene suture - see \"Figure 2\" left right.</en>",
+  "chunks300": [
+   "Dr. Smith uses a 4–0 Prolene suture — see “Figure 2” [left] / right."
+  ],
+  "chunks60": [
+   "Dr. Smith uses a 4–0 Prolene suture — see “Figure 2” [left] / right."
+  ]
+ },
+ {
+  "text": "The dissection flap (intima) is visible; e.g., near the root , and i.e., the false lumen !",
+  "preprocessed": "<en>The dissection flap (intima) is visible; for example, near the root, and that is, the false lumen!</en>",
+  "chunks300": [
+   "The dissection flap (intima) is visible; e.g., near the root , and i.e., the false lumen !"
+  ],
+  "chunks60": [
+   "The dissection flap (intima) is visible; e.g., near the root , and i.e., the false lumen !"
+  ]
+ },
+ {
+  "text": "Is the valve competent ? Yes!! It is ’fine’ #2 → next step @ 01:20",
+  "preprocessed": "<en>Is the valve competent? Yes!! It is'fine' 2 next step at 01:20.</en>",
+  "chunks300": [
+   "Is the valve competent ? Yes!! It is ’fine’ #2 → next step @ 01:20"
+  ],
+  "chunks60": [
+   "Is the valve competent ? Yes!!",
+   "It is ’fine’ #2 → next step @ 01:20"
+  ]
+ },
+ {
+  "text": "Café naïve résumé © 2026 ♥",
+  "preprocessed": "<en>Café naïve résumé 2026.</en>",
+  "chunks300": [
+   "Café naïve résumé © 2026 ♥"
+  ],
+  "chunks60": [
+   "Café naïve résumé © 2026 ♥"
+  ]
+ },
+ {
+  "text": "Mr. Jones and Mrs. Lee met Prof. Kim at St. Mary's vs. the others, etc. Then they left. A. B. Carter agreed.",
+  "preprocessed": "<en>Mr. Jones and Mrs. Lee met Prof. Kim at St. Mary's vs. the others, etc. Then they left. A. B. Carter agreed.</en>",
+  "chunks300": [
+   "Mr. Jones and Mrs. Lee met Prof. Kim at St. Mary's vs. the others, etc. Then they left. A. B. Carter agreed."
+  ],
+  "chunks60": [
+   "Mr. Jones and Mrs. Lee met Prof. Kim at St. Mary's vs. the others, etc. Then they left.",
+   "A. B. Carter agreed."
+  ]
+ },
+ {
+  "text": "First paragraph sentence one. Sentence two!\n\nSecond paragraph? Yes.",
+  "preprocessed": "<en>First paragraph sentence one. Sentence two! Second paragraph? Yes.</en>",
+  "chunks300": [
+   "First paragraph sentence one. Sentence two!",
+   "Second paragraph? Yes."
+  ],
+  "chunks60": [
+   "First paragraph sentence one. Sentence two!",
+   "Second paragraph? Yes."
+  ]
+ },
+ {
+  "text": "Ends with ellipsis…",
+  "preprocessed": "<en>Ends with ellipsis...</en>",
+  "chunks300": [
+   "Ends with ellipsis…"
+  ],
+  "chunks60": [
+   "Ends with ellipsis…"
+  ]
+ },
+ {
+  "text": "Smile 😀 please ☀ now",
+  "preprocessed": "<en>Smile please now.</en>",
+  "chunks300": [
+   "Smile 😀 please ☀ now"
+  ],
+  "chunks60": [
+   "Smile 😀 please ☀ now"
+  ]
+ },
+ {
+  "text": "Quote \"\"double\"\" and ''single''.",
+  "preprocessed": "<en>Quote \"double\" and'single'.</en>",
+  "chunks300": [
+   "Quote \"\"double\"\" and ''single''."
+  ],
+  "chunks60": [
+   "Quote \"\"double\"\" and ''single''."
+  ]
+ },
+ {
+  "text": "Sentence number 1 explains a careful surgical step in plain words. Sentence number 2 explains a careful surgical step in plain words. Sentence number 3 explains a careful surgical step in plain words. Sentence number 4 explains a careful surgical step in plain words. Sentence number 5 explains a careful surgical step in plain words. Sentence number 6 explains a careful surgical step in plain words. Sentence number 7 explains a careful surgical step in plain words. Sentence number 8 explains a careful surgical step in plain words. Sentence number 9 explains a careful surgical step in plain words. Sentence number 10 explains a careful surgical step in plain words. Sentence number 11 explains a careful surgical step in plain words. Sentence number 12 explains a careful surgical step in plain words. Sentence number 13 explains a careful surgical step in plain words.",
+  "preprocessed": "<en>Sentence number 1 explains a careful surgical step in plain words. Sentence number 2 explains a careful surgical step in plain words. Sentence number 3 explains a careful surgical step in plain words. Sentence number 4 explains a careful surgical step in plain words. Sentence number 5 explains a careful surgical step in plain words. Sentence number 6 explains a careful surgical step in plain words. Sentence number 7 explains a careful surgical step in plain words. Sentence number 8 explains a careful surgical step in plain words. Sentence number 9 explains a careful surgical step in plain words. Sentence number 10 explains a careful surgical step in plain words. Sentence number 11 explains a careful surgical step in plain words. Sentence number 12 explains a careful surgical step in plain words. Sentence number 13 explains a careful surgical step in plain words.</en>",
+  "chunks300": [
+   "Sentence number 1 explains a careful surgical step in plain words. Sentence number 2 explains a careful surgical step in plain words. Sentence number 3 explains a careful surgical step in plain words. Sentence number 4 explains a careful surgical step in plain words.",
+   "Sentence number 5 explains a careful surgical step in plain words. Sentence number 6 explains a careful surgical step in plain words. Sentence number 7 explains a careful surgical step in plain words. Sentence number 8 explains a careful surgical step in plain words.",
+   "Sentence number 9 explains a careful surgical step in plain words. Sentence number 10 explains a careful surgical step in plain words. Sentence number 11 explains a careful surgical step in plain words. Sentence number 12 explains a careful surgical step in plain words.",
+   "Sentence number 13 explains a careful surgical step in plain words."
+  ],
+  "chunks60": [
+   "Sentence number 1 explains a careful surgical step in plain words.",
+   "Sentence number 2 explains a careful surgical step in plain words.",
+   "Sentence number 3 explains a careful surgical step in plain words.",
+   "Sentence number 4 explains a careful surgical step in plain words.",
+   "Sentence number 5 explains a careful surgical step in plain words.",
+   "Sentence number 6 explains a careful surgical step in plain words.",
+   "Sentence number 7 explains a careful surgical step in plain words.",
+   "Sentence number 8 explains a careful surgical step in plain words.",
+   "Sentence number 9 explains a careful surgical step in plain words.",
+   "Sentence number 10 explains a careful surgical step in plain words.",
+   "Sentence number 11 explains a careful surgical step in plain words.",
+   "Sentence number 12 explains a careful surgical step in plain words.",
+   "Sentence number 13 explains a careful surgical step in plain words."
+  ]
+ }
+]

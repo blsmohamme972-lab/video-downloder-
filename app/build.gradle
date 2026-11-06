@@ -24,8 +24,8 @@ android {
         applicationId 'app.streamsave'
         minSdk 26
         targetSdk 35
-        versionCode 7
-        versionName '2.0.2'
+        versionCode 8
+        versionName '2.1.0'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 
@@ -87,6 +87,8 @@ android {
 dependencies {
     implementation 'io.github.junkfood02.youtubedl-android:library:0.18.1'
     implementation 'io.github.junkfood02.youtubedl-android:ffmpeg:0.18.1'
+    // On-device voice-over (Supertonic 3 model, downloaded at runtime; see VoiceModel).
+    implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.31.1'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.json:json:20240303'
 }

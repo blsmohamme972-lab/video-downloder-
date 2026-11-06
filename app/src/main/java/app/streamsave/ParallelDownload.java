@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.BooleanSupplier;
 import java.util.function.LongConsumer;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
@@ -47,14 +48,20 @@ final class ParallelDownload {
      */
     static void fetch(URL url, long size, File target, Predicate<URL> allowed, LongConsumer progress)
             throws IOException {
-        if (size <= 0) throw new IOException("The update size is unknown.");
+        fetch(url, size, target, allowed, progress, () -> false);
+    }
+
+    /** As above; {@code cancelled} is checked between reads and stops the download with an IOException. */
+    static void fetch(URL url, long size, File target, Predicate<URL> allowed, LongConsumer progress,
+                      BooleanSupplier cancelled) throws IOException {
+        if (size <= 0) throw new IOException("The download size is unknown.");
         if (!allowed.test(url)) throw new IOException("Unexpected update download host.");
         AtomicLong done = new AtomicLong();
         try (RandomAccessFile out = new RandomAccessFile(target, "rw")) {
             out.setLength(size);
         }
         if (size <= PIECE_BYTES || !supportsRanges(url, size)) {
-            single(url, size, target, done, progress);
+            single(url, size, target, done, progress, cancelled);
             return;
         }
         List<long[]> pieces = new ArrayList<>();
@@ -66,7 +73,7 @@ final class ParallelDownload {
             List<Future<?>> futures = new ArrayList<>();
             for (long[] piece : pieces) {
                 futures.add(pool.submit(() -> {
-                    rangeWithRetry(url, size, piece[0], piece[1], target, done, progress);
+                    rangeWithRetry(url, size, piece[0], piece[1], target, done, progress, cancelled);
                     return null;
                 }));
             }
@@ -102,13 +109,15 @@ final class ParallelDownload {
     }
 
     private static void rangeWithRetry(URL url, long size, long first, long last, File target,
-                                       AtomicLong done, LongConsumer progress) throws IOException {
+                                       AtomicLong done, LongConsumer progress, BooleanSupplier cancelled)
+            throws IOException {
         IOException lastError = null;
         for (int attempt = 0; attempt < 3; attempt++) {
             try {
-                range(url, size, first, last, target, done, progress);
+                range(url, size, first, last, target, done, progress, cancelled);
                 return;
             } catch (IOException error) {
+                if (cancelled.getAsBoolean()) throw error;
                 lastError = error; // range() already took back its bytes; retry the piece from its start
             }
         }
@@ -117,7 +126,7 @@ final class ParallelDownload {
 
     /** Downloads one piece; on failure it removes its bytes from {@code done} before rethrowing. */
     private static void range(URL url, long size, long first, long last, File target,
-                              AtomicLong done, LongConsumer progress) throws IOException {
+                              AtomicLong done, LongConsumer progress, BooleanSupplier cancelled) throws IOException {
         HttpURLConnection connection = open(url, first, last);
         long counted = 0;
         try {
@@ -132,6 +141,7 @@ final class ParallelDownload {
                 long received = 0;
                 int n;
                 while (received < expected && (n = in.read(buffer, 0, (int) Math.min(buffer.length, expected - received))) != -1) {
+                    if (cancelled.getAsBoolean()) throw new IOException("Download cancelled.");
                     out.write(buffer, 0, n);
                     received += n;
                     counted += n;
@@ -147,8 +157,8 @@ final class ParallelDownload {
         }
     }
 
-    private static void single(URL url, long size, File target, AtomicLong done, LongConsumer progress)
-            throws IOException {
+    private static void single(URL url, long size, File target, AtomicLong done, LongConsumer progress,
+                               BooleanSupplier cancelled) throws IOException {
         HttpURLConnection connection = open(url, -1, -1);
         try {
             if (connection.getResponseCode() != 200) {
@@ -160,7 +170,8 @@ final class ParallelDownload {
                 long received = 0;
                 int n;
                 while ((n = in.read(buffer)) != -1) {
-                    if (received + n > size) throw new IOException("Update APK exceeds the expected size.");
+                    if (cancelled.getAsBoolean()) throw new IOException("Download cancelled.");
+                    if (received + n > size) throw new IOException("The download is larger than expected.");
                     out.write(buffer, 0, n);
                     received += n;
                     progress.accept(done.addAndGet(n));
@@ -170,6 +181,32 @@ final class ParallelDownload {
         } finally {
             connection.disconnect();
         }
+    }
+
+    /**
+     * Follows redirects (absolute or relative) from {@code start} to the URL
+     * that serves the file, checking every hop with {@code allowed}.
+     */
+    static URL resolve(URL start, Predicate<URL> allowed) throws IOException {
+        URL current = start;
+        for (int hop = 0; hop < 8; hop++) {
+            if (!allowed.test(current)) throw new IOException("Unexpected download host: " + current.getHost());
+            HttpURLConnection connection = open(current, 0, 0);
+            try {
+                int status = connection.getResponseCode();
+                if (status >= 300 && status < 400) {
+                    String location = connection.getHeaderField("Location");
+                    if (location == null) throw new IOException("A download redirect is missing its target.");
+                    current = new URL(current, location);
+                    continue;
+                }
+                if (status == 200 || status == 206) return current;
+                throw new IOException("The download server answered HTTP " + status + ".");
+            } finally {
+                connection.disconnect();
+            }
+        }
+        throw new IOException("Too many download redirects.");
     }
 
     private static HttpURLConnection open(URL url, long first, long last) throws IOException {

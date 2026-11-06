@@ -52,6 +52,15 @@ Its bounded parallel ranges preserve a contiguous `.part` prefix, including file
 - yt-dlp license: <https://github.com/yt-dlp/yt-dlp/blob/2026.10.26/LICENSE>
 - EJS source and license: <https://github.com/yt-dlp/ejs>
 
+## Voice-over (Supertonic 3)
+
+- **Model.** The Study player can speak a study pack's voice-over with Supertone Inc.'s **Supertonic 3** text-to-speech model.
+  - The model is **not** included in this repository or the APK. On the user's request, the app downloads it from Supertone's Hugging Face repository `Supertone/supertonic-3` at the pinned revision `724fb5abbf5502583fb520898d45929e62f02c0b`.
+  - The app checks every file against the size and SHA-256 recorded in `VoiceModel.java`.
+  - The model is licensed under **OpenRAIL-M**, with use-based restrictions (for example, no impersonation or deception). The app shows this before downloading and links to the license.
+- **Inference code.** `TtsText.java` and `SupertonicEngine.java` port the text preparation and inference steps of Supertone's official Python SDK (`supertonic` 1.3.1), MIT License, Copyright (c) 2025 Supertone Inc. That license text is in `third_party/supertonic-sdk/LICENSE`.
+- **Runtime.** ONNX Runtime for Android (`com.microsoft.onnxruntime:onnxruntime-android` 1.31.1, MIT License, Microsoft) runs the model on the phone's CPU.
+
 ## Other build and runtime dependencies
 
 The wrapper's Maven POMs declare its Java/Kotlin dependencies, including Kotlin standard libraries, AndroidX, Jackson and Apache Commons. The Gradle dependency report is included with the validation materials when generated. These dependencies retain their upstream licenses. The Gradle wrapper/build system uses Apache License 2.0. JUnit and the JSON test implementation are test-only dependencies and are not application features.

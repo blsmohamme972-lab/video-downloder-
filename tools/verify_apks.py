@@ -82,8 +82,13 @@ def verify_arm64(archive):
                         item = elf_alignment(name + "!" + member.filename, nested.read(member))
                         if item:
                             checked.append(item)
-    if len(checked) != 254:
-        raise ValueError(f"Unexpected native engine payload count: {len(checked)} (expected 254)")
+    # 254 download-engine libraries (Python, FFmpeg, ...) plus ONNX Runtime for the voice-over.
+    voice = {"lib/arm64-v8a/libonnxruntime.so", "lib/arm64-v8a/libonnxruntime4j_jni.so"}
+    missing = voice - set(archive.namelist())
+    if missing:
+        raise ValueError(f"Voice-over runtime missing from the APK: {sorted(missing)}")
+    if len(checked) != 254 + len(voice):
+        raise ValueError(f"Unexpected native payload count: {len(checked)} (expected {254 + len(voice)})")
     return len(checked)
 
 

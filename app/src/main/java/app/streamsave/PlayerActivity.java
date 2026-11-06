@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.provider.OpenableColumns;
 import android.text.InputType;
 import android.view.Gravity;
@@ -26,6 +28,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -35,6 +38,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Study player: plays a downloaded or local video, draws its study pack's
@@ -63,7 +67,7 @@ public final class PlayerActivity extends Activity {
     private OverlayView overlay;
     private TextView caption, noteBubble, title, status, clock, score, emptyHint;
     private SeekBar seek;
-    private Button play, notesButton, drawingsToggle, questionsToggle, captionsToggle;
+    private Button play, notesButton, drawingsToggle, questionsToggle, captionsToggle, voiceToggle;
     private LinearLayout extras;
     private FrameLayout quizLayer;
 
@@ -75,7 +79,18 @@ public final class PlayerActivity extends Activity {
     private QuizPlan plan;
     private List<StudyStore.Note> notes = new ArrayList<>();
     private boolean prepared, dragging, quizShowing;
-    private boolean drawingsOn, questionsOn, captionsOn;
+    private boolean drawingsOn, questionsOn, captionsOn, voiceOn;
+
+    // Voice-over (Supertonic, generated on the phone; see Narrator).
+    private final ExecutorService voiceIo = Executors.newSingleThreadExecutor();
+    private VoiceModel voiceModel;
+    private Narrator narrator;
+    private NarrationPlan narrationPlan;
+    private MediaPlayer videoPlayer, voicePlayer;
+    private StudyPack.Narration speaking, waitingFor;
+    private long speakingWindowEnd = Long.MAX_VALUE;
+    private long waitingSince;
+    private boolean pausedForVoice, voicePromptShown, voiceDownloading;
     private long lastPosition;
     private long lastSaved;
     /** The decoded picture size; drawings are laid over exactly this area. */
@@ -97,6 +112,22 @@ public final class PlayerActivity extends Activity {
         drawingsOn = prefs.getBoolean("drawings", true);
         questionsOn = prefs.getBoolean("questions", true);
         captionsOn = prefs.getBoolean("captions", true);
+        voiceOn = prefs.getBoolean("voice", true);
+        voiceModel = new VoiceModel(new File(getFilesDir(), "voice"));
+        narrator = new Narrator(voiceModel, getCacheDir(), new Narrator.Listener() {
+            @Override public void onPrepared() {
+                if (!isDestroyed()) renderStatus();
+            }
+
+            @Override public void onFailed(String problem) {
+                if (isDestroyed()) return;
+                stopWaitingForVoice();
+                message("Voice-over stopped", problem + " The video, questions and drawings keep working.");
+            }
+        });
+        narrator.setSettings(prefs.getString("voice_name", Narrator.DEFAULT_VOICE),
+                prefs.getInt("voice_steps", Narrator.DEFAULT_STEPS),
+                prefs.getFloat("voice_speed", Narrator.DEFAULT_SPEED));
         build();
         String uri = getIntent().getStringExtra(EXTRA_URI);
         if (uri != null && !uri.isEmpty()) {
@@ -243,6 +274,16 @@ public final class PlayerActivity extends Activity {
         LinearLayout.LayoutParams cParams = new LinearLayout.LayoutParams(0, dp(42), 1);
         cParams.setMarginStart(dp(6));
         toggles.addView(captionsToggle, cParams);
+        voiceToggle = toggleButton();
+        voiceToggle.setOnClickListener(v -> {
+            voiceOn = !voiceOn;
+            if (!voiceOn) stopVoice();
+            saveToggles();
+            applyVoicePlan();
+        });
+        LinearLayout.LayoutParams vParams = new LinearLayout.LayoutParams(0, dp(42), 1);
+        vParams.setMarginStart(dp(6));
+        toggles.addView(voiceToggle, vParams);
         extras.addView(toggles, Ui.matchWrap());
         extras.addView(Ui.spacer(this, 10));
         LinearLayout lower = Ui.horizontal(this);
@@ -275,8 +316,8 @@ public final class PlayerActivity extends Activity {
 
     private Button toggleButton() {
         Button button = Ui.button(this, "", false);
-        button.setTextSize(12f);
-        button.setPadding(dp(6), dp(6), dp(6), dp(6));
+        button.setTextSize(11.5f);
+        button.setPadding(dp(4), dp(6), dp(4), dp(6));
         return button;
     }
 
@@ -284,6 +325,7 @@ public final class PlayerActivity extends Activity {
         styleToggle(drawingsToggle, "Drawings", drawingsOn);
         styleToggle(questionsToggle, "Questions", questionsOn);
         styleToggle(captionsToggle, "Captions", captionsOn);
+        styleToggle(voiceToggle, "Voice", voiceOn);
     }
 
     private void styleToggle(Button button, String name, boolean on) {
@@ -295,7 +337,7 @@ public final class PlayerActivity extends Activity {
 
     private void saveToggles() {
         prefs.edit().putBoolean("drawings", drawingsOn).putBoolean("questions", questionsOn)
-                .putBoolean("captions", captionsOn).apply();
+                .putBoolean("captions", captionsOn).putBoolean("voice", voiceOn).apply();
         renderToggles();
         update();
     }
@@ -329,6 +371,10 @@ public final class PlayerActivity extends Activity {
         plan = null;
         notes = new ArrayList<>();
         overlay.setPack(null);
+        stopVoice();
+        narrationPlan = null;
+        narrator.setPlan(null, null);
+        voicePromptShown = false;
         hideQuiz();
         emptyHint.setVisibility(View.GONE);
         videoName = name != null && !name.isEmpty() ? name : displayName(uri);
@@ -336,6 +382,7 @@ public final class PlayerActivity extends Activity {
         status.setText("Loading video…");
         video.setOnPreparedListener(player -> {
             prepared = true;
+            videoPlayer = player; // kept to lower the video's sound under the voice-over
             videoSize[0] = player.getVideoWidth();
             videoSize[1] = player.getVideoHeight();
             player.setOnVideoSizeChangedListener((mp, w, h) -> {
@@ -381,13 +428,21 @@ public final class PlayerActivity extends Activity {
     private void togglePlay() {
         if (videoUri == null) { pickVideo(); return; }
         if (quizShowing) return;
-        if (video.isPlaying()) video.pause(); else video.start();
+        if (video.isPlaying()) {
+            video.pause();
+            if (voicePlayer != null && voicePlayer.isPlaying()) voicePlayer.pause();
+        } else {
+            pausedForVoice = false; // the user chose to continue
+            video.start();
+            if (voicePlayer != null && speaking != null && !voicePlayer.isPlaying()) voicePlayer.start();
+        }
         renderPlay();
     }
 
     private void seekTo(long ms) {
         if (!prepared) return;
         int target = (int) Math.max(0, Math.min(ms, Math.max(0, video.getDuration() - 500)));
+        stopVoice();
         video.seekTo(target);
         lastPosition = target; // a seek never triggers a question
         overlay.setTimeMs(target);
@@ -416,6 +471,22 @@ public final class PlayerActivity extends Activity {
         if (video.isPlaying() && questionsOn && plan != null && !quizShowing) {
             StudyPack.Question due = plan.due(lastPosition, position);
             if (due != null) showQuestion(due);
+        }
+        if (narrationPlan != null && voiceOn && !quizShowing) {
+            narrator.setPosition(position);
+            if (video.isPlaying()) {
+                StudyPack.Narration line = narrationPlan.due(lastPosition, position);
+                if (line != null) startVoice(line);
+            }
+            if (speaking != null && video.isPlaying() && position >= speakingWindowEnd) {
+                video.pause(); // the next part waits until this line is finished
+                pausedForVoice = true;
+            }
+            if (waitingFor != null) {
+                File clip = narrator.clip(waitingFor);
+                if (clip != null) playVoice(waitingFor, clip);
+                else if (SystemClock.elapsedRealtime() - waitingSince > 60000) stopWaitingForVoice();
+            }
         }
         lastPosition = position;
         if (video.isPlaying() && position - lastSaved > 5000) {
@@ -470,6 +541,9 @@ public final class PlayerActivity extends Activity {
         pack = loaded;
         plan = loaded == null ? null : new QuizPlan(loaded.questions, answers);
         overlay.setPack(loaded);
+        stopVoice();
+        narrationPlan = loaded == null || loaded.narration.isEmpty() ? null : new NarrationPlan(loaded.narration);
+        applyVoicePlan();
         renderStatus();
         update();
     }
@@ -481,7 +555,8 @@ public final class PlayerActivity extends Activity {
             status.setText("No study pack yet. Send this video's Google Drive link to your AI assistant, then tap Update pack.");
         } else {
             status.setText(pack.title + " · " + pack.overlays.size() + " drawings · "
-                    + pack.questions.size() + " questions" + (pack.captions.isEmpty() ? "" : " · captions"));
+                    + pack.questions.size() + " questions" + (pack.captions.isEmpty() ? "" : " · captions")
+                    + voiceStatus());
         }
         if (plan == null || plan.total() == 0) {
             score.setText(pack == null ? "No questions yet" : "No questions");
@@ -493,20 +568,22 @@ public final class PlayerActivity extends Activity {
     private void packMenu() {
         if (videoUri == null) { pickVideo(); return; }
         if (pack == null) {
-            String[] items = {"Choose from the study library", "Add a study pack file…"};
+            String[] items = {"Choose from the study library", "Add a study pack file…", "Voice-over settings…"};
             new AlertDialog.Builder(this).setTitle("Study pack").setItems(items, (dialog, which) -> {
                 if (which == 0) chooseFromLibrary();
-                else pickPack();
+                else if (which == 1) pickPack();
+                else voiceSettings();
             }).show();
             return;
         }
         String[] items = {"Choose a different pack from the library", "Add a study pack file…",
-                "Retake all questions", "Remove study pack", "About this pack"};
+                "Retake all questions", "Remove study pack", "About this pack", "Voice-over settings…"};
         new AlertDialog.Builder(this).setTitle("Study pack").setItems(items, (dialog, which) -> {
             if (which == 0) chooseFromLibrary();
             else if (which == 1) pickPack();
             else if (which == 2) retakeQuiz();
             else if (which == 3) confirmRemovePack();
+            else if (which == 5) voiceSettings();
             else message(pack.title, pack.overlays.size() + " drawings\n" + pack.questions.size()
                     + " questions\n" + pack.captions.size() + " captions"
                     + (pack.language.isEmpty() ? "" : "\nLanguage: " + pack.language));
@@ -732,9 +809,281 @@ public final class PlayerActivity extends Activity {
         });
     }
 
+    // ---------- voice-over ----------
+
+    /** Starts preparing the pack's voice-over, or offers the one-time voice download. */
+    private void applyVoicePlan() {
+        if (narrationPlan == null || !voiceOn) {
+            narrator.setPlan(null, null);
+        } else if (voiceModel.installed()) {
+            narrator.setPlan(narrationPlan, pack == null ? "en" : pack.language);
+        } else if (!voicePromptShown && !voiceDownloading) {
+            voicePromptShown = true;
+            offerVoiceDownload();
+        }
+        renderStatus();
+    }
+
+    private String voiceStatus() {
+        if (narrationPlan == null) return "";
+        if (!voiceOn) return " · voice-over off";
+        if (voiceDownloading) return " · downloading the voice";
+        if (!voiceModel.installed()) return " · voice-over (voice not downloaded)";
+        return " · voice-over " + narrator.readyCount() + "/" + narrator.total() + " ready";
+    }
+
+    /** A line is due: play it, or pause the video until it is ready (it is never skipped silently). */
+    private void startVoice(StudyPack.Narration line) {
+        if (!voiceModel.installed()) return;
+        File clip = narrator.clip(line);
+        if (clip != null) {
+            playVoice(line, clip);
+            return;
+        }
+        releaseVoicePlayer();
+        speaking = null;
+        duck(false);
+        waitingFor = line;
+        waitingSince = SystemClock.elapsedRealtime();
+        narrator.prioritize(line);
+        video.pause();
+        pausedForVoice = true;
+        status.setText("Preparing the voice-over…");
+        renderPlay();
+    }
+
+    private void playVoice(StudyPack.Narration line, File clip) {
+        releaseVoicePlayer();
+        waitingFor = null;
+        try {
+            MediaPlayer player = new MediaPlayer();
+            player.setDataSource(clip.getPath());
+            player.setOnCompletionListener(mp -> finishVoice());
+            player.setOnErrorListener((mp, what, extra) -> {
+                finishVoice();
+                return true;
+            });
+            player.prepare();
+            player.start();
+            voicePlayer = player;
+            speaking = line;
+            speakingWindowEnd = narrationPlan == null ? Long.MAX_VALUE : narrationPlan.windowEnd(line);
+            duck(true);
+            if (pausedForVoice && !quizShowing) { // it was waiting for this line
+                pausedForVoice = false;
+                video.start();
+            }
+        } catch (IOException | RuntimeException error) {
+            finishVoice();
+        }
+        renderStatus();
+        renderPlay();
+    }
+
+    private void finishVoice() {
+        releaseVoicePlayer();
+        speaking = null;
+        speakingWindowEnd = Long.MAX_VALUE;
+        duck(false);
+        if (pausedForVoice && waitingFor == null && !quizShowing) {
+            pausedForVoice = false;
+            video.start();
+        }
+        renderPlay();
+    }
+
+    /** Silences the voice-over (seek, question, pause, new video); the video's own state is left alone. */
+    private void stopVoice() {
+        releaseVoicePlayer();
+        speaking = null;
+        waitingFor = null;
+        speakingWindowEnd = Long.MAX_VALUE;
+        pausedForVoice = false;
+        duck(false);
+    }
+
+    private void stopWaitingForVoice() {
+        if (waitingFor == null) return;
+        waitingFor = null;
+        if (pausedForVoice && !quizShowing) {
+            pausedForVoice = false;
+            video.start();
+        }
+        renderStatus();
+        renderPlay();
+    }
+
+    private void releaseVoicePlayer() {
+        if (voicePlayer == null) return;
+        try {
+            voicePlayer.release();
+        } catch (RuntimeException ignored) {
+            // already released
+        }
+        voicePlayer = null;
+    }
+
+    /** Lowers the video's own sound while a line is spoken. */
+    private void duck(boolean on) {
+        if (videoPlayer == null) return;
+        try {
+            float volume = on ? 0.2f : 1f;
+            videoPlayer.setVolume(volume, volume);
+        } catch (IllegalStateException ignored) {
+            // the video player was released (a new video is opening)
+        }
+    }
+
+    private void offerVoiceDownload() {
+        long mb = VoiceModel.totalBytes() / (1024 * 1024);
+        new AlertDialog.Builder(this).setTitle("Voice-over for this video")
+                .setMessage("This study pack has a spoken voice-over. To play it, StreamSave downloads the "
+                        + "Supertonic 3 voice model once (" + mb + " MB) directly from Supertone on Hugging Face, "
+                        + "then creates the voice on this phone without internet. Wi-Fi is recommended.\n\n"
+                        + "The voice model is made by Supertone Inc. and licensed under OpenRAIL-M: do not use "
+                        + "generated voices to impersonate real people or to mislead.")
+                .setPositiveButton("Download", (dialog, which) -> downloadVoice())
+                .setNegativeButton("Not now", null)
+                .setNeutralButton("License", (dialog, which) -> openVoiceLicense())
+                .show();
+    }
+
+    private void downloadVoice() {
+        if (voiceDownloading) return;
+        voiceDownloading = true;
+        final long total = VoiceModel.totalBytes();
+        final AtomicLong shown = new AtomicLong(-1);
+        status.setText("Downloading the voice… 0%");
+        voiceIo.execute(() -> {
+            String failure = null;
+            try {
+                voiceModel.download(bytes -> {
+                    long percent = Math.max(0, Math.min(100, bytes * 100 / total));
+                    if (shown.getAndSet(percent) != percent) {
+                        handler.post(() -> {
+                            if (voiceDownloading) status.setText("Downloading the voice… " + percent + "%");
+                        });
+                    }
+                }, this::isDestroyed);
+            } catch (IOException error) {
+                failure = error.getMessage() == null ? "The voice could not be downloaded." : error.getMessage();
+            }
+            final String problem = failure;
+            handler.post(() -> {
+                voiceDownloading = false;
+                if (isDestroyed()) return;
+                if (problem != null) {
+                    renderStatus();
+                    message("Voice not downloaded", problem + "\n\nTry again later from More → Voice-over settings.");
+                    return;
+                }
+                Toast.makeText(this, "Voice ready. Preparing the voice-over…", Toast.LENGTH_LONG).show();
+                applyVoicePlan();
+            });
+        });
+    }
+
+    private void voiceSettings() {
+        String voice = prefs.getString("voice_name", Narrator.DEFAULT_VOICE);
+        int steps = prefs.getInt("voice_steps", Narrator.DEFAULT_STEPS);
+        float speed = prefs.getFloat("voice_speed", Narrator.DEFAULT_SPEED);
+        long mb = VoiceModel.totalBytes() / (1024 * 1024);
+        boolean installed = voiceModel.installed();
+        String[] items = {
+                "Voice: " + voice,
+                "Quality: " + steps + " steps",
+                String.format(Locale.US, "Speed: %.2f×", speed),
+                installed ? "Remove the voice model (" + mb + " MB)" : "Download the voice model (" + mb + " MB)",
+                "Voice model license (Supertone, OpenRAIL-M)"};
+        new AlertDialog.Builder(this).setTitle("Voice-over").setItems(items, (dialog, which) -> {
+            if (which == 0) chooseVoice(voice);
+            else if (which == 1) chooseSteps(steps);
+            else if (which == 2) chooseSpeed(speed);
+            else if (which == 3) {
+                if (installed) confirmRemoveVoice(); else downloadVoice();
+            } else openVoiceLicense();
+        }).show();
+    }
+
+    private void chooseVoice(String current) {
+        String[] voices = VoiceModel.VOICES.toArray(new String[0]);
+        new AlertDialog.Builder(this).setTitle("Voice (F = female, M = male)")
+                .setSingleChoiceItems(voices, Math.max(0, VoiceModel.VOICES.indexOf(current)), (dialog, which) -> {
+                    prefs.edit().putString("voice_name", voices[which]).apply();
+                    dialog.dismiss();
+                    applyVoiceSettings();
+                }).show();
+    }
+
+    private void chooseSteps(int current) {
+        int[] values = {5, 8, 12};
+        String[] labels = {"5 steps (fastest)", "8 steps", "12 steps (best)"};
+        int checked = 2;
+        for (int i = 0; i < values.length; i++) if (values[i] == current) checked = i;
+        new AlertDialog.Builder(this).setTitle("Voice quality").setSingleChoiceItems(labels, checked, (dialog, which) -> {
+            prefs.edit().putInt("voice_steps", values[which]).apply();
+            dialog.dismiss();
+            applyVoiceSettings();
+        }).show();
+    }
+
+    private void chooseSpeed(float current) {
+        float[] values = {0.9f, 1.0f, 1.1f, 1.2f, 1.3f, 1.4f, 1.5f, 1.7f, 2.0f};
+        String[] labels = new String[values.length];
+        int checked = 4;
+        for (int i = 0; i < values.length; i++) {
+            labels[i] = String.format(Locale.US, "%.2f×", values[i]);
+            if (Math.abs(values[i] - current) < 0.001f) checked = i;
+        }
+        new AlertDialog.Builder(this).setTitle("Voice speed").setSingleChoiceItems(labels, checked, (dialog, which) -> {
+            prefs.edit().putFloat("voice_speed", values[which]).apply();
+            dialog.dismiss();
+            applyVoiceSettings();
+        }).show();
+    }
+
+    private void applyVoiceSettings() {
+        stopVoice();
+        narrator.setSettings(prefs.getString("voice_name", Narrator.DEFAULT_VOICE),
+                prefs.getInt("voice_steps", Narrator.DEFAULT_STEPS),
+                prefs.getFloat("voice_speed", Narrator.DEFAULT_SPEED));
+        applyVoicePlan();
+        Toast.makeText(this, "Voice-over settings saved.", Toast.LENGTH_SHORT).show();
+    }
+
+    private void confirmRemoveVoice() {
+        new AlertDialog.Builder(this).setTitle("Remove the voice model?")
+                .setMessage("Frees " + VoiceModel.totalBytes() / (1024 * 1024) + " MB. Voice-overs play again after "
+                        + "downloading it once more.")
+                .setNegativeButton("Cancel", null)
+                .setPositiveButton("Remove", (dialog, which) -> {
+                    stopVoice();
+                    narrator.setPlan(null, null);
+                    narrator.unload();
+                    voiceIo.execute(() -> {
+                        voiceModel.delete();
+                        handler.post(() -> {
+                            if (isDestroyed()) return;
+                            voicePromptShown = true; // do not ask again right away
+                            renderStatus();
+                            Toast.makeText(this, "Voice model removed.", Toast.LENGTH_SHORT).show();
+                        });
+                    });
+                }).show();
+    }
+
+    private void openVoiceLicense() {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(VoiceModel.LICENSE_URL)));
+        } catch (android.content.ActivityNotFoundException error) {
+            message("Voice model license", "Open " + VoiceModel.LICENSE_URL + " in a browser.");
+        }
+    }
+
     // ---------- questions ----------
 
     private void showQuestion(StudyPack.Question question) {
+        stopVoice();
         video.pause();
         renderPlay();
         quizShowing = true;
@@ -955,13 +1304,17 @@ public final class PlayerActivity extends Activity {
 
     @Override protected void onPause() {
         if (video != null && video.isPlaying()) video.pause();
+        stopVoice();
         persistSnapshot();
         super.onPause();
     }
 
     @Override protected void onDestroy() {
         handler.removeCallbacksAndMessages(null);
+        stopVoice();
         if (video != null) video.stopPlayback();
+        narrator.release();
+        voiceIo.shutdownNow();
         io.shutdown();
         super.onDestroy();
     }

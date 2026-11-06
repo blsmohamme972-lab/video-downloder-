@@ -57,6 +57,12 @@ If any of these differ, the update is refused. Nothing in the app can work aroun
 
     The app downloads it by itself. The owner should never have to handle a pack file.
 
+11. **Voice-over model.**
+    - `VoiceModel.java` pins Supertonic 3 to one Hugging Face revision, with a size and SHA-256 for every file.
+    - Never point it at `main`, another repository, or unverified files.
+    - Never commit model files: they are downloaded from Supertone on the phone (OpenRAIL-M).
+    - Keep `TtsText`/`SupertonicEngine` identical in behaviour to Supertone's official SDK. `TtsTextTest` compares against recorded SDK output; extend it when changing either class.
+
 ## Checks before pushing
 
 ```sh

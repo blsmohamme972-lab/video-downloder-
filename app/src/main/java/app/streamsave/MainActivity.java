@@ -858,7 +858,7 @@ public final class MainActivity extends Activity {
                 + "Study player: open a download with Study for animated drawings, captions, a question after "
                 + "each part of the video and your own notes. Study packs arrive by themselves from the study library.\n\n"
                 + "StreamSave is free software, licensed under the GNU General Public License v3.0. Full source code and license texts are included with the source package.\n\n"
-                + "Built with yt-dlp, youtubedl-android and FFmpeg.\n\n"
+                + "Built with yt-dlp, youtubedl-android and FFmpeg. Voice-over uses Supertone's Supertonic 3 model (OpenRAIL-M, downloaded from Supertone on request) and ONNX Runtime.\n\n"
                 + "Available quality depends on the original video. Download speed depends on your connection and the video source.\n\n"
                 + "StreamSave is independent and is not affiliated with YouTube.");
     }
