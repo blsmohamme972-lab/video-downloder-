@@ -22,6 +22,19 @@ ROOT = Path(__file__).resolve().parent.parent
 PINS = json.loads((ROOT / "tools/engine_payloads.json").read_text(encoding="utf-8"))
 
 
+def read_app_version():
+    """Use the version declared by Gradle so future releases need no script edits."""
+    build = (ROOT / "app/build.gradle").read_text(encoding="utf-8")
+    code = re.search(r"(?m)^\s*versionCode\s+(\d+)\s*$", build)
+    name = re.search(r"(?m)^\s*versionName\s+'([^']+)'\s*$", build)
+    if code is None or name is None:
+        raise ValueError("Cannot read versionCode/versionName from app/build.gradle")
+    return int(code.group(1)), name.group(1)
+
+
+VERSION_CODE, VERSION_NAME = read_app_version()
+
+
 def sha256(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -82,7 +95,7 @@ def verify(apk, variant, abi, tools, expected_release_signer):
     if variant == "release" and expected_release_signer and signer != expected_release_signer.lower():
         raise ValueError("Release signer differs from the existing installed application")
     badging = run(tools / "aapt", "dump", "badging", apk)
-    for required in ("package: name='app.streamsave' versionCode='2' versionName='1.1.0'",
+    for required in (f"package: name='app.streamsave' versionCode='{VERSION_CODE}' versionName='{VERSION_NAME}'",
                      "sdkVersion:'26'", "targetSdkVersion:'35'"):
         if required not in badging:
             raise ValueError(f"APK metadata mismatch: {required}")
@@ -112,7 +125,8 @@ def verify(apk, variant, abi, tools, expected_release_signer):
         dex = {name: sha256(archive.read(name)) for name in archive.namelist()
                if re.fullmatch(r"classes\d*\.dex", name)}
         bytecode = b"".join(archive.read(name) for name in dex)
-        for marker in (b"revealQualityAfterLayout", b"transferGate", b"NativeTransfer"):
+        for marker in (b"revealQualityAfterLayout", b"transferGate", b"NativeTransfer",
+                       b"AppUpdater", b"StudyActivity"):
             if marker not in bytecode:
                 raise ValueError(f"Expected current application code is missing: {marker!r}")
         native_count = None
@@ -150,7 +164,7 @@ def main():
         if pair[0]["signer_certificate_sha256"] != pair[1]["signer_certificate_sha256"]:
             raise ValueError(f"{variant} ABI splits have different signing identities")
         rows.extend(pair)
-    report = {"package": "app.streamsave", "version_name": "1.1.0", "version_code": 2,
+    report = {"package": "app.streamsave", "version_name": VERSION_NAME, "version_code": VERSION_CODE,
               "min_sdk": 26, "target_sdk": 35,
               "all_checks_passed": True, "both_abis_have_identical_current_dex_per_variant": True,
               "arm64_native_load_alignment_16kb": True, "apks": rows}
