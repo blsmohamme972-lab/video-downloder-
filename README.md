@@ -43,6 +43,18 @@ Pause is available during transfer. The app lets merging and final file saving f
 
 The displayed progress is for the current stream; a high-quality video can download video first and audio second. Temporary source streams and the exported copy can require about two to three times the final file size. Temporary files are removed after a successful export. MKV and some source codecs require a compatible media player.
 
+## Surgical Studio — AI overlays without rendering
+
+Tap **Surgical Studio** to open a local video, or **Study** on any completed video download. Import an AI-generated annotation ZIP with **Import ZIP** to see timestamp-synchronized arrows, highlighted regions, labels, annotations and optional PNG illustrations while the original video remains unchanged. See [SURGICAL_STUDIO.md](SURGICAL_STUDIO.md) for the declarative ZIP schema and the exact AI-generation prompt. The Android app plays the video and reads the ZIP; AI analysis and ZIP generation are external. This is for surgeon-reviewed education, not clinical decision support.
+
+## Update StreamSave from inside the app
+
+From StreamSave **1.2.0 onward**, open the gear icon and tap **Update StreamSave app**. The app checks the repository's latest stable GitHub Release, automatically downloads the suitable production APK, checks its version and package identity, verifies that its signing certificate matches the installed app, and opens Android's system installation confirmation. Android may request a one-time **Install unknown apps** permission. Updates never require uninstalling StreamSave when signed with the original key; downloading data and saved files are preserved by the Android package manager.
+
+This is separate from **Update download engine**, which refreshes yt-dlp and does **not** update the Android application. The menu cannot be added remotely to an existing version 1.1.0 binary; users need a compatible signed app update to get the button once, and can use it for later releases.
+
+The in-app updater intentionally **does not** install GitHub Actions test-signed artifacts. To publish an actual update, maintainers must merge the code to main, configure repository Actions secrets `STREAMSAVE_KEYSTORE_BASE64`, `STREAMSAVE_KEYSTORE_PASSWORD`, `STREAMSAVE_KEY_ALIAS`, and `STREAMSAVE_KEY_PASSWORD` using the **same original private signing identity** as the APK already installed, then run **Publish production-signed StreamSave APK update** from the Actions tab with a matching tag such as `v1.2.0`. This generates the official ARM64 APK as a GitHub Release asset. Never commit a private keystore, key passwords, or a signing backup to the repository. If there is no published compatible release, the updater explains that no update is available.
+
 ## Build the project
 
 Open this directory in Android Studio, or use a JDK 17 command line with Android SDK Platform 35 and Build Tools 35.0.0 installed. The Gradle wrapper is included.
