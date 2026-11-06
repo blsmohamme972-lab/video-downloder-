@@ -33,6 +33,26 @@ public final class StudyLibraryTest {
         assertEquals("drive-lecture", library.byId("drive-lecture").id);
     }
 
+    /** A video StreamSave saved ("<title>_<job id>.mkv") and then opened as a file still finds its pack. */
+    @Test public void matchesFilesStreamSaveSaved() throws IOException {
+        StudyLibrary library = StudyLibrary.parse(INDEX);
+        Job job = new Job();
+        job.id = "3f2a9c1b-7d4e-4f00-8a11-0123456789ab";
+        job.title = "Tip 1 Aort Diseksiyonu | Acil Kalp Ameliyatı";
+        String saved = Publisher.filename(job, new File("video.mkv"));
+        assertEquals("Tip 1 Aort Diseksiyonu _ Acil Kalp Ameliyatı_3f2a9c1b.mkv", saved);
+        assertEquals("3f2a9c1b", StudyLibrary.savedJobPrefix(saved));
+        assertEquals("Tip 1 Aort Diseksiyonu _ Acil Kalp Ameliyatı.mkv", StudyLibrary.withoutSavedSuffix(saved));
+        assertEquals("aortic-dissection", library.match("", saved).id);
+        assertEquals("aortic-dissection", library.match(null, "Tip 1 Aort Diseksiyonu - Acil Kalp Ameliyati_0a1b2c3d").id);
+        // Other names are left alone.
+        assertEquals("", StudyLibrary.savedJobPrefix("Lecture 3 (final).mp4"));
+        assertEquals("", StudyLibrary.savedJobPrefix("scan_ABCDEF12.mp4"));
+        assertEquals("", StudyLibrary.savedJobPrefix(null));
+        assertEquals("Lecture 3 (final).mp4", StudyLibrary.withoutSavedSuffix("Lecture 3 (final).mp4"));
+        assertNull(library.match("", "Something else_3f2a9c1b.mkv"));
+    }
+
     @Test public void readsYoutubeIdsFromLinks() {
         assertEquals("Ft2bn8LcDDY", StudyLibrary.youtubeId("https://www.youtube.com/watch?v=Ft2bn8LcDDY"));
         assertEquals("Ft2bn8LcDDY", StudyLibrary.youtubeId("https://youtu.be/Ft2bn8LcDDY?si=x"));

@@ -93,7 +93,18 @@ final class VoiceModel {
         return true;
     }
 
-    /** Downloads every missing file in parallel ranges, verifying SHA-256 before keeping it. */
+    /** True when a download was started and not finished: it continues from where it stopped. */
+    boolean unfinished() {
+        if (installed()) return false;
+        String[] started = dir.list();
+        return started != null && started.length > 0;
+    }
+
+    /**
+     * Downloads every missing file in parallel ranges, verifying SHA-256 before keeping it.
+     * Stopping is safe at any moment: finished files are kept, and an unfinished file
+     * continues from its finished pieces next time.
+     */
     void download(LongConsumer progress, BooleanSupplier cancelled) throws IOException {
         if (!dir.isDirectory() && !dir.mkdirs()) throw new IOException("Cannot create the voice folder.");
         long before = 0;
@@ -108,17 +119,19 @@ final class VoiceModel {
                 continue;
             }
             File partial = new File(target.getPath() + ".part");
-            if (partial.exists() && !partial.delete()) throw new IOException("Cannot replace an unfinished voice file.");
+            File journal = new File(target.getPath() + ".pieces");
             final long offset = before;
             URL url = ParallelDownload.resolve(asset.url(), VoiceModel::allowedHost);
-            ParallelDownload.fetch(url, asset.size, partial, VoiceModel::allowedHost,
+            ParallelDownload.fetchResumable(url, asset.size, partial, journal, VoiceModel::allowedHost,
                     bytes -> progress.accept(offset + Math.max(0, bytes)), cancelled);
             if (!sha256(partial).equals(asset.sha256)) {
                 if (!partial.delete()) partial.deleteOnExit();
+                if (!journal.delete()) journal.deleteOnExit();
                 throw new IOException("A downloaded voice file did not match Supertone's checksum. Please try again.");
             }
             if (target.exists() && !target.delete()) throw new IOException("Cannot replace a voice file.");
             if (!partial.renameTo(target)) throw new IOException("Cannot save the voice file.");
+            if (journal.exists() && !journal.delete()) journal.deleteOnExit();
             before += asset.size;
             progress.accept(before);
         }

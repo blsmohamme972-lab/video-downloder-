@@ -54,6 +54,10 @@
             android:name=".DownloadService"
             android:exported="false"
             android:foregroundServiceType="dataSync" />
+        <service
+            android:name=".VoiceDownloadService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
         <provider
             android:name=".DownloadProvider"
             android:authorities="${applicationId}.files"

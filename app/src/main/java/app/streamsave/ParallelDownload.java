@@ -1,13 +1,18 @@
 package app.streamsave;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -54,26 +59,54 @@ final class ParallelDownload {
     /** As above; {@code cancelled} is checked between reads and stops the download with an IOException. */
     static void fetch(URL url, long size, File target, Predicate<URL> allowed, LongConsumer progress,
                       BooleanSupplier cancelled) throws IOException {
+        fetch(url, size, target, null, allowed, progress, cancelled);
+    }
+
+    /**
+     * Like {@link #fetch}, but a download that was stopped (screen closed, app or phone restarted)
+     * continues with the missing pieces only. {@code journal} lists each piece once its bytes are
+     * safely on disk. The caller must still check the whole file's SHA-256 afterwards: the journal
+     * only saves time and never replaces that check.
+     */
+    static void fetchResumable(URL url, long size, File target, File journal, Predicate<URL> allowed,
+                               LongConsumer progress, BooleanSupplier cancelled) throws IOException {
+        if (journal == null) throw new IllegalArgumentException("journal");
+        fetch(url, size, target, journal, allowed, progress, cancelled);
+    }
+
+    private static void fetch(URL url, long size, File target, File journal, Predicate<URL> allowed,
+                              LongConsumer progress, BooleanSupplier cancelled) throws IOException {
         if (size <= 0) throw new IOException("The download size is unknown.");
         if (!allowed.test(url)) throw new IOException("Unexpected update download host.");
         AtomicLong done = new AtomicLong();
-        try (RandomAccessFile out = new RandomAccessFile(target, "rw")) {
-            out.setLength(size);
+        Set<Long> finished = journal != null && target.isFile() && target.length() == size
+                ? readJournal(journal, size) : new HashSet<>();
+        if (finished.isEmpty()) {
+            if (journal != null && journal.exists() && !journal.delete()) throw new IOException("Cannot restart the download.");
+            try (RandomAccessFile out = new RandomAccessFile(target, "rw")) {
+                out.setLength(size);
+            }
         }
         if (size <= PIECE_BYTES || !supportsRanges(url, size)) {
+            if (journal != null && journal.exists() && !journal.delete()) throw new IOException("Cannot restart the download.");
             single(url, size, target, done, progress, cancelled);
             return;
         }
+        if (journal != null && finished.isEmpty()) startJournal(journal, size);
         List<long[]> pieces = new ArrayList<>();
         for (long start = 0; start < size; start += PIECE_BYTES) {
-            pieces.add(new long[]{start, Math.min(size, start + PIECE_BYTES) - 1});
+            long last = Math.min(size, start + PIECE_BYTES) - 1;
+            if (finished.contains(start)) done.addAndGet(last - start + 1);
+            else pieces.add(new long[]{start, last});
         }
+        if (done.get() > 0) progress.accept(done.get());
         ExecutorService pool = Executors.newFixedThreadPool(CONNECTIONS);
         try {
             List<Future<?>> futures = new ArrayList<>();
             for (long[] piece : pieces) {
                 futures.add(pool.submit(() -> {
-                    rangeWithRetry(url, size, piece[0], piece[1], target, done, progress, cancelled);
+                    rangeWithRetry(url, size, piece[0], piece[1], target, done, progress, cancelled, journal != null);
+                    if (journal != null) recordPiece(journal, piece[0]);
                     return null;
                 }));
             }
@@ -108,13 +141,53 @@ final class ParallelDownload {
         }
     }
 
+    // ---------- resume journal: "pieces <piece size> <file size>" then one finished piece start per line ----------
+
+    private static String journalHeader(long size) { return "pieces " + PIECE_BYTES + " " + size + "\n"; }
+
+    private static void startJournal(File journal, long size) throws IOException {
+        try (FileOutputStream out = new FileOutputStream(journal, false)) {
+            out.write(journalHeader(size).getBytes(StandardCharsets.US_ASCII));
+            out.getFD().sync();
+        }
+    }
+
+    private static synchronized void recordPiece(File journal, long start) throws IOException {
+        try (FileOutputStream out = new FileOutputStream(journal, true)) {
+            out.write((start + "\n").getBytes(StandardCharsets.US_ASCII));
+            out.getFD().sync();
+        }
+    }
+
+    /** Finished piece starts; empty when the journal is missing or belongs to another file or piece size. */
+    static Set<Long> readJournal(File journal, long size) {
+        Set<Long> finished = new HashSet<>();
+        if (!journal.isFile() || journal.length() > 1024 * 1024) return finished;
+        String text;
+        try {
+            text = new String(Files.readAllBytes(journal.toPath()), StandardCharsets.US_ASCII);
+        } catch (IOException unreadable) {
+            return finished;
+        }
+        if (!text.startsWith(journalHeader(size))) return finished;
+        // Only whole lines count: a line cut short by a crash is ignored.
+        String[] lines = text.substring(journalHeader(size).length()).split("\n", -1);
+        for (int i = 0; i < lines.length - 1; i++) {
+            try {
+                long start = Long.parseLong(lines[i]);
+                if (start >= 0 && start < size && start % PIECE_BYTES == 0) finished.add(start);
+            } catch (NumberFormatException ignored) { }
+        }
+        return finished;
+    }
+
     private static void rangeWithRetry(URL url, long size, long first, long last, File target,
-                                       AtomicLong done, LongConsumer progress, BooleanSupplier cancelled)
-            throws IOException {
+                                       AtomicLong done, LongConsumer progress, BooleanSupplier cancelled,
+                                       boolean durable) throws IOException {
         IOException lastError = null;
         for (int attempt = 0; attempt < 3; attempt++) {
             try {
-                range(url, size, first, last, target, done, progress, cancelled);
+                range(url, size, first, last, target, done, progress, cancelled, durable);
                 return;
             } catch (IOException error) {
                 if (cancelled.getAsBoolean()) throw error;
@@ -125,8 +198,8 @@ final class ParallelDownload {
     }
 
     /** Downloads one piece; on failure it removes its bytes from {@code done} before rethrowing. */
-    private static void range(URL url, long size, long first, long last, File target,
-                              AtomicLong done, LongConsumer progress, BooleanSupplier cancelled) throws IOException {
+    private static void range(URL url, long size, long first, long last, File target, AtomicLong done,
+                              LongConsumer progress, BooleanSupplier cancelled, boolean durable) throws IOException {
         HttpURLConnection connection = open(url, first, last);
         long counted = 0;
         try {
@@ -148,6 +221,7 @@ final class ParallelDownload {
                     progress.accept(done.addAndGet(n));
                 }
                 if (received != expected) throw new IOException("A part of the update was cut short.");
+                if (durable) out.getFD().sync(); // on disk before the journal says this piece is done
             }
         } catch (IOException error) {
             done.addAndGet(-counted);

@@ -12,6 +12,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * The online study library: study-packs/index.json in this repository lists
@@ -25,6 +27,8 @@ final class StudyLibrary {
             "https://raw.githubusercontent.com/blsmohamme972-lab/video-downloder-/main/study-packs/";
     static final String INDEX = "index.json";
     private static final int MAX_ENTRIES = 5000;
+    /** How StreamSave names a saved download: "<title>_<first 8 hex of the job id>.<ext>" (Publisher.filename). */
+    private static final Pattern SAVED_FILE = Pattern.compile("^(.+)_([0-9a-f]{8})(\\.[A-Za-z0-9]{1,8})?$");
 
     final List<Entry> entries;
 
@@ -88,11 +92,30 @@ final class StudyLibrary {
         if (youtubeId != null && !youtubeId.isEmpty()) {
             for (Entry entry : entries) if (entry.youtubeId.equals(youtubeId)) return entry;
         }
-        String name = normalizeName(displayName == null ? "" : displayName);
-        if (name.length() >= 4) {
-            for (Entry entry : entries) if (entry.fileNames.contains(name)) return entry;
-        }
+        String raw = displayName == null ? "" : displayName;
+        Entry entry = byFileName(normalizeName(raw));
+        // A file StreamSave saved carries "_<job id>" after the title; match the title alone too.
+        if (entry == null) entry = byFileName(normalizeName(withoutSavedSuffix(raw)));
+        return entry;
+    }
+
+    private Entry byFileName(String name) {
+        if (name.length() < 4) return null;
+        for (Entry entry : entries) if (entry.fileNames.contains(name)) return entry;
         return null;
+    }
+
+    /** The job-id prefix in a file name StreamSave saved ("Title_3f2a9c1b.mkv" -> "3f2a9c1b"), or "". */
+    static String savedJobPrefix(String displayName) {
+        Matcher m = SAVED_FILE.matcher(displayName == null ? "" : displayName.trim());
+        return m.matches() ? m.group(2) : "";
+    }
+
+    /** The file name without StreamSave's "_<job id>" suffix; unchanged for other names. */
+    static String withoutSavedSuffix(String displayName) {
+        String name = displayName == null ? "" : displayName.trim();
+        Matcher m = SAVED_FILE.matcher(name);
+        return m.matches() ? m.group(1) + (m.group(3) == null ? "" : m.group(3)) : name;
     }
 
     Entry byId(String id) {

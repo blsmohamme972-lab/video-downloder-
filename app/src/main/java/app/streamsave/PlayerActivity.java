@@ -38,7 +38,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Study player: plays a downloaded or local video, draws its study pack's
@@ -115,6 +114,8 @@ public final class PlayerActivity extends Activity {
         captionsOn = prefs.getBoolean("captions", true);
         voiceOn = prefs.getBoolean("voice", true);
         voiceModel = new VoiceModel(new File(getFilesDir(), "voice"));
+        voiceDownloading = VoiceDownloadService.running();
+        VoiceDownloadService.listen(voiceDownloadChanged);
         narrator = new Narrator(voiceModel, getCacheDir(), new Narrator.Listener() {
             @Override public void onPrepared() {
                 if (!isDestroyed()) renderStatus();
@@ -133,13 +134,15 @@ public final class PlayerActivity extends Activity {
         String uri = getIntent().getStringExtra(EXTRA_URI);
         if (uri != null && !uri.isEmpty()) {
             String key = getIntent().getStringExtra(EXTRA_KEY);
-            youtubeId = StudyLibrary.youtubeId(getIntent().getStringExtra(EXTRA_YOUTUBE));
-            open(Uri.parse(uri), key == null || key.isEmpty() ? uri : key, getIntent().getStringExtra(EXTRA_TITLE));
+            open(Uri.parse(uri), key == null || key.isEmpty() ? uri : key, getIntent().getStringExtra(EXTRA_TITLE),
+                    StudyLibrary.youtubeId(getIntent().getStringExtra(EXTRA_YOUTUBE)));
         } else if (Intent.ACTION_SEND.equals(getIntent().getAction())) {
             Uri shared = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
-            if (shared != null) open(shared, shared.toString(), null);
+            if (shared != null) open(shared, shared.toString(), null, "");
         } else if (Intent.ACTION_VIEW.equals(getIntent().getAction()) && getIntent().getData() != null) {
-            open(getIntent().getData(), getIntent().getData().toString(), null);
+            open(getIntent().getData(), getIntent().getData().toString(), null, "");
+        } else {
+            reopenLastVideo();
         }
         handler.post(tick);
     }
@@ -192,6 +195,7 @@ public final class PlayerActivity extends Activity {
 
         title = Ui.text(this, "Study player", 18, Ui.TEXT, true);
         title.setMaxLines(2);
+        title.setEllipsize(android.text.TextUtils.TruncateAt.END);
         panel.addView(title, Ui.matchWrap());
         status = Ui.text(this, "Open a video, then add its study pack.", 12.5f, Ui.MUTED, false);
         panel.addView(status, Ui.matchWrap());
@@ -371,9 +375,41 @@ public final class PlayerActivity extends Activity {
         startActivityForResult(intent, PICK_VIDEO);
     }
 
-    private void open(Uri uri, String source, String name) {
+    /** The Study player opens on the video it showed last time (also after an app update). */
+    private void reopenLastVideo() {
+        String last = prefs.getString("last_uri", "");
+        if (last.isEmpty()) return;
+        String source = prefs.getString("last_source", last);
+        String name = prefs.getString("last_title", "");
+        String youtube = prefs.getString("last_youtube", "");
+        Uri uri = Uri.parse(last);
+        status.setText("Opening your last video…");
+        io.execute(() -> {
+            boolean readable;
+            try (android.os.ParcelFileDescriptor file = getContentResolver().openFileDescriptor(uri, "r")) {
+                readable = file != null;
+            } catch (Exception gone) {
+                readable = false; // deleted, moved, or access was withdrawn
+            }
+            final boolean ok = readable;
+            handler.post(() -> {
+                if (isFinishing() || videoUri != null) return;
+                if (ok) {
+                    open(uri, source, name.isEmpty() ? null : name, youtube);
+                } else {
+                    prefs.edit().remove("last_uri").apply();
+                    status.setText("Your last video is no longer available. Choose a video.");
+                }
+            });
+        });
+    }
+
+    private void open(Uri uri, String source, String name, String youtube) {
         persistSnapshot();
         videoUri = uri;
+        youtubeId = youtube == null ? "" : youtube; // never keep the previous video's id
+        prefs.edit().putString("last_uri", uri.toString()).putString("last_source", source)
+                .putString("last_title", name == null ? "" : name).putString("last_youtube", youtubeId).apply();
         key = StudyStore.keyFor(source);
         prepared = false;
         pack = null;
@@ -387,6 +423,7 @@ public final class PlayerActivity extends Activity {
         hideQuiz();
         emptyHint.setVisibility(View.GONE);
         videoName = name != null && !name.isEmpty() ? name : displayName(uri);
+        if (youtubeId.isEmpty()) youtubeId = youtubeIdOfSavedDownload(videoName);
         title.setText(videoName);
         status.setText("Loading video…");
         video.setOnPreparedListener(player -> {
@@ -827,7 +864,11 @@ public final class PlayerActivity extends Activity {
             narrator.setPlan(null, null);
         } else if (voiceModel.installed()) {
             narrator.setPlan(narrationPlan, pack == null ? "en" : pack.language);
-        } else if (!voicePromptShown && !voiceDownloading) {
+        } else if (voiceDownloading) {
+            // The background download finishes and calls applyVoicePlan() again.
+        } else if (voiceModel.unfinished()) {
+            downloadVoice(); // the user already said yes once: continue where it stopped
+        } else if (!voicePromptShown) {
             voicePromptShown = true;
             offerVoiceDownload();
         }
@@ -857,7 +898,7 @@ public final class PlayerActivity extends Activity {
     private String voiceStatus() {
         if (narrationPlan == null) return "";
         if (!voiceOn) return " · voice-over off";
-        if (voiceDownloading) return " · downloading the voice";
+        if (voiceDownloading) return " · downloading the voice " + VoiceDownloadService.percent() + "%";
         if (!voiceModel.installed()) return " · voice-over (voice not downloaded)";
         return " · voice-over " + narrator.readyCount() + "/" + narrator.total() + " ready";
     }
@@ -978,40 +1019,39 @@ public final class PlayerActivity extends Activity {
                 .show();
     }
 
+    /** Starts or continues the one-time voice download in the background (VoiceDownloadService). */
     private void downloadVoice() {
-        if (voiceDownloading) return;
-        voiceDownloading = true;
-        final long total = VoiceModel.totalBytes();
-        final AtomicLong shown = new AtomicLong(-1);
-        status.setText("Downloading the voice… 0%");
-        voiceIo.execute(() -> {
-            String failure = null;
-            try {
-                voiceModel.download(bytes -> {
-                    long percent = Math.max(0, Math.min(100, bytes * 100 / total));
-                    if (shown.getAndSet(percent) != percent) {
-                        handler.post(() -> {
-                            if (voiceDownloading) status.setText("Downloading the voice… " + percent + "%");
-                        });
-                    }
-                }, this::isDestroyed);
-            } catch (IOException error) {
-                failure = error.getMessage() == null ? "The voice could not be downloaded." : error.getMessage();
-            }
-            final String problem = failure;
-            handler.post(() -> {
-                voiceDownloading = false;
-                if (isDestroyed()) return;
-                if (problem != null) {
-                    renderStatus();
-                    message("Voice not downloaded", problem + "\n\nTry again later from More → Voice-over settings.");
-                    return;
-                }
-                Toast.makeText(this, "Voice ready. Preparing the voice-over…", Toast.LENGTH_LONG).show();
-                applyVoicePlan();
-            });
-        });
+        if (voiceModel.installed()) { applyVoicePlan(); return; }
+        if (VoiceDownloadService.running()) return;
+        boolean continuing = voiceModel.unfinished();
+        VoiceDownloadService.start(this);
+        if (VoiceDownloadService.running()) {
+            Toast.makeText(this, continuing ? "Continuing the voice download where it stopped…"
+                    : "Downloading the voice in the background. You can leave this screen.", Toast.LENGTH_LONG).show();
+        }
     }
+
+    /** The background voice download started, progressed or ended. */
+    private final Runnable voiceDownloadChanged = new Runnable() {
+        @Override public void run() {
+            if (isDestroyed()) return;
+            boolean wasDownloading = voiceDownloading;
+            voiceDownloading = VoiceDownloadService.running();
+            if (voiceDownloading) {
+                if (videoUri != null) status.setText("Downloading the voice… " + VoiceDownloadService.percent() + "%");
+                return;
+            }
+            String problem = VoiceDownloadService.takeFailure();
+            renderStatus();
+            if (voiceModel.installed()) {
+                if (wasDownloading) Toast.makeText(PlayerActivity.this, "Voice ready. Preparing the voice-over…", Toast.LENGTH_LONG).show();
+                applyVoicePlan();
+            } else if (!problem.isEmpty()) {
+                message("Voice download stopped", problem + "\n\nNothing downloaded so far is lost. Open the "
+                        + "voice-over again, or use More → Voice-over settings, to continue where it stopped.");
+            }
+        }
+    };
 
     private void voiceSettings() {
         String voice = prefs.getString("voice_name", Narrator.DEFAULT_VOICE);
@@ -1023,14 +1063,19 @@ public final class PlayerActivity extends Activity {
                 "Voice: " + voice,
                 "Quality: " + steps + " steps",
                 String.format(Locale.US, "Speed: %.2f×", speed),
-                installed ? "Remove the voice model (" + mb + " MB)" : "Download the voice model (" + mb + " MB)",
+                installed ? "Remove the voice model (" + mb + " MB)"
+                        : VoiceDownloadService.running() ? "Stop the voice download (" + VoiceDownloadService.percent() + "%, kept for later)"
+                        : voiceModel.unfinished() ? "Continue the voice download (" + mb + " MB)"
+                        : "Download the voice model (" + mb + " MB)",
                 "Voice model license (Supertone, OpenRAIL-M)"};
         new AlertDialog.Builder(this).setTitle("Voice-over").setItems(items, (dialog, which) -> {
             if (which == 0) chooseVoice(voice);
             else if (which == 1) chooseSteps(steps);
             else if (which == 2) chooseSpeed(speed);
             else if (which == 3) {
-                if (installed) confirmRemoveVoice(); else downloadVoice();
+                if (installed) confirmRemoveVoice();
+                else if (VoiceDownloadService.running()) VoiceDownloadService.stop();
+                else downloadVoice();
             } else openVoiceLicense();
         }).show();
     }
@@ -1082,6 +1127,7 @@ public final class PlayerActivity extends Activity {
     }
 
     private void confirmRemoveVoice() {
+        if (VoiceDownloadService.running()) return;
         new AlertDialog.Builder(this).setTitle("Remove the voice model?")
                 .setMessage("Frees " + VoiceModel.totalBytes() / (1024 * 1024) + " MB. Voice-overs play again after "
                         + "downloading it once more.")
@@ -1325,7 +1371,7 @@ public final class PlayerActivity extends Activity {
             } catch (SecurityException ignored) {
                 // Some providers grant only temporary access; the video still opens now.
             }
-            open(uri, uri.toString(), null);
+            open(uri, uri.toString(), null, "");
         } else if (request == PICK_PACK) {
             if (videoUri == null) { message("Study pack", "Open the video first, then add its study pack."); return; }
             importPack(uri);
@@ -1340,6 +1386,7 @@ public final class PlayerActivity extends Activity {
     }
 
     @Override protected void onDestroy() {
+        VoiceDownloadService.unlisten(voiceDownloadChanged); // the download itself keeps going
         handler.removeCallbacksAndMessages(null);
         stopVoice();
         if (video != null) video.stopPlayback();
@@ -1347,6 +1394,23 @@ public final class PlayerActivity extends Activity {
         voiceIo.shutdownNow();
         io.shutdown();
         super.onDestroy();
+    }
+
+    /**
+     * A video StreamSave downloaded and saved as "<title>_<job id>.<ext>" (opened from the gallery,
+     * Files or "Open another video") still gets its YouTube id from the download history, so its
+     * study pack is found exactly as from Library → Study. "" for any other file.
+     */
+    private String youtubeIdOfSavedDownload(String fileName) {
+        String prefix = StudyLibrary.savedJobPrefix(fileName);
+        if (prefix.isEmpty()) return "";
+        String titlePart = StudyLibrary.normalizeName(StudyLibrary.withoutSavedSuffix(fileName));
+        for (Job job : ((App) getApplication()).jobs()) {
+            if (job.id.startsWith(prefix) && StudyLibrary.normalizeName(job.title).startsWith(titlePart)) {
+                return StudyLibrary.youtubeId(job.url);
+            }
+        }
+        return "";
     }
 
     private String displayName(Uri uri) {

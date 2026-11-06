@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.1
+
+- **The Study player finds a video's pack (and voice-over) when the video is opened as a file.** A video StreamSave downloaded is saved as "Title_1a2b3c4d.mkv". Opened from the gallery, Files, or **Open another video**, that name did not match the study library, so the player said "No study pack yet". It now recognises StreamSave's own saved files and matches them like **Library → Study**, by their YouTube link.
+- **The voice download is never lost.**
+  - It continues in the background (with a notification and a Stop button) when you leave the Study player, open another app or turn the screen off.
+  - If it is interrupted anyway (closed app, update, restart, lost connection), it continues where it stopped: finished files and every finished 4 MB piece are kept. Every file is still checked against Supertone's SHA-256 before use.
+  - Once you have said yes to the download, an unfinished download continues by itself the next time a video with voice-over opens.
+- **The Study player remembers your video.** It opens on the last video you watched, also after an app update, with its pack, notes and answers.
+- Opening another video in the Study player no longer keeps the previous video's YouTube link.
+- Long video titles end with "…" instead of being cut off silently.
+
 ## 2.1.0
 
 - **On-device voice-over.** A study pack can include voice-over lines (`narration`). The Study player speaks each line at its time with Supertone's Supertonic 3 voice, created on the phone with no internet after a one-time 383 MB voice download. That download comes directly from Supertone, at a pinned revision checked by SHA-256.

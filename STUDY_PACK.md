@@ -23,7 +23,7 @@ The app never changes the video and never runs anything from a pack: a pack is o
 
 New versions of a pack install themselves the next time the video is opened, and saved answers are kept. **More → Retake all questions** resets them.
 
-Packs are matched to the video by its YouTube id (downloads) or by its file name (other videos). If no pack matches, **Update pack** lists all published packs so you can choose one with one tap. **More → Add a study pack file…** still accepts a pack file for offline use.
+Packs are matched to the video by its YouTube id (downloads, including StreamSave's saved files opened from the gallery or Files) or by its file name (other videos). If no pack matches, **Update pack** lists all published packs so you can choose one with one tap. **More → Add a study pack file…** still accepts a pack file for offline use.
 
 Packs in the study library are public, like the rest of this repository: publish packs only for videos you may share, and never include patient-identifying details.
 
@@ -100,7 +100,7 @@ Each caption is `{startMs, endMs, text}`, with `text` up to 300 characters. Over
 
 ### Voice-over (`narration`)
 
-Spoken commentary that the phone creates with Supertone's Supertonic 3 voice. The first time a pack with narration is opened, the app downloads the voice model once (383 MB) from Supertone. It works offline after that.
+Spoken commentary that the phone creates with Supertone's Supertonic 3 voice. The first time a pack with narration is opened, the app downloads the voice model once (383 MB) from Supertone, in the background; an interrupted download continues where it stopped. It works offline after that.
 
 ```json
 "narration": [
