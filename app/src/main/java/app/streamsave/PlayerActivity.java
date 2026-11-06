@@ -50,6 +50,11 @@ public final class PlayerActivity extends Activity {
     static final String EXTRA_KEY = "video_key";
     static final String EXTRA_TITLE = "title";
     static final String EXTRA_YOUTUBE = "youtube_url";
+    /** Opened from the Library's "Study videos": check the file is still there first. */
+    static final String EXTRA_RECENT = "recent";
+    static final String RECENTS = "recent_videos";
+    /** The video's own sound while the voice-over is on (the user can change it in Voice-over settings). */
+    static final float DEFAULT_VIDEO_SOUND = 0.15f;
     private static final int MAX_INDEX_BYTES = 1024 * 1024;
     private static final int PICK_VIDEO = 301;
     private static final int PICK_PACK = 302;
@@ -134,8 +139,13 @@ public final class PlayerActivity extends Activity {
         String uri = getIntent().getStringExtra(EXTRA_URI);
         if (uri != null && !uri.isEmpty()) {
             String key = getIntent().getStringExtra(EXTRA_KEY);
-            open(Uri.parse(uri), key == null || key.isEmpty() ? uri : key, getIntent().getStringExtra(EXTRA_TITLE),
-                    StudyLibrary.youtubeId(getIntent().getStringExtra(EXTRA_YOUTUBE)));
+            String source = key == null || key.isEmpty() ? uri : key;
+            String youtube = StudyLibrary.youtubeId(getIntent().getStringExtra(EXTRA_YOUTUBE));
+            if (getIntent().getBooleanExtra(EXTRA_RECENT, false)) {
+                reopen(Uri.parse(uri), source, getIntent().getStringExtra(EXTRA_TITLE), youtube);
+            } else {
+                open(Uri.parse(uri), source, getIntent().getStringExtra(EXTRA_TITLE), youtube);
+            }
         } else if (Intent.ACTION_SEND.equals(getIntent().getAction())) {
             Uri shared = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
             if (shared != null) open(shared, shared.toString(), null, "");
@@ -379,11 +389,13 @@ public final class PlayerActivity extends Activity {
     private void reopenLastVideo() {
         String last = prefs.getString("last_uri", "");
         if (last.isEmpty()) return;
-        String source = prefs.getString("last_source", last);
-        String name = prefs.getString("last_title", "");
-        String youtube = prefs.getString("last_youtube", "");
-        Uri uri = Uri.parse(last);
-        status.setText("Opening your last video…");
+        reopen(Uri.parse(last), prefs.getString("last_source", last), prefs.getString("last_title", ""),
+                prefs.getString("last_youtube", ""));
+    }
+
+    /** Opens a video seen before, after checking it is still there and readable. */
+    private void reopen(Uri uri, String source, String name, String youtube) {
+        status.setText("Opening your video…");
         io.execute(() -> {
             boolean readable;
             try (android.os.ParcelFileDescriptor file = getContentResolver().openFileDescriptor(uri, "r")) {
@@ -395,10 +407,12 @@ public final class PlayerActivity extends Activity {
             handler.post(() -> {
                 if (isFinishing() || videoUri != null) return;
                 if (ok) {
-                    open(uri, source, name.isEmpty() ? null : name, youtube);
+                    open(uri, source, name == null || name.isEmpty() ? null : name, youtube);
                 } else {
-                    prefs.edit().remove("last_uri").apply();
-                    status.setText("Your last video is no longer available. Choose a video.");
+                    if (uri.toString().equals(prefs.getString("last_uri", ""))) prefs.edit().remove("last_uri").apply();
+                    prefs.edit().putString(RECENTS, StudyRecents.remove(prefs.getString(RECENTS, ""), uri.toString())).apply();
+                    status.setText("This video is no longer available here (moved, deleted, or access was withdrawn). "
+                            + "Tap Choose a video to open it again.");
                 }
             });
         });
@@ -424,11 +438,16 @@ public final class PlayerActivity extends Activity {
         emptyHint.setVisibility(View.GONE);
         videoName = name != null && !name.isEmpty() ? name : displayName(uri);
         if (youtubeId.isEmpty()) youtubeId = youtubeIdOfSavedDownload(videoName);
+        if (!source.startsWith("job:")) { // StreamSave's own downloads are already listed in the Library
+            prefs.edit().putString(RECENTS, StudyRecents.add(prefs.getString(RECENTS, ""), new StudyRecents.Item(
+                    uri.toString(), source, videoName, youtubeId, System.currentTimeMillis()))).apply();
+        }
         title.setText(videoName);
         status.setText("Loading video…");
         video.setOnPreparedListener(player -> {
             prepared = true;
             videoPlayer = player; // kept to lower the video's sound under the voice-over
+            duck(speaking != null);
             videoSize[0] = player.getVideoWidth();
             videoSize[1] = player.getVideoHeight();
             player.setOnVideoSizeChangedListener((mp, w, h) -> {
@@ -599,7 +618,8 @@ public final class PlayerActivity extends Activity {
         notesButton.setText(notes.isEmpty() ? "Notes" : "Notes (" + notes.size() + ")");
         if (videoUri == null) return;
         if (pack == null) {
-            status.setText("No study pack yet. Send this video's Google Drive link to your AI assistant, then tap Update pack.");
+            status.setText("No study pack for this video yet: no drawings, questions or voice-over. "
+                    + "Tap Update pack to choose one from the study library.");
         } else {
             status.setText(pack.title + " · " + pack.overlays.size() + " drawings · "
                     + pack.questions.size() + " questions" + (pack.captions.isEmpty() ? "" : " · captions")
@@ -665,6 +685,15 @@ public final class PlayerActivity extends Activity {
             }
             StudyLibrary.Entry entry = library.match(youtube, name);
             if (entry == null && installed.contains("@")) entry = library.byId(installed.substring(0, installed.indexOf('@')));
+            if (entry == null && !manual && !hasPack && !library.entries.isEmpty()
+                    && !prefs.getBoolean("asked:" + target, false)) {
+                handler.post(() -> {
+                    if (isFinishing() || !target.equals(key) || pack != null) return;
+                    prefs.edit().putBoolean("asked:" + target, true).apply();
+                    offerLibrary(library, "Which study pack belongs to this video?");
+                });
+                return;
+            }
             if (entry == null) {
                 if (manual) handler.post(() -> {
                     renderStatus();
@@ -715,7 +744,8 @@ public final class PlayerActivity extends Activity {
         for (int i = 0; i < titles.length; i++) titles[i] = library.entries.get(i).title;
         final String target = key;
         new AlertDialog.Builder(this).setTitle(heading).setItems(titles, (dialog, which) ->
-                io.execute(() -> installFromLibrary(library.entries.get(which), target, true))).show();
+                io.execute(() -> installFromLibrary(library.entries.get(which), target, true)))
+                .setNegativeButton("None of these", null).show();
     }
 
     /** Runs on the io thread. Keeps quiz answers: question ids stay stable across pack versions. */
@@ -872,6 +902,7 @@ public final class PlayerActivity extends Activity {
             voicePromptShown = true;
             offerVoiceDownload();
         }
+        duck(speaking != null);
         renderStatus();
     }
 
@@ -995,10 +1026,16 @@ public final class PlayerActivity extends Activity {
     }
 
     /** Lowers the video's own sound while a line is spoken. */
-    private void duck(boolean on) {
+    /**
+     * The video's own sound: full without a voice-over; with one, the user's level (15% by default)
+     * so the voice is clear, and lower still while a line is being spoken.
+     */
+    private void duck(boolean speakingLine) {
         if (videoPlayer == null) return;
+        boolean voiceOver = narrationPlan != null && voiceOn && voiceModel.installed();
+        float level = prefs.getFloat("video_sound", DEFAULT_VIDEO_SOUND);
+        float volume = !voiceOver ? 1f : speakingLine ? level * 0.4f : level;
         try {
-            float volume = on ? 0.2f : 1f;
             videoPlayer.setVolume(volume, volume);
         } catch (IllegalStateException ignored) {
             // the video player was released (a new video is opening)
@@ -1044,7 +1081,10 @@ public final class PlayerActivity extends Activity {
             String problem = VoiceDownloadService.takeFailure();
             renderStatus();
             if (voiceModel.installed()) {
-                if (wasDownloading) Toast.makeText(PlayerActivity.this, "Voice ready. Preparing the voice-over…", Toast.LENGTH_LONG).show();
+                if (wasDownloading) {
+                    Toast.makeText(PlayerActivity.this, narrationPlan != null ? "Voice ready. Preparing the voice-over…"
+                            : "Voice ready. It speaks in videos whose study pack has a voice-over.", Toast.LENGTH_LONG).show();
+                }
                 applyVoicePlan();
             } else if (!problem.isEmpty()) {
                 message("Voice download stopped", problem + "\n\nNothing downloaded so far is lost. Open the "
@@ -1063,6 +1103,7 @@ public final class PlayerActivity extends Activity {
                 "Voice: " + voice,
                 "Quality: " + steps + " steps",
                 String.format(Locale.US, "Speed: %.2f×", speed),
+                "Video's own sound during voice-over: " + soundLabel(prefs.getFloat("video_sound", DEFAULT_VIDEO_SOUND)),
                 installed ? "Remove the voice model (" + mb + " MB)"
                         : VoiceDownloadService.running() ? "Stop the voice download (" + VoiceDownloadService.percent() + "%, kept for later)"
                         : voiceModel.unfinished() ? "Continue the voice download (" + mb + " MB)"
@@ -1072,7 +1113,8 @@ public final class PlayerActivity extends Activity {
             if (which == 0) chooseVoice(voice);
             else if (which == 1) chooseSteps(steps);
             else if (which == 2) chooseSpeed(speed);
-            else if (which == 3) {
+            else if (which == 3) chooseVideoSound();
+            else if (which == 4) {
                 if (installed) confirmRemoveVoice();
                 else if (VoiceDownloadService.running()) VoiceDownloadService.stop();
                 else downloadVoice();
@@ -1115,6 +1157,27 @@ public final class PlayerActivity extends Activity {
             dialog.dismiss();
             applyVoiceSettings();
         }).show();
+    }
+
+    private static String soundLabel(float level) {
+        return level <= 0f ? "off" : Math.round(level * 100) + "%";
+    }
+
+    private void chooseVideoSound() {
+        float[] values = {0f, 0.05f, 0.1f, 0.15f, 0.25f, 0.5f, 1f};
+        String[] labels = new String[values.length];
+        float current = prefs.getFloat("video_sound", DEFAULT_VIDEO_SOUND);
+        int checked = 3;
+        for (int i = 0; i < values.length; i++) {
+            labels[i] = soundLabel(values[i]) + (values[i] == DEFAULT_VIDEO_SOUND ? " (default)" : "");
+            if (Math.abs(values[i] - current) < 0.001f) checked = i;
+        }
+        new AlertDialog.Builder(this).setTitle("Video's own sound during voice-over")
+                .setSingleChoiceItems(labels, checked, (dialog, which) -> {
+                    prefs.edit().putFloat("video_sound", values[which]).apply();
+                    dialog.dismiss();
+                    duck(speaking != null);
+                }).show();
     }
 
     private void applyVoiceSettings() {

@@ -9,6 +9,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.net.Uri;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -62,6 +63,8 @@ public final class MainActivity extends Activity {
     private LinearLayout analysisRow;
     private LinearLayout homeEmpty;
     private LinearLayout libraryEmpty;
+    private LinearLayout studyColumn;
+    private int studyCount;
     private ScrollView homeScroll;
     private ScrollView libraryScroll;
     private EditText linkInput;
@@ -438,6 +441,8 @@ public final class MainActivity extends Activity {
         librarySummary = Ui.text(this, "Saved and unfinished downloads, all in one place.", 13, Ui.MUTED, false);
         libraryPage.addView(librarySummary, Ui.matchWrap());
         libraryPage.addView(Ui.spacer(this, 22));
+        studyColumn = Ui.vertical(this);
+        libraryPage.addView(studyColumn, Ui.matchWrap());
         libraryJobs = new JobList();
         libraryPage.addView(libraryJobs.column, Ui.matchWrap());
         libraryEmpty = emptyCard(true);
@@ -476,6 +481,64 @@ public final class MainActivity extends Activity {
             panel.addView(start, Ui.matchWrap());
         }
         return panel;
+    }
+
+    /**
+     * Videos opened in the Study player from Drive, Files or elsewhere (StreamSave's own downloads
+     * are listed below them). One tap reopens a video with its pack, notes and answers.
+     */
+    private void renderStudyVideos() {
+        if (studyColumn == null) return;
+        SharedPreferences study = getSharedPreferences("study_player", MODE_PRIVATE);
+        List<StudyRecents.Item> items = StudyRecents.parse(study.getString(PlayerActivity.RECENTS, ""));
+        studyColumn.removeAllViews();
+        studyCount = items.size();
+        if (!items.isEmpty()) {
+            TextView heading = Ui.text(this, "Study videos", 16, Ui.TEXT, true);
+            studyColumn.addView(heading, Ui.matchWrap());
+            studyColumn.addView(Ui.spacer(this, 10));
+        }
+        for (StudyRecents.Item item : items) {
+            LinearLayout panel = card(18);
+            TextView name = Ui.text(this, StudyRecents.displayTitle(item.title), 15, Ui.TEXT, true);
+            name.setMaxLines(2);
+            name.setEllipsize(android.text.TextUtils.TruncateAt.END);
+            panel.addView(name, Ui.matchWrap());
+            panel.addView(Ui.text(this, "Opened " + android.text.format.DateUtils.getRelativeTimeSpanString(
+                    item.openedAt, System.currentTimeMillis(), android.text.format.DateUtils.MINUTE_IN_MILLIS)
+                    + " in the Study player", 12, Ui.MUTED, false), Ui.matchWrap());
+            panel.addView(Ui.spacer(this, 12));
+            LinearLayout row = Ui.horizontal(this);
+            Button open = Ui.button(this, "Study", true);
+            Ui.buttonIcon(open, "play", Ui.INK);
+            open.setOnClickListener(view -> {
+                Intent intent = new Intent(this, PlayerActivity.class)
+                        .putExtra(PlayerActivity.EXTRA_URI, item.uri)
+                        .putExtra(PlayerActivity.EXTRA_KEY, item.source)
+                        .putExtra(PlayerActivity.EXTRA_TITLE, item.title)
+                        .putExtra(PlayerActivity.EXTRA_RECENT, true);
+                if (!item.youtubeId.isEmpty()) {
+                    intent.putExtra(PlayerActivity.EXTRA_YOUTUBE, "https://www.youtube.com/watch?v=" + item.youtubeId);
+                }
+                startActivity(intent);
+            });
+            row.addView(open, new LinearLayout.LayoutParams(0, -2, 2));
+            Button remove = Ui.button(this, "Remove", false);
+            remove.setOnClickListener(view -> {
+                study.edit().putString(PlayerActivity.RECENTS,
+                        StudyRecents.remove(study.getString(PlayerActivity.RECENTS, ""), item.uri)).apply();
+                renderStudyVideos();
+            });
+            LinearLayout.LayoutParams removeParams = new LinearLayout.LayoutParams(0, -2, 1);
+            removeParams.setMarginStart(dp(8));
+            row.addView(remove, removeParams);
+            panel.addView(row, Ui.matchWrap());
+            LinearLayout.LayoutParams params = Ui.matchWrap();
+            params.bottomMargin = dp(12);
+            studyColumn.addView(panel, params);
+        }
+        if (!items.isEmpty()) studyColumn.addView(Ui.spacer(this, 10));
+        renderJobs();
     }
 
     private LinearLayout card(int padding) {
@@ -570,7 +633,7 @@ public final class MainActivity extends Activity {
         homeJobs.update(recent);
         libraryJobs.update(all);
         homeEmpty.setVisibility(recent.isEmpty() ? View.VISIBLE : View.GONE);
-        libraryEmpty.setVisibility(all.isEmpty() ? View.VISIBLE : View.GONE);
+        libraryEmpty.setVisibility(all.isEmpty() && studyCount == 0 ? View.VISIBLE : View.GONE);
         libraryTab.setText(all.isEmpty() ? "Library" : "Library  ·  " + all.size());
         if (all.isEmpty()) librarySummary.setText("Saved and unfinished downloads, all in one place.");
         else {
@@ -810,6 +873,7 @@ public final class MainActivity extends Activity {
 
     @Override protected void onResume() {
         super.onResume();
+        renderStudyVideos();
         if (installUpdateAfterPermission && (Build.VERSION.SDK_INT < 26
                 || getPackageManager().canRequestPackageInstalls())) {
             installUpdateAfterPermission = false;

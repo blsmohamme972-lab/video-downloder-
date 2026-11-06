@@ -120,7 +120,7 @@ Spoken commentary that the phone creates with Supertone's Supertonic 3 voice. Th
 
 **Playback rules:**
 - Lines start only when playback passes `startMs`, like questions.
-- While a line is spoken, the video's sound is lowered.
+- While the voice-over is on, the video's own sound plays at 15%, and lower still while a line is spoken. The level can be changed in **More → Voice-over settings**.
 - A seek, a question or pausing stops the line.
 
 **Writing good lines:**

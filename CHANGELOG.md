@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1.2
+
+- **Study videos stay in the Library.** Videos opened in the Study player from Google Drive, Files or elsewhere are listed under **Library → Study videos**, newest first, with **Study** (reopens it with its pack, notes and answers) and **Remove** (only takes it off the list). Before, the Library only listed StreamSave's own downloads, so these videos seemed to disappear.
+- **The video's own sound is quiet during the voice-over:** 15% while the voice-over is on and lower still while a line is spoken (it was full volume between lines). Change it in **More → Voice-over settings → Video's own sound** (off, 5%–100%).
+- **Honest messages.** After the voice download, the app says "Preparing the voice-over" only when the video's pack has one. A video without a pack says so plainly and points to **Update pack**.
+- The first time a video without a matching pack is opened, the player asks once which study pack belongs to it (one tap, or "None of these").
+
 ## 2.1.1
 
 - **The Study player finds a video's pack (and voice-over) when the video is opened as a file.** A video StreamSave downloaded is saved as "Title_1a2b3c4d.mkv". Opened from the gallery, Files, or **Open another video**, that name did not match the study library, so the player said "No study pack yet". It now recognises StreamSave's own saved files and matches them like **Library → Study**, by their YouTube link.

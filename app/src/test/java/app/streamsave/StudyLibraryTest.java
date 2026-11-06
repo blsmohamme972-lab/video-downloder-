@@ -51,6 +51,12 @@ public final class StudyLibraryTest {
         assertEquals("", StudyLibrary.savedJobPrefix(null));
         assertEquals("Lecture 3 (final).mp4", StudyLibrary.withoutSavedSuffix("Lecture 3 (final).mp4"));
         assertNull(library.match("", "Something else_3f2a9c1b.mkv"));
+
+        // The owner's real file (saved by StreamSave, opened from Google Drive) and the YouTube title.
+        StudyLibrary published = StudyLibrary.parse("{\"packs\":[{\"id\":\"aortic\",\"fileNames\":"
+                + "[\"Tip 1 Aort Diseksiyonu – Acil Kalp Ameliyatı | Type 1 Aortic Dissection Surgery (Surgeon’s View)\"]}]}");
+        assertEquals("aortic", published.match("", "Tip 1 Aort Diseksiyonu – Acil Kalp Ameliyatı _ Type 1 Aortic "
+                + "Dissection Surgery (Surgeon’s View)_26a2accb.mkv").id);
     }
 
     @Test public void readsYoutubeIdsFromLinks() {
