@@ -150,4 +150,24 @@ public final class EngineTest {
                 .put("ext", ext).put("filesize", bytes).put("fps", 30)
                 .put("url", "https://media.example/" + id).put("protocol", "https");
     }
+
+    /** The engine update must accept yt-dlp's real file format: a "#!" line followed by a ZIP. */
+    @Test public void engineUpdateAcceptsTheZipappWithItsShebangLine() throws Exception {
+        java.io.ByteArrayOutputStream bytes = new java.io.ByteArrayOutputStream();
+        bytes.write("#!/usr/bin/env python3\n".getBytes(java.nio.charset.StandardCharsets.US_ASCII));
+        try (java.util.zip.ZipOutputStream zip = new java.util.zip.ZipOutputStream(bytes)) {
+            zip.putNextEntry(new java.util.zip.ZipEntry("yt_dlp/__init__.py"));
+            zip.write(new byte[]{'#'});
+            zip.putNextEntry(new java.util.zip.ZipEntry("yt_dlp/version.py"));
+            zip.write("__version__ = '2026.10.26'".getBytes(java.nio.charset.StandardCharsets.US_ASCII));
+        }
+        byte[] app = bytes.toByteArray();
+        assertEquals(23, Engine.zipStart(app));
+        assertTrue(Engine.isEngineArchive(app));
+        assertFalse("an HTML error page is not an engine", Engine.isEngineArchive(
+                "<!doctype html><title>Error</title>".getBytes(java.nio.charset.StandardCharsets.US_ASCII)));
+        // The pinned engine itself, when prepared locally or in CI.
+        java.io.File real = new java.io.File("src/main/res/raw/ytdlp");
+        if (real.isFile()) assertTrue(Engine.isEngineArchive(java.nio.file.Files.readAllBytes(real.toPath())));
+    }
 }

@@ -37,7 +37,6 @@ import java.util.function.BooleanSupplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 
 /**
  * Local yt-dlp/FFmpeg engine. No download proxy or account credentials are used.
@@ -326,11 +325,8 @@ public final class Engine {
                 output.write(binary);
                 output.getFD().sync();
             }
-            try (ZipFile zip = new ZipFile(staged)) {
-                ZipEntry version = zip.getEntry("yt_dlp/version.py");
-                if (version == null || zip.getEntry("yt_dlp/__init__.py") == null) {
-                    throw new IOException("The downloaded engine is incomplete. The current engine has been kept.");
-                }
+            if (!isEngineArchive(binary)) {
+                throw new IOException("The downloaded engine is incomplete. The current engine has been kept.");
             }
             File installed = new File(engineDir, "yt-dlp");
             File previous = new File(engineDir, "yt-dlp.previous");
@@ -354,6 +350,38 @@ public final class Engine {
             if (staged != null && staged.exists()) staged.delete();
             operations.writeLock().unlock();
         }
+    }
+
+    /**
+     * yt-dlp is published as a Python zipapp: a "#!/usr/bin/env python3" line
+     * followed by a ZIP. Android's ZipFile refuses files with data before the
+     * first entry ("Entry at offset zero has invalid LFH signature"), so the
+     * ZIP part is read directly to confirm the engine's modules are present.
+     */
+    static boolean isEngineArchive(byte[] binary) throws IOException {
+        int start = zipStart(binary);
+        if (start < 0) return false;
+        boolean version = false, init = false;
+        try (java.util.zip.ZipInputStream zip = new java.util.zip.ZipInputStream(
+                new java.io.ByteArrayInputStream(binary, start, binary.length - start))) {
+            ZipEntry entry;
+            while ((entry = zip.getNextEntry()) != null) {
+                String name = entry.getName();
+                if (name.equals("yt_dlp/version.py")) version = true;
+                if (name.equals("yt_dlp/__init__.py")) init = true;
+                if (version && init) return true;
+            }
+        }
+        return false;
+    }
+
+    /** Offset of the first ZIP local header within the first 4 KiB (after an optional "#!" line), or -1. */
+    static int zipStart(byte[] data) {
+        int limit = Math.min(data.length - 4, 4096);
+        for (int i = 0; i <= limit; i++) {
+            if (data[i] == 'P' && data[i + 1] == 'K' && data[i + 2] == 3 && data[i + 3] == 4) return i;
+        }
+        return -1;
     }
 
     public static String normalizeUrl(String pastedText) throws IllegalArgumentException {

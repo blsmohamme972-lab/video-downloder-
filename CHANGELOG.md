@@ -15,6 +15,7 @@
   Defaults: **F1, English, 12 steps, 1.30×**.
 - The Java pipeline follows Supertone's official SDK exactly. Locally, with the same random noise, its audio was identical to the Python SDK's (difference 0.0).
 - The APK is about 13 MB larger because of ONNX Runtime; the voice model itself is never part of an update.
+- Fixed **Update download engine** on newer Android: yt-dlp is published as a Python zipapp (a `#!` line before the ZIP), which Android's ZipFile rejects ("Entry at offset zero has invalid LFH signature"). The update now checks the ZIP part directly; the SHA-256 check and restoring the previous engine on failure are unchanged.
 
 ## 2.0.2
 
