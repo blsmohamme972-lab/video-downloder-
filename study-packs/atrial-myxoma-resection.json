@@ -1,0 +1,1780 @@
+{
+ "schemaVersion": 2,
+ "title": "Atrial myxoma removal (Prof. Dr. Tolga Demir)",
+ "language": "en",
+ "durationMs": 3233948,
+ "overlays": [
+  {
+   "id": "label-0244",
+   "type": "label",
+   "startMs": 164000,
+   "endMs": 170000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Skin incision",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-0712",
+   "type": "label",
+   "startMs": 432000,
+   "endMs": 438000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Opening the pericardium",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-0813",
+   "type": "label",
+   "startMs": 493000,
+   "endMs": 499000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Pericardial stay sutures",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-1000",
+   "type": "label",
+   "startMs": 600000,
+   "endMs": 606000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Aortic cannula purse string",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-1144",
+   "type": "label",
+   "startMs": 704000,
+   "endMs": 710000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Superior vena cava purse string",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-1600",
+   "type": "label",
+   "startMs": 960000,
+   "endMs": 966000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Superior vena cava cannulation",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-2429",
+   "type": "label",
+   "startMs": 1469000,
+   "endMs": 1475000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Placing the cross-clamp",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-2614",
+   "type": "label",
+   "startMs": 1574000,
+   "endMs": 1580000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Right atriotomy",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-2944",
+   "type": "label",
+   "startMs": 1784000,
+   "endMs": 1790000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Opening the interatrial septum",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-3229",
+   "type": "label",
+   "startMs": 1949000,
+   "endMs": 1955000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Cutting the myxoma stalk",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-3300",
+   "type": "label",
+   "startMs": 1980000,
+   "endMs": 1988000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "The removed myxoma",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-3329",
+   "type": "label",
+   "startMs": 2009000,
+   "endMs": 2015000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Mitral valve check",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-4124",
+   "type": "label",
+   "startMs": 2484000,
+   "endMs": 2490000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Tricuspid valve check",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-4229",
+   "type": "label",
+   "startMs": 2549000,
+   "endMs": 2555000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Closing the right atriotomy",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-4444",
+   "type": "label",
+   "startMs": 2684000,
+   "endMs": 2690000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Removing the cross-clamp",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-4500",
+   "type": "label",
+   "startMs": 2700000,
+   "endMs": 2705000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Heart beating on its own",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-4514",
+   "type": "label",
+   "startMs": 2714000,
+   "endMs": 2720000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Off bypass and decannulation",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-4814",
+   "type": "label",
+   "startMs": 2894000,
+   "endMs": 2900000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Closing the subcutaneous tissue",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "label-5200",
+   "type": "label",
+   "startMs": 3120000,
+   "endMs": 3126000,
+   "x": 0.5,
+   "y": 0.09,
+   "text": "Wound dressing",
+   "color": "#64E8BF",
+   "animation": "fade"
+  },
+  {
+   "id": "note-2130",
+   "type": "note",
+   "startMs": 1290000,
+   "endMs": 1299000,
+   "x": 0.5,
+   "y": 0.22,
+   "text": "No left heart vent: it could break up the tumour",
+   "color": "#FFCE79",
+   "animation": "pop"
+  },
+  {
+   "id": "note-3046",
+   "type": "note",
+   "startMs": 1846000,
+   "endMs": 1853000,
+   "x": 0.5,
+   "y": 0.22,
+   "text": "Myxoma is friable: stay away from it",
+   "color": "#FFCE79",
+   "animation": "pop"
+  },
+  {
+   "id": "note-3432",
+   "type": "note",
+   "startMs": 2072000,
+   "endMs": 2081000,
+   "x": 0.5,
+   "y": 0.22,
+   "text": "Very thin septum: closed with a pledget",
+   "color": "#FFCE79",
+   "animation": "pop"
+  },
+  {
+   "id": "note-3812",
+   "type": "note",
+   "startMs": 2292000,
+   "endMs": 2300000,
+   "x": 0.5,
+   "y": 0.22,
+   "text": "De-airing: hand ventilation, head down",
+   "color": "#FFCE79",
+   "animation": "pop"
+  },
+  {
+   "id": "note-4446",
+   "type": "note",
+   "startMs": 2686000,
+   "endMs": 2694000,
+   "x": 0.5,
+   "y": 0.22,
+   "text": "Carotids pressed to protect the brain from air",
+   "color": "#FFCE79",
+   "animation": "pop"
+  }
+ ],
+ "questions": [
+  {
+   "id": "m00",
+   "startMs": 0,
+   "endMs": 60000,
+   "question": "What did the echocardiogram before surgery show?",
+   "options": [
+    "A giant tumour attached to the atrial septum, moving in and out of the mitral valve",
+    "A vegetation on the aortic valve",
+    "A thrombus in the left atrial appendage",
+    "A pericardial cyst"
+   ],
+   "answer": 0,
+   "explanation": "The echo caption says a giant cardiac tumour (myxoma) attached to the atrial septum was moving in and out of the mitral valve in a 60-year-old woman."
+  },
+  {
+   "id": "m01",
+   "startMs": 60000,
+   "endMs": 120000,
+   "question": "What is the surgeon doing in this minute?",
+   "options": [
+    "Inspecting the instruments",
+    "The surgical hand scrub before gowning",
+    "Positioning the patient",
+    "Marking the incision"
+   ],
+   "answer": 1,
+   "explanation": "Hands and forearms are scrubbed systematically before gown and gloves go on."
+  },
+  {
+   "id": "m02",
+   "startMs": 120000,
+   "endMs": 180000,
+   "question": "Which approach is used for this operation?",
+   "options": [
+    "Right anterolateral thoracotomy",
+    "Left thoracotomy",
+    "Median sternotomy through a midline skin incision",
+    "Subxiphoid window only"
+   ],
+   "answer": 2,
+   "explanation": "The midline skin incision (label 'Cilt insizyonu') leads to a median sternotomy, which gives access for bicaval cannulation and the right atrium."
+  },
+  {
+   "id": "m03",
+   "startMs": 180000,
+   "endMs": 240000,
+   "question": "Why does the surgeon keep exactly to the midline down to the sternum?",
+   "options": [
+    "It is faster to suture the skin",
+    "It gives two equal sternal halves for a secure closure and less bleeding",
+    "It avoids the internal jugular vein",
+    "It is needed for the drains"
+   ],
+   "answer": 1,
+   "explanation": "A true midline sternotomy gives equal halves that can be wired together securely and bleeds less."
+  },
+  {
+   "id": "m04",
+   "startMs": 240000,
+   "endMs": 300000,
+   "question": "Why are the lungs taken off the ventilator during sternal division?",
+   "options": [
+    "To lower the blood pressure",
+    "So the lungs fall away from the saw and are not injured",
+    "To give heparin",
+    "To start bypass"
+   ],
+   "answer": 1,
+   "explanation": "The surgeon asks to 'take the lungs off' while the saw divides the sternum, then to ventilate again."
+  },
+  {
+   "id": "m05",
+   "startMs": 300000,
+   "endMs": 360000,
+   "question": "What is given at 5:09, before any cannulation?",
+   "options": [
+    "Protamine",
+    "Cardioplegia",
+    "Heparin",
+    "Adrenaline"
+   ],
+   "answer": 2,
+   "explanation": "Full heparinisation is required before cannulas are inserted so the blood does not clot in the bypass circuit."
+  },
+  {
+   "id": "m06",
+   "startMs": 360000,
+   "endMs": 420000,
+   "question": "What will the team check three minutes after the heparin?",
+   "options": [
+    "Haemoglobin",
+    "The activated clotting time (ACT)",
+    "Potassium",
+    "Lactate"
+   ],
+   "answer": 1,
+   "explanation": "The ACT shows whether heparin has taken effect before cannulation."
+  },
+  {
+   "id": "m07",
+   "startMs": 420000,
+   "endMs": 480000,
+   "question": "What did the surgeon find when the pericardium was opened?",
+   "options": [
+    "A considerable pericardial effusion",
+    "Pus",
+    "A calcified, constrictive pericardium",
+    "Tumour growing through the pericardium"
+   ],
+   "answer": 0,
+   "explanation": "'There was quite a lot of pericardial effusion' - the fluid is suctioned away."
+  },
+  {
+   "id": "m08",
+   "startMs": 480000,
+   "endMs": 540000,
+   "question": "What are pericardial stay sutures for?",
+   "options": [
+    "To close the pericardium",
+    "To lift the pericardial edges and bring the heart up into view",
+    "To hold the drains",
+    "To stop bleeding from the sternum"
+   ],
+   "answer": 1,
+   "explanation": "Stay sutures suspend the pericardium (label 'Perikard aski dikisleri'), raising and exposing the heart."
+  },
+  {
+   "id": "m09",
+   "startMs": 540000,
+   "endMs": 600000,
+   "question": "What is a purse-string suture used for in cannulation?",
+   "options": [
+    "It holds the cannula and closes the hole when the cannula is removed",
+    "It ties off the vessel permanently",
+    "It anchors the pericardium",
+    "It replaces the cross-clamp"
+   ],
+   "answer": 0,
+   "explanation": "The cannula goes through the centre of the purse string; a snare tightens it, and tying it later closes the opening."
+  },
+  {
+   "id": "m10",
+   "startMs": 600000,
+   "endMs": 660000,
+   "question": "Before cannulating, the surgeon asks to be told when the ACT passes which value?",
+   "options": [
+    "100 seconds",
+    "200 seconds",
+    "300 seconds",
+    "1000 seconds"
+   ],
+   "answer": 2,
+   "explanation": "Here cannulation starts after the ACT passes 300 seconds. Many teams require a longer ACT, often above 400 to 480 seconds, before full bypass."
+  },
+  {
+   "id": "m11",
+   "startMs": 660000,
+   "endMs": 720000,
+   "question": "Where is the purse string labelled at 11:45 placed?",
+   "options": [
+    "Pulmonary artery",
+    "Superior vena cava",
+    "Left atrium",
+    "Coronary sinus"
+   ],
+   "answer": 1,
+   "explanation": "The label reads 'Vena kava superior kanul dikisi': the purse string for the superior caval cannula."
+  },
+  {
+   "id": "m12",
+   "startMs": 720000,
+   "endMs": 780000,
+   "question": "What are the snares threaded onto the purse strings for?",
+   "options": [
+    "To measure pressure",
+    "To tighten around the cannula, securing it and controlling bleeding",
+    "To give cardioplegia",
+    "To mark the incision"
+   ],
+   "answer": 1,
+   "explanation": "A snare (tourniquet) tightens the purse string around the cannula and holds it in place."
+  },
+  {
+   "id": "m13",
+   "startMs": 780000,
+   "endMs": 840000,
+   "question": "Why does the surgeon ask about the blood pressure before aortic cannulation?",
+   "options": [
+    "A lower pressure reduces the risk of tearing the aorta and bleeding",
+    "A high pressure is needed to insert the cannula",
+    "To decide the cardioplegia dose",
+    "To start rewarming"
+   ],
+   "answer": 0,
+   "explanation": "Lowering the systolic pressure is a standard safety step for aortic cannulation."
+  },
+  {
+   "id": "m14",
+   "startMs": 840000,
+   "endMs": 900000,
+   "question": "Which vessel receives the arterial cannula in this operation?",
+   "options": [
+    "Femoral artery",
+    "Ascending aorta",
+    "Axillary artery",
+    "Pulmonary artery"
+   ],
+   "answer": 1,
+   "explanation": "Central cannulation: the arterial cannula goes into the ascending aorta through its purse string."
+  },
+  {
+   "id": "m15",
+   "startMs": 900000,
+   "endMs": 960000,
+   "question": "When the arterial line is connected to the cannula, what must be avoided?",
+   "options": [
+    "Trapping air in the line",
+    "Using saline",
+    "Clamping the line",
+    "Touching the cannula"
+   ],
+   "answer": 0,
+   "explanation": "Air in the arterial line could be pumped into the patient, so the line and cannula are filled and joined without air."
+  },
+  {
+   "id": "m16",
+   "startMs": 960000,
+   "endMs": 1020000,
+   "question": "Which vessel is cannulated in this minute?",
+   "options": [
+    "Inferior vena cava",
+    "Superior vena cava",
+    "Pulmonary vein",
+    "Aorta"
+   ],
+   "answer": 1,
+   "explanation": "The label reads 'Vena kava superior kanulasyonu'."
+  },
+  {
+   "id": "m17",
+   "startMs": 1020000,
+   "endMs": 1080000,
+   "question": "Where is the antegrade cardioplegia needle placed?",
+   "options": [
+    "In the coronary sinus",
+    "In the aortic root, between the aortic valve and the cross-clamp",
+    "In the right atrium",
+    "In the femoral vein"
+   ],
+   "answer": 1,
+   "explanation": "Antegrade cardioplegia flows from the aortic root into the coronary arteries; retrograde cardioplegia would use the coronary sinus."
+  },
+  {
+   "id": "m18",
+   "startMs": 1080000,
+   "endMs": 1140000,
+   "question": "How does bypass start in this case?",
+   "options": [
+    "With both caval cannulas in place",
+    "With only the superior caval cannula draining, before the inferior caval cannula is placed",
+    "Through the femoral vessels",
+    "After the right atrium is opened"
+   ],
+   "answer": 1,
+   "explanation": "'Start. One cannula for now.' The inferior caval cannula is added next."
+  },
+  {
+   "id": "m19",
+   "startMs": 1140000,
+   "endMs": 1200000,
+   "question": "What is the purse string placed low on the right atrium for?",
+   "options": [
+    "The coronary sinus catheter",
+    "The inferior vena cava cannula",
+    "A pacing wire",
+    "The left ventricular vent"
+   ],
+   "answer": 1,
+   "explanation": "'The stitch for the inferior cava': it will hold the inferior caval cannula."
+  },
+  {
+   "id": "m20",
+   "startMs": 1200000,
+   "endMs": 1260000,
+   "question": "Why are two venous cannulas (bicaval cannulation) needed here?",
+   "options": [
+    "So the right atrium can be opened while both venae cavae drain to the machine",
+    "To raise the arterial pressure",
+    "To give cardioplegia",
+    "To vent the left ventricle"
+   ],
+   "answer": 0,
+   "explanation": "With both cavae cannulated and later snared, the right atrium can be opened in a dry field."
+  },
+  {
+   "id": "m21",
+   "startMs": 1260000,
+   "endMs": 1320000,
+   "question": "Why does the surgeon decide not to place a left heart vent?",
+   "options": [
+    "It could break up the friable tumour and cause embolism",
+    "The patient has a pacemaker",
+    "Vents are never used in heart surgery",
+    "To save time"
+   ],
+   "answer": 0,
+   "explanation": "'We may not place a vent here, because I don't want to break up the mass.'"
+  },
+  {
+   "id": "m22",
+   "startMs": 1320000,
+   "endMs": 1380000,
+   "question": "What will tightening the snares around both venae cavae achieve?",
+   "options": [
+    "It stops caval blood entering the right atrium, giving total bypass and a dry field",
+    "It stops the heart",
+    "It raises the venous pressure",
+    "It drains the left atrium"
+   ],
+   "answer": 0,
+   "explanation": "Snared cavae send all venous return into the cannulas, so the right atrium can be opened."
+  },
+  {
+   "id": "m23",
+   "startMs": 1380000,
+   "endMs": 1440000,
+   "question": "During this minute the heart is still beating. What will stop it?",
+   "options": [
+    "Cooling the patient",
+    "Aortic cross-clamping and cardioplegia",
+    "Tightening the caval snares",
+    "Opening the right atrium"
+   ],
+   "answer": 1,
+   "explanation": "The cross-clamp isolates the coronary circulation and cardioplegia arrests the heart."
+  },
+  {
+   "id": "m24",
+   "startMs": 1440000,
+   "endMs": 1500000,
+   "question": "What does the surgeon say about temperature after the heart stops?",
+   "options": [
+    "Cool the patient deeply",
+    "Cold water on the heart, but keep the patient at normal body temperature",
+    "Warm the heart",
+    "Stop the pump"
+   ],
+   "answer": 1,
+   "explanation": "Topical cooling protects the heart, while the patient stays normothermic."
+  },
+  {
+   "id": "m25",
+   "startMs": 1500000,
+   "endMs": 1560000,
+   "question": "What happens when the caval snares are tightened at 25:35?",
+   "options": [
+    "Total cardiopulmonary bypass begins",
+    "The heart restarts",
+    "Cardioplegia is given",
+    "The aorta is opened"
+   ],
+   "answer": 0,
+   "explanation": "All venous blood now goes to the machine: 'now we're on full bypass'."
+  },
+  {
+   "id": "m26",
+   "startMs": 1560000,
+   "endMs": 1620000,
+   "question": "Through which chamber does the surgeon first enter the heart?",
+   "options": [
+    "The left atrium through Sondergaard's groove",
+    "The right atrium",
+    "The left ventricle",
+    "The aorta"
+   ],
+   "answer": 1,
+   "explanation": "A right atriotomy (label 'Atriyotomi') gives access to the interatrial septum."
+  },
+  {
+   "id": "m27",
+   "startMs": 1620000,
+   "endMs": 1680000,
+   "question": "What is the aortic root vent for during the arrest?",
+   "options": [
+    "To give heparin",
+    "To decompress the heart and remove blood and air from the aortic root",
+    "To measure temperature",
+    "To return blood to the patient"
+   ],
+   "answer": 1,
+   "explanation": "The root vent keeps the heart empty and later helps to remove air."
+  },
+  {
+   "id": "m28",
+   "startMs": 1680000,
+   "endMs": 1740000,
+   "question": "Which landmark will the surgeon use to open the septum?",
+   "options": [
+    "The fossa ovalis",
+    "The coronary sinus",
+    "The tendon of Todaro",
+    "The crista terminalis"
+   ],
+   "answer": 0,
+   "explanation": "The fossa ovalis is the thin central part of the septum, and most left atrial myxomas arise near it."
+  },
+  {
+   "id": "m29",
+   "startMs": 1740000,
+   "endMs": 1800000,
+   "question": "Where does the surgeon see the tumour at 29:25?",
+   "options": [
+    "In the right ventricle",
+    "Behind the fossa ovalis, in the left atrium",
+    "In the superior vena cava",
+    "In the aorta"
+   ],
+   "answer": 1,
+   "explanation": "'This is the fossa ovalis. The mass shows behind it.'"
+  },
+  {
+   "id": "m30",
+   "startMs": 1800000,
+   "endMs": 1860000,
+   "question": "Why does the surgeon say 'Stay away from the mass'?",
+   "options": [
+    "A myxoma is soft and friable, and touching it can break off fragments that embolise",
+    "The mass is calcified and blunts instruments",
+    "The mass bleeds heavily",
+    "It is not the real tumour"
+   ],
+   "answer": 0,
+   "explanation": "Fragments of myxoma can embolise to the brain or other organs, so the tumour is handled as little as possible."
+  },
+  {
+   "id": "m31",
+   "startMs": 1860000,
+   "endMs": 1920000,
+   "question": "Why is the tissue at the tumour's attachment removed too?",
+   "options": [
+    "To leave no tumour behind and lower the risk of recurrence",
+    "To make the septum stronger",
+    "To enlarge the left atrium",
+    "For decoration"
+   ],
+   "answer": 0,
+   "explanation": "'We'll take this part of the mass too.' Incomplete removal at the attachment is a cause of recurrence."
+  },
+  {
+   "id": "m32",
+   "startMs": 1920000,
+   "endMs": 1980000,
+   "question": "Where was this myxoma attached?",
+   "options": [
+    "The mitral annulus",
+    "The interatrial septum",
+    "The left atrial appendage",
+    "The pulmonary veins"
+   ],
+   "answer": 1,
+   "explanation": "The echo report and the operation show attachment to the interatrial septum; its stalk is cut there (label 'Miksoma sapinin kesilmesi')."
+  },
+  {
+   "id": "m33",
+   "startMs": 1980000,
+   "endMs": 2040000,
+   "question": "Why is saline injected into the left ventricle after removal?",
+   "options": [
+    "To test the mitral valve and make sure no tumour fragment remains",
+    "To restart the heart",
+    "To give cardioplegia",
+    "To clean the aorta"
+   ],
+   "answer": 0,
+   "explanation": "'Valve check. We make sure no piece is left inside' (label 'Mitral kapak kontrolu')."
+  },
+  {
+   "id": "m34",
+   "startMs": 2040000,
+   "endMs": 2100000,
+   "question": "Why is the septum closed with a pledget?",
+   "options": [
+    "The septal tissue is very thin, and the pledget stops stitches cutting through and leaving a new ASD",
+    "It is always required",
+    "To mark the site for echo",
+    "To deliver drugs"
+   ],
+   "answer": 0,
+   "explanation": "'Normally it can be closed without a pledget, but the tissue is very thin, so we don't want to create an ASD.'"
+  },
+  {
+   "id": "m35",
+   "startMs": 2100000,
+   "endMs": 2160000,
+   "question": "What is the surgeon closing during this minute?",
+   "options": [
+    "The interatrial septum",
+    "The aorta",
+    "The pericardium",
+    "The skin"
+   ],
+   "answer": 0,
+   "explanation": "The septal incision made to reach the tumour is being sutured."
+  },
+  {
+   "id": "m36",
+   "startMs": 2160000,
+   "endMs": 2220000,
+   "question": "The septal closure separates which two chambers?",
+   "options": [
+    "Right atrium and right ventricle",
+    "Right and left atria",
+    "Left atrium and left ventricle",
+    "Aorta and pulmonary artery"
+   ],
+   "answer": 1,
+   "explanation": "The interatrial septum lies between the right and left atria."
+  },
+  {
+   "id": "m37",
+   "startMs": 2220000,
+   "endMs": 2280000,
+   "question": "What is the main danger of air left in the left heart when it restarts?",
+   "options": [
+    "Air embolism to the brain or coronary arteries",
+    "Pericardial effusion",
+    "Arrhythmia from heparin",
+    "Kidney stones"
+   ],
+   "answer": 0,
+   "explanation": "Air ejected from the left heart can block cerebral or coronary arteries, so careful de-airing is essential."
+  },
+  {
+   "id": "m38",
+   "startMs": 2280000,
+   "endMs": 2340000,
+   "question": "Why are the lungs inflated by hand before the septum is fully closed?",
+   "options": [
+    "To fill the left heart with blood and push out air",
+    "To check for a pneumothorax",
+    "To lower the pressure",
+    "To give oxygen to the pump"
+   ],
+   "answer": 0,
+   "explanation": "Manual ventilation pushes blood through the lungs into the left atrium, displacing air through the septal opening."
+  },
+  {
+   "id": "m39",
+   "startMs": 2340000,
+   "endMs": 2400000,
+   "question": "Why does the surgeon bury the knot?",
+   "options": [
+    "So no thrombogenic material is left exposed on the inner surface",
+    "To make removal easier later",
+    "Because the knot is too long",
+    "To mark the site"
+   ],
+   "answer": 0,
+   "explanation": "Exposed knots or pledget material inside the heart can attract clot."
+  },
+  {
+   "id": "m40",
+   "startMs": 2400000,
+   "endMs": 2460000,
+   "question": "Which valve has not yet been checked at this point?",
+   "options": [
+    "The mitral valve",
+    "The tricuspid valve",
+    "Both were checked",
+    "Neither will be checked"
+   ],
+   "answer": 1,
+   "explanation": "The mitral valve was tested at 33:30; the tricuspid valve is tested next."
+  },
+  {
+   "id": "m41",
+   "startMs": 2460000,
+   "endMs": 2520000,
+   "question": "How is the tricuspid valve tested?",
+   "options": [
+    "Saline is injected into the right ventricle and the leaflets are watched as it fills",
+    "With a pressure catheter only",
+    "By stopping the pump",
+    "By opening the pulmonary artery"
+   ],
+   "answer": 0,
+   "explanation": "'Look, the heart is swelling. As it swells, the chordae pull' the leaflets together."
+  },
+  {
+   "id": "m42",
+   "startMs": 2520000,
+   "endMs": 2580000,
+   "question": "What was the result of the tricuspid valve test?",
+   "options": [
+    "Severe leak needing repair",
+    "Only a trace of leak; no repair needed",
+    "Stenosis",
+    "A torn chord"
+   ],
+   "answer": 1,
+   "explanation": "'Only a trace. No repair needed at all.'"
+  },
+  {
+   "id": "m43",
+   "startMs": 2580000,
+   "endMs": 2640000,
+   "question": "Which incision is being closed in this minute?",
+   "options": [
+    "The right atriotomy",
+    "The aortotomy",
+    "The ventriculotomy",
+    "The pulmonary arteriotomy"
+   ],
+   "answer": 0,
+   "explanation": "The label reads 'Sag atriyotominin kapatilmasi'."
+  },
+  {
+   "id": "m44",
+   "startMs": 2640000,
+   "endMs": 2700000,
+   "question": "Why are the carotid arteries pressed when the cross-clamp comes off?",
+   "options": [
+    "To reduce the chance of air reaching the brain",
+    "To raise the heart rate",
+    "To measure the pulse",
+    "To stop bleeding from the neck"
+   ],
+   "answer": 0,
+   "explanation": "Compressing the carotids briefly while the root is vented lowers the risk of cerebral air embolism."
+  },
+  {
+   "id": "m45",
+   "startMs": 2700000,
+   "endMs": 2760000,
+   "question": "What happens after the cross-clamp is removed in this case?",
+   "options": [
+    "The heart needs repeated shocks",
+    "The heart starts beating on its own",
+    "The heart stays arrested",
+    "Bypass is restarted"
+   ],
+   "answer": 1,
+   "explanation": "The label reads 'Kalbin spontan calismasi': spontaneous heart beat."
+  },
+  {
+   "id": "m46",
+   "startMs": 2760000,
+   "endMs": 2820000,
+   "question": "What is used to close the sternum?",
+   "options": [
+    "Steel wires",
+    "Staples",
+    "Absorbable sutures only",
+    "Glue"
+   ],
+   "answer": 0,
+   "explanation": "Stainless steel wires are passed around or through the sternum and twisted tight."
+  },
+  {
+   "id": "m47",
+   "startMs": 2820000,
+   "endMs": 2880000,
+   "question": "Why must the sternum be closed firmly?",
+   "options": [
+    "For stable healing, less pain and fewer wound complications",
+    "To make the drains work",
+    "To lower blood pressure",
+    "It does not matter"
+   ],
+   "answer": 0,
+   "explanation": "A stable sternum heals better; an unstable one risks pain, infection and dehiscence."
+  },
+  {
+   "id": "m48",
+   "startMs": 2880000,
+   "endMs": 2940000,
+   "question": "Which layer is closed after the sternum (label at 48:15)?",
+   "options": [
+    "The pericardium",
+    "The subcutaneous tissue",
+    "The pleura",
+    "The skin only"
+   ],
+   "answer": 1,
+   "explanation": "The label reads 'Cilt alti dokularinin kapatilmasi': closure of the subcutaneous tissues."
+  },
+  {
+   "id": "m49",
+   "startMs": 2940000,
+   "endMs": 3000000,
+   "question": "Why is the subcutaneous tissue closed in layers?",
+   "options": [
+    "To remove dead space and lower the risk of seroma and infection",
+    "To make the scar wider",
+    "To hold the drains",
+    "To stop the heart"
+   ],
+   "answer": 0,
+   "explanation": "Layered closure leaves no cavity where fluid or infection can collect."
+  },
+  {
+   "id": "m50",
+   "startMs": 3000000,
+   "endMs": 3060000,
+   "question": "How is the skin being closed?",
+   "options": [
+    "With a continuous stitch",
+    "With staples",
+    "It is left open",
+    "With glue only"
+   ],
+   "answer": 0,
+   "explanation": "A continuous suture closes the skin edges."
+  },
+  {
+   "id": "m51",
+   "startMs": 3060000,
+   "endMs": 3120000,
+   "question": "Where do the chest drains exit?",
+   "options": [
+    "Through the incision itself",
+    "Near the lower end of the incision",
+    "From the neck",
+    "From the back"
+   ],
+   "answer": 1,
+   "explanation": "The drains come out through separate small openings near the lower end of the wound."
+  },
+  {
+   "id": "m52",
+   "startMs": 3120000,
+   "endMs": 3228948,
+   "question": "Which statement summarises this operation?",
+   "options": [
+    "The myxoma was removed through the right atrium and septum on bypass, without a left heart vent, and both valves were checked",
+    "The tumour was removed through the aorta without bypass",
+    "The mitral valve was replaced",
+    "The tumour was left in place and biopsied"
+   ],
+   "answer": 0,
+   "explanation": "Bicaval cannulation, cardioplegic arrest, right atriotomy, transseptal excision with the stalk, fragment and valve checks, careful de-airing."
+  }
+ ],
+ "captions": [
+  {
+   "startMs": 173000,
+   "endMs": 175000,
+   "text": "Surgeon: We're starting."
+  },
+  {
+   "startMs": 179000,
+   "endMs": 181000,
+   "text": "Surgeon: Cautery, please."
+  },
+  {
+   "startMs": 193000,
+   "endMs": 196000,
+   "text": "Surgeon: Raise the patient a little."
+  },
+  {
+   "startMs": 275000,
+   "endMs": 278000,
+   "text": "Surgeon: Take the lungs off the ventilator."
+  },
+  {
+   "startMs": 289000,
+   "endMs": 292000,
+   "text": "Surgeon: Ventilate the lungs again."
+  },
+  {
+   "startMs": 306000,
+   "endMs": 309000,
+   "text": "Surgeon: The bone seems a bit thin; pull gently."
+  },
+  {
+   "startMs": 309000,
+   "endMs": 313000,
+   "text": "Surgeon: Let's give the patient heparin."
+  },
+  {
+   "startMs": 340000,
+   "endMs": 342000,
+   "text": "Surgeon: Bone wax."
+  },
+  {
+   "startMs": 367000,
+   "endMs": 371000,
+   "text": "Surgeon: Let's start checking the ACT in three minutes."
+  },
+  {
+   "startMs": 382000,
+   "endMs": 385000,
+   "text": "Surgeon: Retractor, forceps, clips."
+  },
+  {
+   "startMs": 441000,
+   "endMs": 445000,
+   "text": "Surgeon: Effusion will come out. There was quite a lot of pericardial effusion."
+  },
+  {
+   "startMs": 486000,
+   "endMs": 488000,
+   "text": "Surgeon: Stay sutures."
+  },
+  {
+   "startMs": 599000,
+   "endMs": 602000,
+   "text": "Surgeon: Let's place our cannulation sutures."
+  },
+  {
+   "startMs": 647000,
+   "endMs": 650000,
+   "text": "Surgeon: Have they started measuring the ACT?"
+  },
+  {
+   "startMs": 650000,
+   "endMs": 653000,
+   "text": "Surgeon: Tell us when it passes 300."
+  },
+  {
+   "startMs": 765000,
+   "endMs": 767000,
+   "text": "Surgeon: Snare."
+  },
+  {
+   "startMs": 775000,
+   "endMs": 778000,
+   "text": "Surgeon: Has it passed 300? Good."
+  },
+  {
+   "startMs": 818000,
+   "endMs": 821000,
+   "text": "Surgeon: The cannula for the inferior cava, please."
+  },
+  {
+   "startMs": 830000,
+   "endMs": 833000,
+   "text": "Surgeon: Aortic cannula and a blade."
+  },
+  {
+   "startMs": 832000,
+   "endMs": 835000,
+   "text": "Surgeon: Is our blood pressure suitable? Good."
+  },
+  {
+   "startMs": 861000,
+   "endMs": 863000,
+   "text": "Surgeon: Ties, please."
+  },
+  {
+   "startMs": 1076000,
+   "endMs": 1079000,
+   "text": "Surgeon: Put it on the antegrade needle."
+  },
+  {
+   "startMs": 1123000,
+   "endMs": 1126000,
+   "text": "Surgeon: If we're ready, we can go on pump."
+  },
+  {
+   "startMs": 1139000,
+   "endMs": 1142000,
+   "text": "Surgeon: Start. One cannula for now."
+  },
+  {
+   "startMs": 1143000,
+   "endMs": 1146000,
+   "text": "Surgeon: The stitch for the inferior cava."
+  },
+  {
+   "startMs": 1239000,
+   "endMs": 1242000,
+   "text": "Surgeon: Now two cannulas."
+  },
+  {
+   "startMs": 1252000,
+   "endMs": 1255000,
+   "text": "Surgeon: How is the return? Good?"
+  },
+  {
+   "startMs": 1256000,
+   "endMs": 1259000,
+   "text": "Surgeon: Tell us at full flow."
+  },
+  {
+   "startMs": 1262000,
+   "endMs": 1265000,
+   "text": "Surgeon: The lungs can be stopped."
+  },
+  {
+   "startMs": 1289000,
+   "endMs": 1292000,
+   "text": "Surgeon: The vent..."
+  },
+  {
+   "startMs": 1292000,
+   "endMs": 1295000,
+   "text": "Surgeon: ...but we may not place a vent here,"
+  },
+  {
+   "startMs": 1295000,
+   "endMs": 1299000,
+   "text": "Surgeon: because I don't want to break up the mass."
+  },
+  {
+   "startMs": 1352000,
+   "endMs": 1355000,
+   "text": "Surgeon: I'll go around the inferior cava."
+  },
+  {
+   "startMs": 1458000,
+   "endMs": 1461000,
+   "text": "Surgeon: Cross clamp, please."
+  },
+  {
+   "startMs": 1462000,
+   "endMs": 1465000,
+   "text": "Surgeon: Start gentle suction on the aortic root."
+  },
+  {
+   "startMs": 1467000,
+   "endMs": 1469000,
+   "text": "Surgeon: Is our cardioplegia ready? Good."
+  },
+  {
+   "startMs": 1488000,
+   "endMs": 1493000,
+   "text": "Surgeon: It has stopped. Cold water on the heart. Don't cool the patient; keep normal temperature."
+  },
+  {
+   "startMs": 1535000,
+   "endMs": 1539000,
+   "text": "Surgeon: Enough. It has stopped. Tighten the snares; now we're on full bypass."
+  },
+  {
+   "startMs": 1573000,
+   "endMs": 1576000,
+   "text": "Surgeon: We're opening the right atrium."
+  },
+  {
+   "startMs": 1604000,
+   "endMs": 1608000,
+   "text": "Surgeon: Toward the aorta. If we need to extend, we'll go in here."
+  },
+  {
+   "startMs": 1617000,
+   "endMs": 1619000,
+   "text": "Surgeon: Stay sutures."
+  },
+  {
+   "startMs": 1655000,
+   "endMs": 1658000,
+   "text": "Surgeon: A clamp on the cardioplegia line."
+  },
+  {
+   "startMs": 1765000,
+   "endMs": 1767000,
+   "text": "Surgeon: This is the fossa ovalis."
+  },
+  {
+   "startMs": 1766000,
+   "endMs": 1769000,
+   "text": "Surgeon: The mass shows behind it."
+  },
+  {
+   "startMs": 1769000,
+   "endMs": 1772000,
+   "text": "Surgeon: Let's put a retractor here."
+  },
+  {
+   "startMs": 1846000,
+   "endMs": 1849000,
+   "text": "Surgeon: Stay away from the mass."
+  },
+  {
+   "startMs": 1876000,
+   "endMs": 1879000,
+   "text": "Surgeon: A retractor, the smallest one."
+  },
+  {
+   "startMs": 1885000,
+   "endMs": 1888000,
+   "text": "Surgeon: This is where the mass is attached."
+  },
+  {
+   "startMs": 1900000,
+   "endMs": 1904000,
+   "text": "Surgeon: We'll take this part of the mass too, friends."
+  },
+  {
+   "startMs": 1910000,
+   "endMs": 1912000,
+   "text": "Surgeon: It separates here."
+  },
+  {
+   "startMs": 1962000,
+   "endMs": 1966000,
+   "text": "Surgeon: This is the mass, friends."
+  },
+  {
+   "startMs": 2000000,
+   "endMs": 2005000,
+   "text": "Surgeon: Valve check. We make sure no piece is left inside."
+  },
+  {
+   "startMs": 2010000,
+   "endMs": 2015000,
+   "text": "Surgeon: Once the ventricle fills, we look for any mass left behind. None."
+  },
+  {
+   "startMs": 2024000,
+   "endMs": 2028000,
+   "text": "Surgeon: That's the septum. Release the retractor. Atrial closure suture."
+  },
+  {
+   "startMs": 2070000,
+   "endMs": 2073000,
+   "text": "Surgeon: A pledget on the other side."
+  },
+  {
+   "startMs": 2079000,
+   "endMs": 2082000,
+   "text": "Surgeon: Normally it can be closed without a pledget, but the tissue is very thin,"
+  },
+  {
+   "startMs": 2082000,
+   "endMs": 2086000,
+   "text": "Surgeon: so we don't want to create an ASD by cutting through."
+  },
+  {
+   "startMs": 2090000,
+   "endMs": 2094000,
+   "text": "Surgeon: Finally we'll check the tricuspid valve too."
+  },
+  {
+   "startMs": 2290000,
+   "endMs": 2295000,
+   "text": "Surgeon: Rewarm. Ventilate by hand and fill the patient. Stop the aortic root vent."
+  },
+  {
+   "startMs": 2333000,
+   "endMs": 2336000,
+   "text": "Surgeon: Head slightly down."
+  },
+  {
+   "startMs": 2369000,
+   "endMs": 2374000,
+   "text": "Surgeon: I'll bury it, so no thrombogenic surface is left there."
+  },
+  {
+   "startMs": 2485000,
+   "endMs": 2488000,
+   "text": "Surgeon: Now let's check the tricuspid valve."
+  },
+  {
+   "startMs": 2501000,
+   "endMs": 2503000,
+   "text": "Surgeon: Look, the heart is swelling, friends."
+  },
+  {
+   "startMs": 2503000,
+   "endMs": 2506000,
+   "text": "Surgeon: As it swells, the chordae pull."
+  },
+  {
+   "startMs": 2522000,
+   "endMs": 2526000,
+   "text": "Surgeon: Only a trace. No repair needed at all."
+  },
+  {
+   "startMs": 2526000,
+   "endMs": 2530000,
+   "text": "Surgeon: Right atrium closure. Take all the stay sutures."
+  },
+  {
+   "startMs": 2643000,
+   "endMs": 2646000,
+   "text": "Surgeon: Fill the patient, slowly."
+  },
+  {
+   "startMs": 2649000,
+   "endMs": 2652000,
+   "text": "Surgeon: Release the inferior."
+  },
+  {
+   "startMs": 2680000,
+   "endMs": 2684000,
+   "text": "Surgeon: The cross clamp is coming off, friends. Aortic root, suction well."
+  },
+  {
+   "startMs": 2688000,
+   "endMs": 2691000,
+   "text": "Surgeon: Press on the carotids, definitely."
+  },
+  {
+   "startMs": 2697000,
+   "endMs": 2700000,
+   "text": "Surgeon: Aortic root, full suction."
+  },
+  {
+   "startMs": 2902000,
+   "endMs": 2905000,
+   "text": "Surgeon: Head up, please."
+  }
+ ],
+ "narration": [
+  {
+   "id": "n001",
+   "startMs": 2000,
+   "text": "This video shows the removal of a cardiac myxoma, the most common benign tumour of the heart, filmed from the surgeon's point of view."
+  },
+  {
+   "id": "n002",
+   "startMs": 16000,
+   "text": "The surgeon is Professor Tolga Demir, a cardiovascular surgeon."
+  },
+  {
+   "id": "n003",
+   "startMs": 30000,
+   "text": "Before surgery, echocardiography in a sixty year old woman showed a giant tumour attached to the atrial septum, moving in and out of the mitral valve."
+  },
+  {
+   "id": "n004",
+   "startMs": 46000,
+   "text": "The labels mark the left ventricle, the left atrium, and the myxoma. A mobile tumour like this can block the mitral valve or break off and embolise, so it is removed without delay."
+  },
+  {
+   "id": "n005",
+   "startMs": 62000,
+   "text": "The surgeon scrubs. Hands and forearms are washed systematically before gowning and gloving."
+  },
+  {
+   "id": "n006",
+   "startMs": 122000,
+   "text": "Gown and gloves go on, and the patient is prepared and draped."
+  },
+  {
+   "id": "n007",
+   "startMs": 150000,
+   "text": "An iodine impregnated incise drape covers the chest."
+  },
+  {
+   "id": "n008",
+   "startMs": 161000,
+   "text": "Skin incision. A midline cut is made over the sternum."
+  },
+  {
+   "id": "n009",
+   "startMs": 180000,
+   "text": "Electrocautery divides the tissue under the skin down to the bone, keeping exactly to the midline."
+  },
+  {
+   "id": "n010",
+   "startMs": 220000,
+   "text": "A true midline gives two equal halves of sternum, which makes a secure closure easier at the end."
+  },
+  {
+   "id": "n011",
+   "startMs": 273000,
+   "text": "The lungs are taken off the ventilator while the sternum is divided, so they fall away from the saw."
+  },
+  {
+   "id": "n012",
+   "startMs": 290000,
+   "text": "Ventilation resumes. The surgeon notes that the bone looks a little thin, so the edges are pulled gently."
+  },
+  {
+   "id": "n013",
+   "startMs": 309000,
+   "text": "Heparin is given now, so the blood will not clot once it flows through the heart lung machine."
+  },
+  {
+   "id": "n014",
+   "startMs": 340000,
+   "text": "Bone wax seals bleeding from the cut edges of the sternum."
+  },
+  {
+   "id": "n015",
+   "startMs": 365000,
+   "text": "The team will start checking the activated clotting time, the A C T, three minutes after the heparin."
+  },
+  {
+   "id": "n016",
+   "startMs": 380000,
+   "text": "Towels protect the wound edges, and the sternal retractor slowly opens the chest."
+  },
+  {
+   "id": "n017",
+   "startMs": 425000,
+   "text": "Opening the pericardium. It is cut in the midline to expose the heart."
+  },
+  {
+   "id": "n018",
+   "startMs": 441000,
+   "text": "The surgeon expected fluid here. There was quite a lot of pericardial effusion, and it is suctioned away."
+  },
+  {
+   "id": "n019",
+   "startMs": 486000,
+   "text": "Pericardial stay sutures lift the edges and bring the heart up into view."
+  },
+  {
+   "id": "n020",
+   "startMs": 599000,
+   "text": "Next come the cannulation stitches: purse string sutures that will hold the bypass cannulas."
+  },
+  {
+   "id": "n021",
+   "startMs": 615000,
+   "text": "The first purse string goes on the ascending aorta, for the arterial cannula that will return oxygenated blood."
+  },
+  {
+   "id": "n022",
+   "startMs": 647000,
+   "text": "The team is measuring the clotting time. The surgeon asks to be told when it passes three hundred seconds."
+  },
+  {
+   "id": "n023",
+   "startMs": 690000,
+   "text": "A second purse string is placed on the superior vena cava, where venous blood will drain to the machine."
+  },
+  {
+   "id": "n024",
+   "startMs": 733000,
+   "text": "Snares are threaded onto the purse strings, so each cannula can be tightened and secured."
+  },
+  {
+   "id": "n025",
+   "startMs": 775000,
+   "text": "The clotting time has passed three hundred, so cannulation can begin."
+  },
+  {
+   "id": "n026",
+   "startMs": 816000,
+   "text": "The surgeon asks for the inferior caval cannula to be ready, and then for the aortic cannula and a blade."
+  },
+  {
+   "id": "n027",
+   "startMs": 831000,
+   "text": "The blood pressure is checked first. A lower pressure makes aortic cannulation safer."
+  },
+  {
+   "id": "n028",
+   "startMs": 845000,
+   "text": "The aortic cannula goes in through the purse string, and it is snared and tied."
+  },
+  {
+   "id": "n029",
+   "startMs": 900000,
+   "text": "The arterial line is filled and connected to the cannula without trapping any air."
+  },
+  {
+   "id": "n030",
+   "startMs": 960000,
+   "text": "Superior vena cava cannulation. The venous cannula is passed into the superior vena cava and secured."
+  },
+  {
+   "id": "n031",
+   "startMs": 1076000,
+   "text": "A needle for antegrade cardioplegia goes into the aortic root. Cardioplegia will stop and protect the heart."
+  },
+  {
+   "id": "n032",
+   "startMs": 1123000,
+   "text": "Everything is ready, and bypass starts, with only the superior caval cannula draining for now."
+  },
+  {
+   "id": "n033",
+   "startMs": 1143000,
+   "text": "Meanwhile, a purse string is placed low on the right atrium for the inferior caval cannula."
+  },
+  {
+   "id": "n034",
+   "startMs": 1200000,
+   "text": "With a snare and a blade, the inferior caval cannula is inserted. Now both venae cavae drain to the machine. This is bicaval cannulation."
+  },
+  {
+   "id": "n035",
+   "startMs": 1250000,
+   "text": "The surgeon checks the venous return and asks to be told at full flow. Then the lungs can be stopped."
+  },
+  {
+   "id": "n036",
+   "startMs": 1288000,
+   "text": "An important decision: no vent is placed in the left heart. Passing a vent could break up this fragile tumour and send pieces into the circulation."
+  },
+  {
+   "id": "n037",
+   "startMs": 1337000,
+   "text": "Snares are passed around the superior and inferior vena cava. Tightening them later will isolate the right atrium."
+  },
+  {
+   "id": "n038",
+   "startMs": 1385000,
+   "text": "The tissue around the inferior vena cava is freed, so the snare can pass safely."
+  },
+  {
+   "id": "n039",
+   "startMs": 1455000,
+   "text": "Placing the cross clamp. The aorta is clamped between the aortic cannula and the cardioplegia needle."
+  },
+  {
+   "id": "n040",
+   "startMs": 1468000,
+   "text": "Pump flow is lowered briefly as the clamp goes on. Then cardioplegia is given into the aortic root."
+  },
+  {
+   "id": "n041",
+   "startMs": 1488000,
+   "text": "The heart has stopped. Cold saline cools its surface, but the patient is kept at normal body temperature."
+  },
+  {
+   "id": "n042",
+   "startMs": 1535000,
+   "text": "The caval snares are tightened. All venous blood now goes to the machine. This is total cardiopulmonary bypass."
+  },
+  {
+   "id": "n043",
+   "startMs": 1572000,
+   "text": "Right atriotomy. The right atrium is opened."
+  },
+  {
+   "id": "n044",
+   "startMs": 1602000,
+   "text": "Looking toward the aorta, the surgeon notes where the incision can be extended if more exposure is needed."
+  },
+  {
+   "id": "n045",
+   "startMs": 1617000,
+   "text": "Stay sutures hold the atrial wall open."
+  },
+  {
+   "id": "n046",
+   "startMs": 1651000,
+   "text": "The aortic root vent keeps drawing, and the cardioplegia line is clamped."
+  },
+  {
+   "id": "n047",
+   "startMs": 1690000,
+   "text": "Inside the right atrium, the surgeon looks for the fossa ovalis, the thin central part of the interatrial septum."
+  },
+  {
+   "id": "n048",
+   "startMs": 1761000,
+   "text": "This is the fossa ovalis. The tumour can be seen behind it, in the left atrium."
+  },
+  {
+   "id": "n049",
+   "startMs": 1785000,
+   "text": "Opening the interatrial septum. The cut starts at the fossa ovalis and leads into the left atrium."
+  },
+  {
+   "id": "n050",
+   "startMs": 1845000,
+   "text": "Stay away from the mass, the surgeon says. A myxoma is soft and friable, and touching it can break off fragments."
+  },
+  {
+   "id": "n051",
+   "startMs": 1875000,
+   "text": "A small retractor improves the view. Here is where the tumour is attached."
+  },
+  {
+   "id": "n052",
+   "startMs": 1899000,
+   "text": "The surgeon makes sure the tissue at the attachment comes out with the tumour. Incomplete removal is a cause of recurrence."
+  },
+  {
+   "id": "n053",
+   "startMs": 1940000,
+   "text": "Cutting the tumour stalk. The stalk is divided at its attachment to the septum."
+  },
+  {
+   "id": "n054",
+   "startMs": 1962000,
+   "text": "And this is the mass, delivered intact."
+  },
+  {
+   "id": "n055",
+   "startMs": 1980000,
+   "text": "Here is the specimen beside a ruler: a soft, lobulated, reddish tumour with a gelatinous look, typical of a myxoma."
+  },
+  {
+   "id": "n056",
+   "startMs": 1995000,
+   "text": "Checking the mitral valve. Saline is injected into the left ventricle to test the valve and to make sure no fragment is left inside."
+  },
+  {
+   "id": "n057",
+   "startMs": 2024000,
+   "text": "No fragments remain. The septum is shown, and its closure begins."
+  },
+  {
+   "id": "n058",
+   "startMs": 2068000,
+   "text": "A felt pledget is used. Normally the septum could be closed without one, but this tissue is very thin. The pledget stops the stitches cutting through and leaving a new atrial septal defect."
+  },
+  {
+   "id": "n059",
+   "startMs": 2090000,
+   "text": "The surgeon reminds the team that the tricuspid valve will be checked at the end."
+  },
+  {
+   "id": "n060",
+   "startMs": 2120000,
+   "text": "The septal suture runs along the incision, joining the two edges."
+  },
+  {
+   "id": "n061",
+   "startMs": 2172000,
+   "text": "The root vent is paused while the last septal stitches are placed."
+  },
+  {
+   "id": "n062",
+   "startMs": 2289000,
+   "text": "Rewarming begins. The lungs are inflated by hand to fill the left heart with blood and push out the air before the septum is closed."
+  },
+  {
+   "id": "n063",
+   "startMs": 2330000,
+   "text": "The patient is tilted slightly head down, so any remaining air stays away from the brain."
+  },
+  {
+   "id": "n064",
+   "startMs": 2368000,
+   "text": "The knot is buried, so no thrombogenic material is left exposed on the inner surface."
+  },
+  {
+   "id": "n065",
+   "startMs": 2430000,
+   "text": "The septal closure is complete, and the suture ends are cut."
+  },
+  {
+   "id": "n066",
+   "startMs": 2484000,
+   "text": "Now the tricuspid valve is tested. Saline is injected into the right ventricle."
+  },
+  {
+   "id": "n067",
+   "startMs": 2500000,
+   "text": "Watch the heart fill. As the ventricle swells, the chordae pull the leaflets together."
+  },
+  {
+   "id": "n068",
+   "startMs": 2521000,
+   "text": "There is only a trace of leak. No repair is needed."
+  },
+  {
+   "id": "n069",
+   "startMs": 2550000,
+   "text": "Closing the right atriotomy. The stay sutures are removed as the suture line advances."
+  },
+  {
+   "id": "n070",
+   "startMs": 2642000,
+   "text": "The heart is filled slowly with blood, and the inferior caval snare is released."
+  },
+  {
+   "id": "n071",
+   "startMs": 2680000,
+   "text": "Removing the cross clamp. The aortic root is vented hard, and the carotid arteries are pressed to protect the brain from any air."
+  },
+  {
+   "id": "n072",
+   "startMs": 2700000,
+   "text": "The heart begins to beat on its own."
+  },
+  {
+   "id": "n073",
+   "startMs": 2715000,
+   "text": "Weaning from bypass and decannulation. The cannulas are removed and the purse strings are tied."
+  },
+  {
+   "id": "n074",
+   "startMs": 2732000,
+   "text": "Chest drains are placed, and the field is checked for bleeding."
+  },
+  {
+   "id": "n075",
+   "startMs": 2750000,
+   "text": "The sternum is closed with steel wires, which are twisted tight."
+  },
+  {
+   "id": "n076",
+   "startMs": 2895000,
+   "text": "Closing the subcutaneous tissue in layers."
+  },
+  {
+   "id": "n077",
+   "startMs": 3000000,
+   "text": "The skin is closed with a continuous stitch."
+  },
+  {
+   "id": "n078",
+   "startMs": 3120000,
+   "text": "The wound is cleaned and dressed. The chest drains exit near the lower end of the incision."
+  },
+  {
+   "id": "n079",
+   "startMs": 3160000,
+   "text": "In summary: the tumour was removed through the right atrium and the interatrial septum, without a left heart vent, and both valves were checked before closing."
+  },
+  {
+   "id": "n080",
+   "startMs": 3210000,
+   "text": "Thank you for watching."
+  }
+ ]
+}
