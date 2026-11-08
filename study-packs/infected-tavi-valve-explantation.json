@@ -1,0 +1,3569 @@
+{
+  "schemaVersion": 2,
+  "title": "Infected TAVI prosthesis explantation and bioprosthetic aortic valve replacement",
+  "language": "en",
+  "durationMs": 3667788,
+  "questions": [
+    {
+      "id": "m01",
+      "startMs": 0,
+      "endMs": 60000,
+      "askAtMs": 60000,
+      "question": "What is shown before the operation begins?",
+      "options": [
+        "Preparation for a high-risk cardiac reoperation",
+        "A completed mitral valve repair",
+        "A coronary angiogram only",
+        "A healed sternotomy"
+      ],
+      "answer": 0,
+      "explanation": "The opening minute shows the operative team and preparation before the chest is opened."
+    },
+    {
+      "id": "m02",
+      "startMs": 60000,
+      "endMs": 120000,
+      "askAtMs": 120000,
+      "question": "What procedure is announced at the start of the video?",
+      "options": [
+        "Aortic dissection repair",
+        "Explantation of an infected TAVI prosthesis followed by bioprosthetic aortic valve replacement",
+        "Mitral valve repair only",
+        "Coronary bypass without valve surgery"
+      ],
+      "answer": 1,
+      "explanation": "The planned operation is removal of the infected transcatheter valve and replacement with a surgical bioprosthetic aortic valve."
+    },
+    {
+      "id": "m03",
+      "startMs": 120000,
+      "endMs": 180000,
+      "askAtMs": 180000,
+      "question": "What is the first incision shown?",
+      "options": [
+        "A femoral venous incision",
+        "A left atrial incision",
+        "A skin incision for access to the chest",
+        "A carotid artery incision"
+      ],
+      "answer": 2,
+      "explanation": "The team begins with the skin incision that leads toward the median sternotomy."
+    },
+    {
+      "id": "m04",
+      "startMs": 180000,
+      "endMs": 240000,
+      "askAtMs": 240000,
+      "question": "What does the saw separate during the early exposure?",
+      "options": [
+        "The aortic valve leaflets",
+        "The pulmonary artery",
+        "The mitral annulus",
+        "The sternum"
+      ],
+      "answer": 3,
+      "explanation": "The surgeon uses the saw to perform a sternotomy and open the chest."
+    },
+    {
+      "id": "m05",
+      "startMs": 240000,
+      "endMs": 300000,
+      "askAtMs": 300000,
+      "question": "Why is heparin administered before bypass?",
+      "options": [
+        "To prevent clotting in the cardiopulmonary bypass circuit",
+        "To dissolve the infected prosthesis",
+        "To stop the heart directly",
+        "To enlarge the aortic annulus"
+      ],
+      "answer": 0,
+      "explanation": "Heparin prevents coagulation when blood contacts the artificial surfaces of the bypass circuit."
+    },
+    {
+      "id": "m06",
+      "startMs": 300000,
+      "endMs": 360000,
+      "askAtMs": 360000,
+      "question": "What is the main purpose of the chest retractor in this phase?",
+      "options": [
+        "To deliver cardioplegia",
+        "To improve exposure of the mediastinal operative field",
+        "To inflate the lungs",
+        "To measure the annulus"
+      ],
+      "answer": 1,
+      "explanation": "The retractor spreads the sternum so the pericardium and heart can be accessed safely."
+    },
+    {
+      "id": "m07",
+      "startMs": 360000,
+      "endMs": 420000,
+      "askAtMs": 420000,
+      "question": "What do pericardial stay sutures provide?",
+      "options": [
+        "A route for venous drainage",
+        "A replacement for the valve",
+        "Stable retraction of the pericardial edges",
+        "Permanent closure of the aorta"
+      ],
+      "answer": 2,
+      "explanation": "Stay sutures hold the pericardium open and stabilize the operative field."
+    },
+    {
+      "id": "m08",
+      "startMs": 420000,
+      "endMs": 480000,
+      "askAtMs": 480000,
+      "question": "Why does the surgeon palpate the TAVI frame before the aortotomy?",
+      "options": [
+        "To diagnose mitral regurgitation",
+        "To size the venous cannula",
+        "To test the pacemaker",
+        "To choose a safe level for opening the aorta"
+      ],
+      "answer": 3,
+      "explanation": "Palpating the frame identifies its height and incorporation so the aortotomy can be planned around it."
+    },
+    {
+      "id": "m09",
+      "startMs": 480000,
+      "endMs": 540000,
+      "askAtMs": 540000,
+      "question": "What is being assessed when the aortic tissue is described as thin?",
+      "options": [
+        "The tissue's ability to hold cannulation sutures",
+        "The patient's coronary blood flow",
+        "The diameter of the prosthetic leaflets",
+        "The level of sedation"
+      ],
+      "answer": 0,
+      "explanation": "Thin or fragile aortic tissue may not tolerate concentrated traction, so the cannulation sutures must distribute force."
+    },
+    {
+      "id": "m10",
+      "startMs": 540000,
+      "endMs": 600000,
+      "askAtMs": 600000,
+      "question": "What does the aortic cannulation suture help secure?",
+      "options": [
+        "The new bioprosthesis",
+        "The arterial cannula for bypass",
+        "The left atrial vent",
+        "The sternal wires"
+      ],
+      "answer": 1,
+      "explanation": "The purse-string suture controls the arterial entry site and limits bleeding around the aortic cannula."
+    },
+    {
+      "id": "m11",
+      "startMs": 600000,
+      "endMs": 660000,
+      "askAtMs": 660000,
+      "question": "Which two cannulation preparations are emphasized?",
+      "options": [
+        "Mitral and tricuspid cannulation",
+        "Pulmonary and coronary sinus ablation",
+        "Venous cannulation and antegrade cardioplegia cannulation",
+        "Carotid and femoral cannulation"
+      ],
+      "answer": 2,
+      "explanation": "The team prepares the venous cannula site and the site for antegrade cardioplegia."
+    },
+    {
+      "id": "m12",
+      "startMs": 660000,
+      "endMs": 720000,
+      "askAtMs": 720000,
+      "question": "What is the immediate concern when advancing a cannula through a thin aorta?",
+      "options": [
+        "Preventing mitral stenosis",
+        "Avoiding aortic valve calcification",
+        "Preventing atrial fibrillation",
+        "Avoiding wall injury and a cannulation leak"
+      ],
+      "answer": 3,
+      "explanation": "A thin aortic wall can dissect or bleed if the cannula is advanced aggressively."
+    },
+    {
+      "id": "m13",
+      "startMs": 720000,
+      "endMs": 780000,
+      "askAtMs": 780000,
+      "question": "What is the purpose of evacuating air from the lines before bypass?",
+      "options": [
+        "To reduce the risk of air entering the circulation",
+        "To increase annular calcification",
+        "To stop the heart permanently",
+        "To sterilize the sternum"
+      ],
+      "answer": 0,
+      "explanation": "The team empties and de-airs the line before delivering fluid and starting bypass."
+    },
+    {
+      "id": "m14",
+      "startMs": 780000,
+      "endMs": 840000,
+      "askAtMs": 840000,
+      "question": "What does an activated clotting time above four hundred seconds indicate here?",
+      "options": [
+        "Normal renal function",
+        "Adequate heparinization for cardiopulmonary bypass",
+        "Completion of valve implantation",
+        "Resolution of endocarditis"
+      ],
+      "answer": 1,
+      "explanation": "The team waits for a high ACT before going on pump to reduce circuit thrombosis risk."
+    },
+    {
+      "id": "m15",
+      "startMs": 840000,
+      "endMs": 900000,
+      "askAtMs": 900000,
+      "question": "What is the purpose of the left atrial vent suture after bypass begins?",
+      "options": [
+        "To replace the venous cannula",
+        "To close the sternum",
+        "To permit decompression and removal of blood or air from the left heart",
+        "To deliver systemic antibiotics"
+      ],
+      "answer": 2,
+      "explanation": "The left atrial vent helps keep the field bloodless and assists de-airing later."
+    },
+    {
+      "id": "m16",
+      "startMs": 900000,
+      "endMs": 960000,
+      "askAtMs": 960000,
+      "question": "Which structure must be avoided when placing the retrograde cardioplegia purse string?",
+      "options": [
+        "The left pulmonary vein",
+        "The mitral leaflet",
+        "The sternum",
+        "The right coronary artery"
+      ],
+      "answer": 3,
+      "explanation": "The surgeon identifies the right coronary artery near the intended site and avoids injuring it."
+    },
+    {
+      "id": "m17",
+      "startMs": 960000,
+      "endMs": 1020000,
+      "askAtMs": 1020000,
+      "question": "Why is the right atrium kept filled while the retrograde cannula is inserted?",
+      "options": [
+        "To reduce the risk of air entering and air-locking the venous line",
+        "To prevent the aorta from calcifying",
+        "To increase the valve size",
+        "To close the pericardium"
+      ],
+      "answer": 0,
+      "explanation": "An empty atrium can entrain air into the venous drainage system."
+    },
+    {
+      "id": "m18",
+      "startMs": 1020000,
+      "endMs": 1080000,
+      "askAtMs": 1080000,
+      "question": "What could happen if the retrograde cannula is advanced too far?",
+      "options": [
+        "The bypass circuit would gain oxygen",
+        "Perfusion of the right coronary territory could be reduced",
+        "The sternum could close automatically",
+        "The native valve would regrow"
+      ],
+      "answer": 1,
+      "explanation": "The video warns that an overly deep cannula can further compromise right coronary perfusion."
+    },
+    {
+      "id": "m19",
+      "startMs": 1080000,
+      "endMs": 1140000,
+      "askAtMs": 1140000,
+      "question": "Why is the plane between the aorta and pulmonary artery developed?",
+      "options": [
+        "To remove the sternum",
+        "To test the pacemaker",
+        "To create a safer corridor for the aortotomy",
+        "To place a mitral prosthesis"
+      ],
+      "answer": 2,
+      "explanation": "The dissection separates adjacent structures before the aorta is opened."
+    },
+    {
+      "id": "m20",
+      "startMs": 1140000,
+      "endMs": 1200000,
+      "askAtMs": 1200000,
+      "question": "What is used to arrest and protect the heart after the cross clamp?",
+      "options": [
+        "Bone wax",
+        "Protamine",
+        "Dopamine alone",
+        "Cold retrograde cardioplegia"
+      ],
+      "answer": 3,
+      "explanation": "The heart is arrested with cold cardioplegia delivered retrogradely after cross clamping."
+    },
+    {
+      "id": "m21",
+      "startMs": 1200000,
+      "endMs": 1260000,
+      "askAtMs": 1260000,
+      "question": "Through which route is the vent cannula placed into the left atrium?",
+      "options": [
+        "Through the right superior pulmonary vein",
+        "Through the inferior vena cava",
+        "Through the coronary artery",
+        "Through the carotid artery"
+      ],
+      "answer": 0,
+      "explanation": "The vent passes through the right superior pulmonary vein into the left atrium."
+    },
+    {
+      "id": "m22",
+      "startMs": 1260000,
+      "endMs": 1320000,
+      "askAtMs": 1320000,
+      "question": "What is the main technical problem when the TAVI frame is embedded?",
+      "options": [
+        "It must be removed through the femoral vein",
+        "It must be exposed and dissected without forceful traction",
+        "It must be inflated like a balloon",
+        "It must be left in place"
+      ],
+      "answer": 1,
+      "explanation": "The surgeon exposes the frame and avoids pulling until the adherent areas are controlled."
+    },
+    {
+      "id": "m23",
+      "startMs": 1320000,
+      "endMs": 1380000,
+      "askAtMs": 1380000,
+      "question": "What complication occurs while separating the noncoronary stabilization arch?",
+      "options": [
+        "A mitral leaflet tear",
+        "A pacemaker failure",
+        "An injury to the inner layer of the aortic wall",
+        "A fracture of the sternum"
+      ],
+      "answer": 2,
+      "explanation": "The video reports an inner-layer aortic injury that will later be reinforced with a Teflon patch."
+    },
+    {
+      "id": "m24",
+      "startMs": 1380000,
+      "endMs": 1440000,
+      "askAtMs": 1440000,
+      "question": "What is the purpose of the snare technique during TAVI explantation?",
+      "options": [
+        "To deliver protamine",
+        "To repair the sternum",
+        "To size the new valve",
+        "To gain controlled purchase on the stent frame and progressively collapse it"
+      ],
+      "answer": 3,
+      "explanation": "Sutures passed through the frame allow controlled traction and reduction of the prosthesis."
+    },
+    {
+      "id": "m25",
+      "startMs": 1440000,
+      "endMs": 1500000,
+      "askAtMs": 1500000,
+      "question": "What should happen to infected prosthetic material removed from the field?",
+      "options": [
+        "It should be sent promptly for microbiologic culture",
+        "It should be returned to the bypass reservoir",
+        "It should be placed in the sternum",
+        "It should be used as a pledget"
+      ],
+      "answer": 0,
+      "explanation": "The surgeon removes contaminated material and sends it to microbiology."
+    },
+    {
+      "id": "m26",
+      "startMs": 1500000,
+      "endMs": 1560000,
+      "askAtMs": 1560000,
+      "question": "What is done while the final snare sutures are placed?",
+      "options": [
+        "The patient is extubated",
+        "Retrograde cardioplegia is continued to protect the arrested heart",
+        "Protamine is started",
+        "The sternum is closed"
+      ],
+      "answer": 1,
+      "explanation": "The final snare sutures are placed while cardioplegia continues to protect the myocardium."
+    },
+    {
+      "id": "m27",
+      "startMs": 1560000,
+      "endMs": 1620000,
+      "askAtMs": 1620000,
+      "question": "What abnormality of the TAVI frame is noted during explantation?",
+      "options": [
+        "The frame is made of bone",
+        "The frame has migrated into the mitral valve",
+        "Some portions never fully expanded",
+        "The frame is completely absent"
+      ],
+      "answer": 2,
+      "explanation": "Underexpanded segments are identified and require additional sutures for controlled removal."
+    },
+    {
+      "id": "m28",
+      "startMs": 1620000,
+      "endMs": 1680000,
+      "askAtMs": 1680000,
+      "question": "Why are the sutures gathered and tightened gradually?",
+      "options": [
+        "To increase the infection",
+        "To open the coronary ostia",
+        "To stop cardioplegia",
+        "To reduce the frame while limiting sudden traction on fragile tissue"
+      ],
+      "answer": 3,
+      "explanation": "Gradual tightening is a controlled way to mobilize a tissue-integrated prosthesis."
+    },
+    {
+      "id": "m29",
+      "startMs": 1680000,
+      "endMs": 1740000,
+      "askAtMs": 1740000,
+      "question": "What happens after several sutures snap?",
+      "options": [
+        "The team changes the angle and follows a remaining plane of separation",
+        "It immediately implants the new valve",
+        "It stops all suction",
+        "It removes the sternum again"
+      ],
+      "answer": 0,
+      "explanation": "The team adapts by approaching from a visible tissue plane rather than applying uncontrolled force."
+    },
+    {
+      "id": "m30",
+      "startMs": 1740000,
+      "endMs": 1800000,
+      "askAtMs": 1800000,
+      "question": "What makes the dissection especially difficult in this phase?",
+      "options": [
+        "A missing cardioplegia line",
+        "Dense superior adhesions between the frame and aortic tissue",
+        "A loose sternal wire",
+        "A detached mitral prosthesis"
+      ],
+      "answer": 1,
+      "explanation": "The surgeon repeatedly identifies areas of dense adhesion that require careful sharp dissection."
+    },
+    {
+      "id": "m31",
+      "startMs": 1800000,
+      "endMs": 1860000,
+      "askAtMs": 1860000,
+      "question": "What happens when the hematocrit is eighteen?",
+      "options": [
+        "The new valve is implanted",
+        "The sternum is closed",
+        "One unit of packed red blood cells is transfused",
+        "Protamine is given"
+      ],
+      "answer": 2,
+      "explanation": "The team responds to the low hematocrit with packed red cell transfusion."
+    },
+    {
+      "id": "m32",
+      "startMs": 1860000,
+      "endMs": 1920000,
+      "askAtMs": 1920000,
+      "question": "What important fact about TAVI explains why native valve tissue is still present?",
+      "options": [
+        "The native valve is always removed first",
+        "TAVI replaces only the mitral valve",
+        "TAVI uses a venous graft",
+        "The transcatheter prosthesis is deployed within the calcified native valve"
+      ],
+      "answer": 3,
+      "explanation": "TAVI generally compresses the native leaflets rather than excising them, so they remain within the device and wall complex."
+    },
+    {
+      "id": "m33",
+      "startMs": 1920000,
+      "endMs": 1980000,
+      "askAtMs": 1980000,
+      "question": "Why is a rongeur used selectively during native valve and tissue removal?",
+      "options": [
+        "To remove selected tissue while preserving viable aortic wall",
+        "To measure the sternum",
+        "To deliver cardioplegia",
+        "To reverse heparin"
+      ],
+      "answer": 0,
+      "explanation": "The surgeon distinguishes loose or removable material from tissue that should remain for repair."
+    },
+    {
+      "id": "m34",
+      "startMs": 1980000,
+      "endMs": 2040000,
+      "askAtMs": 2040000,
+      "question": "Why is the annulus cleaned before the new bioprosthesis is implanted?",
+      "options": [
+        "To stop all myocardial protection",
+        "To remove calcium and debris that could impair seating or embolize",
+        "To increase the size of the sternum",
+        "To induce heart block"
+      ],
+      "answer": 1,
+      "explanation": "A clean annulus supports proper seating and reduces residual infectious or embolic material."
+    },
+    {
+      "id": "m35",
+      "startMs": 2040000,
+      "endMs": 2100000,
+      "askAtMs": 2100000,
+      "question": "Why does the surgeon avoid excessive debridement near the commissure?",
+      "options": [
+        "The region is outside the heart",
+        "The region is used for bone wax",
+        "The region is close to the conduction system and fragile aortic tissue",
+        "The region contains the femoral artery"
+      ],
+      "answer": 2,
+      "explanation": "Near the commissure, preserving tissue can reduce structural injury and conduction disturbance."
+    },
+    {
+      "id": "m36",
+      "startMs": 2100000,
+      "endMs": 2160000,
+      "askAtMs": 2160000,
+      "question": "What marks the transition from contaminated explantation to the clean reconstruction phase?",
+      "options": [
+        "Removing the sternal retractor",
+        "Stopping all suction permanently",
+        "Giving protamine",
+        "Copious irrigation, instrument separation, and glove change"
+      ],
+      "answer": 3,
+      "explanation": "The team irrigates, separates contaminated instruments, and changes gloves before reconstruction."
+    },
+    {
+      "id": "m37",
+      "startMs": 2160000,
+      "endMs": 2220000,
+      "askAtMs": 2220000,
+      "question": "What is the purpose of copious saline irrigation?",
+      "options": [
+        "To remove residual tissue and calcific debris that could embolize",
+        "To enlarge the prosthetic frame",
+        "To reverse heparin",
+        "To pace the heart"
+      ],
+      "answer": 0,
+      "explanation": "Irrigation and suction clear debris from the left ventricle, annulus, and coronary ostia."
+    },
+    {
+      "id": "m38",
+      "startMs": 2220000,
+      "endMs": 2280000,
+      "askAtMs": 2280000,
+      "question": "Which sizer is ultimately selected for the surgical valve?",
+      "options": [
+        "Thirty-one millimetres",
+        "Twenty-one millimetres",
+        "Seventeen millimetres",
+        "Twenty-five millimetres"
+      ],
+      "answer": 1,
+      "explanation": "The twenty-one millimetre sizer seats well, so the team does not force a larger valve."
+    },
+    {
+      "id": "m39",
+      "startMs": 2280000,
+      "endMs": 2340000,
+      "askAtMs": 2340000,
+      "question": "Where are the pledgets placed for the new bioprosthetic valve?",
+      "options": [
+        "In the sternum",
+        "Within the coronary sinus",
+        "On the ventricular side of the annulus",
+        "Inside the pulmonary artery"
+      ],
+      "answer": 2,
+      "explanation": "The pledgets are placed on the ventricular side to distribute suture tension."
+    },
+    {
+      "id": "m40",
+      "startMs": 2340000,
+      "endMs": 2400000,
+      "askAtMs": 2400000,
+      "question": "What suture distribution is described while preparing the valve?",
+      "options": [
+        "One-one-one, including the commissures",
+        "Ten-ten, only at the coronary ostia",
+        "A single continuous stitch",
+        "Three-four-four, excluding the commissures"
+      ],
+      "answer": 3,
+      "explanation": "The surgeon describes a three-four-four distribution while excluding the commissural positions."
+    },
+    {
+      "id": "m41",
+      "startMs": 2400000,
+      "endMs": 2460000,
+      "askAtMs": 2460000,
+      "question": "Why is a twenty-one millimetre surgical valve chosen instead of a larger one?",
+      "options": [
+        "The larger valve could injure fragile tissue or the conduction system",
+        "The larger valve would not contain leaflets",
+        "The larger valve cannot be sterilized",
+        "The larger valve is a venous cannula"
+      ],
+      "answer": 0,
+      "explanation": "The video explicitly links forcing a larger valve with injury and a higher heart-block risk."
+    },
+    {
+      "id": "m42",
+      "startMs": 2460000,
+      "endMs": 2520000,
+      "askAtMs": 2520000,
+      "question": "Why is retrograde cardioplegia given before lowering the new valve?",
+      "options": [
+        "To remove the venous cannula",
+        "To protect the myocardium and flush the coronary circulation",
+        "To reverse heparin",
+        "To open the sternum"
+      ],
+      "answer": 1,
+      "explanation": "The dose maintains myocardial protection and can flush the coronary circulation in reverse."
+    },
+    {
+      "id": "m43",
+      "startMs": 2520000,
+      "endMs": 2580000,
+      "askAtMs": 2580000,
+      "question": "What is checked while the valve is rotated and the commissural sutures are released?",
+      "options": [
+        "That the mitral annulus is calcified",
+        "That protamine has reversed heparin",
+        "That the prosthesis remains aligned with the planned commissures",
+        "That the sternum has healed"
+      ],
+      "answer": 2,
+      "explanation": "The valve is rotated and released in a controlled sequence so its commissures and sutures remain aligned."
+    },
+    {
+      "id": "m44",
+      "startMs": 2580000,
+      "endMs": 2640000,
+      "askAtMs": 2640000,
+      "question": "What is the benefit of reverse coronary flushing during cardioplegia?",
+      "options": [
+        "It increases aortic regurgitation",
+        "It removes the sternum",
+        "It stops all venous drainage",
+        "It can help clear residual debris while protecting the myocardium"
+      ],
+      "answer": 3,
+      "explanation": "Retrograde cardioplegia protects the heart and can flush the coronary circulation in reverse."
+    },
+    {
+      "id": "m45",
+      "startMs": 2640000,
+      "endMs": 2700000,
+      "askAtMs": 2700000,
+      "question": "What is the main task while the remaining valve sutures are tied?",
+      "options": [
+        "Keep the prosthesis aligned and secure while maintaining myocardial protection",
+        "Start oral feeding",
+        "Remove the pericardium",
+        "Reverse heparin immediately"
+      ],
+      "answer": 0,
+      "explanation": "The valve must remain correctly positioned while the final sutures are tied during arrest."
+    },
+    {
+      "id": "m46",
+      "startMs": 2700000,
+      "endMs": 2760000,
+      "askAtMs": 2760000,
+      "question": "Why is additional retrograde cardioplegia given during the prolonged implant?",
+      "options": [
+        "To remove the sternal retractor",
+        "To maintain myocardial protection during the cross-clamp interval",
+        "To sterilize the skin",
+        "To enlarge the valve"
+      ],
+      "answer": 1,
+      "explanation": "Repeated doses reduce myocardial oxygen demand while the reconstruction continues."
+    },
+    {
+      "id": "m47",
+      "startMs": 2760000,
+      "endMs": 2820000,
+      "askAtMs": 2820000,
+      "question": "What is confirmed during the later coronary ostia assessment?",
+      "options": [
+        "The patient is eating normally",
+        "The native valve has regrown",
+        "The prosthesis is not occluding the coronary ostia",
+        "The sternum is fully healed"
+      ],
+      "answer": 2,
+      "explanation": "The surgeon confirms that the coronary openings remain unobstructed."
+    },
+    {
+      "id": "m48",
+      "startMs": 2820000,
+      "endMs": 2880000,
+      "askAtMs": 2880000,
+      "question": "What is the main task during aortotomy closure?",
+      "options": [
+        "Remove the sternal wires",
+        "Place a venous cannula",
+        "Start oral feeding",
+        "Create a secure, hemostatic closure around the repaired aortic wall"
+      ],
+      "answer": 3,
+      "explanation": "The aortotomy is closed with sutures while the team maintains myocardial protection."
+    },
+    {
+      "id": "m49",
+      "startMs": 2880000,
+      "endMs": 2940000,
+      "askAtMs": 2940000,
+      "question": "Why are lung inflation and Trendelenburg positioning used before clamp removal?",
+      "options": [
+        "They help displace and evacuate residual intracardiac air",
+        "They increase annular calcification",
+        "They reverse protamine",
+        "They stop the pacemaker"
+      ],
+      "answer": 0,
+      "explanation": "Filling the lungs and using a head-down position are part of deliberate de-airing."
+    },
+    {
+      "id": "m50",
+      "startMs": 2940000,
+      "endMs": 3000000,
+      "askAtMs": 3000000,
+      "question": "What is the purpose of the aortic root vent during de-airing?",
+      "options": [
+        "To culture the prosthesis",
+        "To suction residual air and fluid from the root",
+        "To deliver bone wax",
+        "To measure the sternum"
+      ],
+      "answer": 1,
+      "explanation": "Root vent suction helps remove air before the heart ejects."
+    },
+    {
+      "id": "m51",
+      "startMs": 3000000,
+      "endMs": 3060000,
+      "askAtMs": 3060000,
+      "question": "What is being controlled while the heart and aorta are filled before clamp removal?",
+      "options": [
+        "The size of the sternotomy",
+        "The patient's food intake",
+        "Residual air and the level of cardiac filling",
+        "The amount of bone wax"
+      ],
+      "answer": 2,
+      "explanation": "The team fills the heart carefully and keeps suction active while removing remaining air."
+    },
+    {
+      "id": "m52",
+      "startMs": 3060000,
+      "endMs": 3120000,
+      "askAtMs": 3120000,
+      "question": "What is done as the aortotomy is tied and the clamp removal approaches?",
+      "options": [
+        "The new valve is removed",
+        "The bypass circuit is discarded",
+        "The sternum is closed",
+        "Gentle root venting and temporary carotid compression are prepared"
+      ],
+      "answer": 3,
+      "explanation": "The team prepares a controlled de-airing maneuver before removing the clamp."
+    },
+    {
+      "id": "m53",
+      "startMs": 3120000,
+      "endMs": 3180000,
+      "askAtMs": 3180000,
+      "question": "What does the team do immediately after the cross clamp is removed?",
+      "options": [
+        "Maintain venting, release the carotids, and assess rhythm and filling",
+        "Give another sternotomy",
+        "Remove the new valve",
+        "Stop all monitoring"
+      ],
+      "answer": 0,
+      "explanation": "The transition to reperfusion includes controlled venting, release of carotid compression, and rhythm assessment."
+    },
+    {
+      "id": "m54",
+      "startMs": 3180000,
+      "endMs": 3240000,
+      "askAtMs": 3240000,
+      "question": "How is a small aortotomy bleeding point reinforced?",
+      "options": [
+        "With a pacemaker battery",
+        "With Teflon pledget-reinforced sutures",
+        "With a venous cannula",
+        "With bone wax inside the annulus"
+      ],
+      "answer": 1,
+      "explanation": "The surgeon places pledgets to spread tension across fragile aortic tissue."
+    },
+    {
+      "id": "m55",
+      "startMs": 3240000,
+      "endMs": 3300000,
+      "askAtMs": 3300000,
+      "question": "What rhythm complication is specifically assessed after the heart starts beating?",
+      "options": [
+        "Aortic dissection",
+        "Pulmonary embolism",
+        "Heart block",
+        "Ventricular septal defect"
+      ],
+      "answer": 2,
+      "explanation": "The team assesses atrioventricular synchrony and checks for heart block after annular surgery."
+    },
+    {
+      "id": "m56",
+      "startMs": 3300000,
+      "endMs": 3360000,
+      "askAtMs": 3360000,
+      "question": "What finding supports a gradual separation from bypass?",
+      "options": [
+        "Persistent severe bleeding",
+        "Blocked coronary ostia",
+        "Absent urine output",
+        "Good contractility with no evidence of heart block"
+      ],
+      "answer": 3,
+      "explanation": "The team reports good contraction and no block before reducing support."
+    },
+    {
+      "id": "m57",
+      "startMs": 3360000,
+      "endMs": 3420000,
+      "askAtMs": 3420000,
+      "question": "What happens when the pacemaker is turned on?",
+      "options": [
+        "It captures",
+        "It dissolves the valve",
+        "It reverses heparin",
+        "It opens the sternum"
+      ],
+      "answer": 0,
+      "explanation": "The pacing wire is tested and capture is confirmed."
+    },
+    {
+      "id": "m58",
+      "startMs": 3420000,
+      "endMs": 3480000,
+      "askAtMs": 3480000,
+      "question": "How is cardiopulmonary bypass reduced near the end?",
+      "options": [
+        "The heart is left empty permanently",
+        "Flow is tapered stepwise while vents and cannulas are removed",
+        "The pump is stopped before filling the heart",
+        "The arterial cannula is removed first without pressure checks"
+      ],
+      "answer": 1,
+      "explanation": "The team fills the heart and reduces flow gradually before removing the vents and cannulas."
+    },
+    {
+      "id": "m59",
+      "startMs": 3480000,
+      "endMs": 3540000,
+      "askAtMs": 3540000,
+      "question": "What medication is started to reverse the effect of heparin?",
+      "options": [
+        "Amiodarone",
+        "Dopamine",
+        "Protamine",
+        "Milrinone"
+      ],
+      "answer": 2,
+      "explanation": "Protamine is started after bypass to reverse heparin, with blood pressure monitored during decannulation."
+    },
+    {
+      "id": "m60",
+      "startMs": 3540000,
+      "endMs": 3600000,
+      "askAtMs": 3600000,
+      "question": "What is checked in the final inspection?",
+      "options": [
+        "The original TAVI delivery catheter",
+        "The patient's food intake",
+        "The sternum before it is opened",
+        "Hemostasis and stability of the repaired area"
+      ],
+      "answer": 3,
+      "explanation": "The final inspection confirms satisfactory clot formation and a stable repair."
+    },
+    {
+      "id": "m61",
+      "startMs": 3600000,
+      "endMs": 3660000,
+      "askAtMs": 3660000,
+      "question": "What does the public study pack emphasize in the closing segment?",
+      "options": [
+        "The operative sequence, safety checks, and staged recovery from bypass",
+        "A new infection requiring another valve",
+        "A second sternotomy for the same operation",
+        "A medication prescription for home use"
+      ],
+      "answer": 0,
+      "explanation": "The pack emphasizes the observed operative sequence and safety checks; it is educational surgical commentary, not a personal treatment plan."
+    },
+    {
+      "id": "m62",
+      "startMs": 3660000,
+      "endMs": 3667788,
+      "askAtMs": 3667788,
+      "question": "Which sequence best summarizes the operation?",
+      "options": [
+        "Sternal closure without removing the infected valve",
+        "Infected TAVI explantation, debridement and irrigation, surgical bioprosthetic replacement, de-airing, and staged weaning from bypass",
+        "Mitral repair followed by carotid stenting only",
+        "Immediate prosthesis extraction without bypass or reconstruction"
+      ],
+      "answer": 1,
+      "explanation": "The operation combines source control, removal of the native valve and infected TAVI, new valve implantation, de-airing, and controlled recovery."
+    }
+  ],
+  "captions": [
+    {
+      "startMs": 82820,
+      "endMs": 89059,
+      "text": "Here we are. Thank you. Much appreciated."
+    },
+    {
+      "startMs": 89457,
+      "endMs": 98332,
+      "text": "Planned Procedure: Explantation of the infected TAVI prosthesis. Bioprosthetic aortic valve replacement."
+    },
+    {
+      "startMs": 102099,
+      "endMs": 105419,
+      "text": "Place it somewhere over here."
+    },
+    {
+      "startMs": 122699,
+      "endMs": 127260,
+      "text": "Yes. Scalpel, please."
+    },
+    {
+      "startMs": 127260,
+      "endMs": 130580,
+      "text": "Alright, we are starting."
+    },
+    {
+      "startMs": 130580,
+      "endMs": 133565,
+      "text": "Skin Incision"
+    },
+    {
+      "startMs": 133940,
+      "endMs": 140180,
+      "text": "Yes. Take a sponge and stand opposite me."
+    },
+    {
+      "startMs": 234780,
+      "endMs": 238420,
+      "text": "Yes, we can take the saw."
+    },
+    {
+      "startMs": 239899,
+      "endMs": 243259,
+      "text": "Let's separate the sternum."
+    },
+    {
+      "startMs": 243868,
+      "endMs": 247061,
+      "text": "Sternotomy"
+    },
+    {
+      "startMs": 252940,
+      "endMs": 260179,
+      "text": "Let's tie it. Administer heparin. Sponge, please."
+    },
+    {
+      "startMs": 267460,
+      "endMs": 270300,
+      "text": "Alright. Thank you. Yes."
+    },
+    {
+      "startMs": 270300,
+      "endMs": 274420,
+      "text": "Let's start from here."
+    },
+    {
+      "startMs": 287779,
+      "endMs": 292260,
+      "text": "These areas look good."
+    },
+    {
+      "startMs": 304460,
+      "endMs": 307860,
+      "text": "Let's bring in the lines."
+    },
+    {
+      "startMs": 312380,
+      "endMs": 315660,
+      "text": "Bone wax."
+    },
+    {
+      "startMs": 323900,
+      "endMs": 327939,
+      "text": "Let's remove the drapes."
+    },
+    {
+      "startMs": 331300,
+      "endMs": 335233,
+      "text": "Retractor Placement"
+    },
+    {
+      "startMs": 337183,
+      "endMs": 339755,
+      "text": "Forceps."
+    },
+    {
+      "startMs": 344619,
+      "endMs": 348900,
+      "text": "Can we cut the lines? Here you are."
+    },
+    {
+      "startMs": 364619,
+      "endMs": 368300,
+      "text": "Do not leave it too long."
+    },
+    {
+      "startMs": 375817,
+      "endMs": 381512,
+      "text": "Opening the Pericardium"
+    },
+    {
+      "startMs": 411300,
+      "endMs": 415020,
+      "text": "Pericardial stay sutures."
+    },
+    {
+      "startMs": 418860,
+      "endMs": 420740,
+      "text": "Here. Yes, right here."
+    },
+    {
+      "startMs": 420740,
+      "endMs": 424779,
+      "text": "One of the stabilization arches is here. Can you feel the stent frame, doctor?"
+    },
+    {
+      "startMs": 424779,
+      "endMs": 428339,
+      "text": "One part of the stent is here. It is not actually positioned very high."
+    },
+    {
+      "startMs": 428339,
+      "endMs": 431540,
+      "text": "It is quite short and not very high. A standard aortotomy should provide easy access."
+    },
+    {
+      "startMs": 431772,
+      "endMs": 438269,
+      "text": "We palpate the TAVI frame to determine a safe level for the aortotomy."
+    },
+    {
+      "startMs": 439970,
+      "endMs": 445120,
+      "text": "Pericardial Stay Sutures"
+    },
+    {
+      "startMs": 449332,
+      "endMs": 451954,
+      "text": "Clamp, please."
+    },
+    {
+      "startMs": 476179,
+      "endMs": 482980,
+      "text": "It has also incorporated into the tissue here. You can already feel it there."
+    },
+    {
+      "startMs": 486179,
+      "endMs": 489700,
+      "text": "The aortic tissue is not too bad. Yes."
+    },
+    {
+      "startMs": 525940,
+      "endMs": 531699,
+      "text": "Alright. Let's take the cannulation sutures."
+    },
+    {
+      "startMs": 531699,
+      "endMs": 536139,
+      "text": "The aorta is clear. Good."
+    },
+    {
+      "startMs": 536180,
+      "endMs": 539180,
+      "text": "Snare, please."
+    },
+    {
+      "startMs": 540314,
+      "endMs": 544363,
+      "text": "Aortic Cannulation Suture"
+    },
+    {
+      "startMs": 576139,
+      "endMs": 579460,
+      "text": "Snare, please."
+    },
+    {
+      "startMs": 611100,
+      "endMs": 615260,
+      "text": "Venous Cannulation Suture"
+    },
+    {
+      "startMs": 630020,
+      "endMs": 633139,
+      "text": "Antegrade cardioplegia suture, please."
+    },
+    {
+      "startMs": 634819,
+      "endMs": 638674,
+      "text": "Snare, please."
+    },
+    {
+      "startMs": 638906,
+      "endMs": 642686,
+      "text": "Cardioplegia Cannulation Suture"
+    },
+    {
+      "startMs": 652819,
+      "endMs": 656139,
+      "text": "Scissors, please."
+    },
+    {
+      "startMs": 659379,
+      "endMs": 662100,
+      "text": "Let's take the cannula."
+    },
+    {
+      "startMs": 663300,
+      "endMs": 668190,
+      "text": "The aorta is quite thin. Yes."
+    },
+    {
+      "startMs": 668190,
+      "endMs": 671300,
+      "text": "Aortic Cannulation"
+    },
+    {
+      "startMs": 673900,
+      "endMs": 678980,
+      "text": "Advance it. Alright."
+    },
+    {
+      "startMs": 708579,
+      "endMs": 712100,
+      "text": "The other tie."
+    },
+    {
+      "startMs": 735980,
+      "endMs": 738980,
+      "text": "You are not going to draw blood, correct? Let's still empty it and evacuate the air."
+    },
+    {
+      "startMs": 738980,
+      "endMs": 744420,
+      "text": "Again. Come underneath."
+    },
+    {
+      "startMs": 744420,
+      "endMs": 749980,
+      "text": "Alright, give me the line."
+    },
+    {
+      "startMs": 749980,
+      "endMs": 753579,
+      "text": "Come forward. It is coming. Let's administer it directly through the line."
+    },
+    {
+      "startMs": 753579,
+      "endMs": 757139,
+      "text": "It appears to be drawing red blood. Leave it."
+    },
+    {
+      "startMs": 757139,
+      "endMs": 761860,
+      "text": "Clear."
+    },
+    {
+      "startMs": 762780,
+      "endMs": 766100,
+      "text": "Give me the green line."
+    },
+    {
+      "startMs": 766663,
+      "endMs": 767726,
+      "text": "I am giving one hundred milliliters."
+    },
+    {
+      "startMs": 767743,
+      "endMs": 773183,
+      "text": "Let's give it and assess the response. Clamp, please."
+    },
+    {
+      "startMs": 776771,
+      "endMs": 781361,
+      "text": "Venous Cannulation"
+    },
+    {
+      "startMs": 783379,
+      "endMs": 789060,
+      "text": "You have the posterior side. Alright, you can advance it, team member."
+    },
+    {
+      "startMs": 794939,
+      "endMs": 798259,
+      "text": "We reduced the flow, so the pressure also fell."
+    },
+    {
+      "startMs": 801579,
+      "endMs": 804460,
+      "text": "What is the blood pressure now? Can you lower the line slightly?"
+    },
+    {
+      "startMs": 804460,
+      "endMs": 809460,
+      "text": "Approximately 80 over 35, doctor. Alright, good."
+    },
+    {
+      "startMs": 822420,
+      "endMs": 825420,
+      "text": "Let's cut it."
+    },
+    {
+      "startMs": 828579,
+      "endMs": 833939,
+      "text": "Alright. We can open it."
+    },
+    {
+      "startMs": 833939,
+      "endMs": 840860,
+      "text": "The ACT is now above 400. Let's go on pump."
+    },
+    {
+      "startMs": 841340,
+      "endMs": 843020,
+      "text": "Start bypass. Shall we go on pump?"
+    },
+    {
+      "startMs": 843020,
+      "endMs": 849059,
+      "text": "Yes, let's go on pump. We will place the vent suture. Bypass has started."
+    },
+    {
+      "startMs": 849989,
+      "endMs": 853835,
+      "text": "Left Atrial Vent Cannulation Suture"
+    },
+    {
+      "startMs": 878259,
+      "endMs": 882540,
+      "text": "Let's place it. Give me the retrograde cannulation suture. Hold it like this,"
+    },
+    {
+      "startMs": 882540,
+      "endMs": 884699,
+      "text": "will you, team member? Alright."
+    },
+    {
+      "startMs": 884699,
+      "endMs": 888020,
+      "text": "Now, this is how we place the retrograde cannula. The venous cannula is here."
+    },
+    {
+      "startMs": 888020,
+      "endMs": 892819,
+      "text": "We will pass the retrograde cannula anterior to the venous cannula. If we place the suture too low,"
+    },
+    {
+      "startMs": 892819,
+      "endMs": 897579,
+      "text": "if we place it down here, it becomes difficult to pass the cannula over it."
+    },
+    {
+      "startMs": 897579,
+      "endMs": 900860,
+      "text": "I generally place it at the most prominent point, but the right coronary artery is right here."
+    },
+    {
+      "startMs": 900860,
+      "endMs": 904980,
+      "text": "Right here. We must avoid injuring it."
+    },
+    {
+      "startMs": 904980,
+      "endMs": 908499,
+      "text": "At the most prominent point. The purse-string must be wide."
+    },
+    {
+      "startMs": 908499,
+      "endMs": 916100,
+      "text": "It should be placed much wider than the cannula, because bleeding may otherwise occur afterward."
+    },
+    {
+      "startMs": 919420,
+      "endMs": 921379,
+      "text": "Is the cardioplegia ready? We are preparing it."
+    },
+    {
+      "startMs": 921379,
+      "endMs": 924180,
+      "text": "Alright. The heart may fibrillate as soon as we place the retrograde cannula."
+    },
+    {
+      "startMs": 924180,
+      "endMs": 930059,
+      "text": "That is why we asked about the cardioplegia. Yes. Let's place the aortic root cannula."
+    },
+    {
+      "startMs": 930059,
+      "endMs": 933699,
+      "text": "This is another small detail. Look, while placing this, I will also release the vent side."
+    },
+    {
+      "startMs": 933699,
+      "endMs": 939460,
+      "text": "It is a minor detail, but I pay attention to these points as well."
+    },
+    {
+      "startMs": 957020,
+      "endMs": 960340,
+      "text": "Silk tie."
+    },
+    {
+      "startMs": 966780,
+      "endMs": 970780,
+      "text": "We are placing the retrograde cannula. Fill the heart."
+    },
+    {
+      "startMs": 970780,
+      "endMs": 974340,
+      "text": "While placing the retrograde cannula, we retract the venous cannula upward, without applying excessive traction,"
+    },
+    {
+      "startMs": 974340,
+      "endMs": 980460,
+      "text": "slightly toward the patient's left shoulder. The right atrium needs to remain filled."
+    },
+    {
+      "startMs": 980460,
+      "endMs": 985579,
+      "text": "If the atrium is empty, air may be entrained and the venous line may become air-locked."
+    },
+    {
+      "startMs": 985579,
+      "endMs": 989340,
+      "text": "Give it to me. Now we direct it posteriorly like this."
+    },
+    {
+      "startMs": 989340,
+      "endMs": 993499,
+      "text": "We make sure that it passes anterior to the venous cannula."
+    },
+    {
+      "startMs": 993499,
+      "endMs": 998300,
+      "text": "Look, it is currently behind the venous cannula."
+    },
+    {
+      "startMs": 998300,
+      "endMs": 1002499,
+      "text": "I have pulled it forward now. Can you see? It is now anterior to it."
+    },
+    {
+      "startMs": 1002499,
+      "endMs": 1008059,
+      "text": "I can feel it. We release this and take that. Dr. team member continues retracting the venous cannula."
+    },
+    {
+      "startMs": 1008059,
+      "endMs": 1012619,
+      "text": "Now I am directing it downward. Put your hand in here, team member, and feel it there,"
+    },
+    {
+      "startMs": 1012619,
+      "endMs": 1016420,
+      "text": "on the left side of the superior vena cava. Can you feel it? Yes, it is inside now."
+    },
+    {
+      "startMs": 1016420,
+      "endMs": 1020660,
+      "text": "It is in. It is inside now. I advance it like this."
+    },
+    {
+      "startMs": 1020660,
+      "endMs": 1024059,
+      "text": "Your hand is directed toward the left shoulder. Yes, toward the left shoulder. I guide it manually."
+    },
+    {
+      "startMs": 1024059,
+      "endMs": 1027059,
+      "text": "I am guiding it manually."
+    },
+    {
+      "startMs": 1030619,
+      "endMs": 1033379,
+      "text": "Feel it. Now direct it posteriorly. Palpate it along the atrioventricular groove."
+    },
+    {
+      "startMs": 1034660,
+      "endMs": 1038540,
+      "text": "Alright. Correct? Good."
+    },
+    {
+      "startMs": 1041979,
+      "endMs": 1047139,
+      "text": "Empty syringe, please. Without overinflating, we assess the balloon's firmness like this."
+    },
+    {
+      "startMs": 1047139,
+      "endMs": 1051219,
+      "text": "The firmness felt in the syringe corresponds to the firmness of the balloon at the tip."
+    },
+    {
+      "startMs": 1051219,
+      "endMs": 1056499,
+      "text": "Let's take the ties."
+    },
+    {
+      "startMs": 1064900,
+      "endMs": 1069620,
+      "text": "One more. If the retrograde cannula is advanced too far,"
+    },
+    {
+      "startMs": 1069620,
+      "endMs": 1073900,
+      "text": "perfusion of the right coronary territory, which is already less effective with retrograde cardioplegia,"
+    },
+    {
+      "startMs": 1073900,
+      "endMs": 1077859,
+      "text": "will be reduced even further."
+    },
+    {
+      "startMs": 1079219,
+      "endMs": 1082859,
+      "text": "Yes. Let's cut these."
+    },
+    {
+      "startMs": 1085940,
+      "endMs": 1088979,
+      "text": "Let's develop the plane around the pulmonary artery. After that, we can reposition"
+    },
+    {
+      "startMs": 1088979,
+      "endMs": 1093620,
+      "text": "the venous cannula."
+    },
+    {
+      "startMs": 1096768,
+      "endMs": 1097851,
+      "text": "Can you give me a clamp?"
+    },
+    {
+      "startMs": 1097940,
+      "endMs": 1103973,
+      "text": "Place it here, team member. Scissors, then forceps, please."
+    },
+    {
+      "startMs": 1103973,
+      "endMs": 1108093,
+      "text": "We develop the plane between the aorta and pulmonary artery to perform the aortotomy safely."
+    },
+    {
+      "startMs": 1109580,
+      "endMs": 1112580,
+      "text": "Cautery."
+    },
+    {
+      "startMs": 1124900,
+      "endMs": 1128780,
+      "text": "Could you retract this area gently?"
+    },
+    {
+      "startMs": 1128940,
+      "endMs": 1132339,
+      "text": "Alright. The cardioplegia is ready, correct? Ready."
+    },
+    {
+      "startMs": 1132339,
+      "endMs": 1137380,
+      "text": "Alright. Let's take the cross-clamp. The aortic root vent is suctioning."
+    },
+    {
+      "startMs": 1137380,
+      "endMs": 1142099,
+      "text": "It is suctioning. Good."
+    },
+    {
+      "startMs": 1142380,
+      "endMs": 1149780,
+      "text": "Alright. Do we have the ice-cold saline? Good. We will arrest the heart with retrograde cardioplegia."
+    },
+    {
+      "startMs": 1149940,
+      "endMs": 1153900,
+      "text": "Lower the flow. Yes, applying the cross-clamp."
+    },
+    {
+      "startMs": 1155339,
+      "endMs": 1157979,
+      "text": "Yes. Keep the aortic root vent running."
+    },
+    {
+      "startMs": 1157979,
+      "endMs": 1164940,
+      "text": "Start cardioplegia. Stop the aortic root vent."
+    },
+    {
+      "startMs": 1171459,
+      "endMs": 1175260,
+      "text": "After opening the aorta, we will remove all instruments used in the infected field."
+    },
+    {
+      "startMs": 1175260,
+      "endMs": 1181060,
+      "text": "Place an abdominal pad here. We will consider this area contaminated."
+    },
+    {
+      "startMs": 1181300,
+      "endMs": 1187900,
+      "text": "There is severe aortic regurgitation. Deliver all cardioplegia retrogradely. Keep the aortic root vent on."
+    },
+    {
+      "startMs": 1189140,
+      "endMs": 1192820,
+      "text": "Let's place the vent."
+    },
+    {
+      "startMs": 1194175,
+      "endMs": 1195530,
+      "text": "Scalpel."
+    },
+    {
+      "startMs": 1206780,
+      "endMs": 1209780,
+      "text": "Kelly clamp."
+    },
+    {
+      "startMs": 1215596,
+      "endMs": 1224063,
+      "text": "A vent cannula is placed in the left atrium through the right superior pulmonary vein to keep the operative field bloodless and evacuate residual intracardiac air at the end of the procedure."
+    },
+    {
+      "startMs": 1224420,
+      "endMs": 1228219,
+      "text": "Give me the yellow line. Bring it from underneath."
+    },
+    {
+      "startMs": 1228219,
+      "endMs": 1232580,
+      "text": "Start suction on the yellow line. The yellow line is now the vent line."
+    },
+    {
+      "startMs": 1232580,
+      "endMs": 1238339,
+      "text": "Alright. Let's open the aorta."
+    },
+    {
+      "startMs": 1238660,
+      "endMs": 1245459,
+      "text": "Alright. Look, the struts are visible here."
+    },
+    {
+      "startMs": 1245459,
+      "endMs": 1249580,
+      "text": "No. 15 blade, please. We are opening the aorta. Dry the surface here, team member."
+    },
+    {
+      "startMs": 1249580,
+      "endMs": 1254339,
+      "text": "It would be best to open it at this level."
+    },
+    {
+      "startMs": 1254339,
+      "endMs": 1260979,
+      "text": "Yes, that is what we had planned. Scissors, please."
+    },
+    {
+      "startMs": 1263979,
+      "endMs": 1267099,
+      "text": "Another pair of forceps, please."
+    },
+    {
+      "startMs": 1279180,
+      "endMs": 1285140,
+      "text": "No, it is embedded. We can expose it slightly like this. No, this way. Alright."
+    },
+    {
+      "startMs": 1285140,
+      "endMs": 1288339,
+      "text": "Do not pull on it yet. Let's take it."
+    },
+    {
+      "startMs": 1288339,
+      "endMs": 1291900,
+      "text": "With the external suction? Yes."
+    },
+    {
+      "startMs": 1294740,
+      "endMs": 1298820,
+      "text": "Keep the left atrial vent on strong suction."
+    },
+    {
+      "startMs": 1301500,
+      "endMs": 1305420,
+      "text": "Yes. Now, these are the structures I mentioned."
+    },
+    {
+      "startMs": 1305420,
+      "endMs": 1309700,
+      "text": "Can you see the upper crowns? There are three here."
+    },
+    {
+      "startMs": 1309700,
+      "endMs": 1314620,
+      "text": "We need to expose this part from here. But this one is deeply incorporated. Yes, this is problematic."
+    },
+    {
+      "startMs": 1314620,
+      "endMs": 1319780,
+      "text": "Yes, this is difficult. No. 15 blade, please."
+    },
+    {
+      "startMs": 1319780,
+      "endMs": 1325740,
+      "text": "We will dissect over it. Let me expose it for you."
+    },
+    {
+      "startMs": 1330763,
+      "endMs": 1335786,
+      "text": "The stabilization arch in the non-coronary region appears densely adherent to the aortic wall."
+    },
+    {
+      "startMs": 1337277,
+      "endMs": 1342060,
+      "text": "During separation, an injury occurs in the inner layer of the aortic wall."
+    },
+    {
+      "startMs": 1343584,
+      "endMs": 1347769,
+      "text": "This area will be repaired with a Teflon-reinforced patch during aortotomy closure."
+    },
+    {
+      "startMs": 1350260,
+      "endMs": 1355459,
+      "text": "These areas are adherent. The entire prosthesis is infected, as you can see."
+    },
+    {
+      "startMs": 1355459,
+      "endMs": 1358500,
+      "text": "Shall I show this to the camera, doctor? It is already being recorded."
+    },
+    {
+      "startMs": 1358500,
+      "endMs": 1361900,
+      "text": "Yes, it is recorded."
+    },
+    {
+      "startMs": 1363219,
+      "endMs": 1366219,
+      "text": "I am only holding it."
+    },
+    {
+      "startMs": 1366940,
+      "endMs": 1372219,
+      "text": "Alright. Can, take a look at this. Scissors, please."
+    },
+    {
+      "startMs": 1372219,
+      "endMs": 1375219,
+      "text": "Scissors."
+    },
+    {
+      "startMs": 1383820,
+      "endMs": 1388500,
+      "text": "Let's place the stay sutures. I have started milrinone."
+    },
+    {
+      "startMs": 1388500,
+      "endMs": 1391500,
+      "text": "At what dose? At 0.1."
+    },
+    {
+      "startMs": 1393300,
+      "endMs": 1398020,
+      "text": "I am increasing the driving pressure from here. Alright."
+    },
+    {
+      "startMs": 1402620,
+      "endMs": 1406380,
+      "text": "Let's secure this in the same manner."
+    },
+    {
+      "startMs": 1408180,
+      "endMs": 1412219,
+      "text": "External suction, please."
+    },
+    {
+      "startMs": 1428420,
+      "endMs": 1433820,
+      "text": "Now I will begin placing the sutures I mentioned."
+    },
+    {
+      "startMs": 1433820,
+      "endMs": 1438627,
+      "text": "TAVI Explantation Using the Snare Technique"
+    },
+    {
+      "startMs": 1444540,
+      "endMs": 1448380,
+      "text": "This is one of them. One moment."
+    },
+    {
+      "startMs": 1448380,
+      "endMs": 1451500,
+      "text": "Look, this is infected material."
+    },
+    {
+      "startMs": 1451500,
+      "endMs": 1455140,
+      "text": "Scissors, please. Let's remove these, because they may fall into the heart."
+    },
+    {
+      "startMs": 1455140,
+      "endMs": 1460940,
+      "text": "These will be sent for culture immediately. They are contaminated; do not handle them unnecessarily."
+    },
+    {
+      "startMs": 1464660,
+      "endMs": 1467900,
+      "text": "This one as well."
+    },
+    {
+      "startMs": 1468620,
+      "endMs": 1474780,
+      "text": "Give me the other end of the needle. Leave both of them here. Good."
+    },
+    {
+      "startMs": 1481140,
+      "endMs": 1485620,
+      "text": "Yes. This is very severe."
+    },
+    {
+      "startMs": 1485820,
+      "endMs": 1490180,
+      "text": "When performing TAVI in these patients,"
+    },
+    {
+      "startMs": 1490180,
+      "endMs": 1493859,
+      "text": "the team must remember that this is still a valve procedure."
+    },
+    {
+      "startMs": 1493859,
+      "endMs": 1496620,
+      "text": "Meticulous attention to sterility is essential."
+    },
+    {
+      "startMs": 1496620,
+      "endMs": 1500260,
+      "text": "Let's give cardioplegia."
+    },
+    {
+      "startMs": 1501060,
+      "endMs": 1506180,
+      "text": "Forceps, please. Open the line. Shall I start it?"
+    },
+    {
+      "startMs": 1506180,
+      "endMs": 1510699,
+      "text": "Alright. Start it now. Cardioplegia is running."
+    },
+    {
+      "startMs": 1513740,
+      "endMs": 1515060,
+      "text": "Shall we start retrograde cardioplegia? Yes."
+    },
+    {
+      "startMs": 1515060,
+      "endMs": 1520219,
+      "text": "Alright. I am preparing it in reverse. I have increased the pressure."
+    },
+    {
+      "startMs": 1535979,
+      "endMs": 1538020,
+      "text": "Alright. Scissors and clamp."
+    },
+    {
+      "startMs": 1538020,
+      "endMs": 1542260,
+      "text": "The final two sutures. Can you hold it like this? Scalpel, please."
+    },
+    {
+      "startMs": 1542260,
+      "endMs": 1545260,
+      "text": "No. 15 blade."
+    },
+    {
+      "startMs": 1561180,
+      "endMs": 1565500,
+      "text": "Can you bring that slightly toward me? Advance the tip of the forceps. It did not come. Like this."
+    },
+    {
+      "startMs": 1583660,
+      "endMs": 1587859,
+      "text": "These portions of the TAVI frame never fully expanded. Yes."
+    },
+    {
+      "startMs": 1587859,
+      "endMs": 1593300,
+      "text": "There is probably another segment like this that also failed to expand. This one is underexpanded."
+    },
+    {
+      "startMs": 1594740,
+      "endMs": 1598820,
+      "text": "One is right here."
+    },
+    {
+      "startMs": 1600540,
+      "endMs": 1603979,
+      "text": "Suture, please."
+    },
+    {
+      "startMs": 1614180,
+      "endMs": 1617940,
+      "text": "This is the fifth suture. Place it in the container."
+    },
+    {
+      "startMs": 1623219,
+      "endMs": 1626339,
+      "text": "Let's cut this one as well."
+    },
+    {
+      "startMs": 1626339,
+      "endMs": 1629859,
+      "text": "One final one. Clamp, please."
+    },
+    {
+      "startMs": 1637060,
+      "endMs": 1639820,
+      "text": "As I said, this segment did not expand. These areas remained underexpanded. Yes."
+    },
+    {
+      "startMs": 1639820,
+      "endMs": 1644940,
+      "text": "It also appears that inflammation has extended through that region."
+    },
+    {
+      "startMs": 1645979,
+      "endMs": 1652380,
+      "text": "Alright. Pass it through the strut as well. Yes. Let's cut this one too."
+    },
+    {
+      "startMs": 1655180,
+      "endMs": 1658699,
+      "text": "Hold it close to the tip."
+    },
+    {
+      "startMs": 1668020,
+      "endMs": 1671420,
+      "text": "Place a clamp here."
+    },
+    {
+      "startMs": 1672540,
+      "endMs": 1676579,
+      "text": "Yes. Let's retrieve all the sutures through it."
+    },
+    {
+      "startMs": 1677579,
+      "endMs": 1682740,
+      "text": "Alright. Now the important part is drawing all of these through."
+    },
+    {
+      "startMs": 1682740,
+      "endMs": 1684979,
+      "text": "They are through. Good. I am handing it back, doctor."
+    },
+    {
+      "startMs": 1684979,
+      "endMs": 1688859,
+      "text": "Clamp, please. I am tightening it gradually."
+    },
+    {
+      "startMs": 1688859,
+      "endMs": 1691420,
+      "text": "Bring the cold saline. Yes, pour ice-cold saline over it."
+    },
+    {
+      "startMs": 1691420,
+      "endMs": 1694420,
+      "text": "over the prosthesis."
+    },
+    {
+      "startMs": 1695099,
+      "endMs": 1698740,
+      "text": "I am pouring it. Go ahead."
+    },
+    {
+      "startMs": 1700020,
+      "endMs": 1703339,
+      "text": "All of the sutures have snapped."
+    },
+    {
+      "startMs": 1704060,
+      "endMs": 1708140,
+      "text": "Yes. This has become more difficult. Let's approach from here, team member. This side was visible."
+    },
+    {
+      "startMs": 1708140,
+      "endMs": 1714020,
+      "text": "Yes. There was a plane of separation somewhere here."
+    },
+    {
+      "startMs": 1714579,
+      "endMs": 1721699,
+      "text": "Clamp, please. A long clamp? A long one with a firm tip."
+    },
+    {
+      "startMs": 1729859,
+      "endMs": 1734060,
+      "text": "Scalpel, please. No. 15 blade."
+    },
+    {
+      "startMs": 1734740,
+      "endMs": 1739420,
+      "text": "Scissors, please. Suction this space."
+    },
+    {
+      "startMs": 1747540,
+      "endMs": 1750300,
+      "text": "Scalpel, please. Yes. Would you like me to hold it?"
+    },
+    {
+      "startMs": 1750300,
+      "endMs": 1752620,
+      "text": "Yes. I am handing this to you. I need another clamp."
+    },
+    {
+      "startMs": 1752620,
+      "endMs": 1755740,
+      "text": "Another clamp. Here you are."
+    },
+    {
+      "startMs": 1757900,
+      "endMs": 1760699,
+      "text": "Scissors, please. Here they are. I am lifting it upward."
+    },
+    {
+      "startMs": 1760699,
+      "endMs": 1764780,
+      "text": "Yes. I am doing the same."
+    },
+    {
+      "startMs": 1768300,
+      "endMs": 1772020,
+      "text": "Alright. This side has separated. Now let's move superiorly. This area is not the main problem,"
+    },
+    {
+      "startMs": 1772020,
+      "endMs": 1777099,
+      "text": "but the other regions are difficult, especially here. Let me position this. Good."
+    },
+    {
+      "startMs": 1777099,
+      "endMs": 1780979,
+      "text": "Should I place it here? Yes, place it there. Good."
+    },
+    {
+      "startMs": 1780979,
+      "endMs": 1784219,
+      "text": "Can you expose this area for me?"
+    },
+    {
+      "startMs": 1785339,
+      "endMs": 1789859,
+      "text": "Scalpel, please. Here you are, doctor. This is the adherent area,"
+    },
+    {
+      "startMs": 1789859,
+      "endMs": 1793740,
+      "text": "where we are separating it. Yes, from here."
+    },
+    {
+      "startMs": 1803339,
+      "endMs": 1808620,
+      "text": "It has released. Scissors, please."
+    },
+    {
+      "startMs": 1820819,
+      "endMs": 1823300,
+      "text": "It was extremely adherent up to this point. Alright, that part is done."
+    },
+    {
+      "startMs": 1832900,
+      "endMs": 1836699,
+      "text": "Give me the forceps. One moment."
+    },
+    {
+      "startMs": 1837260,
+      "endMs": 1840540,
+      "text": "Scissors, please."
+    },
+    {
+      "startMs": 1846579,
+      "endMs": 1850300,
+      "text": "This area is also very difficult."
+    },
+    {
+      "startMs": 1857219,
+      "endMs": 1863300,
+      "text": "Alright. If we move gently toward this side and downward."
+    },
+    {
+      "startMs": 1865060,
+      "endMs": 1869099,
+      "text": "Wait. This is the critical area."
+    },
+    {
+      "startMs": 1879500,
+      "endMs": 1883579,
+      "text": "I need to bring this toward this side. The aortic tissue is very poor."
+    },
+    {
+      "startMs": 1883579,
+      "endMs": 1888459,
+      "text": "Because that is the point still holding it."
+    },
+    {
+      "startMs": 1901620,
+      "endMs": 1906620,
+      "text": "It has released. Scissors, please."
+    },
+    {
+      "startMs": 1911180,
+      "endMs": 1915380,
+      "text": "This area appears adherent as well. What happened?"
+    },
+    {
+      "startMs": 1917099,
+      "endMs": 1922260,
+      "text": "The hematocrit is 18. We are transfusing one unit of packed red blood cells."
+    },
+    {
+      "startMs": 1923620,
+      "endMs": 1927852,
+      "text": "Completely infected. Look, the entire interior is infected. team member, gently retract the prosthesis."
+    },
+    {
+      "startMs": 1927852,
+      "endMs": 1931180,
+      "text": "In its current state."
+    },
+    {
+      "startMs": 1935500,
+      "endMs": 1941020,
+      "text": "I am zooming in. Now let's take the scissors."
+    },
+    {
+      "startMs": 1941020,
+      "endMs": 1943219,
+      "text": "Shall I send it for culture? Yes, to microbiology."
+    },
+    {
+      "startMs": 1943219,
+      "endMs": 1947020,
+      "text": "Let's remove the native valve now. We have not damaged it."
+    },
+    {
+      "startMs": 1947020,
+      "endMs": 1951420,
+      "text": "The valve tissue is still intact here."
+    },
+    {
+      "startMs": 1958278,
+      "endMs": 1965095,
+      "text": "During TAVI, the patient's calcified native aortic valve is not removed. The transcatheter prosthesis is deployed within it."
+    },
+    {
+      "startMs": 1965298,
+      "endMs": 1970545,
+      "text": "The native valve tissue remains compressed between the TAVI prosthesis and the aortic wall."
+    },
+    {
+      "startMs": 1974500,
+      "endMs": 1980020,
+      "text": "At least there is no aortic root abscess. That is favorable."
+    },
+    {
+      "startMs": 1980060,
+      "endMs": 1987900,
+      "text": "I will use the rongeur shortly. Let me remove that with the rongeur. Bring the rongeur."
+    },
+    {
+      "startMs": 1994060,
+      "endMs": 1998540,
+      "text": "Scalpel, please. I think that should remain, team member."
+    },
+    {
+      "startMs": 1998540,
+      "endMs": 2004180,
+      "text": "We need to assess the condition of the aortic tissue. I initially thought it was a loose fragment, but it is adherent."
+    },
+    {
+      "startMs": 2009620,
+      "endMs": 2013300,
+      "text": "Scissors, please."
+    },
+    {
+      "startMs": 2017060,
+      "endMs": 2022380,
+      "text": "Can I also have a single fine vascular forceps? The tissue itself is in poor condition."
+    },
+    {
+      "startMs": 2059899,
+      "endMs": 2065340,
+      "text": "When implanting a bioprosthetic valve, no calcific tissue should remain."
+    },
+    {
+      "startMs": 2065340,
+      "endMs": 2068340,
+      "text": "The annulus must be completely clean."
+    },
+    {
+      "startMs": 2074540,
+      "endMs": 2078060,
+      "text": "This extends down toward the ventricle. Yes. Yes."
+    },
+    {
+      "startMs": 2078060,
+      "endMs": 2081699,
+      "text": "Let's administer cardioplegia."
+    },
+    {
+      "startMs": 2087699,
+      "endMs": 2090979,
+      "text": "Scissors, please."
+    },
+    {
+      "startMs": 2097740,
+      "endMs": 2101260,
+      "text": "First, let's give a dose through the right coronary ostium. We will give half the dose on the right."
+    },
+    {
+      "startMs": 2101260,
+      "endMs": 2103340,
+      "text": "Should I come forward slightly? Yes, let them de-air the line."
+    },
+    {
+      "startMs": 2103340,
+      "endMs": 2107860,
+      "text": "Proceed. If we do not protect the myocardium, we will not be able to separate from bypass. Alright, continue."
+    },
+    {
+      "startMs": 2107860,
+      "endMs": 2109620,
+      "text": "Continuing. Start now."
+    },
+    {
+      "startMs": 2109620,
+      "endMs": 2112060,
+      "text": "It is open. Alright."
+    },
+    {
+      "startMs": 2112060,
+      "endMs": 2117379,
+      "text": "Shall we give half through here? Yes, give half through here. Continue like this."
+    },
+    {
+      "startMs": 2123343,
+      "endMs": 2124203,
+      "text": "Alright, doctor."
+    },
+    {
+      "startMs": 2124220,
+      "endMs": 2129700,
+      "text": "Alright. Let's give another dose in ten minutes."
+    },
+    {
+      "startMs": 2129700,
+      "endMs": 2134260,
+      "text": "Only this final area remains. Yes, team member, after this we will switch to clean instruments"
+    },
+    {
+      "startMs": 2134260,
+      "endMs": 2138580,
+      "text": "and place the commissural sutures. Alright. Rongeur again, please."
+    },
+    {
+      "startMs": 2138580,
+      "endMs": 2141580,
+      "text": "It is inside."
+    },
+    {
+      "startMs": 2144540,
+      "endMs": 2149899,
+      "text": "Let's move toward the right. We have already completed these areas. Is there any residual tissue"
+    },
+    {
+      "startMs": 2149899,
+      "endMs": 2155500,
+      "text": "in the non-coronary region, near the commissure? Yes, there is some at the commissure."
+    },
+    {
+      "startMs": 2155500,
+      "endMs": 2163740,
+      "text": "These areas are very close to the conduction system."
+    },
+    {
+      "startMs": 2166659,
+      "endMs": 2172139,
+      "text": "We will remove that. It is residual tissue lying superiorly. Scissors, please."
+    },
+    {
+      "startMs": 2172139,
+      "endMs": 2176899,
+      "text": "We will repair this area during closure."
+    },
+    {
+      "startMs": 2176899,
+      "endMs": 2181100,
+      "text": "Therefore, do not remove those tissues. We can repair it internally with a 6-0 suture. Alright."
+    },
+    {
+      "startMs": 2181100,
+      "endMs": 2184740,
+      "text": "Because this was where the strut had adhered. Yes."
+    },
+    {
+      "startMs": 2184740,
+      "endMs": 2187139,
+      "text": "Remove only this small piece from the edge. Alright."
+    },
+    {
+      "startMs": 2187139,
+      "endMs": 2191580,
+      "text": "Alright. As far as I can see, everything looks good."
+    },
+    {
+      "startMs": 2191580,
+      "endMs": 2194100,
+      "text": "Alright. From this point onward, let's switch to the clean phase."
+    },
+    {
+      "startMs": 2194100,
+      "endMs": 2197260,
+      "text": "Are you irrigating? Yes, let's irrigate thoroughly now."
+    },
+    {
+      "startMs": 2197260,
+      "endMs": 2201419,
+      "text": "We will irrigate copiously. Separate those instruments and pass them out of the field."
+    },
+    {
+      "startMs": 2201419,
+      "endMs": 2204260,
+      "text": "We must also inspect the mitral valve,"
+    },
+    {
+      "startMs": 2204260,
+      "endMs": 2207980,
+      "text": "to determine whether the endocarditis has extended to it."
+    },
+    {
+      "startMs": 2207980,
+      "endMs": 2213060,
+      "text": "There is no evidence of extension. Alright. Stop the left atrial vent for now."
+    },
+    {
+      "startMs": 2213060,
+      "endMs": 2216500,
+      "text": "You may cut it. Bring plenty of saline. We will irrigate."
+    },
+    {
+      "startMs": 2216500,
+      "endMs": 2219100,
+      "text": "Let's change our gloves. Restart the left atrial vent."
+    },
+    {
+      "startMs": 2219100,
+      "endMs": 2224540,
+      "text": "It is suctioning, doctor. Change the gloves as well. We are changing gloves."
+    },
+    {
+      "startMs": 2224540,
+      "endMs": 2229460,
+      "text": "The cavities are clean. Send that specimen for culture immediately."
+    },
+    {
+      "startMs": 2235940,
+      "endMs": 2241580,
+      "text": "Hopefully. Alright. Bring the irrigation. Clean forceps, please."
+    },
+    {
+      "startMs": 2245260,
+      "endMs": 2250100,
+      "text": "Stop the left atrial vent. Irrigate sequentially and generously. team member, help team member. Continue irrigating copiously."
+    },
+    {
+      "startMs": 2250100,
+      "endMs": 2253300,
+      "text": "like this."
+    },
+    {
+      "startMs": 2256540,
+      "endMs": 2259459,
+      "text": "We thoroughly irrigate and suction the left ventricle and aortic annulus with saline."
+    },
+    {
+      "startMs": 2261887,
+      "endMs": 2266866,
+      "text": "We aim to remove residual tissue and calcific debris that could become a source of embolization."
+    },
+    {
+      "startMs": 2271700,
+      "endMs": 2274860,
+      "text": "Let this be the final irrigation. Let's also flush the coronary ostia."
+    },
+    {
+      "startMs": 2274860,
+      "endMs": 2280419,
+      "text": "Alright. team member, give us the clean drapes now. Bring the green drapes for the edges."
+    },
+    {
+      "startMs": 2284300,
+      "endMs": 2287419,
+      "text": "Is there one superiorly? Alright."
+    },
+    {
+      "startMs": 2287419,
+      "endMs": 2290580,
+      "text": "No. Before placing any sutures,"
+    },
+    {
+      "startMs": 2290580,
+      "endMs": 2294580,
+      "text": "I want to assess the annulus with the sizers."
+    },
+    {
+      "startMs": 2297460,
+      "endMs": 2300940,
+      "text": "Give me the 25-mm sizer."
+    },
+    {
+      "startMs": 2305300,
+      "endMs": 2310619,
+      "text": "The 23? Give me the 23-mm sizer."
+    },
+    {
+      "startMs": 2317899,
+      "endMs": 2324260,
+      "text": "Suction this area. Keep the left atrial vent on good suction."
+    },
+    {
+      "startMs": 2326580,
+      "endMs": 2331780,
+      "text": "Let me see. The left coronary ostium is here. Let me inspect the right."
+    },
+    {
+      "startMs": 2331780,
+      "endMs": 2335940,
+      "text": "Give me the 21-mm sizer. team member, place a towel clamp here."
+    },
+    {
+      "startMs": 2335940,
+      "endMs": 2338899,
+      "text": "Towel clamp, please. This side seats well, and so does this side. Alright."
+    },
+    {
+      "startMs": 2338899,
+      "endMs": 2342180,
+      "text": "We will implant a 21-mm valve. Check once more. Yes. There is no need to force a larger size."
+    },
+    {
+      "startMs": 2342180,
+      "endMs": 2347580,
+      "text": "Alright. Let's place the commissural sutures. Open the 21-mm valve."
+    },
+    {
+      "startMs": 2347580,
+      "endMs": 2352220,
+      "text": "Shall we also give cardioplegia? Yes, let's do so."
+    },
+    {
+      "startMs": 2353519,
+      "endMs": 2358429,
+      "text": "Attempting to implant a larger valve could injure the fragile aortic tissue and damage the conduction system, thereby increasing the risk of heart block."
+    },
+    {
+      "startMs": 2361379,
+      "endMs": 2363820,
+      "text": "Alright, doctor. Good. We will give the next dose in twenty minutes."
+    },
+    {
+      "startMs": 2376100,
+      "endMs": 2378180,
+      "text": "They probably selected a larger valve because of the measured diameter."
+    },
+    {
+      "startMs": 2378180,
+      "endMs": 2381460,
+      "text": "Yes, but that area had not expanded. It remained underexpanded because of the calcification."
+    },
+    {
+      "startMs": 2381460,
+      "endMs": 2384460,
+      "text": "It had not expanded."
+    },
+    {
+      "startMs": 2390980,
+      "endMs": 2392854,
+      "text": "Alright, good."
+    },
+    {
+      "startMs": 2392854,
+      "endMs": 2394854,
+      "text": "The pledgets are placed on the ventricular side of the annulus."
+    },
+    {
+      "startMs": 2399949,
+      "endMs": 2405044,
+      "text": "The bioprosthetic valve will be implanted in a supra-annular position, as in standard practice."
+    },
+    {
+      "startMs": 2413419,
+      "endMs": 2419940,
+      "text": "The final suture. Alright."
+    },
+    {
+      "startMs": 2421740,
+      "endMs": 2425980,
+      "text": "I am pulling it like this. This is the fourteenth suture."
+    },
+    {
+      "startMs": 2425980,
+      "endMs": 2431460,
+      "text": "Alright. Here, the two white sutures will be adjacent."
+    },
+    {
+      "startMs": 2431740,
+      "endMs": 2437180,
+      "text": "Then the distribution is 3-4-4, excluding the commissures."
+    },
+    {
+      "startMs": 2441700,
+      "endMs": 2444139,
+      "text": "Alright. Alright."
+    },
+    {
+      "startMs": 2444139,
+      "endMs": 2449139,
+      "text": "Bring the valve. It is 3-4-4 now, correct?"
+    },
+    {
+      "startMs": 2449139,
+      "endMs": 2450899,
+      "text": "Yes, 3-4-4. Excluding the commissures. Alright."
+    },
+    {
+      "startMs": 2450899,
+      "endMs": 2456820,
+      "text": "Excluding the commissures. Yes. Let's do it this way."
+    },
+    {
+      "startMs": 2460180,
+      "endMs": 2465740,
+      "text": "Let's load and trim them. We are implanting a 21-mm valve. We could not place a 25-mm valve."
+    },
+    {
+      "startMs": 2465740,
+      "endMs": 2468700,
+      "text": "No, we could not. But they had implanted a 25-mm transcatheter valve with the native leaflets still present."
+    },
+    {
+      "startMs": 2468700,
+      "endMs": 2469899,
+      "text": "Yes, but..."
+    },
+    {
+      "startMs": 2469899,
+      "endMs": 2472940,
+      "text": "...it had not fully expanded. The underexpansion likely contributed to the problem."
+    },
+    {
+      "startMs": 2472940,
+      "endMs": 2475659,
+      "text": "What is one of the major predisposing factors for endocarditis?"
+    },
+    {
+      "startMs": 2475659,
+      "endMs": 2478659,
+      "text": "A high-velocity jet."
+    },
+    {
+      "startMs": 2482899,
+      "endMs": 2486899,
+      "text": "The commissural suture comes next. I understand, but I think they also recognized the issue."
+    },
+    {
+      "startMs": 2486899,
+      "endMs": 2491820,
+      "text": "I think so too."
+    },
+    {
+      "startMs": 2502540,
+      "endMs": 2506220,
+      "text": "In cases with unequal spacing like this, I will not center the commissural suture exactly."
+    },
+    {
+      "startMs": 2506220,
+      "endMs": 2511500,
+      "text": "I will shift it slightly toward me. Try to distribute it as approximately three and a half."
+    },
+    {
+      "startMs": 2511500,
+      "endMs": 2514220,
+      "text": "Yes. One black marker will be here and the other here. Then I will distribute them evenly."
+    },
+    {
+      "startMs": 2514220,
+      "endMs": 2518100,
+      "text": "This is the commissural suture. team member, cut these."
+    },
+    {
+      "startMs": 2518100,
+      "endMs": 2522340,
+      "text": "Because this will again correspond to the commissure."
+    },
+    {
+      "startMs": 2525460,
+      "endMs": 2529220,
+      "text": "We will cut this one too, team member."
+    },
+    {
+      "startMs": 2534980,
+      "endMs": 2537379,
+      "text": "Let's cut it. Now we will rotate the valve. Cut that one, team member."
+    },
+    {
+      "startMs": 2537379,
+      "endMs": 2541419,
+      "text": "Shall he cut it? Bring it toward me. Yes. Very good."
+    },
+    {
+      "startMs": 2544940,
+      "endMs": 2548139,
+      "text": "Let's give retrograde cardioplegia and flush the coronary ostia, in case any debris has entered them."
+    },
+    {
+      "startMs": 2548139,
+      "endMs": 2554700,
+      "text": "At this stage. Rotate it slightly like this."
+    },
+    {
+      "startMs": 2555139,
+      "endMs": 2557260,
+      "text": "Prepare another dose of cardioplegia. It is ready."
+    },
+    {
+      "startMs": 2557260,
+      "endMs": 2562379,
+      "text": "Ready? Alright. We will administer it retrogradely."
+    },
+    {
+      "startMs": 2566820,
+      "endMs": 2570659,
+      "text": "This one is open. That one is open. These are closed. Good."
+    },
+    {
+      "startMs": 2570659,
+      "endMs": 2573659,
+      "text": "Start retrograde cardioplegia."
+    },
+    {
+      "startMs": 2574940,
+      "endMs": 2576886,
+      "text": "Starting now."
+    },
+    {
+      "startMs": 2576886,
+      "endMs": 2580344,
+      "text": "Before lowering the valve into position, we administer retrograde cardioplegia."
+    },
+    {
+      "startMs": 2580344,
+      "endMs": 2583760,
+      "text": "This both protects the myocardium and flushes the coronary circulation in reverse, helping remove any residual debris."
+    },
+    {
+      "startMs": 2583980,
+      "endMs": 2587340,
+      "text": "Then the commissure."
+    },
+    {
+      "startMs": 2587444,
+      "endMs": 2589980,
+      "text": "[bell sound] Alright."
+    },
+    {
+      "startMs": 2589980,
+      "endMs": 2594500,
+      "text": "I will release the first one."
+    },
+    {
+      "startMs": 2594500,
+      "endMs": 2598139,
+      "text": "team member, release your hand and..."
+    },
+    {
+      "startMs": 2605700,
+      "endMs": 2609419,
+      "text": "There is an examination tomorrow. It is the resident's thesis examination."
+    },
+    {
+      "startMs": 2609419,
+      "endMs": 2612500,
+      "text": "The board examination? No, the thesis examination. It is exactly a topic I like:"
+    },
+    {
+      "startMs": 2612500,
+      "endMs": 2616980,
+      "text": "cerebral protection in ascending aortic and aortic arch pathology."
+    },
+    {
+      "startMs": 2616980,
+      "endMs": 2621899,
+      "text": "She called me today. I told her what I might ask"
+    },
+    {
+      "startMs": 2621899,
+      "endMs": 2625060,
+      "text": "and which topics I particularly value. Good idea."
+    },
+    {
+      "startMs": 2625060,
+      "endMs": 2630260,
+      "text": "Two sutures remain after this, correct? Yes, two sutures. Alright."
+    },
+    {
+      "startMs": 2644700,
+      "endMs": 2648419,
+      "text": "Let's cut these as well. Is the cardioplegia finished?"
+    },
+    {
+      "startMs": 2656460,
+      "endMs": 2660379,
+      "text": "I will bring this one quite far down. Only a short segment will remain. Alright."
+    },
+    {
+      "startMs": 2672379,
+      "endMs": 2678260,
+      "text": "Position that one as well. Good."
+    },
+    {
+      "startMs": 2678260,
+      "endMs": 2684419,
+      "text": "Alright. Now let's bring this one out from here."
+    },
+    {
+      "startMs": 2686260,
+      "endMs": 2689260,
+      "text": "Release it, team member."
+    },
+    {
+      "startMs": 2724460,
+      "endMs": 2727580,
+      "text": "Doctor, would you like more cardioplegia? Yes. We will give another dose."
+    },
+    {
+      "startMs": 2727580,
+      "endMs": 2730899,
+      "text": "Let's administer it retrogradely."
+    },
+    {
+      "startMs": 2763100,
+      "endMs": 2768700,
+      "text": "If it is ready, we will give retrograde cardioplegia. Is it ready?"
+    },
+    {
+      "startMs": 2769197,
+      "endMs": 2771865,
+      "text": "Cardioplegia is ready."
+    },
+    {
+      "startMs": 2773780,
+      "endMs": 2778100,
+      "text": "We can start retrograde cardioplegia. I am opening the line."
+    },
+    {
+      "startMs": 2778100,
+      "endMs": 2781740,
+      "text": "Is it flowing? Yes, it is."
+    },
+    {
+      "startMs": 2794740,
+      "endMs": 2798100,
+      "text": "Alright. team member, let's cut this."
+    },
+    {
+      "startMs": 2798100,
+      "endMs": 2801180,
+      "text": "When we administer retrograde cardioplegia, we can also assess the coronary ostia."
+    },
+    {
+      "startMs": 2801180,
+      "endMs": 2804740,
+      "text": "Cut it. Cut this one. It confirms that the ostia remain unobstructed."
+    },
+    {
+      "startMs": 2804740,
+      "endMs": 2809100,
+      "text": "We can see that the prosthesis is not occluding the coronary ostia."
+    },
+    {
+      "startMs": 2811139,
+      "endMs": 2814700,
+      "text": "Alright. Very good."
+    },
+    {
+      "startMs": 2823580,
+      "endMs": 2828340,
+      "text": "Scissors and forceps, please. I will shorten these sutures."
+    },
+    {
+      "startMs": 2840379,
+      "endMs": 2843899,
+      "text": "Aortotomy closure suture."
+    },
+    {
+      "startMs": 2852288,
+      "endMs": 2856580,
+      "text": "Cardioplegia is complete. Alright."
+    },
+    {
+      "startMs": 2860540,
+      "endMs": 2868060,
+      "text": "Give me the other suture. Show me that area again and pass it through there."
+    },
+    {
+      "startMs": 2892859,
+      "endMs": 2896100,
+      "text": "Place the suction tip inside."
+    },
+    {
+      "startMs": 2922340,
+      "endMs": 2926859,
+      "text": "Shall we begin rewarming? Yes, start rewarming."
+    },
+    {
+      "startMs": 2939500,
+      "endMs": 2943540,
+      "text": "No, the surface is covered, but it does not look like tissue that needs to be removed."
+    },
+    {
+      "startMs": 2943540,
+      "endMs": 2948139,
+      "text": "Because the needle passed through with considerable resistance, I can feel that the tissue is firm, team member."
+    },
+    {
+      "startMs": 2948139,
+      "endMs": 2951820,
+      "text": "I can feel that it is firm."
+    },
+    {
+      "startMs": 2967580,
+      "endMs": 2970820,
+      "text": "team member, prepare the other suture."
+    },
+    {
+      "startMs": 2975980,
+      "endMs": 2979580,
+      "text": "Let's take the other suture, team member. It is ready, doctor."
+    },
+    {
+      "startMs": 2981060,
+      "endMs": 2984260,
+      "text": "Suction the inside. Warm saline, please."
+    },
+    {
+      "startMs": 2991820,
+      "endMs": 2997540,
+      "text": "The posterior side. Manually inflate the lungs."
+    },
+    {
+      "startMs": 2997540,
+      "endMs": 3001540,
+      "text": "Place the patient in a slight Trendelenburg position."
+    },
+    {
+      "startMs": 3006708,
+      "endMs": 3009971,
+      "text": "Before removing the cross-clamp, residual air is meticulously evacuated from the heart and aorta."
+    },
+    {
+      "startMs": 3010220,
+      "endMs": 3013820,
+      "text": "Move slightly toward the patient's side."
+    },
+    {
+      "startMs": 3020619,
+      "endMs": 3024260,
+      "text": "Can we give a small amount of retrograde solution, without adding cardioplegic agents? Certainly."
+    },
+    {
+      "startMs": 3032060,
+      "endMs": 3036379,
+      "text": "Alright. The filling is good, team member. Maintain this level."
+    },
+    {
+      "startMs": 3046659,
+      "endMs": 3051500,
+      "text": "That is sufficient, team member. Three hundred milliliters will be enough. Yes, 300 is sufficient."
+    },
+    {
+      "startMs": 3051500,
+      "endMs": 3055500,
+      "text": "Let it run quickly. Shall I tilt the patient a little further head-down?"
+    },
+    {
+      "startMs": 3055500,
+      "endMs": 3058899,
+      "text": "Alright, this is good."
+    },
+    {
+      "startMs": 3062379,
+      "endMs": 3067980,
+      "text": "Alright. Continue. Good. It is closed."
+    },
+    {
+      "startMs": 3067980,
+      "endMs": 3072220,
+      "text": "It is open on our side as well. I am passing my sutures now."
+    },
+    {
+      "startMs": 3072220,
+      "endMs": 3076260,
+      "text": "Let's proceed."
+    },
+    {
+      "startMs": 3078940,
+      "endMs": 3082580,
+      "text": "Start the cardioplegia. It is flowing,"
+    },
+    {
+      "startMs": 3082580,
+      "endMs": 3086820,
+      "text": "correct, retrogradely? Alright. Good."
+    },
+    {
+      "startMs": 3097619,
+      "endMs": 3101780,
+      "text": "How much remains? About half remains."
+    },
+    {
+      "startMs": 3101780,
+      "endMs": 3107540,
+      "text": "Alright, let's tie it now. Let's tie it."
+    },
+    {
+      "startMs": 3111099,
+      "endMs": 3115980,
+      "text": "How much remains? Approximately 50 milliliters. Almost finished."
+    },
+    {
+      "startMs": 3115980,
+      "endMs": 3119940,
+      "text": "Alright. Compress the carotid arteries. Start very gentle suction on the aortic root vent."
+    },
+    {
+      "startMs": 3119940,
+      "endMs": 3123859,
+      "text": "One moment, doctor. We have not compressed them yet."
+    },
+    {
+      "startMs": 3123859,
+      "endMs": 3125980,
+      "text": "Alright. Yes, I am compressing now."
+    },
+    {
+      "startMs": 3125980,
+      "endMs": 3129820,
+      "text": "We are compressing them. Increase the aortic root vent to full suction. It is suctioning well."
+    },
+    {
+      "startMs": 3129820,
+      "endMs": 3133940,
+      "text": "The cross-clamp is off. Keep the left atrial vent suctioning as well."
+    },
+    {
+      "startMs": 3133940,
+      "endMs": 3135820,
+      "text": "I am releasing them, doctor. Forceps, please. Release the carotids."
+    },
+    {
+      "startMs": 3140580,
+      "endMs": 3144419,
+      "text": "No. There is no need for a scalpel."
+    },
+    {
+      "startMs": 3145910,
+      "endMs": 3147880,
+      "text": "Give amiodarone."
+    },
+    {
+      "startMs": 3161780,
+      "endMs": 3167859,
+      "text": "Decompress the heart. Let's work with it empty. Alright."
+    },
+    {
+      "startMs": 3171301,
+      "endMs": 3173716,
+      "text": "Let's cut it."
+    },
+    {
+      "startMs": 3177980,
+      "endMs": 3180551,
+      "text": "From here. Suture, please."
+    },
+    {
+      "startMs": 3180551,
+      "endMs": 3186650,
+      "text": "A small bleeding site is identified along the aortotomy line. We repair it with Teflon pledget-reinforced sutures."
+    },
+    {
+      "startMs": 3201379,
+      "endMs": 3205540,
+      "text": "Place another pledget on the opposite side."
+    },
+    {
+      "startMs": 3228619,
+      "endMs": 3232980,
+      "text": "Is the pacing output eight at 50, or eight at 100?"
+    },
+    {
+      "startMs": 3233300,
+      "endMs": 3238379,
+      "text": "Both vents are suctioning well, correct? Yes. Alright."
+    },
+    {
+      "startMs": 3244220,
+      "endMs": 3248859,
+      "text": "Let's see. The heart has started beating. Good."
+    },
+    {
+      "startMs": 3250619,
+      "endMs": 3254180,
+      "text": "Ventilation can be resumed."
+    },
+    {
+      "startMs": 3257980,
+      "endMs": 3262940,
+      "text": "Well done. Thank you, everyone."
+    },
+    {
+      "startMs": 3284500,
+      "endMs": 3288300,
+      "text": "The pressure is slightly high."
+    },
+    {
+      "startMs": 3293859,
+      "endMs": 3298700,
+      "text": "Now let's assess atrioventricular synchrony."
+    },
+    {
+      "startMs": 3298700,
+      "endMs": 3304060,
+      "text": "It looks good. I am checking whether the rates are equal and whether there is heart block."
+    },
+    {
+      "startMs": 3304060,
+      "endMs": 3308700,
+      "text": "There is no block. Keep the lungs fully ventilated. They are fully ventilated."
+    },
+    {
+      "startMs": 3314419,
+      "endMs": 3318540,
+      "text": "Dopamine is also running, doctor. Alright. Good."
+    },
+    {
+      "startMs": 3325139,
+      "endMs": 3327859,
+      "text": "Contractility looks good. Yes, it is contracting well."
+    },
+    {
+      "startMs": 3327859,
+      "endMs": 3332180,
+      "text": "Exactly. There is no evidence of heart block either."
+    },
+    {
+      "startMs": 3332619,
+      "endMs": 3337780,
+      "text": "Keep the aortic root vent on strong suction. The left atrial vent does not need to suction as strongly,"
+    },
+    {
+      "startMs": 3337780,
+      "endMs": 3342099,
+      "text": "but keep the root vent active. Return the volume as it comes."
+    },
+    {
+      "startMs": 3345940,
+      "endMs": 3349460,
+      "text": "Let's place the pacing wire."
+    },
+    {
+      "startMs": 3353060,
+      "endMs": 3360419,
+      "text": "Good. Urine output on bypass is 900 milliliters; it was 50 on admission, team member. We had wondered whether ultrafiltration would be needed, but it was not."
+    },
+    {
+      "startMs": 3360419,
+      "endMs": 3364139,
+      "text": "Can you cut it here?"
+    },
+    {
+      "startMs": 3365980,
+      "endMs": 3368980,
+      "text": "What is the rate now? You can pull it."
+    },
+    {
+      "startMs": 3368980,
+      "endMs": 3375099,
+      "text": "Pull, pull, pull. A little more. Alright."
+    },
+    {
+      "startMs": 3405619,
+      "endMs": 3411339,
+      "text": "You can pull it. Alright."
+    },
+    {
+      "startMs": 3419339,
+      "endMs": 3423540,
+      "text": "Turn on the pacemaker. It is on."
+    },
+    {
+      "startMs": 3424180,
+      "endMs": 3426460,
+      "text": "Alright. Good. It captured. Yes, it captured."
+    },
+    {
+      "startMs": 3426460,
+      "endMs": 3429359,
+      "text": "That is better. team member, let's begin filling the heart."
+    },
+    {
+      "startMs": 3429859,
+      "endMs": 3435940,
+      "text": "Let's remove the left atrial vent. You can withdraw the cannula."
+    },
+    {
+      "startMs": 3438180,
+      "endMs": 3442060,
+      "text": "The left atrial vent is out. We can suction the site."
+    },
+    {
+      "startMs": 3451460,
+      "endMs": 3454780,
+      "text": "Alright. Let's cut it."
+    },
+    {
+      "startMs": 3456020,
+      "endMs": 3461099,
+      "text": "Reduce the flow. Shall I cut it? Yes. Reduce to quarter flow."
+    },
+    {
+      "startMs": 3461099,
+      "endMs": 3464500,
+      "text": "Let's remove the vent as well. Yes, let's take it out."
+    },
+    {
+      "startMs": 3464500,
+      "endMs": 3469339,
+      "text": "Stop the aortic root vent. Half flow. Maintain that."
+    },
+    {
+      "startMs": 3469339,
+      "endMs": 3474700,
+      "text": "The aortic root cannula is out. I am emptying the root line."
+    },
+    {
+      "startMs": 3478020,
+      "endMs": 3481020,
+      "text": "Come forward."
+    },
+    {
+      "startMs": 3483961,
+      "endMs": 3489940,
+      "text": "Cardiopulmonary bypass is terminated. Alright. We are removing the venous cannula."
+    },
+    {
+      "startMs": 3491260,
+      "endMs": 3495339,
+      "text": "Yes. Alright. The venous cannula is out."
+    },
+    {
+      "startMs": 3495339,
+      "endMs": 3500820,
+      "text": "You may return the remaining volume. Certainly."
+    },
+    {
+      "startMs": 3503460,
+      "endMs": 3506740,
+      "text": "Yes. Yes. Protamine has been started."
+    },
+    {
+      "startMs": 3506740,
+      "endMs": 3510500,
+      "text": "Alright. What is the blood pressure? Very good. We have reduced the inotropes."
+    },
+    {
+      "startMs": 3510500,
+      "endMs": 3512740,
+      "text": "What is the systolic pressure now for aortic decannulation? Wait a little."
+    },
+    {
+      "startMs": 3512740,
+      "endMs": 3516500,
+      "text": "Then let's wait. Alright."
+    },
+    {
+      "startMs": 3518500,
+      "endMs": 3523580,
+      "text": "Can we take a little more volume from what you have? I am waiting."
+    },
+    {
+      "startMs": 3528517,
+      "endMs": 3529568,
+      "text": "It is low now."
+    },
+    {
+      "startMs": 3530099,
+      "endMs": 3535980,
+      "text": "You can remove the aortic cannula now, team member. I am withdrawing it. I have reduced the pressure and am waiting for you."
+    },
+    {
+      "startMs": 3536940,
+      "endMs": 3541460,
+      "text": "One quarter of the protamine dose has been administered. Alright."
+    },
+    {
+      "startMs": 3541460,
+      "endMs": 3545659,
+      "text": "External suction. Turn off the pump suckers."
+    },
+    {
+      "startMs": 3556659,
+      "endMs": 3559659,
+      "text": "Forceps, please."
+    },
+    {
+      "startMs": 3562300,
+      "endMs": 3564980,
+      "text": "Alright. Let's perform one final inspection."
+    },
+    {
+      "startMs": 3564980,
+      "endMs": 3570460,
+      "text": "Clot formation is satisfactory. This is the area we repaired."
+    },
+    {
+      "startMs": 3570460,
+      "endMs": 3574596,
+      "text": "There is no apparent problem there. It looks very good."
+    },
+    {
+      "startMs": 3575500,
+      "endMs": 3581940,
+      "text": "Alright. Well done, everyone. Thank you all."
+    }
+  ],
+  "narration": [
+    {
+      "id": "n001",
+      "startMs": 0,
+      "endMs": 59500,
+      "text": "This is a real high risk redo operation viewed from the surgeon's field. The educational thread is source control for prosthetic infection, safe removal of a transcatheter valve, and replacement with a surgical bioprosthesis. The video is graphic operative footage, so use the commentary to track decisions rather than memorizing isolated movements."
+    },
+    {
+      "id": "n002",
+      "startMs": 60000,
+      "endMs": 119500,
+      "text": "The planned procedure is explantation of an infected TAVI prosthesis followed by bioprosthetic aortic valve replacement. Infection changes the objective from simply correcting valve function to removing infected foreign material, controlling contamination, and reconstructing a safe annulus for a new valve."
+    },
+    {
+      "id": "n003",
+      "startMs": 120000,
+      "endMs": 179500,
+      "text": "The operation begins with a skin incision. This is the access phase of a median sternotomy, and it must preserve orientation and hemostasis before the sternum is opened. In a redo cardiac operation, tissue planes may be less predictable, so controlled dissection is part of the safety strategy."
+    },
+    {
+      "id": "n004",
+      "startMs": 180000,
+      "endMs": 239500,
+      "text": "The oscillating saw divides the sternum to create the central exposure. The saw is kept in the bone while the team protects the structures beneath it. Once the chest is open, the team can expose the pericardium and prepare for cardiopulmonary bypass."
+    },
+    {
+      "id": "n005",
+      "startMs": 240000,
+      "endMs": 299500,
+      "text": "Heparin is administered before the bypass circuit is used because blood contacting the artificial surfaces would otherwise clot. The team also evaluates the exposed tissues and controls cancellous sternal bleeding. Adequate anticoagulation is checked later with the activated clotting time."
+    },
+    {
+      "id": "n006",
+      "startMs": 300000,
+      "endMs": 359500,
+      "text": "The retractor spreads the sternum and improves access. Bone wax can reduce bleeding from cut bone, while the bypass lines are organized for the next phase. Clear line management matters because the arterial, venous, vent, and cardioplegia circuits each have a different job."
+    },
+    {
+      "id": "n007",
+      "startMs": 360000,
+      "endMs": 419500,
+      "text": "The pericardium is opened and stay sutures bring its edges into a stable position. This exposes the heart without pulling directly on it. The stays also help maintain a controlled operative field while the team identifies the implanted frame and plans cannulation."
+    },
+    {
+      "id": "n008",
+      "startMs": 420000,
+      "endMs": 479500,
+      "text": "The surgeon palpates the TAVI frame before making the aortotomy. The frame is not very high, but part of it has become incorporated into the aortic wall. Locating the stent by touch helps choose an incision that gives access while preserving as much healthy aorta as possible."
+    },
+    {
+      "id": "n009",
+      "startMs": 480000,
+      "endMs": 539500,
+      "text": "The aortic tissue is assessed before cannulation. Tissue quality determines how firmly a purse string can hold and how much traction the wall can tolerate. The team now places the sutures that will secure the arterial and venous cannulas for bypass."
+    },
+    {
+      "id": "n010",
+      "startMs": 540000,
+      "endMs": 599500,
+      "text": "The aortic cannulation suture creates a controlled entry site for arterial perfusion. A snare around the purse string can tighten the tissue around the cannula and limit bleeding. In fragile aortic tissue, the suture must be wide enough to distribute force."
+    },
+    {
+      "id": "n011",
+      "startMs": 600000,
+      "endMs": 659500,
+      "text": "Venous cannulation and the antegrade cardioplegia site are prepared. The venous line drains the right heart to the pump, while the cardioplegia cannula later delivers solution to arrest and protect the myocardium. Each purse string is placed with its final cannula path in mind."
+    },
+    {
+      "id": "n012",
+      "startMs": 660000,
+      "endMs": 719500,
+      "text": "The aorta is described as thin, so the arterial cannula is advanced carefully. A secure cannula must deliver flow without dissecting the wall or producing a leak. The goal is a stable connection that will remain reliable when full pump flow begins."
+    },
+    {
+      "id": "n013",
+      "startMs": 720000,
+      "endMs": 779500,
+      "text": "The team evacuates air and checks the lines before starting bypass. The flow is reduced briefly and the arterial pressure falls to about eighty over thirty-five. An activated clotting time above four hundred seconds confirms strong heparinization for the bypass circuit."
+    },
+    {
+      "id": "n014",
+      "startMs": 780000,
+      "endMs": 839500,
+      "text": "Cardiopulmonary bypass begins and unloads the heart. A left atrial vent suture is placed so blood and air can be removed from the left side. At the same time, the team plans retrograde cardioplegia through the coronary sinus."
+    },
+    {
+      "id": "n015",
+      "startMs": 840000,
+      "endMs": 899500,
+      "text": "The retrograde cannulation site is chosen at a prominent point while avoiding the right coronary artery. The purse string is deliberately wider than the cannula. This gives room for the cannula and helps prevent bleeding when it is secured."
+    },
+    {
+      "id": "n016",
+      "startMs": 900000,
+      "endMs": 959500,
+      "text": "The right coronary artery is kept in mind while the aortic root and retrograde cannulas are positioned. The team expects that the heart could fibrillate during insertion, so cardioplegia must be ready before the cannula enters."
+    },
+    {
+      "id": "n017",
+      "startMs": 960000,
+      "endMs": 1019500,
+      "text": "The right atrium is kept filled while the retrograde cannula is guided. If the atrium collapses, air can enter the venous line and create an air lock. The cannula is brought anterior to the venous cannula and guided manually toward the coronary sinus."
+    },
+    {
+      "id": "n018",
+      "startMs": 1020000,
+      "endMs": 1079500,
+      "text": "The cannula is advanced by feel along the atrioventricular groove. A syringe is used to judge balloon firmness without overinflating it. Advancing too far could reduce perfusion to the right coronary territory, which is already less reliably supplied by retrograde cardioplegia."
+    },
+    {
+      "id": "n019",
+      "startMs": 1080000,
+      "endMs": 1139500,
+      "text": "The plane between the aorta and pulmonary artery is developed before the aortotomy. This separation creates a safer working corridor and reduces the chance of injuring adjacent structures. The cross clamp and root vent are then prepared for cardiac arrest."
+    },
+    {
+      "id": "n020",
+      "startMs": 1140000,
+      "endMs": 1199500,
+      "text": "Cold saline and retrograde cardioplegia are used after the cross clamp is applied. The infected field is treated as contaminated, so instruments that enter it will later be removed. Severe aortic regurgitation explains why antegrade root delivery is unreliable and retrograde delivery is emphasized."
+    },
+    {
+      "id": "n021",
+      "startMs": 1200000,
+      "endMs": 1259500,
+      "text": "A vent passes through the right superior pulmonary vein into the left atrium. It keeps the field relatively bloodless and later helps evacuate intracardiac air. The aorta is opened at the planned level, and the metal struts of the TAVI frame become visible."
+    },
+    {
+      "id": "n022",
+      "startMs": 1260000,
+      "endMs": 1319500,
+      "text": "The prosthesis is embedded, so the surgeon exposes it before applying traction. Strong suction keeps the left atrial side decompressed. The upper crowns of the frame are identified, but one region is deeply incorporated and requires sharp, controlled dissection."
+    },
+    {
+      "id": "n023",
+      "startMs": 1320000,
+      "endMs": 1379500,
+      "text": "The noncoronary stabilization arch is densely adherent to the aortic wall. Separation produces an injury in the inner aortic layer, so the plan is to reinforce the area with a Teflon patch during closure. The whole prosthesis appears infected, making complete source control essential."
+    },
+    {
+      "id": "n024",
+      "startMs": 1380000,
+      "endMs": 1439500,
+      "text": "The snare technique uses sutures passed through the stent frame to control and progressively collapse the prosthesis. Milrinone is started while the team maintains myocardial support. This is a useful example of how explantation combines mechanical control with careful perfusion management."
+    },
+    {
+      "id": "n025",
+      "startMs": 1440000,
+      "endMs": 1499500,
+      "text": "Visible infected material is removed and sent for culture. It is handled as contaminated and kept from falling into the heart. Sterility remains critical even though the operation is already dealing with infection; every additional fragment or contaminated instrument can increase the burden of source control."
+    },
+    {
+      "id": "n026",
+      "startMs": 1500000,
+      "endMs": 1559500,
+      "text": "Retrograde cardioplegia is restarted while the final snare sutures are placed. The prosthesis is held under controlled traction rather than forceful pulling. The aim is to reduce the frame while protecting the aortic wall and the adjacent annulus."
+    },
+    {
+      "id": "n027",
+      "startMs": 1560000,
+      "endMs": 1619500,
+      "text": "Several portions of the TAVI frame never fully expanded. Underexpansion can leave abnormal surfaces and disturbed flow, and it can make later explantation more difficult. The surgeon passes additional sutures through the struts to obtain a controlled purchase on the frame."
+    },
+    {
+      "id": "n028",
+      "startMs": 1620000,
+      "endMs": 1679500,
+      "text": "The sutures are gathered and tightened gradually. The team notes that inflammation extends through an underexpanded region. The sequence shows why explantation is not a simple extraction: the frame, native valve, and aortic wall may be joined by fibrosis and infection."
+    },
+    {
+      "id": "n029",
+      "startMs": 1680000,
+      "endMs": 1739500,
+      "text": "Cold saline is poured over the prosthesis while the sutures are tightened. Several sutures snap, so the team changes its angle and searches for a remaining plane of separation. When a planned maneuver fails, following an existing tissue plane can be safer than adding force."
+    },
+    {
+      "id": "n030",
+      "startMs": 1740000,
+      "endMs": 1799500,
+      "text": "The surgeon lifts and dissects the prosthesis from superior adhesions. The frame is separated step by step, with suction and sharp instruments used close to the adherent tissue. The purpose is to free the device while preserving enough aortic tissue for reconstruction."
+    },
+    {
+      "id": "n031",
+      "startMs": 1800000,
+      "endMs": 1859500,
+      "text": "This minute remains focused on dense adherence. Gentle movement toward a safer direction lets the surgeon continue the dissection without tearing the wall. The visible difficulty is a reminder that chronic implantation can convert a transcatheter device into a tissue-integrated surgical problem."
+    },
+    {
+      "id": "n032",
+      "startMs": 1860000,
+      "endMs": 1919500,
+      "text": "The critical area has very poor aortic tissue and one remaining point still holds the prosthesis. The hematocrit is eighteen, so a unit of packed red cells is transfused. Hemostasis and oxygen-carrying capacity matter during a prolonged, high-risk bypass procedure."
+    },
+    {
+      "id": "n033",
+      "startMs": 1920000,
+      "endMs": 1979500,
+      "text": "The prosthesis is described as infected throughout its interior and is sent to microbiology. The native aortic valve is then removed. During TAVI, the calcified native leaflets are not excised; the transcatheter prosthesis is deployed within them, leaving native tissue compressed between the device and aortic wall."
+    },
+    {
+      "id": "n034",
+      "startMs": 1980000,
+      "endMs": 2039500,
+      "text": "The absence of an aortic root abscess is favorable, but the tissue is still fragile. A rongeur and fine forceps remove selected material while the surgeon distinguishes loose debris from tissue that is still attached. Preserving viable wall is as important as removing infection."
+    },
+    {
+      "id": "n035",
+      "startMs": 2040000,
+      "endMs": 2099500,
+      "text": "Before implanting the new valve, the annulus must be clean of calcific tissue. Residual calcium or infected debris can prevent seating, impair sealing, or become an embolic source. Cardioplegia is also given through the right coronary ostium to maintain myocardial protection."
+    },
+    {
+      "id": "n036",
+      "startMs": 2100000,
+      "endMs": 2159500,
+      "text": "The surgeon emphasizes that myocardial protection must be adequate for successful separation from bypass. The final infected areas are close to a commissure and the conduction system, so tissue is removed selectively. An overly aggressive debridement could create structural damage or heart block."
+    },
+    {
+      "id": "n037",
+      "startMs": 2160000,
+      "endMs": 2219500,
+      "text": "The team preserves a small adherent area and plans a fine internal repair rather than removing more tissue. The contaminated instruments are separated, gloves are changed, and the clean phase begins. The mitral valve is inspected for extension of endocarditis and no extension is seen."
+    },
+    {
+      "id": "n038",
+      "startMs": 2220000,
+      "endMs": 2279500,
+      "text": "Copious saline irrigation and suction clear the left ventricle and aortic annulus. The goal is to remove tissue fragments and calcific debris that could embolize. The coronary ostia are flushed, and clean drapes and instruments mark the transition to reconstruction."
+    },
+    {
+      "id": "n039",
+      "startMs": 2280000,
+      "endMs": 2339500,
+      "text": "Annular sizers are tested at twenty-five, twenty-three, and twenty-one millimetres. The twenty-one millimetre sizer seats well, so the team chooses it rather than forcing a larger valve. Sizing is a balance between hemodynamics, fragile tissue, coronary anatomy, and the conduction system."
+    },
+    {
+      "id": "n040",
+      "startMs": 2340000,
+      "endMs": 2399500,
+      "text": "A twenty-one millimetre bioprosthesis is selected and placed in a supra-annular position. Pledgets sit on the ventricular side of the annulus to spread suture tension. A larger valve could injure fragile tissue or the conduction system, increasing the risk of bleeding or heart block."
+    },
+    {
+      "id": "n041",
+      "startMs": 2400000,
+      "endMs": 2459500,
+      "text": "The team spaces the annular sutures in a three-four-four pattern while excluding the commissures. Even distribution helps the sewing ring sit symmetrically. In a small or damaged annulus, suture geometry is part of valve function and part of the protection against paravalvular leakage."
+    },
+    {
+      "id": "n042",
+      "startMs": 2460000,
+      "endMs": 2519500,
+      "text": "The new valve is twenty-one millimetres because a twenty-five millimetre surgical valve could not be seated safely. The earlier transcatheter valve had been twenty-five millimetres but remained underexpanded. The discussion also identifies a high-velocity jet as a predisposing flow disturbance for endocarditis."
+    },
+    {
+      "id": "n043",
+      "startMs": 2520000,
+      "endMs": 2579500,
+      "text": "The commissural sutures are positioned with small adjustments to compensate for unequal spacing. Before the valve is lowered, retrograde cardioplegia is given and the coronary ostia are flushed. This protects the myocardium and helps clear any residual material from the coronary circulation."
+    },
+    {
+      "id": "n044",
+      "startMs": 2580000,
+      "endMs": 2639500,
+      "text": "Retrograde cardioplegia provides myocardial protection while the valve is being seated. Reverse flow through the coronary circulation can also help wash out debris. The valve is rotated so its commissures align with the planned suture distribution."
+    },
+    {
+      "id": "n045",
+      "startMs": 2640000,
+      "endMs": 2699500,
+      "text": "The valve is being lowered and the commissural sutures are released in sequence. The conversation briefly turns to cerebral protection, but the operative principle remains the same: protect vital organs while maintaining a stable, bloodless field during reconstruction."
+    },
+    {
+      "id": "n046",
+      "startMs": 2700000,
+      "endMs": 2759500,
+      "text": "The remaining sutures are brought through and tied while the valve stays aligned. Additional cardioplegia is used when needed. Maintaining arrest during the final seating and tying phase limits myocardial oxygen demand while the new prosthesis is secured."
+    },
+    {
+      "id": "n047",
+      "startMs": 2760000,
+      "endMs": 2819500,
+      "text": "Another retrograde dose is administered. Re-dosing cardioplegia is a way to maintain myocardial protection during a prolonged cross-clamp interval. The team keeps the field controlled and continues the final annular sutures rather than rushing the reconstruction."
+    },
+    {
+      "id": "n048",
+      "startMs": 2820000,
+      "endMs": 2879500,
+      "text": "Retrograde cardioplegia is used again and the surgeon checks the coronary ostia. The ostia remain open and are not being obstructed by the prosthesis. This is a key anatomic safety check before closing the aorta and restoring forward coronary flow."
+    },
+    {
+      "id": "n049",
+      "startMs": 2880000,
+      "endMs": 2939500,
+      "text": "The suture ends are shortened and the aortotomy closure begins. The closure must restore a watertight aortic wall while incorporating the area that was injured during explantation. The team continues cardioplegia until the repair is secure."
+    },
+    {
+      "id": "n050",
+      "startMs": 2940000,
+      "endMs": 2999500,
+      "text": "Suction is placed inside the aorta and rewarming begins. The surgeon feels the tissue as the needle passes, using resistance as a practical assessment of wall integrity. The team avoids removing a surface that looks covered but is not clearly nonviable."
+    },
+    {
+      "id": "n051",
+      "startMs": 3000000,
+      "endMs": 3059500,
+      "text": "Warm saline, lung inflation, and a slight Trendelenburg position prepare the heart for de-airing. Air left in the left heart could be ejected to the coronary or cerebral circulation when the heart beats, so removal is deliberately performed before the clamp comes off."
+    },
+    {
+      "id": "n052",
+      "startMs": 3060000,
+      "endMs": 3119500,
+      "text": "Residual air is evacuated from the heart and aorta while the chambers are filled in a controlled way. A head-down position helps direct bubbles away from the cerebral circulation. Venting and gentle suction continue until the team is satisfied with the de-airing."
+    },
+    {
+      "id": "n053",
+      "startMs": 3120000,
+      "endMs": 3179500,
+      "text": "The aortotomy is nearly tied and the team uses gentle root-vent suction while preparing to remove the clamp. Brief carotid compression is requested as an additional maneuver during de-airing. The aim is to minimize the chance that residual bubbles reach the brain."
+    },
+    {
+      "id": "n054",
+      "startMs": 3180000,
+      "endMs": 3239500,
+      "text": "The cross clamp is removed with the aortic root and left atrial vents active. The carotids are released, amiodarone is given, and the heart is kept decompressed while rhythm and filling are assessed. This is the transition from protected arrest to reperfusion."
+    },
+    {
+      "id": "n055",
+      "startMs": 3240000,
+      "endMs": 3299500,
+      "text": "A small bleeding point along the aortotomy is repaired with Teflon pledget-reinforced sutures. The pledget spreads the load over fragile tissue. Temporary pacing settings and vent function are checked at the same time because rhythm and de-airing both affect safe recovery."
+    },
+    {
+      "id": "n056",
+      "startMs": 3300000,
+      "endMs": 3359500,
+      "text": "The heart has started beating and ventilation resumes. The team assesses atrioventricular synchrony and looks specifically for heart block, an important risk after work near the aortic annulus and conduction tissue. Good pressure and synchrony support a gradual separation from bypass."
+    },
+    {
+      "id": "n057",
+      "startMs": 3360000,
+      "endMs": 3419500,
+      "text": "Contractility is described as good and there is no evidence of heart block. The aortic root vent remains stronger than the left atrial vent while volume is returned. A pacing wire is placed as a precaution, and urine output is followed as a marker of perfusion."
+    },
+    {
+      "id": "n058",
+      "startMs": 3420000,
+      "endMs": 3479500,
+      "text": "The pacing wire is adjusted and the team prepares to fill the heart. A functioning pacemaker provides backup while the heart transitions to its own output. The sequence remains incremental: fill, observe pressure and rhythm, then reduce mechanical support."
+    },
+    {
+      "id": "n059",
+      "startMs": 3480000,
+      "endMs": 3539500,
+      "text": "The pacemaker captures, the heart is filled, and the left atrial vent is removed. Pump flow is reduced stepwise and the remaining vents and root cannula are withdrawn. Gradual reduction allows the team to see whether the new valve and myocardium are tolerating independent circulation."
+    },
+    {
+      "id": "n060",
+      "startMs": 3540000,
+      "endMs": 3599500,
+      "text": "Cardiopulmonary bypass is terminated and the venous cannula is removed. Protamine is started to reverse heparin, while blood pressure determines when the arterial cannula can safely come out. Decannulation is performed only after the circulation is stable enough to tolerate each step."
+    },
+    {
+      "id": "n061",
+      "startMs": 3600000,
+      "endMs": 3659500,
+      "text": "The final inspection shows satisfactory clot formation and a stable repaired area. The operation has moved from infection control and device explantation to hemostasis and recovery. This public study pack keeps its commentary focused on the operative technique and its safety checks."
+    },
+    {
+      "id": "n062",
+      "startMs": 3660000,
+      "endMs": 3667788,
+      "text": "The closing message is the sequence: infected TAVI prosthesis explantation, removal of the native valve, meticulous debridement and irrigation, surgical bioprosthetic replacement, de-airing, and staged separation from bypass. This is an educational operative record, not a guide for self-treatment or a prediction for any individual patient."
+    }
+  ]
+}
