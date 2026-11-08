@@ -3196,374 +3196,1717 @@
     {
       "id": "n001",
       "startMs": 0,
-      "endMs": 59500,
-      "text": "This is a real high risk redo operation viewed from the surgeon's field. The educational thread is source control for prosthetic infection, safe removal of a transcatheter valve, and replacement with a surgical bioprosthesis. The video is graphic operative footage, so use the commentary to track decisions rather than memorizing isolated movements."
+      "endMs": 15000,
+      "text": "The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass. In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified.",
+      "speed": 1.05
     },
     {
       "id": "n002",
-      "startMs": 60000,
-      "endMs": 119500,
-      "text": "The planned procedure is explantation of an infected TAVI prosthesis followed by bioprosthetic aortic valve replacement. Infection changes the objective from simply correcting valve function to removing infected foreign material, controlling contamination, and reconstructing a safe annulus for a new valve."
+      "startMs": 15000,
+      "endMs": 30000,
+      "text": "In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified. It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction. This controlled re-entry preserves exposure and limits avoidable injury.",
+      "speed": 1.05
     },
     {
       "id": "n003",
-      "startMs": 120000,
-      "endMs": 179500,
-      "text": "The operation begins with a skin incision. This is the access phase of a median sternotomy, and it must preserve orientation and hemostasis before the sternum is opened. In a redo cardiac operation, tissue planes may be less predictable, so controlled dissection is part of the safety strategy."
+      "startMs": 30000,
+      "endMs": 45000,
+      "text": "It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction. The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly. This controlled re-entry preserves exposure and limits avoidable injury.",
+      "speed": 1.05
     },
     {
       "id": "n004",
-      "startMs": 180000,
-      "endMs": 239500,
-      "text": "The oscillating saw divides the sternum to create the central exposure. The saw is kept in the bone while the team protects the structures beneath it. Once the chest is open, the team can expose the pericardium and prepare for cardiopulmonary bypass."
+      "startMs": 45000,
+      "endMs": 60000,
+      "text": "The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly. The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass.",
+      "speed": 1.05
     },
     {
       "id": "n005",
-      "startMs": 240000,
-      "endMs": 299500,
-      "text": "Heparin is administered before the bypass circuit is used because blood contacting the artificial surfaces would otherwise clot. The team also evaluates the exposed tissues and controls cancellous sternal bleeding. Adequate anticoagulation is checked later with the activated clotting time."
+      "startMs": 60000,
+      "endMs": 75000,
+      "text": "The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass. In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified.",
+      "speed": 1.05
     },
     {
       "id": "n006",
-      "startMs": 300000,
-      "endMs": 359500,
-      "text": "The retractor spreads the sternum and improves access. Bone wax can reduce bleeding from cut bone, while the bypass lines are organized for the next phase. Clear line management matters because the arterial, venous, vent, and cardioplegia circuits each have a different job."
+      "startMs": 75000,
+      "endMs": 90000,
+      "text": "Planned Procedure: Explantation of the infected TAVI prosthesis. In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified. It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction.",
+      "speed": 1.05
     },
     {
       "id": "n007",
-      "startMs": 360000,
-      "endMs": 419500,
-      "text": "The pericardium is opened and stay sutures bring its edges into a stable position. This exposes the heart without pulling directly on it. The stays also help maintain a controlled operative field while the team identifies the implanted frame and plans cannulation."
+      "startMs": 90000,
+      "endMs": 105000,
+      "text": "Planned Procedure: Explantation of the infected TAVI prosthesis. It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction. The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly.",
+      "speed": 1.05
     },
     {
       "id": "n008",
-      "startMs": 420000,
-      "endMs": 479500,
-      "text": "The surgeon palpates the TAVI frame before making the aortotomy. The frame is not very high, but part of it has become incorporated into the aortic wall. Locating the stent by touch helps choose an incision that gives access while preserving as much healthy aorta as possible."
+      "startMs": 105000,
+      "endMs": 120000,
+      "text": "The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly. The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass.",
+      "speed": 1.05
     },
     {
       "id": "n009",
-      "startMs": 480000,
-      "endMs": 539500,
-      "text": "The aortic tissue is assessed before cannulation. Tissue quality determines how firmly a purse string can hold and how much traction the wall can tolerate. The team now places the sutures that will secure the arterial and venous cannulas for bypass."
+      "startMs": 120000,
+      "endMs": 135000,
+      "text": "The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass. In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified.",
+      "speed": 1.05
     },
     {
       "id": "n010",
-      "startMs": 540000,
-      "endMs": 599500,
-      "text": "The aortic cannulation suture creates a controlled entry site for arterial perfusion. A snare around the purse string can tighten the tissue around the cannula and limit bleeding. In fragile aortic tissue, the suture must be wide enough to distribute force."
+      "startMs": 135000,
+      "endMs": 150000,
+      "text": "In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified. It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction. Stable exposure makes the anatomy easier to inspect and the next step safer.",
+      "speed": 1.05
     },
     {
       "id": "n011",
-      "startMs": 600000,
-      "endMs": 659500,
-      "text": "Venous cannulation and the antegrade cardioplegia site are prepared. The venous line drains the right heart to the pump, while the cardioplegia cannula later delivers solution to arrest and protect the myocardium. Each purse string is placed with its final cannula path in mind."
+      "startMs": 150000,
+      "endMs": 165000,
+      "text": "It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction. The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly. Stable exposure makes the anatomy easier to inspect and the next step safer.",
+      "speed": 1.05
     },
     {
       "id": "n012",
-      "startMs": 660000,
-      "endMs": 719500,
-      "text": "The aorta is described as thin, so the arterial cannula is advanced carefully. A secure cannula must deliver flow without dissecting the wall or producing a leak. The goal is a stable connection that will remain reliable when full pump flow begins."
+      "startMs": 165000,
+      "endMs": 180000,
+      "text": "The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly. The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass.",
+      "speed": 1.05
     },
     {
       "id": "n013",
-      "startMs": 720000,
-      "endMs": 779500,
-      "text": "The team evacuates air and checks the lines before starting bypass. The flow is reduced briefly and the arterial pressure falls to about eighty over thirty-five. An activated clotting time above four hundred seconds confirms strong heparinization for the bypass circuit."
+      "startMs": 180000,
+      "endMs": 195000,
+      "text": "The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass. In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified.",
+      "speed": 1.05
     },
     {
       "id": "n014",
-      "startMs": 780000,
-      "endMs": 839500,
-      "text": "Cardiopulmonary bypass begins and unloads the heart. A left atrial vent suture is placed so blood and air can be removed from the left side. At the same time, the team plans retrograde cardioplegia through the coronary sinus."
+      "startMs": 195000,
+      "endMs": 210000,
+      "text": "In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified. It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction. Stable exposure makes the anatomy easier to inspect and the next step safer.",
+      "speed": 1.05
     },
     {
       "id": "n015",
-      "startMs": 840000,
-      "endMs": 899500,
-      "text": "The retrograde cannulation site is chosen at a prominent point while avoiding the right coronary artery. The purse string is deliberately wider than the cannula. This gives room for the cannula and helps prevent bleeding when it is secured."
+      "startMs": 210000,
+      "endMs": 225000,
+      "text": "It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction. The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly. Stable exposure makes the anatomy easier to inspect and the next step safer.",
+      "speed": 1.05
     },
     {
       "id": "n016",
-      "startMs": 900000,
-      "endMs": 959500,
-      "text": "The right coronary artery is kept in mind while the aortic root and retrograde cannulas are positioned. The team expects that the heart could fibrillate during insertion, so cardioplegia must be ready before the cannula enters."
+      "startMs": 225000,
+      "endMs": 240000,
+      "text": "The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly. The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass.",
+      "speed": 1.05
     },
     {
       "id": "n017",
-      "startMs": 960000,
-      "endMs": 1019500,
-      "text": "The right atrium is kept filled while the retrograde cannula is guided. If the atrium collapses, air can enter the venous line and create an air lock. The cannula is brought anterior to the venous cannula and guided manually toward the coronary sinus."
+      "startMs": 240000,
+      "endMs": 255000,
+      "text": "The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass. In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified.",
+      "speed": 1.05
     },
     {
       "id": "n018",
-      "startMs": 1020000,
-      "endMs": 1079500,
-      "text": "The cannula is advanced by feel along the atrioventricular groove. A syringe is used to judge balloon firmness without overinflating it. Advancing too far could reduce perfusion to the right coronary territory, which is already less reliably supplied by retrograde cardioplegia."
+      "startMs": 255000,
+      "endMs": 270000,
+      "text": "In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified. It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction. Stable exposure makes the anatomy easier to inspect and the next step safer.",
+      "speed": 1.05
     },
     {
       "id": "n019",
-      "startMs": 1080000,
-      "endMs": 1139500,
-      "text": "The plane between the aorta and pulmonary artery is developed before the aortotomy. This separation creates a safer working corridor and reduces the chance of injuring adjacent structures. The cross clamp and root vent are then prepared for cardiac arrest."
+      "startMs": 270000,
+      "endMs": 285000,
+      "text": "It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction. The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly. Stable exposure makes the anatomy easier to inspect and the next step safer.",
+      "speed": 1.05
     },
     {
       "id": "n020",
-      "startMs": 1140000,
-      "endMs": 1199500,
-      "text": "Cold saline and retrograde cardioplegia are used after the cross clamp is applied. The infected field is treated as contaminated, so instruments that enter it will later be removed. Severe aortic regurgitation explains why antegrade root delivery is unreliable and retrograde delivery is emphasized."
+      "startMs": 285000,
+      "endMs": 300000,
+      "text": "The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly. The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass.",
+      "speed": 1.05
     },
     {
       "id": "n021",
-      "startMs": 1200000,
-      "endMs": 1259500,
-      "text": "A vent passes through the right superior pulmonary vein into the left atrium. It keeps the field relatively bloodless and later helps evacuate intracardiac air. The aorta is opened at the planned level, and the metal struts of the TAVI frame become visible."
+      "startMs": 300000,
+      "endMs": 315000,
+      "text": "The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass. In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified.",
+      "speed": 1.05
     },
     {
       "id": "n022",
-      "startMs": 1260000,
-      "endMs": 1319500,
-      "text": "The prosthesis is embedded, so the surgeon exposes it before applying traction. Strong suction keeps the left atrial side decompressed. The upper crowns of the frame are identified, but one region is deeply incorporated and requires sharp, controlled dissection."
+      "startMs": 315000,
+      "endMs": 330000,
+      "text": "In a redo operation, adhesions make slow dissection safer than force; each plane is opened only after the next structure is identified. It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction. Stable exposure makes the anatomy easier to inspect and the next step safer.",
+      "speed": 1.05
     },
     {
       "id": "n023",
-      "startMs": 1320000,
-      "endMs": 1379500,
-      "text": "The noncoronary stabilization arch is densely adherent to the aortic wall. Separation produces an injury in the inner aortic layer, so the plan is to reinforce the area with a Teflon patch during closure. The whole prosthesis appears infected, making complete source control essential."
+      "startMs": 330000,
+      "endMs": 345000,
+      "text": "It reduces blind traction and preserves options for cannulation, aortotomy, and later valve reconstruction. The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly. Stable exposure makes the anatomy easier to inspect and the next step safer.",
+      "speed": 1.05
     },
     {
       "id": "n024",
-      "startMs": 1380000,
-      "endMs": 1439500,
-      "text": "The snare technique uses sutures passed through the stent frame to control and progressively collapse the prosthesis. Milrinone is started while the team maintains myocardial support. This is a useful example of how explantation combines mechanical control with careful perfusion management."
+      "startMs": 345000,
+      "endMs": 360000,
+      "text": "The team is building a stable field in which every subsequent maneuver can be seen, checked, and reversed if the tissue behaves unexpectedly. The operative objective is controlled access: protect the tissues beneath the sternum, maintain hemostasis, and keep the anatomy readable before bypass.",
+      "speed": 1.05
     },
     {
       "id": "n025",
-      "startMs": 1440000,
-      "endMs": 1499500,
-      "text": "Visible infected material is removed and sent for culture. It is handled as contaminated and kept from falling into the heart. Sterility remains critical even though the operation is already dealing with infection; every additional fragment or contaminated instrument can increase the burden of source control."
+      "startMs": 360000,
+      "endMs": 375000,
+      "text": "A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. Clear landmarks let the team choose cannulation and incision levels before instruments are committed.",
+      "speed": 1.05
     },
     {
       "id": "n026",
-      "startMs": 1500000,
-      "endMs": 1559500,
-      "text": "Retrograde cardioplegia is restarted while the final snare sutures are placed. The prosthesis is held under controlled traction rather than forceful pulling. The aim is to reduce the frame while protecting the aortic wall and the adjacent annulus."
+      "startMs": 375000,
+      "endMs": 390000,
+      "text": "Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. Clear landmarks let the team choose cannulation and incision levels before instruments are committed.",
+      "speed": 1.05
     },
     {
       "id": "n027",
-      "startMs": 1560000,
-      "endMs": 1619500,
-      "text": "Several portions of the TAVI frame never fully expanded. Underexpansion can leave abnormal surfaces and disturbed flow, and it can make later explantation more difficult. The surgeon passes additional sutures through the struts to obtain a controlled purchase on the frame."
+      "startMs": 390000,
+      "endMs": 405000,
+      "text": "Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. Stable exposure makes the anatomy easier to inspect and the next step safer.",
+      "speed": 1.05
     },
     {
       "id": "n028",
-      "startMs": 1620000,
-      "endMs": 1679500,
-      "text": "The sutures are gathered and tightened gradually. The team notes that inflammation extends through an underexpanded region. The sequence shows why explantation is not a simple extraction: the frame, native valve, and aortic wall may be joined by fibrosis and infection."
+      "startMs": 405000,
+      "endMs": 420000,
+      "text": "The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. Stable exposure makes the anatomy easier to inspect and the next step safer.",
+      "speed": 1.05
     },
     {
       "id": "n029",
-      "startMs": 1680000,
-      "endMs": 1739500,
-      "text": "Cold saline is poured over the prosthesis while the sutures are tightened. Several sutures snap, so the team changes its angle and searches for a remaining plane of separation. When a planned maneuver fails, following an existing tissue plane can be safer than adding force."
+      "startMs": 420000,
+      "endMs": 435000,
+      "text": "A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. The goal is a secure circuit that delivers flow without damaging fragile tissue. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n030",
-      "startMs": 1740000,
-      "endMs": 1799500,
-      "text": "The surgeon lifts and dissects the prosthesis from superior adhesions. The frame is separated step by step, with suction and sharp instruments used close to the adherent tissue. The purpose is to free the device while preserving enough aortic tissue for reconstruction."
+      "startMs": 435000,
+      "endMs": 450000,
+      "text": "Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n031",
-      "startMs": 1800000,
-      "endMs": 1859500,
-      "text": "This minute remains focused on dense adherence. Gentle movement toward a safer direction lets the surgeon continue the dissection without tearing the wall. The visible difficulty is a reminder that chronic implantation can convert a transcatheter device into a tissue-integrated surgical problem."
+      "startMs": 450000,
+      "endMs": 465000,
+      "text": "Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n032",
-      "startMs": 1860000,
-      "endMs": 1919500,
-      "text": "The critical area has very poor aortic tissue and one remaining point still holds the prosthesis. The hematocrit is eighteen, so a unit of packed red cells is transfused. Hemostasis and oxygen-carrying capacity matter during a prolonged, high-risk bypass procedure."
+      "startMs": 465000,
+      "endMs": 480000,
+      "text": "The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n033",
-      "startMs": 1920000,
-      "endMs": 1979500,
-      "text": "The prosthesis is described as infected throughout its interior and is sent to microbiology. The native aortic valve is then removed. During TAVI, the calcified native leaflets are not excised; the transcatheter prosthesis is deployed within them, leaving native tissue compressed between the device and aortic wall."
+      "startMs": 480000,
+      "endMs": 495000,
+      "text": "A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n034",
-      "startMs": 1980000,
-      "endMs": 2039500,
-      "text": "The absence of an aortic root abscess is favorable, but the tissue is still fragile. A rongeur and fine forceps remove selected material while the surgeon distinguishes loose debris from tissue that is still attached. Preserving viable wall is as important as removing infection."
+      "startMs": 495000,
+      "endMs": 510000,
+      "text": "Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n035",
-      "startMs": 2040000,
-      "endMs": 2099500,
-      "text": "Before implanting the new valve, the annulus must be clean of calcific tissue. Residual calcium or infected debris can prevent seating, impair sealing, or become an embolic source. Cardioplegia is also given through the right coronary ostium to maintain myocardial protection."
+      "startMs": 510000,
+      "endMs": 525000,
+      "text": "Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n036",
-      "startMs": 2100000,
-      "endMs": 2159500,
-      "text": "The surgeon emphasizes that myocardial protection must be adequate for successful separation from bypass. The final infected areas are close to a commissure and the conduction system, so tissue is removed selectively. An overly aggressive debridement could create structural damage or heart block."
+      "startMs": 525000,
+      "endMs": 540000,
+      "text": "The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n037",
-      "startMs": 2160000,
-      "endMs": 2219500,
-      "text": "The team preserves a small adherent area and plans a fine internal repair rather than removing more tissue. The contaminated instruments are separated, gloves are changed, and the clean phase begins. The mitral valve is inspected for extension of endocarditis and no extension is seen."
+      "startMs": 540000,
+      "endMs": 555000,
+      "text": "A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n038",
-      "startMs": 2220000,
-      "endMs": 2279500,
-      "text": "Copious saline irrigation and suction clear the left ventricle and aortic annulus. The goal is to remove tissue fragments and calcific debris that could embolize. The coronary ostia are flushed, and clean drapes and instruments mark the transition to reconstruction."
+      "startMs": 555000,
+      "endMs": 570000,
+      "text": "Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n039",
-      "startMs": 2280000,
-      "endMs": 2339500,
-      "text": "Annular sizers are tested at twenty-five, twenty-three, and twenty-one millimetres. The twenty-one millimetre sizer seats well, so the team chooses it rather than forcing a larger valve. Sizing is a balance between hemodynamics, fragile tissue, coronary anatomy, and the conduction system."
+      "startMs": 570000,
+      "endMs": 585000,
+      "text": "Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n040",
-      "startMs": 2340000,
-      "endMs": 2399500,
-      "text": "A twenty-one millimetre bioprosthesis is selected and placed in a supra-annular position. Pledgets sit on the ventricular side of the annulus to spread suture tension. A larger valve could injure fragile tissue or the conduction system, increasing the risk of bleeding or heart block."
+      "startMs": 585000,
+      "endMs": 600000,
+      "text": "The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n041",
-      "startMs": 2400000,
-      "endMs": 2459500,
-      "text": "The team spaces the annular sutures in a three-four-four pattern while excluding the commissures. Even distribution helps the sewing ring sit symmetrically. In a small or damaged annulus, suture geometry is part of valve function and part of the protection against paravalvular leakage."
+      "startMs": 600000,
+      "endMs": 615000,
+      "text": "A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n042",
-      "startMs": 2460000,
-      "endMs": 2519500,
-      "text": "The new valve is twenty-one millimetres because a twenty-five millimetre surgical valve could not be seated safely. The earlier transcatheter valve had been twenty-five millimetres but remained underexpanded. The discussion also identifies a high-velocity jet as a predisposing flow disturbance for endocarditis."
+      "startMs": 615000,
+      "endMs": 630000,
+      "text": "Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n043",
-      "startMs": 2520000,
-      "endMs": 2579500,
-      "text": "The commissural sutures are positioned with small adjustments to compensate for unequal spacing. Before the valve is lowered, retrograde cardioplegia is given and the coronary ostia are flushed. This protects the myocardium and helps clear any residual material from the coronary circulation."
+      "startMs": 630000,
+      "endMs": 645000,
+      "text": "Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n044",
-      "startMs": 2580000,
-      "endMs": 2639500,
-      "text": "Retrograde cardioplegia provides myocardial protection while the valve is being seated. Reverse flow through the coronary circulation can also help wash out debris. The valve is rotated so its commissures align with the planned suture distribution."
+      "startMs": 645000,
+      "endMs": 660000,
+      "text": "The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n045",
-      "startMs": 2640000,
-      "endMs": 2699500,
-      "text": "The valve is being lowered and the commissural sutures are released in sequence. The conversation briefly turns to cerebral protection, but the operative principle remains the same: protect vital organs while maintaining a stable, bloodless field during reconstruction."
+      "startMs": 660000,
+      "endMs": 675000,
+      "text": "A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n046",
-      "startMs": 2700000,
-      "endMs": 2759500,
-      "text": "The remaining sutures are brought through and tied while the valve stays aligned. Additional cardioplegia is used when needed. Maintaining arrest during the final seating and tying phase limits myocardial oxygen demand while the new prosthesis is secured."
+      "startMs": 675000,
+      "endMs": 690000,
+      "text": "Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n047",
-      "startMs": 2760000,
-      "endMs": 2819500,
-      "text": "Another retrograde dose is administered. Re-dosing cardioplegia is a way to maintain myocardial protection during a prolonged cross-clamp interval. The team keeps the field controlled and continues the final annular sutures rather than rushing the reconstruction."
+      "startMs": 690000,
+      "endMs": 705000,
+      "text": "Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n048",
-      "startMs": 2820000,
-      "endMs": 2879500,
-      "text": "Retrograde cardioplegia is used again and the surgeon checks the coronary ostia. The ostia remain open and are not being obstructed by the prosthesis. This is a key anatomic safety check before closing the aorta and restoring forward coronary flow."
+      "startMs": 705000,
+      "endMs": 720000,
+      "text": "The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n049",
-      "startMs": 2880000,
-      "endMs": 2939500,
-      "text": "The suture ends are shortened and the aortotomy closure begins. The closure must restore a watertight aortic wall while incorporating the area that was injured during explantation. The team continues cardioplegia until the repair is secure."
+      "startMs": 720000,
+      "endMs": 735000,
+      "text": "A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n050",
-      "startMs": 2940000,
-      "endMs": 2999500,
-      "text": "Suction is placed inside the aorta and rewarming begins. The surgeon feels the tissue as the needle passes, using resistance as a practical assessment of wall integrity. The team avoids removing a surface that looks covered but is not clearly nonviable."
+      "startMs": 735000,
+      "endMs": 750000,
+      "text": "Let's still empty it and evacuate the air. Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n051",
-      "startMs": 3000000,
-      "endMs": 3059500,
-      "text": "Warm saline, lung inflation, and a slight Trendelenburg position prepare the heart for de-airing. Air left in the left heart could be ejected to the coronary or cerebral circulation when the heart beats, so removal is deliberately performed before the clamp comes off."
+      "startMs": 750000,
+      "endMs": 765000,
+      "text": "Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. The goal is a secure circuit that delivers flow without damaging fragile tissue. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n052",
-      "startMs": 3060000,
-      "endMs": 3119500,
-      "text": "Residual air is evacuated from the heart and aorta while the chambers are filled in a controlled way. A head-down position helps direct bubbles away from the cerebral circulation. Venting and gentle suction continue until the team is satisfied with the de-airing."
+      "startMs": 765000,
+      "endMs": 780000,
+      "text": "The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n053",
-      "startMs": 3120000,
-      "endMs": 3179500,
-      "text": "The aortotomy is nearly tied and the team uses gentle root-vent suction while preparing to remove the clamp. Brief carotid compression is requested as an additional maneuver during de-airing. The aim is to minimize the chance that residual bubbles reach the brain."
+      "startMs": 780000,
+      "endMs": 795000,
+      "text": "A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n054",
-      "startMs": 3180000,
-      "endMs": 3239500,
-      "text": "The cross clamp is removed with the aortic root and left atrial vents active. The carotids are released, amiodarone is given, and the heart is kept decompressed while rhythm and filling are assessed. This is the transition from protected arrest to reperfusion."
+      "startMs": 795000,
+      "endMs": 810000,
+      "text": "Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. The goal is a secure circuit that delivers flow without damaging fragile tissue. A controlled entry protects perfusion and preserves a suture line for later decannulation.",
+      "speed": 1.05
     },
     {
       "id": "n055",
-      "startMs": 3240000,
-      "endMs": 3299500,
-      "text": "A small bleeding point along the aortotomy is repaired with Teflon pledget-reinforced sutures. The pledget spreads the load over fragile tissue. Temporary pacing settings and vent function are checked at the same time because rhythm and de-airing both affect safe recovery."
+      "startMs": 810000,
+      "endMs": 825000,
+      "text": "Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n056",
-      "startMs": 3300000,
-      "endMs": 3359500,
-      "text": "The heart has started beating and ventilation resumes. The team assesses atrioventricular synchrony and looks specifically for heart block, an important risk after work near the aortic annulus and conduction tissue. Good pressure and synchrony support a gradual separation from bypass."
+      "startMs": 825000,
+      "endMs": 840000,
+      "text": "The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical. A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. The goal is a secure circuit that delivers flow without damaging fragile tissue.",
+      "speed": 1.05
     },
     {
       "id": "n057",
-      "startMs": 3360000,
-      "endMs": 3419500,
-      "text": "Contractility is described as good and there is no evidence of heart block. The aortic root vent remains stronger than the left atrial vent while volume is returned. A pacing wire is placed as a precaution, and urine output is followed as a marker of perfusion."
+      "startMs": 840000,
+      "endMs": 855000,
+      "text": "A wide purse-string distributes force through the vessel wall and gives the cannula a controlled, hemostatic entry. The circuit, vents, and pressure checks must remain coordinated throughout bypass. Pressure and flow are read together because a good line must work mechanically and physiologically.",
+      "speed": 1.05
     },
     {
       "id": "n058",
-      "startMs": 3420000,
-      "endMs": 3479500,
-      "text": "The pacing wire is adjusted and the team prepares to fill the heart. A functioning pacemaker provides backup while the heart transitions to its own output. The sequence remains incremental: fill, observe pressure and rhythm, then reduce mechanical support."
+      "startMs": 855000,
+      "endMs": 870000,
+      "text": "Before pump flow rises, the team confirms line direction, removes air, and checks that arterial perfusion and venous drainage are reliable. Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. Pressure and flow are read together because a good line must work mechanically and physiologically.",
+      "speed": 1.05
     },
     {
       "id": "n059",
-      "startMs": 3480000,
-      "endMs": 3539500,
-      "text": "The pacemaker captures, the heart is filled, and the left atrial vent is removed. Pump flow is reduced stepwise and the remaining vents and root cannula are withdrawn. Gradual reduction allows the team to see whether the new valve and myocardium are tolerating independent circulation."
+      "startMs": 870000,
+      "endMs": 885000,
+      "text": "Now, this is how we place the retrograde cannula. Activated clotting time, pressure, flow, and visual hemostasis are treated as one safety check before full cardiopulmonary bypass. The circuit, vents, and pressure checks must remain coordinated throughout bypass. Pressure and flow are read together because a good line must work mechanically and physiologically.",
+      "speed": 1.05
     },
     {
       "id": "n060",
-      "startMs": 3540000,
-      "endMs": 3599500,
-      "text": "Cardiopulmonary bypass is terminated and the venous cannula is removed. Protamine is started to reverse heparin, while blood pressure determines when the arterial cannula can safely come out. Decannulation is performed only after the circulation is stable enough to tolerate each step."
+      "startMs": 885000,
+      "endMs": 900000,
+      "text": "Now, this is how we place the retrograde cannula. I generally place it at the most prominent point, but the right coronary artery is right here. The arterial, venous, vent, and cardioplegia lines have different jobs; clear routing prevents confusion when the operation becomes time-critical.",
+      "speed": 1.05
     },
     {
       "id": "n061",
-      "startMs": 3600000,
-      "endMs": 3659500,
-      "text": "The final inspection shows satisfactory clot formation and a stable repaired area. The operation has moved from infection control and device explantation to hemostasis and recovery. This public study pack keeps its commentary focused on the operative technique and its safety checks."
+      "startMs": 900000,
+      "endMs": 915000,
+      "text": "I generally place it at the most prominent point, but the right coronary artery is right here. It should be placed much wider than the cannula, because bleeding may otherwise occur afterward. Retrograde cannulation is guided with respect for the right coronary artery and the atrioventricular groove.",
+      "speed": 1.05
     },
     {
       "id": "n062",
+      "startMs": 915000,
+      "endMs": 930000,
+      "text": "It should be placed much wider than the cannula, because bleeding may otherwise occur afterward. That is why we asked about the cardioplegia. The right atrium is kept adequately filled while the cannula is guided, limiting air entrainment and loss of venous drainage.",
+      "speed": 1.05
+    },
+    {
+      "id": "n063",
+      "startMs": 930000,
+      "endMs": 945000,
+      "text": "That is why we asked about the cardioplegia. Look, while placing this, I will also release the vent side. Cardioplegia lowers myocardial oxygen demand and provides a protected interval for the aortotomy, explantation, and annular reconstruction. The circuit, vents, and pressure checks must remain coordinated throughout bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n064",
+      "startMs": 945000,
+      "endMs": 960000,
+      "text": "Venting and suction keep the heart decompressed while the team establishes a bloodless operative field. Retrograde cannulation is guided with respect for the right coronary artery and the atrioventricular groove. The circuit, vents, and pressure checks must remain coordinated throughout bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n065",
+      "startMs": 960000,
+      "endMs": 975000,
+      "text": "While placing the retrograde cannula, we retract the venous cannula upward, without applying excessive traction. Retrograde cannulation is guided with respect for the right coronary artery and the atrioventricular groove. The circuit, vents, and pressure checks must remain coordinated throughout bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n066",
+      "startMs": 975000,
+      "endMs": 990000,
+      "text": "If the atrium is empty, air may be entrained and the venous line may become air-locked. We make sure that it passes anterior to the venous cannula. The right atrium is kept adequately filled while the cannula is guided, limiting air entrainment and loss of venous drainage.",
+      "speed": 1.05
+    },
+    {
+      "id": "n067",
+      "startMs": 990000,
+      "endMs": 1005000,
+      "text": "We make sure that it passes anterior to the venous cannula. Look, it is currently behind the venous cannula. Cardioplegia lowers myocardial oxygen demand and provides a protected interval for the aortotomy, explantation, and annular reconstruction. The circuit, vents, and pressure checks must remain coordinated throughout bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n068",
+      "startMs": 1005000,
+      "endMs": 1020000,
+      "text": "Venting and suction keep the heart decompressed while the team establishes a bloodless operative field. The circuit, vents, and pressure checks must remain coordinated throughout bypass. Pressure and flow are read together because a good line must work mechanically and physiologically.",
+      "speed": 1.05
+    },
+    {
+      "id": "n069",
+      "startMs": 1020000,
+      "endMs": 1035000,
+      "text": "Retrograde cannulation is guided with respect for the right coronary artery and the atrioventricular groove. The circuit, vents, and pressure checks must remain coordinated throughout bypass. Pressure and flow are read together because a good line must work mechanically and physiologically.",
+      "speed": 1.05
+    },
+    {
+      "id": "n070",
+      "startMs": 1035000,
+      "endMs": 1050000,
+      "text": "The firmness felt in the syringe corresponds to the firmness of the balloon at the tip. The right atrium is kept adequately filled while the cannula is guided, limiting air entrainment and loss of venous drainage. The circuit, vents, and pressure checks must remain coordinated throughout bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n071",
+      "startMs": 1050000,
+      "endMs": 1065000,
+      "text": "The firmness felt in the syringe corresponds to the firmness of the balloon at the tip. Cardioplegia lowers myocardial oxygen demand and provides a protected interval for the aortotomy, explantation, and annular reconstruction. The circuit, vents, and pressure checks must remain coordinated throughout bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n072",
+      "startMs": 1065000,
+      "endMs": 1080000,
+      "text": "perfusion of the right coronary territory, which is already less effective with retrograde cardioplegia. Venting and suction keep the heart decompressed while the team establishes a bloodless operative field. The circuit, vents, and pressure checks must remain coordinated throughout bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n073",
+      "startMs": 1080000,
+      "endMs": 1095000,
+      "text": "Retrograde cannulation is guided with respect for the right coronary artery and the atrioventricular groove. The right atrium is kept adequately filled while the cannula is guided, limiting air entrainment and loss of venous drainage. The circuit, vents, and pressure checks must remain coordinated throughout bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n074",
+      "startMs": 1095000,
+      "endMs": 1110000,
+      "text": "We develop the plane between the aorta and pulmonary artery to perform the aortotomy safely. The right atrium is kept adequately filled while the cannula is guided, limiting air entrainment and loss of venous drainage. The circuit, vents, and pressure checks must remain coordinated throughout bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n075",
+      "startMs": 1110000,
+      "endMs": 1125000,
+      "text": "Cardioplegia lowers myocardial oxygen demand and provides a protected interval for the aortotomy, explantation, and annular reconstruction. Venting and suction keep the heart decompressed while the team establishes a bloodless operative field. The circuit, vents, and pressure checks must remain coordinated throughout bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n076",
+      "startMs": 1125000,
+      "endMs": 1140000,
+      "text": "Venting and suction keep the heart decompressed while the team establishes a bloodless operative field. The circuit, vents, and pressure checks must remain coordinated throughout bypass. Pressure and flow are read together because a good line must work mechanically and physiologically.",
+      "speed": 1.05
+    },
+    {
+      "id": "n077",
+      "startMs": 1140000,
+      "endMs": 1155000,
+      "text": "We will arrest the heart with retrograde cardioplegia. Retrograde cannulation is guided with respect for the right coronary artery and the atrioventricular groove. Repeated protection is guided by time, temperature, pressure, and the condition of the heart. The heart is protected while the surgeon works in a field where small injuries can become major leaks.",
+      "speed": 1.05
+    },
+    {
+      "id": "n078",
+      "startMs": 1155000,
+      "endMs": 1170000,
+      "text": "The right atrium is kept adequately filled while the cannula is guided, limiting air entrainment and loss of venous drainage. Cardioplegia lowers myocardial oxygen demand and provides a protected interval for the aortotomy, explantation, and annular reconstruction. Repeated protection is guided by time, temperature, pressure, and the condition of the heart.",
+      "speed": 1.05
+    },
+    {
+      "id": "n079",
+      "startMs": 1170000,
+      "endMs": 1185000,
+      "text": "After opening the aorta, we will remove all instruments used in the infected field. Cardioplegia lowers myocardial oxygen demand and provides a protected interval for the aortotomy, explantation, and annular reconstruction. Repeated protection is guided by time, temperature, pressure, and the condition of the heart.",
+      "speed": 1.05
+    },
+    {
+      "id": "n080",
+      "startMs": 1185000,
+      "endMs": 1200000,
+      "text": "Venting and suction keep the heart decompressed while the team establishes a bloodless operative field. Retrograde cannulation is guided with respect for the right coronary artery and the atrioventricular groove. Repeated protection is guided by time, temperature, pressure, and the condition of the heart.",
+      "speed": 1.05
+    },
+    {
+      "id": "n081",
+      "startMs": 1200000,
+      "endMs": 1215000,
+      "text": "The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. The incision is planned around the prosthesis and the tissue needed for later closure.",
+      "speed": 1.05
+    },
+    {
+      "id": "n082",
+      "startMs": 1215000,
+      "endMs": 1230000,
+      "text": "A vent cannula is placed in the left atrium through the right superior pulmonary vein to keep the operative field bloodless and evacuate residual intracardiac air at the end of the procedure. The yellow line is now the vent line. Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane.",
+      "speed": 1.05
+    },
+    {
+      "id": "n083",
+      "startMs": 1230000,
+      "endMs": 1245000,
+      "text": "The yellow line is now the vent line. The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. The incision is planned around the prosthesis and the tissue needed for later closure. The wall must still be strong enough to close after the infected frame is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n084",
+      "startMs": 1245000,
+      "endMs": 1260000,
+      "text": "The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. The incision is planned around the prosthesis and the tissue needed for later closure. The wall must still be strong enough to close after the infected frame is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n085",
+      "startMs": 1260000,
+      "endMs": 1275000,
+      "text": "The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. Controlled traction protects the aortic wall while infected foreign material is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n086",
+      "startMs": 1275000,
+      "endMs": 1290000,
+      "text": "Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n087",
+      "startMs": 1290000,
+      "endMs": 1305000,
+      "text": "Keep the left atrial vent on strong suction. The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile.",
+      "speed": 1.05
+    },
+    {
+      "id": "n088",
+      "startMs": 1305000,
+      "endMs": 1320000,
+      "text": "The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n089",
+      "startMs": 1320000,
+      "endMs": 1335000,
+      "text": "The stabilization arch in the non-coronary region appears densely adherent to the aortic wall. The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Controlled traction protects the aortic wall while infected foreign material is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n090",
+      "startMs": 1335000,
+      "endMs": 1350000,
+      "text": "The stabilization arch in the non-coronary region appears densely adherent to the aortic wall. This area will be repaired with a Teflon-reinforced patch during aortotomy closure. Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane.",
+      "speed": 1.05
+    },
+    {
+      "id": "n091",
+      "startMs": 1350000,
+      "endMs": 1365000,
+      "text": "The entire prosthesis is infected, as you can see. The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n092",
+      "startMs": 1365000,
+      "endMs": 1380000,
+      "text": "The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood.",
+      "speed": 1.05
+    },
+    {
+      "id": "n093",
+      "startMs": 1380000,
+      "endMs": 1395000,
+      "text": "The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n094",
+      "startMs": 1395000,
+      "endMs": 1410000,
+      "text": "Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. Controlled traction protects the aortic wall while infected foreign material is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n095",
+      "startMs": 1410000,
+      "endMs": 1425000,
+      "text": "The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile.",
+      "speed": 1.05
+    },
+    {
+      "id": "n096",
+      "startMs": 1425000,
+      "endMs": 1440000,
+      "text": "Now I will begin placing the sutures I mentioned. The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood.",
+      "speed": 1.05
+    },
+    {
+      "id": "n097",
+      "startMs": 1440000,
+      "endMs": 1455000,
+      "text": "The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n098",
+      "startMs": 1455000,
+      "endMs": 1470000,
+      "text": "Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n099",
+      "startMs": 1470000,
+      "endMs": 1485000,
+      "text": "The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile.",
+      "speed": 1.05
+    },
+    {
+      "id": "n100",
+      "startMs": 1485000,
+      "endMs": 1500000,
+      "text": "the team must remember that this is still a valve procedure. The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. Controlled traction protects the aortic wall while infected foreign material is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n101",
+      "startMs": 1500000,
+      "endMs": 1515000,
+      "text": "The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n102",
+      "startMs": 1515000,
+      "endMs": 1530000,
+      "text": "Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. Controlled traction protects the aortic wall while infected foreign material is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n103",
+      "startMs": 1530000,
+      "endMs": 1545000,
+      "text": "The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile.",
+      "speed": 1.05
+    },
+    {
+      "id": "n104",
+      "startMs": 1545000,
+      "endMs": 1560000,
+      "text": "The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood.",
+      "speed": 1.05
+    },
+    {
+      "id": "n105",
+      "startMs": 1560000,
+      "endMs": 1575000,
+      "text": "The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. Controlled traction protects the aortic wall while infected foreign material is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n106",
+      "startMs": 1575000,
+      "endMs": 1590000,
+      "text": "Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n107",
+      "startMs": 1590000,
+      "endMs": 1605000,
+      "text": "The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile.",
+      "speed": 1.05
+    },
+    {
+      "id": "n108",
+      "startMs": 1605000,
+      "endMs": 1620000,
+      "text": "The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood.",
+      "speed": 1.05
+    },
+    {
+      "id": "n109",
+      "startMs": 1620000,
+      "endMs": 1635000,
+      "text": "The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. Controlled traction protects the aortic wall while infected foreign material is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n110",
+      "startMs": 1635000,
+      "endMs": 1650000,
+      "text": "Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n111",
+      "startMs": 1650000,
+      "endMs": 1665000,
+      "text": "The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile.",
+      "speed": 1.05
+    },
+    {
+      "id": "n112",
+      "startMs": 1665000,
+      "endMs": 1680000,
+      "text": "The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood.",
+      "speed": 1.05
+    },
+    {
+      "id": "n113",
+      "startMs": 1680000,
+      "endMs": 1695000,
+      "text": "The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n114",
+      "startMs": 1695000,
+      "endMs": 1710000,
+      "text": "Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n115",
+      "startMs": 1710000,
+      "endMs": 1725000,
+      "text": "The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile.",
+      "speed": 1.05
+    },
+    {
+      "id": "n116",
+      "startMs": 1725000,
+      "endMs": 1740000,
+      "text": "The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood.",
+      "speed": 1.05
+    },
+    {
+      "id": "n117",
+      "startMs": 1740000,
+      "endMs": 1755000,
+      "text": "The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n118",
+      "startMs": 1755000,
+      "endMs": 1770000,
+      "text": "Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n119",
+      "startMs": 1770000,
+      "endMs": 1785000,
+      "text": "The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n120",
+      "startMs": 1785000,
+      "endMs": 1800000,
+      "text": "The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood.",
+      "speed": 1.05
+    },
+    {
+      "id": "n121",
+      "startMs": 1800000,
+      "endMs": 1815000,
+      "text": "The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. Controlled traction protects the aortic wall while infected foreign material is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n122",
+      "startMs": 1815000,
+      "endMs": 1830000,
+      "text": "Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. Controlled traction protects the aortic wall while infected foreign material is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n123",
+      "startMs": 1830000,
+      "endMs": 1845000,
+      "text": "The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile.",
+      "speed": 1.05
+    },
+    {
+      "id": "n124",
+      "startMs": 1845000,
+      "endMs": 1860000,
+      "text": "The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood.",
+      "speed": 1.05
+    },
+    {
+      "id": "n125",
+      "startMs": 1860000,
+      "endMs": 1875000,
+      "text": "The prosthesis is released stepwise; traction increases only after the next attachment is exposed and understood. Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. Controlled traction protects the aortic wall while infected foreign material is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n126",
+      "startMs": 1875000,
+      "endMs": 1890000,
+      "text": "Sutures, snares, and countertraction convert an unpredictable pull into controlled movement along the safer tissue plane. The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. Controlled traction protects the aortic wall while infected foreign material is removed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n127",
+      "startMs": 1890000,
+      "endMs": 1905000,
+      "text": "The infected material is treated as contaminated tissue, and representative specimens are kept available for microbiological analysis. The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile.",
+      "speed": 1.05
+    },
+    {
+      "id": "n128",
+      "startMs": 1905000,
+      "endMs": 1920000,
+      "text": "The critical hazard is an aortic or annular tear, so slow progress is appropriate when the frame is adherent or the wall is fragile. Controlled traction protects the aortic wall while infected foreign material is removed. Every release exposes the next attachment; pulling before that plane is visible risks wall disruption.",
+      "speed": 1.05
+    },
+    {
+      "id": "n129",
+      "startMs": 1920000,
+      "endMs": 1935000,
+      "text": "After explantation, the annulus is inspected for residual prosthetic material, calcification, and infected debris. The remaining native tissue determines how much reconstruction and debridement are required. This distinction separates device removal from the additional work needed for native valve infection.",
+      "speed": 1.05
+    },
+    {
+      "id": "n130",
+      "startMs": 1935000,
+      "endMs": 1950000,
+      "text": "A clean surface is required for secure sutures; visual absence of pus alone does not prove that all infected tissue has been removed. The remaining native tissue determines how much reconstruction and debridement are required. This distinction separates device removal from the additional work needed for native valve infection.",
+      "speed": 1.05
+    },
+    {
+      "id": "n131",
+      "startMs": 1950000,
+      "endMs": 1965000,
+      "text": "During TAVI, the patient's calcified native aortic valve is not removed. The team distinguishes a localized defect from a root abscess because that finding changes the reconstruction strategy. The remaining native tissue determines how much reconstruction and debridement are required.",
+      "speed": 1.05
+    },
+    {
+      "id": "n132",
+      "startMs": 1965000,
+      "endMs": 1980000,
+      "text": "During TAVI, the patient's calcified native aortic valve is not removed. At least there is no aortic root abscess. Irrigation and careful debridement prepare tissue that can hold the new valve without leaving a nidus for reinfection. The remaining native tissue determines how much reconstruction and debridement are required.",
+      "speed": 1.05
+    },
+    {
+      "id": "n133",
+      "startMs": 1980000,
+      "endMs": 1995000,
+      "text": "At least there is no aortic root abscess. After explantation, the annulus is inspected for residual prosthetic material, calcification, and infected debris. The endpoint is clean, stable tissue that can hold sutures without leaving infected debris. Preserving viable tissue is essential near the coronary ostia, conduction system, and ventricular outflow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n134",
+      "startMs": 1995000,
+      "endMs": 2010000,
+      "text": "We need to assess the condition of the aortic tissue. A clean surface is required for secure sutures; visual absence of pus alone does not prove that all infected tissue has been removed. The endpoint is clean, stable tissue that can hold sutures without leaving infected debris.",
+      "speed": 1.05
+    },
+    {
+      "id": "n135",
+      "startMs": 2010000,
+      "endMs": 2025000,
+      "text": "The team distinguishes a localized defect from a root abscess because that finding changes the reconstruction strategy. Irrigation and careful debridement prepare tissue that can hold the new valve without leaving a nidus for reinfection. The endpoint is clean, stable tissue that can hold sutures without leaving infected debris.",
+      "speed": 1.05
+    },
+    {
+      "id": "n136",
+      "startMs": 2025000,
+      "endMs": 2040000,
+      "text": "Irrigation and careful debridement prepare tissue that can hold the new valve without leaving a nidus for reinfection. After explantation, the annulus is inspected for residual prosthetic material, calcification, and infected debris. The endpoint is clean, stable tissue that can hold sutures without leaving infected debris.",
+      "speed": 1.05
+    },
+    {
+      "id": "n137",
+      "startMs": 2040000,
+      "endMs": 2055000,
+      "text": "After explantation, the annulus is inspected for residual prosthetic material, calcification, and infected debris. A clean surface is required for secure sutures; visual absence of pus alone does not prove that all infected tissue has been removed. The endpoint is clean, stable tissue that can hold sutures without leaving infected debris.",
+      "speed": 1.05
+    },
+    {
+      "id": "n138",
+      "startMs": 2055000,
+      "endMs": 2070000,
+      "text": "When implanting a bioprosthetic valve, no calcific tissue should remain. A clean surface is required for secure sutures; visual absence of pus alone does not prove that all infected tissue has been removed. The team distinguishes a localized defect from a root abscess because that finding changes the reconstruction strategy.",
+      "speed": 1.05
+    },
+    {
+      "id": "n139",
+      "startMs": 2070000,
+      "endMs": 2085000,
+      "text": "The team distinguishes a localized defect from a root abscess because that finding changes the reconstruction strategy. Irrigation and careful debridement prepare tissue that can hold the new valve without leaving a nidus for reinfection. The endpoint is clean, stable tissue that can hold sutures without leaving infected debris.",
+      "speed": 1.05
+    },
+    {
+      "id": "n140",
+      "startMs": 2085000,
+      "endMs": 2100000,
+      "text": "First, let's give a dose through the right coronary ostium. Irrigation and careful debridement prepare tissue that can hold the new valve without leaving a nidus for reinfection. After explantation, the annulus is inspected for residual prosthetic material, calcification, and infected debris.",
+      "speed": 1.05
+    },
+    {
+      "id": "n141",
+      "startMs": 2100000,
+      "endMs": 2115000,
+      "text": "First, let's give a dose through the right coronary ostium. If we do not protect the myocardium, we will not be able to separate from bypass. After explantation, the annulus is inspected for residual prosthetic material, calcification, and infected debris.",
+      "speed": 1.05
+    },
+    {
+      "id": "n142",
+      "startMs": 2115000,
+      "endMs": 2130000,
+      "text": "A clean surface is required for secure sutures; visual absence of pus alone does not prove that all infected tissue has been removed. The endpoint is clean, stable tissue that can hold sutures without leaving infected debris. Preserving viable tissue is essential near the coronary ostia, conduction system, and ventricular outflow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n143",
+      "startMs": 2130000,
+      "endMs": 2145000,
+      "text": "The team distinguishes a localized defect from a root abscess because that finding changes the reconstruction strategy. The endpoint is clean, stable tissue that can hold sutures without leaving infected debris. Preserving viable tissue is essential near the coronary ostia, conduction system, and ventricular outflow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n144",
+      "startMs": 2145000,
+      "endMs": 2160000,
+      "text": "These areas are very close to the conduction system. Irrigation and careful debridement prepare tissue that can hold the new valve without leaving a nidus for reinfection. The endpoint is clean, stable tissue that can hold sutures without leaving infected debris.",
+      "speed": 1.05
+    },
+    {
+      "id": "n145",
+      "startMs": 2160000,
+      "endMs": 2175000,
+      "text": "These areas are very close to the conduction system. After explantation, the annulus is inspected for residual prosthetic material, calcification, and infected debris. Irrigation and suction reduce residual debris before the clean implant phase begins. The clean phase starts only after the contaminated instruments and gloves leave the field.",
+      "speed": 1.05
+    },
+    {
+      "id": "n146",
+      "startMs": 2175000,
+      "endMs": 2190000,
+      "text": "We can repair it internally with a 6-0 suture. A clean surface is required for secure sutures; visual absence of pus alone does not prove that all infected tissue has been removed. Irrigation and suction reduce residual debris before the clean implant phase begins.",
+      "speed": 1.05
+    },
+    {
+      "id": "n147",
+      "startMs": 2190000,
+      "endMs": 2205000,
+      "text": "to determine whether the endocarditis has extended to it. The team distinguishes a localized defect from a root abscess because that finding changes the reconstruction strategy. Irrigation and suction reduce residual debris before the clean implant phase begins. The clean phase starts only after the contaminated instruments and gloves leave the field.",
+      "speed": 1.05
+    },
+    {
+      "id": "n148",
+      "startMs": 2205000,
+      "endMs": 2220000,
+      "text": "to determine whether the endocarditis has extended to it. Irrigation and careful debridement prepare tissue that can hold the new valve without leaving a nidus for reinfection. Irrigation and suction reduce residual debris before the clean implant phase begins. The clean phase starts only after the contaminated instruments and gloves leave the field.",
+      "speed": 1.05
+    },
+    {
+      "id": "n149",
+      "startMs": 2220000,
+      "endMs": 2235000,
+      "text": "Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. Irrigation and suction reduce residual debris before the clean implant phase begins.",
+      "speed": 1.05
+    },
+    {
+      "id": "n150",
+      "startMs": 2235000,
+      "endMs": 2250000,
+      "text": "Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. Irrigation and suction reduce residual debris before the clean implant phase begins. The clean phase starts only after the contaminated instruments and gloves leave the field.",
+      "speed": 1.05
+    },
+    {
+      "id": "n151",
+      "startMs": 2250000,
+      "endMs": 2265000,
+      "text": "We thoroughly irrigate and suction the left ventricle and aortic annulus with saline. We aim to remove residual tissue and calcific debris that could become a source of embolization. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue.",
+      "speed": 1.05
+    },
+    {
+      "id": "n152",
+      "startMs": 2265000,
+      "endMs": 2280000,
+      "text": "We aim to remove residual tissue and calcific debris that could become a source of embolization. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Irrigation and suction reduce residual debris before the clean implant phase begins.",
+      "speed": 1.05
+    },
+    {
+      "id": "n153",
+      "startMs": 2280000,
+      "endMs": 2295000,
+      "text": "I want to assess the annulus with the sizers. Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. Sizing balances effective valve area with the safety of the annulus and nearby structures.",
+      "speed": 1.05
+    },
+    {
+      "id": "n154",
+      "startMs": 2295000,
+      "endMs": 2310000,
+      "text": "Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Sizing balances effective valve area with the safety of the annulus and nearby structures.",
+      "speed": 1.05
+    },
+    {
+      "id": "n155",
+      "startMs": 2310000,
+      "endMs": 2325000,
+      "text": "Keep the left atrial vent on good suction. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction.",
+      "speed": 1.05
+    },
+    {
+      "id": "n156",
+      "startMs": 2325000,
+      "endMs": 2340000,
+      "text": "Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Sizing balances effective valve area with the safety of the annulus and nearby structures. The chosen diameter is therefore a structural decision rather than a simple measurement.",
+      "speed": 1.05
+    },
+    {
+      "id": "n157",
+      "startMs": 2340000,
+      "endMs": 2355000,
+      "text": "Attempting to implant a larger valve could injure the fragile aortic tissue and damage the conduction system, thereby increasing the risk of heart block. Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone.",
+      "speed": 1.05
+    },
+    {
+      "id": "n158",
+      "startMs": 2355000,
+      "endMs": 2370000,
+      "text": "Attempting to implant a larger valve could injure the fragile aortic tissue and damage the conduction system, thereby increasing the risk of heart block. Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment.",
+      "speed": 1.05
+    },
+    {
+      "id": "n159",
+      "startMs": 2370000,
+      "endMs": 2385000,
+      "text": "They probably selected a larger valve because of the measured diameter. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n160",
+      "startMs": 2385000,
+      "endMs": 2400000,
+      "text": "The pledgets are placed on the ventricular side of the annulus. The bioprosthetic valve will be implanted in a supra-annular position, as in standard practice. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction.",
+      "speed": 1.05
+    },
+    {
+      "id": "n161",
+      "startMs": 2400000,
+      "endMs": 2415000,
+      "text": "The bioprosthetic valve will be implanted in a supra-annular position, as in standard practice. Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment.",
+      "speed": 1.05
+    },
+    {
+      "id": "n162",
+      "startMs": 2415000,
+      "endMs": 2430000,
+      "text": "Here, the two white sutures will be adjacent. Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. Suture distribution determines how evenly the new valve loads the prepared annulus. The final geometry depends on evenly shared tension and unobstructed coronary flow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n163",
+      "startMs": 2430000,
+      "endMs": 2445000,
+      "text": "Here, the two white sutures will be adjacent. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Suture distribution determines how evenly the new valve loads the prepared annulus. The final geometry depends on evenly shared tension and unobstructed coronary flow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n164",
+      "startMs": 2445000,
+      "endMs": 2460000,
+      "text": "Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. The final geometry depends on evenly shared tension and unobstructed coronary flow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n165",
+      "startMs": 2460000,
+      "endMs": 2475000,
+      "text": "But they had implanted a 25-mm transcatheter valve with the native leaflets still present. What is one of the major predisposing factors for endocarditis? Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone.",
+      "speed": 1.05
+    },
+    {
+      "id": "n166",
+      "startMs": 2475000,
+      "endMs": 2490000,
+      "text": "What is one of the major predisposing factors for endocarditis? Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. Suture distribution determines how evenly the new valve loads the prepared annulus. The final geometry depends on evenly shared tension and unobstructed coronary flow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n167",
+      "startMs": 2490000,
+      "endMs": 2505000,
+      "text": "In cases with unequal spacing like this, I will not center the commissural suture exactly. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction.",
+      "speed": 1.05
+    },
+    {
+      "id": "n168",
+      "startMs": 2505000,
+      "endMs": 2520000,
+      "text": "In cases with unequal spacing like this, I will not center the commissural suture exactly. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n169",
+      "startMs": 2520000,
+      "endMs": 2535000,
+      "text": "Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. Suture distribution determines how evenly the new valve loads the prepared annulus. The final geometry depends on evenly shared tension and unobstructed coronary flow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n170",
+      "startMs": 2535000,
+      "endMs": 2550000,
+      "text": "Let's give retrograde cardioplegia and flush the coronary ostia, in case any debris has entered them. Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n171",
+      "startMs": 2550000,
+      "endMs": 2565000,
+      "text": "A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n172",
+      "startMs": 2565000,
+      "endMs": 2580000,
+      "text": "Before lowering the valve into position, we administer retrograde cardioplegia. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n173",
+      "startMs": 2580000,
+      "endMs": 2595000,
+      "text": "Before lowering the valve into position, we administer retrograde cardioplegia. This both protects the myocardium and flushes the coronary circulation in reverse, helping remove any residual debris. Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone.",
+      "speed": 1.05
+    },
+    {
+      "id": "n174",
+      "startMs": 2595000,
+      "endMs": 2610000,
+      "text": "Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. Suture distribution determines how evenly the new valve loads the prepared annulus. The final geometry depends on evenly shared tension and unobstructed coronary flow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n175",
+      "startMs": 2610000,
+      "endMs": 2625000,
+      "text": "cerebral protection in ascending aortic and aortic arch pathology. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Suture distribution determines how evenly the new valve loads the prepared annulus. The final geometry depends on evenly shared tension and unobstructed coronary flow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n176",
+      "startMs": 2625000,
+      "endMs": 2640000,
+      "text": "Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. The final geometry depends on evenly shared tension and unobstructed coronary flow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n177",
+      "startMs": 2640000,
+      "endMs": 2655000,
+      "text": "Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n178",
+      "startMs": 2655000,
+      "endMs": 2670000,
+      "text": "Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n179",
+      "startMs": 2670000,
+      "endMs": 2685000,
+      "text": "A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n180",
+      "startMs": 2685000,
+      "endMs": 2700000,
+      "text": "Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. The final geometry depends on evenly shared tension and unobstructed coronary flow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n181",
+      "startMs": 2700000,
+      "endMs": 2715000,
+      "text": "Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n182",
+      "startMs": 2715000,
+      "endMs": 2730000,
+      "text": "Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n183",
+      "startMs": 2730000,
+      "endMs": 2745000,
+      "text": "A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n184",
+      "startMs": 2745000,
+      "endMs": 2760000,
+      "text": "Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. The final geometry depends on evenly shared tension and unobstructed coronary flow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n185",
+      "startMs": 2760000,
+      "endMs": 2775000,
+      "text": "Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. Suture distribution determines how evenly the new valve loads the prepared annulus. The final geometry depends on evenly shared tension and unobstructed coronary flow.",
+      "speed": 1.05
+    },
+    {
+      "id": "n186",
+      "startMs": 2775000,
+      "endMs": 2790000,
+      "text": "Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Suture distribution determines how evenly the new valve loads the prepared annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n187",
+      "startMs": 2790000,
+      "endMs": 2805000,
+      "text": "When we administer retrograde cardioplegia, we can also assess the coronary ostia. We can see that the prosthesis is not occluding the coronary ostia. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue.",
+      "speed": 1.05
+    },
+    {
+      "id": "n188",
+      "startMs": 2805000,
+      "endMs": 2820000,
+      "text": "We can see that the prosthesis is not occluding the coronary ostia. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone.",
+      "speed": 1.05
+    },
+    {
+      "id": "n189",
+      "startMs": 2820000,
+      "endMs": 2835000,
+      "text": "Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. A hemostatic closure must preserve root geometry and support the new valve.",
+      "speed": 1.05
+    },
+    {
+      "id": "n190",
+      "startMs": 2835000,
+      "endMs": 2850000,
+      "text": "Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. A hemostatic closure must preserve root geometry and support the new valve.",
+      "speed": 1.05
+    },
+    {
+      "id": "n191",
+      "startMs": 2850000,
+      "endMs": 2865000,
+      "text": "A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. A hemostatic closure must preserve root geometry and support the new valve.",
+      "speed": 1.05
+    },
+    {
+      "id": "n192",
+      "startMs": 2865000,
+      "endMs": 2880000,
+      "text": "Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. The aortotomy must be both watertight and compatible with the valve and root geometry.",
+      "speed": 1.05
+    },
+    {
+      "id": "n193",
+      "startMs": 2880000,
+      "endMs": 2895000,
+      "text": "Sizing balances the available annular area with the valve diameter; the largest safe size is not chosen by diameter alone. Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. A hemostatic closure must preserve root geometry and support the new valve.",
+      "speed": 1.05
+    },
+    {
+      "id": "n194",
+      "startMs": 2895000,
+      "endMs": 2910000,
+      "text": "Suture spacing distributes the load around the annulus and avoids placing excessive force through one fragile segment. A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. A hemostatic closure must preserve root geometry and support the new valve.",
+      "speed": 1.05
+    },
+    {
+      "id": "n195",
+      "startMs": 2910000,
+      "endMs": 2925000,
+      "text": "A supra-annular position can improve fit, but the surgeon must still protect the coronary ostia and conduction tissue. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. A hemostatic closure must preserve root geometry and support the new valve.",
+      "speed": 1.05
+    },
+    {
+      "id": "n196",
+      "startMs": 2925000,
+      "endMs": 2940000,
+      "text": "No, the surface is covered, but it does not look like tissue that needs to be removed. Before tying, the team checks that the prosthesis is seated evenly, aligned with the annulus, and free of obstruction. A hemostatic closure must preserve root geometry and support the new valve.",
+      "speed": 1.05
+    },
+    {
+      "id": "n197",
+      "startMs": 2940000,
+      "endMs": 2955000,
+      "text": "Because the needle passed through with considerable resistance, I can feel that the tissue is firm, team member. Before unclamping, the team confirms that the aortotomy is secure and that the root and atrial vents can remove residual air. The aortotomy must be both watertight and compatible with the valve and root geometry.",
+      "speed": 1.05
+    },
+    {
+      "id": "n198",
+      "startMs": 2955000,
+      "endMs": 2970000,
+      "text": "Controlled filling, patient position, and lung inflation create a route for air to leave rather than enter the coronary or cerebral circulation. The coronary ostia and repaired root are reassessed as perfusion returns; appearance alone cannot replace hemodynamic checks. The aortotomy must be both watertight and compatible with the valve and root geometry.",
+      "speed": 1.05
+    },
+    {
+      "id": "n199",
+      "startMs": 2970000,
+      "endMs": 2985000,
+      "text": "The coronary ostia and repaired root are reassessed as perfusion returns; appearance alone cannot replace hemodynamic checks. The clamp is released only after the circuits, vents, patient position, and de-airing plan are coordinated. A hemostatic closure must preserve root geometry and support the new valve.",
+      "speed": 1.05
+    },
+    {
+      "id": "n200",
+      "startMs": 2985000,
+      "endMs": 3000000,
+      "text": "The clamp is released only after the circuits, vents, patient position, and de-airing plan are coordinated. Before unclamping, the team confirms that the aortotomy is secure and that the root and atrial vents can remove residual air. A hemostatic closure must preserve root geometry and support the new valve.",
+      "speed": 1.05
+    },
+    {
+      "id": "n201",
+      "startMs": 3000000,
+      "endMs": 3015000,
+      "text": "Before removing the cross-clamp, residual air is meticulously evacuated from the heart and aorta. Before unclamping, the team confirms that the aortotomy is secure and that the root and atrial vents can remove residual air. De-airing is completed before filling exposes the heart and coronary circulation to pressure.",
+      "speed": 1.05
+    },
+    {
+      "id": "n202",
+      "startMs": 3015000,
+      "endMs": 3030000,
+      "text": "Controlled filling, patient position, and lung inflation create a route for air to leave rather than enter the coronary or cerebral circulation. The coronary ostia and repaired root are reassessed as perfusion returns; appearance alone cannot replace hemodynamic checks. The maneuver limits embolic air while preserving controlled filling and pressure assessment.",
+      "speed": 1.05
+    },
+    {
+      "id": "n203",
+      "startMs": 3030000,
+      "endMs": 3045000,
+      "text": "The coronary ostia and repaired root are reassessed as perfusion returns; appearance alone cannot replace hemodynamic checks. The clamp is released only after the circuits, vents, patient position, and de-airing plan are coordinated. De-airing is completed before filling exposes the heart and coronary circulation to pressure.",
+      "speed": 1.05
+    },
+    {
+      "id": "n204",
+      "startMs": 3045000,
+      "endMs": 3060000,
+      "text": "The clamp is released only after the circuits, vents, patient position, and de-airing plan are coordinated. De-airing is completed before filling exposes the heart and coronary circulation to pressure. The maneuver limits embolic air while preserving controlled filling and pressure assessment.",
+      "speed": 1.05
+    },
+    {
+      "id": "n205",
+      "startMs": 3060000,
+      "endMs": 3075000,
+      "text": "Before unclamping, the team confirms that the aortotomy is secure and that the root and atrial vents can remove residual air. Controlled filling, patient position, and lung inflation create a route for air to leave rather than enter the coronary or cerebral circulation.",
+      "speed": 1.05
+    },
+    {
+      "id": "n206",
+      "startMs": 3075000,
+      "endMs": 3090000,
+      "text": "Controlled filling, patient position, and lung inflation create a route for air to leave rather than enter the coronary or cerebral circulation. The coronary ostia and repaired root are reassessed as perfusion returns; appearance alone cannot replace hemodynamic checks. The maneuver limits embolic air while preserving controlled filling and pressure assessment.",
+      "speed": 1.05
+    },
+    {
+      "id": "n207",
+      "startMs": 3090000,
+      "endMs": 3105000,
+      "text": "The coronary ostia and repaired root are reassessed as perfusion returns; appearance alone cannot replace hemodynamic checks. The clamp is released only after the circuits, vents, patient position, and de-airing plan are coordinated. De-airing is completed before filling exposes the heart and coronary circulation to pressure.",
+      "speed": 1.05
+    },
+    {
+      "id": "n208",
+      "startMs": 3105000,
+      "endMs": 3120000,
+      "text": "Start very gentle suction on the aortic root vent. The clamp is released only after the circuits, vents, patient position, and de-airing plan are coordinated. De-airing is completed before filling exposes the heart and coronary circulation to pressure. The maneuver limits embolic air while preserving controlled filling and pressure assessment.",
+      "speed": 1.05
+    },
+    {
+      "id": "n209",
+      "startMs": 3120000,
+      "endMs": 3135000,
+      "text": "Increase the aortic root vent to full suction. Keep the left atrial vent suctioning as well. Before unclamping, the team confirms that the aortotomy is secure and that the root and atrial vents can remove residual air. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n210",
+      "startMs": 3135000,
+      "endMs": 3150000,
+      "text": "Controlled filling, patient position, and lung inflation create a route for air to leave rather than enter the coronary or cerebral circulation. The coronary ostia and repaired root are reassessed as perfusion returns; appearance alone cannot replace hemodynamic checks. Cannula removal follows stable pressure and perfusion, not merely elapsed operating time.",
+      "speed": 1.05
+    },
+    {
+      "id": "n211",
+      "startMs": 3150000,
+      "endMs": 3165000,
+      "text": "The coronary ostia and repaired root are reassessed as perfusion returns; appearance alone cannot replace hemodynamic checks. The clamp is released only after the circuits, vents, patient position, and de-airing plan are coordinated. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n212",
+      "startMs": 3165000,
+      "endMs": 3180000,
+      "text": "The clamp is released only after the circuits, vents, patient position, and de-airing plan are coordinated. Before unclamping, the team confirms that the aortotomy is secure and that the root and atrial vents can remove residual air. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n213",
+      "startMs": 3180000,
+      "endMs": 3195000,
+      "text": "Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n214",
+      "startMs": 3195000,
+      "endMs": 3210000,
+      "text": "Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n215",
+      "startMs": 3210000,
+      "endMs": 3225000,
+      "text": "Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n216",
+      "startMs": 3225000,
+      "endMs": 3240000,
+      "text": "Is the pacing output eight at 50, or eight at 100? Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed.",
+      "speed": 1.05
+    },
+    {
+      "id": "n217",
+      "startMs": 3240000,
+      "endMs": 3255000,
+      "text": "Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n218",
+      "startMs": 3255000,
+      "endMs": 3270000,
+      "text": "Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n219",
+      "startMs": 3270000,
+      "endMs": 3285000,
+      "text": "Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n220",
+      "startMs": 3285000,
+      "endMs": 3300000,
+      "text": "Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass. Cannula removal follows stable pressure and perfusion, not merely elapsed operating time.",
+      "speed": 1.05
+    },
+    {
+      "id": "n221",
+      "startMs": 3300000,
+      "endMs": 3315000,
+      "text": "Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass. Cannula removal follows stable pressure and perfusion, not merely elapsed operating time.",
+      "speed": 1.05
+    },
+    {
+      "id": "n222",
+      "startMs": 3315000,
+      "endMs": 3330000,
+      "text": "Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass. Cannula removal follows stable pressure and perfusion, not merely elapsed operating time.",
+      "speed": 1.05
+    },
+    {
+      "id": "n223",
+      "startMs": 3330000,
+      "endMs": 3345000,
+      "text": "Keep the aortic root vent on strong suction. The left atrial vent does not need to suction as strongly. Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n224",
+      "startMs": 3345000,
+      "endMs": 3360000,
+      "text": "Urine output on bypass is 900 milliliters; it was 50 on admission, team member. Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n225",
+      "startMs": 3360000,
+      "endMs": 3375000,
+      "text": "Urine output on bypass is 900 milliliters; it was 50 on admission, team member. Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n226",
+      "startMs": 3375000,
+      "endMs": 3390000,
+      "text": "Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n227",
+      "startMs": 3390000,
+      "endMs": 3405000,
+      "text": "Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n228",
+      "startMs": 3405000,
+      "endMs": 3420000,
+      "text": "Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n229",
+      "startMs": 3420000,
+      "endMs": 3435000,
+      "text": "Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass. Cannula removal follows stable pressure and perfusion, not merely elapsed operating time.",
+      "speed": 1.05
+    },
+    {
+      "id": "n230",
+      "startMs": 3435000,
+      "endMs": 3450000,
+      "text": "Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n231",
+      "startMs": 3450000,
+      "endMs": 3465000,
+      "text": "Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass. Cannula removal follows stable pressure and perfusion, not merely elapsed operating time.",
+      "speed": 1.05
+    },
+    {
+      "id": "n232",
+      "startMs": 3465000,
+      "endMs": 3480000,
+      "text": "Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n233",
+      "startMs": 3480000,
+      "endMs": 3495000,
+      "text": "Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n234",
+      "startMs": 3495000,
+      "endMs": 3510000,
+      "text": "Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass. Cannula removal follows stable pressure and perfusion, not merely elapsed operating time.",
+      "speed": 1.05
+    },
+    {
+      "id": "n235",
+      "startMs": 3510000,
+      "endMs": 3525000,
+      "text": "What is the systolic pressure now for aortic decannulation? Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass. Cannula removal follows stable pressure and perfusion, not merely elapsed operating time.",
+      "speed": 1.05
+    },
+    {
+      "id": "n236",
+      "startMs": 3525000,
+      "endMs": 3540000,
+      "text": "You can remove the aortic cannula now, team member. One quarter of the protamine dose has been administered. Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n237",
+      "startMs": 3540000,
+      "endMs": 3555000,
+      "text": "One quarter of the protamine dose has been administered. Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus.",
+      "speed": 1.05
+    },
+    {
+      "id": "n238",
+      "startMs": 3555000,
+      "endMs": 3570000,
+      "text": "Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n239",
+      "startMs": 3570000,
+      "endMs": 3585000,
+      "text": "Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass. Cannula removal follows stable pressure and perfusion, not merely elapsed operating time.",
+      "speed": 1.05
+    },
+    {
+      "id": "n240",
+      "startMs": 3585000,
+      "endMs": 3600000,
+      "text": "Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Physiology, rhythm, and hemodynamics determine the pace of separation from bypass.",
+      "speed": 1.05
+    },
+    {
+      "id": "n241",
+      "startMs": 3600000,
+      "endMs": 3615000,
+      "text": "Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. The final inspection documents hemostasis, valve stability, and readiness for postoperative care.",
+      "speed": 1.05
+    },
+    {
+      "id": "n242",
+      "startMs": 3615000,
+      "endMs": 3630000,
+      "text": "Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. The final inspection documents hemostasis, valve stability, and readiness for postoperative care.",
+      "speed": 1.05
+    },
+    {
+      "id": "n243",
+      "startMs": 3630000,
+      "endMs": 3645000,
+      "text": "Cannulas are removed only when circulation tolerates the step; protamine reverses heparin after bypass is no longer required. Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. The final inspection documents hemostasis, valve stability, and readiness for postoperative care.",
+      "speed": 1.05
+    },
+    {
+      "id": "n244",
+      "startMs": 3645000,
+      "endMs": 3660000,
+      "text": "Final inspection focuses on hemostasis, repaired tissue, residual air, and the stability of the new valve before closure. Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. The final inspection documents hemostasis, valve stability, and readiness for postoperative care.",
+      "speed": 1.05
+    },
+    {
+      "id": "n245",
       "startMs": 3660000,
       "endMs": 3667788,
-      "text": "The closing message is the sequence: infected TAVI prosthesis explantation, removal of the native valve, meticulous debridement and irrigation, surgical bioprosthetic replacement, de-airing, and staged separation from bypass. This is an educational operative record, not a guide for self-treatment or a prediction for any individual patient."
+      "text": "Separation from bypass is incremental: flow is reduced while pressure, rhythm, contractility, and valve function are observed. Pacing wires provide a controlled backup while native conduction is assessed near the aortic annulus. The final inspection documents hemostasis, valve stability, and readiness for postoperative care.",
+      "speed": 1.05
     }
   ]
 }
